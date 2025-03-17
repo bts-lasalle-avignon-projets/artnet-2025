@@ -1,6 +1,6 @@
 # Projet Artnet 2025 
 
-<img src ="images/projecteurs.png" alt="Logo ArtNet" width="20%">
+<img images ="images/projecteurs.png" alt="Logo ArtNet" width="20%">
 
 ---
 
@@ -65,9 +65,27 @@ Il permet au technicien de paramétrer et enregistrer les différents équipemen
 
 ### Itération 1
 
+*Du 29 janvier au 28 mars*
+
+- **Dialogue application/serveur :** Etablir une connexion etre l'application mobile et le serveur
+- **Etablir la connexion avec les modules :** Associer et établir la communication avec les modules DMX
+- **Activer/Désactiver un module :** Permettre l’activation ou la désactivation d’un module DMX
+- **Configurer les équipements DMX et enregistrer les configurations :** : Définir les paramètres des équipements DMX et sauvegarder leurs configurations.
+
 ### Itération 2
 
+*Du 29 mars au 23 mai*
+
+- **Gérer la configuration technique du système via une IHM :** Fournir une interface utilsateur d'administration
+- **Sauvegarder, exporter, importer l'état de configuration du système** : Permettre la gestion avancée des configurations enregistrées.
+- **Créer et gérer des pré-enregistrement de valeurs de canaux :** Mise en place de scène pré-enregistrées
+
 ### Itération 3 
+
+*Du 24 mai au 30 mai*
+
+- **Mettre en forme l'affichage :** Mise en forme responsive à 100% 
+- **Prendre en charge et communiquer avec un modem DMX Filaire** : Ajouter la compatibilité avec un modem DMX filaire
 
 
 ## Diagrammes
