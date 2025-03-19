@@ -118,6 +118,8 @@ Activer une scène :
 
 Diagramme du serveur :
 
+![Diagramme classe serveur](images/diagrammes/classe/vueServeur.png)
+
 Diagramme de l'application mobile :
 
 ### Base de donnée
