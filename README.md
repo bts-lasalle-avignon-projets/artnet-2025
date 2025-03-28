@@ -1,6 +1,4 @@
-# Projet Artnet 2025 
-
-<img images ="images/projecteurs.png" alt="Logo ArtNet" width="20%">
+# <img src="images/projecteurs.png" alt="Logo ArtNet" width="10%"> Projet Artnet 2025 
 
 ---
 
@@ -31,7 +29,7 @@
 ### Informations
 
 - Nom du projet : ARTNET
-- Date de début : Février 2025
+- Date de début : 25 Février 2025
 - Version : --
 
 ### Présentation
@@ -102,9 +100,9 @@ Diagramme de l'application mobile :
 
 ### Diagramme de séquence
 
-Connexion à la BDD :
+Création d'un nouveau module
 
-![Diagramme sequence connexion BDD](images/diagrammes/sequence/connexion.png)
+![Diagramme sequence creation module](images/diagrammes/sequence/creationNouveauModule.png)
 
 Création et configuration d'une scène :
 
@@ -118,7 +116,11 @@ Activer une scène :
 
 Diagramme du serveur :
 
+![Diagramme classe vue serveur](images/diagrammes/classes/serveur/vueServeur.png)
+
 Diagramme de l'application mobile :
+
+![Diagramme classe vue serveur](images/diagrammes/classes/application/vueApplication.png)
 
 ### Base de donnée
 
@@ -126,13 +128,11 @@ Diagramme de l'application mobile :
 
 ## Protocole
 
-Nous utilisons le protocole MQTT pour communiquer entre le serveur et chaque boîtier Wifi-DMX
-Le protocole MQTT à pour "blocker" le serveur avec l'IHM d'administration, chaque boîtier va se souscrire à un Topic, lorsqu'un message sera envoyée sur le serveur, si le boîtier à pour Topic l'en-tête du message, il lira les données. Sinon, il les laissera.
+Nous utilisons le protocole MQTT pour communiquer entre l'application, le serveur et chaque boîtier Wifi-DMX
+Le protocole MQTT à pour "bloker" le serveur avec l'IHM d'administration, chaque boîtier va se souscrire (Devenir "Subscriber") à un Topic qui sera le numéro de l'univers configuré sur le boîtier, lorsqu'un message sera envoyé sur le serveur, si le boîtier à pour univers le  nom du Topic sur lequel est envoyé le message, il lira les données. Sinon, il les laissera.
 
-Le boîtier créé pour le test aura pour Topic "Scene/Principal"
-
-Quand on veut envoyer un message avec des informations, il faut donc utiliser le topic :
-"ARTNET/Scene/Principal", ensuite nous pouvons envoyer le message que l'on souhaite sur ce boîtier
+Quand on veut envoyer un message avec des informations (tel que les canaux), il faut donc utiliser le topic :
+"Artnet/Univers/X" (où X représente le numéro de l'univers), ensuite nous pouvons envoyer le message que l'on souhaite sur ce boîtier.
 
 ## Changelog
 
