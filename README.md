@@ -52,7 +52,7 @@ Le système est composé de :
 Il est chargé de la communication avec les modules “Wifi-DMX” et l’application mobile de contrôle. 
 Il pourra éventuellement contrôler un modem DMX filaire mais aussi stocker et gérer des constitutions de scènes pré enregistrées.
 
-- Un module **Application de commande** qui sera l’interface utilisateur du systèmesur appareil mobile. 
+- Un module **Application de commande** qui sera l’interface utilisateur du système sur un appareil mobile. 
 Il permet au technicien de paramétrer et enregistrer les différents équipements DMX et les canaux associés à partir de leur adresse DMX, modifier la valeur des canaux associés aux équipements manuellement et éventuellement de programmer des situations pré enregistrés contenant les valeurs de différents canaux pour effectuer des changements complexes en un clic.
 
 
