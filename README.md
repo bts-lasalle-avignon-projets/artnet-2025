@@ -13,6 +13,7 @@
         - [Diagramme des classes](#diagramme-des-classes)
         - [Base de donnée](#base-de-donnée)
     - [Utilisations](#utilisation)
+        - [Installation et configuration broker](#installation-et-configuration-broker)
     - [Itérations](#itérations)
         - [Itération 1](#itération-1)
         - [Itération 2](#itération-2)
@@ -58,6 +59,10 @@ Il permet au technicien de paramétrer et enregistrer les différents équipemen
 
 ## Utilisation
 
+### Installation et configuration broker
+**Sur linux :**
+- sudo apt install mosquitto    &emsp;| installe le broker
+- sudo systemctl start/stop/status mosquitto    &emsp;| démarre, stop ou visualise l'état
 
 ## Itérations
 
