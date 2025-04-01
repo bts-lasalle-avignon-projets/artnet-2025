@@ -1,0 +1,27 @@
+class ActiviteArtnet
+!!!128279.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_principale);
+        Log.d(TAG, "onCreate()");
+
+        initialiserCommunicationBroker();
+
+        artnet = new Artnet(communicationBroker);
+!!!128407.java!!!	onStart() : void
+        super.onStart();
+        Log.d(TAG, "onStart()");
+!!!128535.java!!!	onResume() : void
+        super.onResume();
+        Log.d(TAG, "onResume()");
+!!!128663.java!!!	onPause() : void
+        super.onPause();
+        Log.d(TAG, "onPause()");
+!!!128791.java!!!	onStop() : void
+        super.onStop();
+        Log.d(TAG, "onStop()");
+!!!128919.java!!!	onDestroy() : void
+        super.onDestroy();
+        Log.d(TAG, "onDestroy()");
+!!!129047.java!!!	initialiserCommunicationBroker() : void
+        communicationBroker = new CommunicationBroker(this.getApplicationContext());

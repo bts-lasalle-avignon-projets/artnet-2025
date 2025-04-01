@@ -1,0 +1,84 @@
+class CommunicationBroker
+!!!129815.java!!!	CommunicationBroker(inout applicationContext : Context)
+        Log.d(TAG, "CommunicationBroker() serveurUri -> " + serveurUri);
+        this.context = applicationContext;
+
+        initialiser();
+!!!129943.java!!!	initialiser() : void
+        Log.d(TAG, "initialiser()");
+        mqttAndroidClient = new MqttAndroidClient(context, serveurUri, clientId);
+        mqttAndroidClient.setCallback(new MqttCallbackExtended() {
+            @Override
+            public void connectComplete(boolean b, String s)
+            {
+                Log.d(TAG, "connectComplete() -> " + s + " (" + b + ")");
+            }
+
+            @Override
+            public void connectionLost(Throwable throwable)
+            {
+                Log.d(TAG, "connectionLost() -> " + throwable.toString());
+            }
+
+            @Override
+            public void messageArrived(String topic, MqttMessage mqttMessage) throws Exception
+            {
+                Log.d(TAG,
+                      "[MqttAndroidClient] messageArrived() " + topic + " -> " +
+                        mqttMessage.toString());
+            }
+
+            @Override
+            public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken)
+            {
+                Log.d(TAG, "[MqttAndroidClient] deliveryComplete()");
+            }
+        });
+!!!130071.java!!!	connecter() : void
+        if(estConnecte())
+            deconnecter();
+        Log.d(TAG, "connecter() serveurUri -> " + serveurUri);
+        MqttConnectOptions mqttConnectOptions = new MqttConnectOptions();
+        mqttConnectOptions.setAutomaticReconnect(true);
+        mqttConnectOptions.setCleanSession(false);
+
+        /**
+         * @todo mqttAndroidClient.connect()
+         */
+!!!130199.java!!!	deconnecter() : void
+        if(!estConnecte())
+            return;
+        /**
+         * @todo mqttAndroidClient.disconnect()
+         */
+!!!130327.java!!!	estConnecte() : boolean
+        Log.d(TAG, "estConnecte() " + mqttAndroidClient.isConnected());
+        return mqttAndroidClient.isConnected();
+!!!130455.java!!!	sabonner(in topic : String) : boolean
+        Log.d(TAG, "sabonner() topic -> " + topic);
+        if(mqttAndroidClient == null || !mqttAndroidClient.isConnected())
+        {
+            return false;
+        }
+        if(topic.isEmpty())
+            return false;
+
+        /**
+         * @todo mqttAndroidClient.subscribe()
+         */
+
+        return true;
+!!!130583.java!!!	desabonner(in topic : String) : boolean
+        Log.d(TAG, "desabonner() topic -> " + topic);
+        if(mqttAndroidClient == null || !mqttAndroidClient.isConnected())
+        {
+            return false;
+        }
+        if(topic.isEmpty())
+            return false;
+
+        /**
+         * @todo mqttAndroidClient.unsubscribe()
+         */
+
+        return true;

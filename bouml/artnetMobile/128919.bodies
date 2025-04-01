@@ -1,0 +1,9 @@
+class ModuleDmxWifi
+!!!133015.java!!!	etablirConnexion() : boolean
+        return false;
+!!!133271.java!!!	ajouterEquipement(inout e : Equipement) : boolean
+        return false;
+!!!133399.java!!!	getEquipement() : Equipement
+        return equipement;
+!!!133527.java!!!	modifierValeur() : boolean
+        return false;
