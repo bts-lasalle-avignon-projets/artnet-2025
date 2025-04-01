@@ -61,8 +61,19 @@ Il permet au technicien de paramétrer et enregistrer les différents équipemen
 
 ### Installation et configuration broker
 **Sur linux :**
-- sudo apt install mosquitto    &emsp;| installe le broker
-- sudo systemctl start/stop/status mosquitto    &emsp;| démarre, stop ou visualise l'état
+* **Installation :**
+    * **sudo apt install mosquitto**    &emsp;| installe le broker
+<br>
+* **À savoir :**
+    * **cd /etc/mosquitto**    &emsp;|  emplacement du dossier
+    * **sudo systemctl start / stop / status mosquitto**   &emsp;| démarre / stop / visualise l'état
+    * **nano /usr/share/doc/mosquitto/examples/mosquitto.conf**    &emsp;| fichier d'info
+    * **nano /etc/mosquitto/mosquitto.conf**    &emsp;| fichier de configuration de base
+<br>    
+* **Configuration à ajouter :**  
+    * **listener 1883 0.0.0.0**   &emsp;| écoute sur le port 1883 sur toute les interfaces réseaux (1883 port par défaut du MQTT)
+    * **allow_anonymous true**    &emsp;| accepte tout les utilisateurs (si false alors configurer toutes les autentifications des clients)
+
 
 ## Itérations
 
