@@ -7,4 +7,12 @@
     android:layout_height="match_parent"
     tools:context=".Chargement">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Hello"
+        android:fontFamily="@font/pirataone"
+        android:textSize="50dp"
+        android:layout_marginVertical="50dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
