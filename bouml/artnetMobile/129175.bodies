@@ -1,0 +1,6 @@
+class Configuration
+!!!130711.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_configuration);
+        Log.d(TAG, "onCreate()");

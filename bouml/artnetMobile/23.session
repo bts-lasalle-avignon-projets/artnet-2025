@@ -1,0 +1,13 @@
+window_sizes 1872 1016 327 1539 843 120
+cleanlooks_style
+diagrams
+  active  classdiagram_ref 128151 // classes-iteration1
+    1539 843 100 A0 0 0
+end
+show_stereotypes
+selected class_ref 129559 // EquipementDmx
+open
+  classview_ref 128151 // artnetmobile
+  classview_ref 128279 // unknown
+end
+end
