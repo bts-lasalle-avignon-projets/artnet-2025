@@ -1,0 +1,6 @@
+class Credits
+!!!130839.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_credits);
+        Log.d(TAG, "onCreate()");

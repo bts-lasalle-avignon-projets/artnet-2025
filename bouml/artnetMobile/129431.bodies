@@ -1,0 +1,6 @@
+class Equipement
+!!!130967.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_equipement);
+        Log.d(TAG, "onCreate()");

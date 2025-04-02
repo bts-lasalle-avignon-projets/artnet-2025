@@ -1,0 +1,27 @@
+class EquipementDmx
+!!!131095.java!!!	getCanaux() : Equipement
+        return canaux;
+!!!131223.java!!!	setIdEquipement(in idEquipement : int) : void
+        this.idEquipement = idEquipement;
+!!!131351.java!!!	setUnivers(in univers : int) : void
+        this.univers = univers;
+!!!131479.java!!!	setNom(in nom : String) : void
+        this.nom = nom;
+!!!131607.java!!!	setType(in type : String) : void
+        this.type = type;
+!!!131735.java!!!	setNbCanaux(in nbCanaux : int) : void
+        this.nbCanaux = nbCanaux;
+!!!131863.java!!!	setAdresseDMX(in adresseDMX : int) : void
+        this.adresseDMX = adresseDMX;
+!!!132119.java!!!	getUnivers() : int
+        return univers;
+!!!132247.java!!!	getAdresseDMX() : int
+        return adresseDMX;
+!!!132375.java!!!	getIdEquipement() : int
+        return idEquipement;
+!!!132503.java!!!	getNom() : String
+        return nom;
+!!!132631.java!!!	getType() : String
+        return type;
+!!!132759.java!!!	getNbCanaux() : int
+        return nbCanaux;
