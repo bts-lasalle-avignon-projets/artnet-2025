@@ -12,6 +12,7 @@
             android:id="@+id/titre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/PirataOne"
             android:text="@string/appName"
             android:layout_marginTop="20dp"
             android:layout_centerHorizontal="true"/>
@@ -20,6 +21,7 @@
             android:id="@+id/credits"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/PlayfairDisplay"
             android:text="@string/copyright"
             android:layout_below="@id/titre"
             android:layout_marginTop="10dp"
