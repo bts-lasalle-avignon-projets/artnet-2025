@@ -1,6 +1,9 @@
 <resources>
+    <string name="Hello">Hello World!</string>
     <string name="appName">Artnet Mobile</string>
     <string name="app_name">Artnet Mobile</string>
+    <string name="cD_lasalle">Logo - Campus Lasalle</string>
+    <string name="cD_artnet">Logo - Artnet</string>
     <string name="boutonChargement">Charger</string>
     <string name="copyright">(c) CLEMENT Aymeric - 2025</string>
 </resources>

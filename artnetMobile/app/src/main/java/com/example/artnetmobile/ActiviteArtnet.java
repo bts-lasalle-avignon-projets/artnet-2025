@@ -6,6 +6,7 @@
 
 package com.example.artnetmobile;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -14,6 +15,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 /**
  * @class ActiviteArtnet
@@ -33,8 +36,6 @@ public class ActiviteArtnet extends AppCompatActivity
     /**
      * Attributs
      */
-    private CommunicationBroker communicationBroker;
-    private Artnet artnet = null;
 
     /**
      * @brief Méthode appelée à la création de l'activité
@@ -47,9 +48,15 @@ public class ActiviteArtnet extends AppCompatActivity
         setContentView(R.layout.activity_principale);
         Log.d(TAG, "onCreate()");
 
-        initialiserCommunicationBroker();
+        Button boutonChargement = findViewById(R.id.boutonChargement);
 
-        artnet = new Artnet(communicationBroker);
+        boutonChargement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActiviteArtnet.this, Chargement.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -105,8 +112,4 @@ public class ActiviteArtnet extends AppCompatActivity
         Log.d(TAG, "onDestroy()");
     }
 
-    private void initialiserCommunicationBroker()
-    {
-        communicationBroker = new CommunicationBroker(this.getApplicationContext());
-    }
 }

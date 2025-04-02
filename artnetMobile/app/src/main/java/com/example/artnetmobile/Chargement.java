@@ -16,6 +16,10 @@ public class Chargement extends AppCompatActivity
      */
     private static final String TAG = "_Chargement"; //!< TAG pour les logs (cf. Logcat)
 
+    private CommunicationBroker communicationBroker;
+    private Artnet artnet = null;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -23,5 +27,14 @@ public class Chargement extends AppCompatActivity
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_chargement);
         Log.d(TAG, "onCreate()");
+
+        initialiserCommunicationBroker();
+
+        artnet = new Artnet(communicationBroker);
+    }
+
+    private void initialiserCommunicationBroker()
+    {
+        communicationBroker = new CommunicationBroker(this.getApplicationContext());
     }
 }
