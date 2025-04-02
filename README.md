@@ -96,7 +96,15 @@ $ sudo systemctl stop mosquitto
 
 - Tests :
 
-
+```sh
+$ sudo apt install mosquitto-clients
+```
+```sh
+$ mosquitto_sub -h localhost -t "test"
+```
+```sh
+$ mosquitto_pub -h localhost -t "test" -m "Hello World"
+```
 
 ## Itérations
 
