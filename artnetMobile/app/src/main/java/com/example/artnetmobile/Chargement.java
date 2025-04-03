@@ -8,6 +8,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import android.util.Log;
+import android.os.Bundle;
+import android.os.Handler;
+import android.widget.ImageView;
 
 public class Chargement extends AppCompatActivity
 {
@@ -19,6 +22,10 @@ public class Chargement extends AppCompatActivity
     private CommunicationBroker communicationBroker;
     private Artnet artnet = null;
 
+    private ImageView imageChargement;
+    private int[] images = {R.drawable.chargement1, R.drawable.chargement2, R.drawable.chargement3, R.drawable.chargement4};
+    private int index = 0;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -28,6 +35,10 @@ public class Chargement extends AppCompatActivity
         setContentView(R.layout.activity_chargement);
         Log.d(TAG, "onCreate()");
 
+        imageChargement = findViewById(R.id.imageChargement);
+
+        startImageRotation();
+
         initialiserCommunicationBroker();
 
         artnet = new Artnet(communicationBroker);
@@ -36,5 +47,17 @@ public class Chargement extends AppCompatActivity
     private void initialiserCommunicationBroker()
     {
         communicationBroker = new CommunicationBroker(this.getApplicationContext());
+    }
+
+    private void startImageRotation() {
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                index = (index + 1) % images.length;
+                imageChargement.setImageResource(images[index]);
+
+                handler.postDelayed(this, 1000);
+            }
+        }, 1000);
     }
 }

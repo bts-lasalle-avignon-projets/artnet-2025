@@ -5,5 +5,12 @@
     <string name="cD_lasalle">Logo - Campus Lasalle</string>
     <string name="cD_artnet">Logo - Artnet</string>
     <string name="boutonChargement">Charger</string>
+    <string name="chargement">Chargement en cours...</string>
+    <string name="chargementEquipements">Chargement des équipements</string>
+    <string name="chargementScenes">Chargement des scènes</string>
+    <string name="connexionBroker">Connexion au broker</string>
+    <string name="cD_Chargement">Chargement</string>
     <string name="copyright">(c) CLEMENT Aymeric - 2025</string>
+    <string name="entreeIP">IP du Broker</string>
+    <string name="entreePort">Port</string>
 </resources>

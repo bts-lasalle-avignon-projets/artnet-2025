@@ -17,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 /**
  * @class ActiviteArtnet
@@ -49,10 +50,18 @@ public class ActiviteArtnet extends AppCompatActivity
         Log.d(TAG, "onCreate()");
 
         Button boutonChargement = findViewById(R.id.boutonChargement);
+        EditText entreeIP = findViewById(R.id.entreeUtilisateurIP);
+        EditText entreePort = findViewById(R.id.entreeUtilisateurPort);
 
         boutonChargement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("ActiviteArtnet", "Bouton de chargement cliqué !");
+
+                String ip = entreeIP.getText().toString();
+                String port = entreePort.getText().toString();
+                Log.d("ActiviteArtnet", "IP : " + ip + ", Port : " + port);
+
                 Intent intent = new Intent(ActiviteArtnet.this, Chargement.class);
                 startActivity(intent);
             }
