@@ -3,7 +3,6 @@
 /**
  * @file router.php
  * @brief Définit la classe Router du modèle MVC
- * @author 
  * @version 1.0
  */
 
@@ -20,10 +19,6 @@ class Router
 
 	public function __construct($request)
 	{
-		if (DEBUG) {
-			print_r($request);
-		}
-
 		$this->request = $request;
 
 		if (!empty($this->request['controleur'])) {
@@ -39,8 +34,8 @@ class Router
 		}
 
 		if (DEBUG) {
-			Message::afficher('controleur : ' . $this->controller, 'debug');
-			Message::afficher('action : ' . $this->action, 'debug');
+			$message = 'class Router<br />' . 'controleur : ' . $this->controller . '<br /> ' . 'action : ' . $this->action;
+			Message::afficher($message, 'debug');
 		}
 	}
 

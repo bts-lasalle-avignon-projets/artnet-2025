@@ -14,9 +14,9 @@ define("DB_PASS", "password");
 define("DB_NAME", "artnet");
 
 // URL
-define("ROOT_PATH", "/artnet-2025/IHM_Administration/");
+define("ROOT_PATH", "/artnet-2025/artnetAdministration/");
 //define("URL_PATH", "http://" . $_SERVER['HTTP_HOST'] . "/artnet/");
-define("URL_PATH", "http://" . $_SERVER['HTTP_HOST'] . "/artnet-2025/IHM_Administration/");
+define("URL_PATH", "http://" . $_SERVER['HTTP_HOST'] . "/artnet-2025/artnetAdministration/");
 
 // Divers
 define("TITRE_SITE", "ArtNet");
