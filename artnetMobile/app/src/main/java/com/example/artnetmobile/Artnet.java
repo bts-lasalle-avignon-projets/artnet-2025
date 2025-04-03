@@ -1,7 +1,14 @@
 package com.example.artnetmobile;
 
+import android.util.Log;
+
 public class Artnet
 {
+
+    // Constantes
+    private static final String TAG = "Artnet"; //!< TAG pour les logs (cf. Logcat)
+
+    // Attributs
     private VueArtnet           vueArtnet;
     private ModuleDmxWifi       moduleDmxWifi;
     private CommunicationBroker communicationBroker;

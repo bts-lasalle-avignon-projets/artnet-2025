@@ -14,14 +14,10 @@ import android.widget.ImageView;
 
 public class Chargement extends AppCompatActivity
 {
-    /**
-     * Constantes
-     */
+    // Constantes
     private static final String TAG = "_Chargement"; //!< TAG pour les logs (cf. Logcat)
 
-    private CommunicationBroker communicationBroker;
-    private Artnet artnet = null;
-
+    // Attributs
     private ImageView imageChargement;
     private int[] images = {R.drawable.chargement1, R.drawable.chargement2, R.drawable.chargement3, R.drawable.chargement4};
     private int index = 0;
@@ -38,15 +34,6 @@ public class Chargement extends AppCompatActivity
         imageChargement = findViewById(R.id.imageChargement);
 
         startImageRotation();
-
-        initialiserCommunicationBroker();
-
-        artnet = new Artnet(communicationBroker);
-    }
-
-    private void initialiserCommunicationBroker()
-    {
-        communicationBroker = new CommunicationBroker(this.getApplicationContext());
     }
 
     private void startImageRotation() {

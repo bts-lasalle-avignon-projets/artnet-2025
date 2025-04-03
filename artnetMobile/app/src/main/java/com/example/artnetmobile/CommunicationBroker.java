@@ -17,30 +17,29 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 public class CommunicationBroker
 {
-    /**
-     * Constantes
-     */
-    private static final String TAG               = "_CommunicationBroker";
-    public static final String  IP_BROKER         = "192.168.52.7";
-    public static final int     PORT_BROKER       = 1883;
+    // Constantes
+    private static final String TAG = "CommunicationBroker";
     public static final String  TOPIC_ARTNET      = "Artnet/#"; // par défaut
     public static final int     BROKER_CONNECTE   = 0;
     public static final int     BROKER_DECONNECTE = 1;
     public static final int     BROKER_MESSAGE    = 2;
     public static final int     BROKER_ERREUR     = 3;
-    /**
-     * Attributs
-     */
-    Context                  context;
+
+    // Attributs
+    private String IP_BROKER;
+    private int PORT_BROKER;
+    Context context;
     public MqttAndroidClient mqttAndroidClient = null;
-    String                   serveurUri        = "tcp://" + IP_BROKER + ":" + PORT_BROKER;
-    String                   clientId          = "clientArtnetMobile";
+    String serveurUri;
+    String clientId = "clientArtnetMobile";
 
-    public CommunicationBroker(Context applicationContext)
+    public CommunicationBroker(Context applicationContext, String ip, int port)
     {
-        Log.d(TAG, "CommunicationBroker() serveurUri -> " + serveurUri);
+        Log.d(TAG, "CommunicationBroker() -> IP: " + ip + ", Port: " + port);
         this.context = applicationContext;
-
+        this.IP_BROKER = ip;
+        this.PORT_BROKER = port;
+        this.serveurUri = "tcp://" + IP_BROKER + ":" + PORT_BROKER;
         initialiser();
     }
 
@@ -86,18 +85,14 @@ public class CommunicationBroker
         mqttConnectOptions.setAutomaticReconnect(true);
         mqttConnectOptions.setCleanSession(false);
 
-        /**
-         * @todo mqttAndroidClient.connect()
-         */
+        // @todo mqttAndroidClient.connect()
     }
 
     public void deconnecter()
     {
         if(!estConnecte())
             return;
-        /**
-         * @todo mqttAndroidClient.disconnect()
-         */
+         // @todo mqttAndroidClient.disconnect()
     }
 
     public boolean estConnecte()
@@ -116,9 +111,7 @@ public class CommunicationBroker
         if(topic.isEmpty())
             return false;
 
-        /**
-         * @todo mqttAndroidClient.subscribe()
-         */
+        // @todo mqttAndroidClient.subscribe()
 
         return true;
     }
@@ -133,9 +126,7 @@ public class CommunicationBroker
         if(topic.isEmpty())
             return false;
 
-        /**
-         * @todo mqttAndroidClient.unsubscribe()
-         */
+        // @todo mqttAndroidClient.unsubscribe()
 
         return true;
     }

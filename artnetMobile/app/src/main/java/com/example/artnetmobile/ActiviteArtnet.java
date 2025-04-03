@@ -18,29 +18,32 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * @class ActiviteArtnet
  * @brief L'activité principale
- */
+**/
+
 public class ActiviteArtnet extends AppCompatActivity
 {
-    /**
-     * Constantes
-     */
+    // Constantes
     private static final String TAG = "_ActiviteArtnet"; //!< TAG pour les logs (cf. Logcat)
+    private static final String PORT_STANDARD = "1883";
+    public static final int LONGUEUR_MINIMALE_IPV4 = 7;
 
-    /**
-     * Ressources GUI
-     */
+    private CommunicationBroker communicationBroker;
+    private Artnet artnet = null;
 
-    /**
-     * Attributs
-     */
+    // Ressources GUI
+    CharSequence text = "Entrez une IP valide !";
+    int dureeToast = Toast.LENGTH_SHORT;
 
-    /**
-     * @brief Méthode appelée à la création de l'activité
-     */
+    // Attributs
+    private String ip = "";
+    private String port = "";
+
+    // @brief Méthode appelée à la création de l'activité
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -56,22 +59,39 @@ public class ActiviteArtnet extends AppCompatActivity
         boutonChargement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("ActiviteArtnet", "Bouton de chargement cliqué !");
+                boolean connexionPossible = false;
+                Log.d(TAG, "Bouton de chargement cliqué !");
 
-                String ip = entreeIP.getText().toString();
-                String port = entreePort.getText().toString();
-                Log.d("ActiviteArtnet", "IP : " + ip + ", Port : " + port);
+                ip = entreeIP.getText().toString();
+                port = entreePort.getText().toString();
 
-                Intent intent = new Intent(ActiviteArtnet.this, Chargement.class);
-                startActivity(intent);
+                if(ip.length() < LONGUEUR_MINIMALE_IPV4) {
+                    Log.d(TAG, "ERREUR : ENTREE IP INCORRECTE, AFFICHAGE TOAST");
+                    Toast toast = Toast.makeText(ActiviteArtnet.this, "ERREUR : L'adresse IP est incorrecte !", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+
+                if(port.isEmpty()) {
+                    Log.d(TAG, "ERREUR : ENTREE PORT VIDE, PORT STANDARD DEFINI");
+                    port = PORT_STANDARD;
+                }
+
+                if(!ip.isEmpty())
+                {
+                    connexionPossible = true;
+                }
+
+                if(connexionPossible) {
+                    Log.d(TAG, "IP : " + ip + ", Port : " + port);
+                    artnet = new Artnet(communicationBroker);
+                    Intent intent = new Intent(ActiviteArtnet.this, Chargement.class);
+                    startActivity(intent);
+                }
             }
         });
     }
 
-    /**
-     * @brief Méthode appelée au démarrage après le onCreate() ou un restart
-     * après un onStop()
-     */
+    // @brief Méthode appelée au démarrage après le onCreate() ou un restart / après un onStop()
     @Override
     protected void onStart()
     {
@@ -79,9 +99,7 @@ public class ActiviteArtnet extends AppCompatActivity
         Log.d(TAG, "onStart()");
     }
 
-    /**
-     * @brief Méthode appelée après onStart() ou après onPause()
-     */
+    // @brief Méthode appelée après onStart() ou après onPause()
     @Override
     protected void onResume()
     {
@@ -89,10 +107,7 @@ public class ActiviteArtnet extends AppCompatActivity
         Log.d(TAG, "onResume()");
     }
 
-    /**
-     * @brief Méthode appelée après qu'une boîte de dialogue s'est affichée (on
-     * reprend sur un onResume()) ou avant onStop() (activité plus visible)
-     */
+    // @brief Méthode appelée après qu'une boîte de dialogue s'est affichée (on reprend sur un onResume()) ou avant onStop() (activité plus visible)
     @Override
     protected void onPause()
     {
@@ -100,9 +115,7 @@ public class ActiviteArtnet extends AppCompatActivity
         Log.d(TAG, "onPause()");
     }
 
-    /**
-     * @brief Méthode appelée lorsque l'activité n'est plus visible
-     */
+    // @brief Méthode appelée lorsque l'activité n'est plus visible
     @Override
     protected void onStop()
     {
@@ -110,15 +123,25 @@ public class ActiviteArtnet extends AppCompatActivity
         Log.d(TAG, "onStop()");
     }
 
-    /**
-     * @brief Méthode appelée à la destruction de l'application (après onStop()
-     * et détruite par le système Android)
-     */
+    // @brief Méthode appelée à la destruction de l'application (après onStop() et détruite par le système Android)
     @Override
     protected void onDestroy()
     {
         super.onDestroy();
         Log.d(TAG, "onDestroy()");
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public int getPort() {
+        return Integer.parseInt(port);
+    }
+
+    private void initialiserCommunicationBroker()
+    {
+        communicationBroker = new CommunicationBroker(this.getApplicationContext(), getIp(), getPort());
     }
 
 }
