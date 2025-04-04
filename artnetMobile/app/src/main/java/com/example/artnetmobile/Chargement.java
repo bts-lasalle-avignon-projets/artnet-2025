@@ -12,6 +12,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
 
+/**
+ * @class Chargement
+ * @brief Page d'attente de connexion & chargement du BROKER
+ */
+
 public class Chargement extends AppCompatActivity
 {
     // Constantes

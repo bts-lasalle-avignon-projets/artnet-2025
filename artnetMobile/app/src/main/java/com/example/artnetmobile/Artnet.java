@@ -4,7 +4,6 @@ import android.util.Log;
 
 public class Artnet
 {
-
     // Constantes
     private static final String TAG = "Artnet"; //!< TAG pour les logs (cf. Logcat)
 

@@ -83,6 +83,7 @@ public class ActiviteArtnet extends AppCompatActivity
 
                 if(connexionPossible) {
                     Log.d(TAG, "IP : " + ip + ", Port : " + port);
+                    initialiserCommunicationBroker();
                     artnet = new Artnet(communicationBroker);
                     Intent intent = new Intent(ActiviteArtnet.this, Chargement.class);
                     startActivity(intent);
