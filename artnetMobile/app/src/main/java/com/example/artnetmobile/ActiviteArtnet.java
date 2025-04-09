@@ -32,9 +32,6 @@ public class ActiviteArtnet extends AppCompatActivity
     private static final String PORT_STANDARD = "1883";
     public static final int LONGUEUR_MINIMALE_IPV4 = 7;
 
-    private CommunicationBroker communicationBroker;
-    private Artnet artnet = null;
-
     // Ressources GUI
     CharSequence text = "Entrez une IP valide !";
     int dureeToast = Toast.LENGTH_SHORT;
@@ -83,9 +80,9 @@ public class ActiviteArtnet extends AppCompatActivity
 
                 if(connexionPossible) {
                     Log.d(TAG, "IP : " + ip + ", Port : " + port);
-                    initialiserCommunicationBroker();
-                    artnet = new Artnet(communicationBroker);
                     Intent intent = new Intent(ActiviteArtnet.this, Chargement.class);
+                    intent.putExtra("IP", ip);
+                    intent.putExtra("PORT", port);
                     startActivity(intent);
                 }
             }
@@ -138,11 +135,6 @@ public class ActiviteArtnet extends AppCompatActivity
 
     public int getPort() {
         return Integer.parseInt(port);
-    }
-
-    private void initialiserCommunicationBroker()
-    {
-        communicationBroker = new CommunicationBroker(this.getApplicationContext(), getIp(), getPort());
     }
 
 }
