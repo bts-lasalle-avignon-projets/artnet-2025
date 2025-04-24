@@ -1,3 +1,5 @@
+[![Java Format](https://github.com/bts-lasalle-avignon-projets/artnet-2025/actions/workflows/clang-format.yml/badge.svg)](https://github.com/bts-lasalle-avignon-projets/artnet-2025/actions/workflows/clang-format.yml)
+
 # <img src="images/projecteurs.png" alt="Logo ArtNet" width="10%"> Projet Artnet 2025 
 
 ---
