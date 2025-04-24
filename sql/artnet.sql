@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : mer. 23 avr. 2025 à 14:43
+-- Généré le : jeu. 24 avr. 2025 à 15:03
 -- Version du serveur :  8.0.41-0ubuntu0.20.04.1
 -- Version de PHP : 7.4.3-4ubuntu2.29
 
@@ -25,6 +25,17 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `accesBrokerMQTT`
+--
+
+CREATE TABLE `accesBrokerMQTT` (
+  `ipBroker` varchar(39) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '192.168.1.104',
+  `portBroker` int NOT NULL DEFAULT '1883'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `equipement`
 --
 
@@ -41,13 +52,27 @@ CREATE TABLE `equipement` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `moduleWIFI`
+-- Structure de la table `moduleDMXWiFi`
 --
 
-CREATE TABLE `moduleWIFI` (
+CREATE TABLE `moduleDMXWiFi` (
   `univers` int NOT NULL,
   `nomBoitier` varchar(255) NOT NULL,
-  `nombreAppareils` int NOT NULL
+  `adresseIP` varchar(39) NOT NULL,
+  `adresseMAC` varchar(17) NOT NULL,
+  `rssi` int NOT NULL,
+  `actif` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `scene`
+--
+
+CREATE TABLE `scene` (
+  `nomScene` varchar(255) NOT NULL,
+  `canaux` json NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -62,9 +87,9 @@ ALTER TABLE `equipement`
   ADD UNIQUE KEY `univers` (`univers`);
 
 --
--- Index pour la table `moduleWIFI`
+-- Index pour la table `moduleDMXWiFi`
 --
-ALTER TABLE `moduleWIFI`
+ALTER TABLE `moduleDMXWiFi`
   ADD PRIMARY KEY (`univers`);
 
 --
@@ -75,7 +100,7 @@ ALTER TABLE `moduleWIFI`
 -- Contraintes pour la table `equipement`
 --
 ALTER TABLE `equipement`
-  ADD CONSTRAINT `lienUnivers` FOREIGN KEY (`univers`) REFERENCES `moduleWIFI` (`univers`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `lienUnivers` FOREIGN KEY (`univers`) REFERENCES `moduleDMXWiFi` (`univers`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
