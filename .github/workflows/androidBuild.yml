@@ -25,4 +25,5 @@ jobs:
         run: chmod +x artnetMobile/gradlew
 
       - name: Build with Gradle
-        run: cd ..\..\artnetMobile && ./gradlew build
+        run: cd artnetMobile && ./gradlew build
+
