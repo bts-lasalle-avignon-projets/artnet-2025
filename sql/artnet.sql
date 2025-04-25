@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : jeu. 24 avr. 2025 à 15:03
+-- Généré le : ven. 25 avr. 2025 à 09:49
 -- Version du serveur :  8.0.41-0ubuntu0.20.04.1
 -- Version de PHP : 7.4.3-4ubuntu2.29
 
@@ -67,12 +67,28 @@ CREATE TABLE `moduleDMXWiFi` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `scenario`
+--
+
+CREATE TABLE `scenario` (
+  `idScenario` int NOT NULL,
+  `nomScenario` varchar(255) NOT NULL,
+  `tempsScenario` time NOT NULL,
+  `sequenceScene` json NOT NULL COMMENT 'idScene + tempsScene'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `scene`
 --
 
 CREATE TABLE `scene` (
+  `idScene` int NOT NULL,
   `nomScene` varchar(255) NOT NULL,
-  `canaux` json NOT NULL
+  `canaux` json NOT NULL,
+  `creationScene` datetime NOT NULL,
+  `modificationScene` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -91,6 +107,18 @@ ALTER TABLE `equipement`
 --
 ALTER TABLE `moduleDMXWiFi`
   ADD PRIMARY KEY (`univers`);
+
+--
+-- Index pour la table `scenario`
+--
+ALTER TABLE `scenario`
+  ADD PRIMARY KEY (`idScenario`);
+
+--
+-- Index pour la table `scene`
+--
+ALTER TABLE `scene`
+  ADD PRIMARY KEY (`idScene`);
 
 --
 -- Contraintes pour les tables déchargées
