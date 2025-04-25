@@ -1,53 +1,32 @@
--- phpMyAdmin SQL Dump
--- version 4.9.5deb2
--- https://www.phpmyadmin.net/
---
--- Hôte : localhost:3306
--- Généré le : ven. 25 avr. 2025 à 09:49
--- Version du serveur :  8.0.41-0ubuntu0.20.04.1
--- Version de PHP : 7.4.3-4ubuntu2.29
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
 -- Base de données : `artnet`
 --
 
--- --------------------------------------------------------
-
---
--- Structure de la table `accesBrokerMQTT`
---
-
-CREATE TABLE `accesBrokerMQTT` (
-  `ipBroker` varchar(39) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '192.168.1.104',
-  `portBroker` int NOT NULL DEFAULT '1883'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+DROP TABLE IF EXISTS `sequence`;
+DROP TABLE IF EXISTS `scene`;
+DROP TABLE IF EXISTS `scenario`;
+DROP TABLE IF EXISTS `equipementDMX`;
+DROP TABLE IF EXISTS `typeEquipementDMX`;
+DROP TABLE IF EXISTS `moduleDMXWiFi`;
+DROP TABLE IF EXISTS `brokerMQTT`;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `equipement`
+-- Structure de la table `brokerMQTT`
 --
 
-CREATE TABLE `equipement` (
-  `idEquipement` int NOT NULL,
-  `univers` int NOT NULL,
-  `nomEquipement` varchar(255) NOT NULL,
-  `typeEquipement` varchar(255) NOT NULL,
-  `nbCanaux` int NOT NULL,
-  `canalInitial` int NOT NULL,
-  `canaux` json NOT NULL
+CREATE TABLE IF NOT EXISTS `brokerMQTT` (
+  `idBrokerMQTT`	int,
+	`hostname`	varchar(255) NOT NULL,
+	`port`	int NOT NULL DEFAULT '1883',
+	`username`	varchar(64) DEFAULT NULL,
+	`password`	varchar(64) DEFAULT NULL,
+	`actif` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+ALTER TABLE `brokerMQTT`
+  ADD PRIMARY KEY (`idBrokerMQTT`);
 
 -- --------------------------------------------------------
 
@@ -55,14 +34,48 @@ CREATE TABLE `equipement` (
 -- Structure de la table `moduleDMXWiFi`
 --
 
-CREATE TABLE `moduleDMXWiFi` (
+CREATE TABLE IF NOT EXISTS `moduleDMXWiFi` (
   `univers` int NOT NULL,
   `nomBoitier` varchar(255) NOT NULL,
   `adresseIP` varchar(39) NOT NULL,
   `adresseMAC` varchar(17) NOT NULL,
   `rssi` int NOT NULL,
-  `actif` tinyint(1) NOT NULL
+  `actif` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+ALTER TABLE `moduleDMXWiFi`
+  ADD PRIMARY KEY (`univers`);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `typeEquipementDMX`
+--
+
+CREATE TABLE IF NOT EXISTS `typeEquipementDMX` (
+  `idTypeEquipement` int AUTO_INCREMENT PRIMARY KEY,
+  `typeEquipement` varchar(255) NOT NULL,
+  `nbCanaux` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `equipementDMX`
+--
+
+CREATE TABLE IF NOT EXISTS `equipementDMX` (
+  `idEquipement` int AUTO_INCREMENT PRIMARY KEY,
+  `univers` int NOT NULL,
+  `nomEquipement` varchar(255) NOT NULL,
+  `idTypeEquipement` int NOT NULL,
+  `canalInitial` int NOT NULL,
+  `canaux` json DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+ALTER TABLE `equipementDMX`
+  ADD CONSTRAINT `lienUnivers` FOREIGN KEY (`univers`) REFERENCES `moduleDMXWiFi` (`univers`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lienTypeEquipement` FOREIGN KEY (`idTypeEquipement`) REFERENCES `typeEquipementDMX` (`idTypeEquipement`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- --------------------------------------------------------
 
@@ -70,11 +83,11 @@ CREATE TABLE `moduleDMXWiFi` (
 -- Structure de la table `scenario`
 --
 
-CREATE TABLE `scenario` (
-  `idScenario` int NOT NULL,
+CREATE TABLE IF NOT EXISTS `scenario` (
+  `idScenario` int AUTO_INCREMENT PRIMARY KEY,
   `nomScenario` varchar(255) NOT NULL,
-  `tempsScenario` time NOT NULL,
-  `sequenceScene` json NOT NULL COMMENT 'idScene + tempsScene'
+  `creationScenario` datetime NOT NULL,
+  `modificationScenario` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -83,54 +96,32 @@ CREATE TABLE `scenario` (
 -- Structure de la table `scene`
 --
 
-CREATE TABLE `scene` (
-  `idScene` int NOT NULL,
+CREATE TABLE IF NOT EXISTS `scene` (
+  `idScene` int AUTO_INCREMENT PRIMARY KEY,
+  `univers` int NOT NULL,
   `nomScene` varchar(255) NOT NULL,
   `canaux` json NOT NULL,
   `creationScene` datetime NOT NULL,
-  `modificationScene` datetime NOT NULL
+  `modificationScene` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `equipement`
---
-ALTER TABLE `equipement`
-  ADD PRIMARY KEY (`idEquipement`),
-  ADD UNIQUE KEY `univers` (`univers`);
-
---
--- Index pour la table `moduleDMXWiFi`
---
-ALTER TABLE `moduleDMXWiFi`
-  ADD PRIMARY KEY (`univers`);
-
---
--- Index pour la table `scenario`
---
-ALTER TABLE `scenario`
-  ADD PRIMARY KEY (`idScenario`);
-
---
--- Index pour la table `scene`
---
 ALTER TABLE `scene`
-  ADD PRIMARY KEY (`idScene`);
+  ADD CONSTRAINT `lienUniversScene` FOREIGN KEY (`univers`) REFERENCES `moduleDMXWiFi` (`univers`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- --------------------------------------------------------
 
 --
--- Contraintes pour les tables déchargées
+-- Structure de la table `sequence`
 --
 
---
--- Contraintes pour la table `equipement`
---
-ALTER TABLE `equipement`
-  ADD CONSTRAINT `lienUnivers` FOREIGN KEY (`univers`) REFERENCES `moduleDMXWiFi` (`univers`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
+CREATE TABLE IF NOT EXISTS `sequence` (
+  `idSequence` int AUTO_INCREMENT PRIMARY KEY,
+  `idScenario` int NOT NULL,
+  `idScene` int NOT NULL,
+  `numeroScene` int NOT NULL,
+  `temporisation` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+ALTER TABLE `sequence`
+  ADD CONSTRAINT `lienScenario` FOREIGN KEY (`idScenario`) REFERENCES `scenario` (`idScenario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lienScene` FOREIGN KEY (`idScene`) REFERENCES `scene` (`idScene`) ON DELETE CASCADE ON UPDATE CASCADE;

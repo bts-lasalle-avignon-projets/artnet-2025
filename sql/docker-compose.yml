@@ -1,0 +1,15 @@
+version: '3'
+services:
+    mysql:
+        image: mysql:latest
+        environment:
+            MYSQL_ROOT_PASSWORD: 'password'
+            MYSQL_DATABASE: 'artnet'
+            MYSQL_USER: 'artnet_User'
+            MYSQL_PASSWORD: 'password'
+        ports:
+            - 3306:3306
+        volumes:
+            - bdd:/var/lib/mysql
+volumes:
+    bdd:
