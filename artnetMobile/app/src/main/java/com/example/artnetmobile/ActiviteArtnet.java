@@ -43,6 +43,7 @@ public class ActiviteArtnet extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        VueArtnet vue = VueArtnet.getInstance();
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_principale);
@@ -53,8 +54,7 @@ public class ActiviteArtnet extends AppCompatActivity
         boutonChargement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ActiviteArtnet.this, Chargement.class);
-                startActivity(intent);
+                vue.afficherChargement(ActiviteArtnet.this);
             }
         });
     }

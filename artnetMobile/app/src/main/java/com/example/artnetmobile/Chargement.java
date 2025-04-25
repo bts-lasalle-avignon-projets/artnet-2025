@@ -27,10 +27,7 @@ public class Chargement extends AppCompatActivity
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_chargement);
         Log.d(TAG, "onCreate()");
-
         initialiserCommunicationBroker();
-
-        artnet = new Artnet(communicationBroker);
     }
 
     private void initialiserCommunicationBroker()
