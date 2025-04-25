@@ -11,14 +11,12 @@ import android.util.Log;
 
 public class Chargement extends AppCompatActivity
 {
-    /**
-     * Constantes
-     */
     private static final String TAG = "_Chargement"; //!< TAG pour les logs (cf. Logcat)
 
     private CommunicationBroker communicationBroker;
     private Artnet artnet = null;
 
+    VueArtnet vue = VueArtnet.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -28,6 +26,7 @@ public class Chargement extends AppCompatActivity
         setContentView(R.layout.activity_chargement);
         Log.d(TAG, "onCreate()");
         initialiserCommunicationBroker();
+        vue.afficherAccueil(Chargement.this);
     }
 
     private void initialiserCommunicationBroker()

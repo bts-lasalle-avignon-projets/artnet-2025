@@ -32,6 +32,7 @@ public class ActiviteArtnet extends AppCompatActivity
     /**
      * Ressources GUI
      */
+    VueArtnet vue = VueArtnet.getInstance();
 
     /**
      * Attributs
@@ -43,7 +44,6 @@ public class ActiviteArtnet extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        VueArtnet vue = VueArtnet.getInstance();
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_principale);

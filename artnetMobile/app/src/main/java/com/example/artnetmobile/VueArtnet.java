@@ -27,19 +27,31 @@ public class VueArtnet
         activite.startActivity(intent);
     }
 
-    public void afficherAccueil()
+    public void afficherAccueil(Activity activite)
     {
+        Log.d(TAG, "afficherAccueil()");
+        Intent intent = new Intent(activite, Accueil.class);
+        activite.startActivity(intent);
     }
 
-    public void afficherEquipement()
+    public void afficherEquipement(Activity activite)
     {
+        Log.d(TAG, "afficherEquipement()");
+        Intent intent = new Intent(activite, Equipement.class);
+        activite.startActivity(intent);
     }
 
-    public void afficherConfiguration()
+    public void afficherConfiguration(Activity activite)
     {
+        Log.d(TAG, "afficherConfiguration()");
+        Intent intent = new Intent(activite, Configuration.class);
+        activite.startActivity(intent);
     }
 
-    public void afficherCredits()
+    public void afficherCredits(Activity activite)
     {
+        Log.d(TAG, "afficherCredits()");
+        Intent intent = new Intent(activite, Credits.class);
+        activite.startActivity(intent);
     }
 }
