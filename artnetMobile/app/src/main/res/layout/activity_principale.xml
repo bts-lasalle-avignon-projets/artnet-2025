@@ -55,28 +55,42 @@
             app:layout_constraintTop_toBottomOf="@id/guidelineCenter"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="10dp"/>
 
         <ImageView
             android:id="@+id/logoArtnet"
             android:layout_width="250dp"
-            android:layout_height="250dp"
+            android:layout_height="200dp"
             android:contentDescription="@string/cD_artnet"
             android:src="@drawable/artnet"
             app:layout_constraintTop_toBottomOf="@id/textViewCopyright"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/textViewEtatMQTT"
+            style="@style/CustomTextView"
+            android:layout_width="350sp"
+            android:layout_height="50sp"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:text=""
+            android:backgroundTint="@color/bgHeaderFooter"
+            app:layout_constraintTop_toBottomOf="@id/logoArtnet"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp"/>
 
         <Button
-            android:id="@+id/boutonChargement"
+            android:id="@+id/boutonDemarrage"
             style="@style/CustomTextView"
             android:layout_width="250sp"
             android:layout_height="100sp"
             android:textSize="25sp"
-            android:text="@string/boutonChargement"
+            android:text="@string/boutonDemarrage"
             android:backgroundTint="@color/bgHeaderFooter"
-            app:layout_constraintTop_toBottomOf="@id/logoArtnet"
+            app:layout_constraintTop_toBottomOf="@id/textViewEtatMQTT"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="20dp"/>

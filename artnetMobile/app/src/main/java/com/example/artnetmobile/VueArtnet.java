@@ -7,24 +7,20 @@ import android.util.Log;
 public class VueArtnet
 {
     private static final String TAG = "_VueArtnet";
-    private static VueArtnet instance; // Singleton
+    private static VueArtnet    instance; // Singleton
 
-    private VueArtnet() {
-        Log.d(TAG, "VueArtnet créée");
+    private VueArtnet()
+    {
+        Log.d(TAG, "VueArtnet()");
     }
 
-    public static VueArtnet getInstance() {
-        if (instance == null) {
+    public static VueArtnet getInstance()
+    {
+        if(instance == null)
+        {
             instance = new VueArtnet();
         }
         return instance;
-    }
-
-    public void afficherChargement(Activity activite)
-    {
-        Log.d(TAG, "afficherChargement()");
-        Intent intent = new Intent(activite, Chargement.class);
-        activite.startActivity(intent);
     }
 
     public void afficherAccueil(Activity activite)
