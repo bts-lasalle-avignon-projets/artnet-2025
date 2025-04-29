@@ -21,9 +21,6 @@
             android:name=".Credits"
             android:exported="false" />
         <activity
-            android:name=".Chargement"
-            android:exported="false" />
-        <activity
             android:name=".Configuration"
             android:exported="false" />
         <activity
