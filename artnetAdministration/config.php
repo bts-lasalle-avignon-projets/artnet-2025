@@ -1,10 +1,14 @@
 <?php
 
 // Pour le debug
-define("DEBUG", false);
+define("DEBUG", true);
 
 // Pour les tests
 define("NO_LOGIN", true);
+
+// Pour le broker MQTT
+define("broker_HOST", "127.0.0.1");
+define("broker_Port", 1883);
 
 // Pour la base de données
 define("DB_DRIVER", false); // true pour MySQL, false sans base de données
