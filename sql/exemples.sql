@@ -18,9 +18,9 @@ INSERT INTO equipementDMX (`idEquipement`,`univers`,`nomEquipement`,`idTypeEquip
 (3,50,'LYRE au sol',3,132),
 (4,50,'PAR LED Nord',4,10);
 
-INSERT INTO scenario (nomScenario,creationScenario) VALUES ('Salle 1',NOW());
+INSERT INTO scenario (idScenario,nomScenario,creationScenario) VALUES (1,'Salle 1',NOW());
 
-INSERT INTO scene (univers,nomScene,canaux,creationScene) VALUES
-(50,'Scène 1','[{"canal":10, "valeur":255},{"canal":11, "valeur":10},{"canal":12, "valeur":55}]',NOW()),
+INSERT INTO scene (idScene,univers,nomScene,canaux,creationScene) VALUES
+(1,50,'Scène 1','[{"canal":10, "valeur":255},{"canal":11, "valeur":10},{"canal":12, "valeur":55}]',NOW());
 
-INSERT INTO `sequence` (idScenario,idScene,numeroScene,temporisation) VALUES (1,1,1,5);
+INSERT INTO sequence (idScenario,idScene,numeroScene,temporisation) VALUES (1,1,1,5);
