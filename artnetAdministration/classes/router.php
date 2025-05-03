@@ -34,7 +34,9 @@ class Router
 		}
 
 		if (DEBUG) {
-			$message = 'class Router<br />' . 'controleur : ' . $this->controller . '<br /> ' . 'action : ' . $this->action;
+			$message = 'class Router<br />' . 'controleur : ' . $this->controller . '<br />' . 'action : ' . $this->action . '<br />';
+			$debug = print_r($request, true);
+			$message .= 'request : ' . $debug;
 			Message::afficher($message, 'debug');
 		}
 	}

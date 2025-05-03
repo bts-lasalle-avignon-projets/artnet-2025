@@ -56,7 +56,7 @@ abstract class Model
 
 	public function execute()
 	{
-		$this->stmt->execute();
+		return $this->stmt->execute();
 	}
 
 	public function getResults($mode = PDO::FETCH_ASSOC)
