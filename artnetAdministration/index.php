@@ -19,6 +19,11 @@ require('controllers/broker.php');
 require('models/accueil.php');
 require('models/broker.php');
 
+// Les classes du projet
+require('classes/communicationBroker.php');
+
+require './vendor/autoload.php';
+
 // Forme de l'URL, après réécriture : http://root/controleur/action/id
 $router = new Router($_GET);
 $controller = $router->createController();

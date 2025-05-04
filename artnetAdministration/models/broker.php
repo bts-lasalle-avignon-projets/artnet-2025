@@ -105,9 +105,7 @@ class BrokerModel extends Model
 			}
 		} else {
 			// Récupère le broker à modifier
-			$this->query("SELECT * FROM brokerMQTT WHERE idBrokerMQTT = :idBroker");
-			$this->bind(':idBroker', $idBroker, PDO::PARAM_INT);
-			$broker = $this->getResult();
+			$broker = $this->getBrokerMQTT($idBroker);
 			return $broker ?? ACTION_ERREUR;
 		}
 	}
@@ -155,7 +153,129 @@ class BrokerModel extends Model
 		return ACTION_ENCOURS;
 	}
 
-	public function existeIdBrokerMQTT($idBrokerMQTT)
+	public function test($idBroker)
+	{
+		// Le formulaire a été soumis ?
+		if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
+			// Récupère les données du formulaire
+			$idBrokerMQTT = trim($_POST['idBrokerMQTT']);
+
+			// Vérifie les données du formulaire
+			if ($idBrokerMQTT != $idBroker) {
+				Messages::setMsg("ID invalide !", "error");
+				return ACTION_ERREUR;
+			}
+
+			// Récupère le broker à tester
+			$broker = $this->getBrokerMQTT($idBroker);
+
+			if ($broker == null) {
+				Messages::setMsg("Le broker n'existe pas !", "error");
+				return ACTION_ERREUR;
+			}
+
+			// Instancie le broker
+			$communicationBroker = new CommunicationBroker($broker);
+			// Connecte le broker
+			$result = $communicationBroker->connecter();
+			if ($result) {
+				if ($communicationBroker->estConnecte()) {
+					// Modifie l'état du broker dans la base de données
+					try {
+						$this->query("UPDATE brokerMQTT SET actif = 1 WHERE idBrokerMQTT = :idBroker");
+						$this->bind(':idBroker', $idBroker, PDO::PARAM_INT);
+						$this->execute();
+					} catch (PDOException $e) {
+					}
+					// Les différents tests
+					if ($_POST['submit'] == "Connecter") {
+						Messages::setMsg("Test de connexion au broker réussi !", "success");
+						return ACTION_SUCCESS;
+					} else if ($_POST['submit'] == "Publier") {
+						// Publie un message sur le topic de test
+						$result = $communicationBroker->publier($broker['topic'] . "/test", "artnetAdministration", 0);
+						if ($result) {
+							Messages::setMsg("Test de publication réussi !", "success");
+							return ACTION_SUCCESS;
+						} else {
+							Messages::setMsg("Erreur lors de la publication du message !", "error");
+							return ACTION_ERREUR;
+						}
+					} else if ($_POST['submit'] == "Souscrire") {
+						// Souscrit au topic de test
+						$resultatSouscription = $communicationBroker->souscrire($broker['topic'] . "/test", 0);
+						if ($resultatSouscription) {
+							Messages::setMsg("Test de souscription réussi !", "success");
+							return ACTION_SUCCESS;
+						} else {
+							Messages::setMsg("Erreur lors de la souscription au topic !", "error");
+							return ACTION_ERREUR;
+						}
+					} else if ($_POST['submit'] == "Recevoir") {
+						// Souscrit au topic de test
+						$resultatSouscription = $communicationBroker->souscrire($broker['topic'] . "/test", 0);
+						if ($resultatSouscription) {
+							$result = $communicationBroker->recevoirMessage(10000000); // 10 secondes
+							if ($result) {
+								// Récupère le message reçu sur le topic de test
+								$message = $communicationBroker->getMessage($broker['topic'] . "/test");
+								if ($message != null) {
+									Messages::setMsg("Réception du message : \"" . $message . "\" sur le topic \"" . $broker['topic'] . "/test\"", "success");
+									return ACTION_SUCCESS;
+								} else {
+									Messages::setMsg("Aucun message reçu sur le topic \"" . $broker['topic'] . "/test\"" . " !", "error");
+									return ACTION_ERREUR;
+								}
+							}
+						} else {
+							Messages::setMsg("Erreur lors de la souscription au topic !", "error");
+							return ACTION_ERREUR;
+						}
+					}
+					$communicationBroker->deconnecter();
+				} else {
+					// Modifie l'état du broker dans la base de données
+					try {
+						$this->query("UPDATE brokerMQTT SET actif = 0 WHERE idBrokerMQTT = :idBroker");
+						$this->bind(':idBroker', $idBroker, PDO::PARAM_INT);
+						$this->execute();
+					} catch (PDOException $e) {
+					}
+					Messages::setMsg("Erreur de connexion au broker !", "error");
+					return ACTION_ERREUR;
+				}
+			} else {
+				// Modifie l'état du broker dans la base de données
+				try {
+					$this->query("UPDATE brokerMQTT SET actif = 0 WHERE idBrokerMQTT = :idBroker");
+					$this->bind(':idBroker', $idBroker, PDO::PARAM_INT);
+					$this->execute();
+				} catch (PDOException $e) {
+				}
+				Messages::setMsg("Erreur de connexion au broker !", "error");
+				return ACTION_ERREUR;
+			}
+		} else {
+			// Récupère le broker à tester
+			$broker = $this->getBrokerMQTT($idBroker);
+			return $broker ?? ACTION_ERREUR;
+		}
+	}
+
+	private function getBrokerMQTT($idBrokerMQTT)
+	{
+		// Récupère le broker à modifier
+		$this->query("SELECT * FROM brokerMQTT WHERE idBrokerMQTT = :idBrokerMQTT");
+		$this->bind(':idBrokerMQTT', $idBrokerMQTT, PDO::PARAM_INT);
+		$broker = $this->getResult();
+		// @todo Ajouter le topic à la base de données ?
+		if ($broker) {
+			$broker['topic'] = BROKER_MQTT_TOPIC;
+		}
+		return $broker ?? null;
+	}
+
+	private function existeIdBrokerMQTT($idBrokerMQTT)
 	{
 		$this->query("SELECT hostname FROM brokerMQTT WHERE idBrokerMQTT = :idBrokerMQTT");
 		$this->bind(':idBrokerMQTT', $idBrokerMQTT);

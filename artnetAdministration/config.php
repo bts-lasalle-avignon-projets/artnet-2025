@@ -9,6 +9,11 @@ define("DEBUG", false);
 // Pour les tests (sans authentification)
 define("NO_LOGIN", true);
 
+// Pour le broker MQTT par défaut
+define("BROKER_MQTT_HOSTNAME", "127.0.0.1");
+define("BROKER_MQTT_PORT", 1883);
+define("BROKER_MQTT_TOPIC", "artnet");
+
 // Pour la base de données
 define("DB_DRIVER", true); // true pour MySQL, false sans base de données
 define("DB_HOST", "127.0.0.1");

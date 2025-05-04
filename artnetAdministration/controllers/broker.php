@@ -86,6 +86,31 @@ class Broker extends Controller
 		}
 	}
 
+	protected function test()
+	{
+		if (NO_LOGIN) {
+			$idBroker = $this->getID();
+			if ($idBroker > 0) {
+				$broker = $this->viewmodel->test($idBroker);
+				if (is_array($broker)) {
+					// Affiche le formulaire de test de connexion
+					$this->display($broker);
+				} else {
+					// Retour au formulaire de test de connexion
+					header('Location: ' . URL_PATH . 'broker' . '/test/' . $idBroker);
+				}
+			} else {
+				header('Location: ' . URL_PATH . 'broker');
+			}
+		} else {
+			if (!isset($_SESSION['is_logged_in'])) {
+				header('Location: ' . URL_PATH . 'broker');
+			} else {
+				// @todo
+			}
+		}
+	}
+
 	private function getID()
 	{
 		if (!isset($this->request['id']) || empty($this->request['id'])) {
