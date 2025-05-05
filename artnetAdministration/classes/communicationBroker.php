@@ -24,8 +24,10 @@ class CommunicationBroker
     private int $port;
     private string $username;
     private string $password;
-    private array $messages;
     private MqttClient $client;
+    private array $messages;
+    private bool $unSeulMessage;
+    private bool $arret;
 
     public function __construct($parametres)
     {
@@ -37,6 +39,8 @@ class CommunicationBroker
             $this->port = BROKER_MQTT_PORT;
         }
         $this->messages = array();
+        $this->unSeulMessage = false;
+        $this->arret = false;
         $this->client = new MqttClient($this->hostname, $this->port, 'artnetAdminsitration', MqttClient::MQTT_3_1, null, null);
     }
 
@@ -101,35 +105,91 @@ class CommunicationBroker
         }
     }
 
-    public function recevoirMessage(?int $timeout = null): bool
+    public function recevoirMessage($topic = null, ?int $timeout = null): bool
     {
+        $this->unSeulMessage = true;
+        return $this->recevoirMessages($topic, $timeout);
+    }
+
+    public function recevoirMessages($topic = null, ?int $timeout = null): bool
+    {
+        if (!$this->estConnecte())
+            return false;
         try {
-            $this->client->loop(true, true, $timeout);
+            $tempsDebut = microtime(true);
+
+            while (!$this->arret) {
+                $this->client->loopOnce($tempsDebut, true);
+                if ($timeout !== null && !empty($timeout) && (microtime(true) - $tempsDebut) > $timeout) {
+                    break;
+                }
+            }
+            if ($topic != null) {
+                // Pas de message reçu sur le topic ?
+                if (!isset($this->messages[$topic])) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+            // Pas de message reçu ?
+            if (count($this->messages) == 0) {
+                return false;
+            }
             return true;
         } catch (MqttClientException $e) {
             return false;
         }
     }
 
+    public function arreterReception()
+    {
+        $this->arret = true;
+    }
+
     public function traiterMessage($topic, $message)
     {
         // @todo Traiter le message reçu
-        $this->messages[$topic] = $message;
-        // un message reçu et on arrête la boucle
-        $this->client->interrupt();
+        echo ("traiterMessage() message : \"" . $message . "\" sur le topic \"" . $topic . "\"" . PHP_EOL);
+        if (!isset($this->messages[$topic])) {
+            $this->messages[$topic] = array();
+        }
+        $this->messages[$topic][] = $message;
+        if ($this->unSeulMessage) {
+            $this->unSeulMessage = false;
+            $this->arreterReception();
+        }
     }
 
-    public function getMessages(): array
+    public function getMessages($topic = null): array
     {
-        return $this->messages;
+        // Retourne tous les messages pour le topic
+        if ($topic != null) {
+            $messages = $this->messages[$topic];
+            unset($this->messages[$topic]);
+            return $messages;
+        }
+        // Sinon retourne tous les messages
+        $messages = $this->messages;
+        $this->messages = array();
+        foreach ($messages as $topic => $message) {
+            unset($this->messages[$topic]);
+        }
+        return $messages;
     }
 
     public function getMessage($topic)
     {
         if (!isset($this->messages[$topic]))
             return null;
-        $message = $this->messages[$topic];
-        unset($this->messages[$topic]);
-        return $message;
+        // Retourne le premier message du topic
+        if (count($this->messages[$topic]) >= 1) {
+            $message = array_shift($this->messages[$topic]);
+            // Si le tableau est vide, on supprime le topic
+            if (count($this->messages[$topic]) == 0)
+                unset($this->messages[$topic]);
+            return $message;
+        }
+        return null;
     }
 }

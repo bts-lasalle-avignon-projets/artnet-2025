@@ -215,7 +215,7 @@ class BrokerModel extends Model
 						// Souscrit au topic de test
 						$resultatSouscription = $communicationBroker->souscrire($broker['topic'] . "/test", 0);
 						if ($resultatSouscription) {
-							$result = $communicationBroker->recevoirMessage(10000000); // 10 secondes
+							$result = $communicationBroker->recevoirMessage($broker['topic'] . "/test", 10); // 10 secondes
 							if ($result) {
 								// Récupère le message reçu sur le topic de test
 								$message = $communicationBroker->getMessage($broker['topic'] . "/test");
@@ -226,6 +226,9 @@ class BrokerModel extends Model
 									Messages::setMsg("Aucun message reçu sur le topic \"" . $broker['topic'] . "/test\"" . " !", "error");
 									return ACTION_ERREUR;
 								}
+							} else {
+								Messages::setMsg("Aucun message reçu sur le topic \"" . $broker['topic'] . "/test\"" . " !", "error");
+								return ACTION_ERREUR;
 							}
 						} else {
 							Messages::setMsg("Erreur lors de la souscription au topic !", "error");
