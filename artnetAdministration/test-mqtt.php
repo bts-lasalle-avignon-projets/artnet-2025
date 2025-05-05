@@ -2,57 +2,59 @@
 require('config.php');
 require('classes/communicationBroker.php');
 require('classes/model.php');
+require('models/broker.php');
 require './vendor/autoload.php';
 
-class ReceptionMQTT extends Model
-{
-    private CommunicationBroker $communicationBroker;
-    private array $broker;
+// Exemple subscribe
 
-    public function __construct()
-    {
-        parent::__construct();
-        // Récupère le broker actif
-        $this->broker = $this->getBrokerMQTTActif();
-        // Instancie le broker
-        $this->communicationBroker = new CommunicationBroker($this->broker);
-    }
+// Sélectionne le topic
+$topic = "artnet/#";
+$qos = 0;
+$timeout = 15; // en secondes (sinon 0 pour aucun timeout)
 
-    public function recevoir($topic)
-    {
-        // Connecte le broker
-        $resultatConnexion = $this->communicationBroker->connecter();
-        if ($resultatConnexion) {
-            if ($this->communicationBroker->estConnecte()) {
-                // Souscrit au topic de test
-                $resultatSouscription = $this->communicationBroker->souscrire($topic, 0);
-                if ($resultatSouscription) {
-                    // Reçoit le message
-                    $retour = $this->communicationBroker->recevoirMessage($topic, 15); // 10 secondes
-                    var_dump($retour);
-                    if ($retour) {
-                        // Récupère le premier message reçu sur le topic de test
-                        $message = $this->communicationBroker->getMessage($topic);
-                        if ($message != null) {
-                            echo ("Réception du message : \"" . $message . "\" sur le topic \"" . $topic . "\"");
+// Récupère le broker actif
+$brokerModel = new BrokerModel();
+$broker = $brokerModel->getBrokerMQTTActif();
+var_dump($broker);
+
+// Instancie le broker
+$communicationBroker = new CommunicationBroker($broker);
+
+// Connecte le broker
+$resultatConnexion = $communicationBroker->connecter();
+if ($resultatConnexion) {
+    if ($communicationBroker->estConnecte()) {
+        // Souscrit au topic de test
+        $resultatSouscription = $communicationBroker->souscrire($topic, $qos);
+        if ($resultatSouscription) {
+            // Exemple 1 : reçoit un message
+            /*
+            $retour = $communicationBroker->recevoirMessage($topic, $timeout);
+            if ($retour) {
+                // Récupère le premier message reçu sur le topic de test
+                $message = $communicationBroker->getMessage($topic);
+                if ($message != null) {
+                    echo "Réception du message : \"" . $message . "\" sur le topic \"" . $topic . "\"" . PHP_EOL;
+                }
+            }*/
+            // Exemple 2 : reçoit plusieurs messages
+            $retour = $communicationBroker->recevoirMessages(null, $timeout);
+            if ($retour) {
+                // Récupère tous les messages reçus
+                $messages = $communicationBroker->getMessages();
+                if ($messages != null) {
+                    foreach ($messages as $topicMessage => $listeMessages) {
+                        echo count($listeMessages) . " message(s) reçu(s) sur le topic \"" . $topicMessage . "\"" . PHP_EOL;
+                        foreach ($listeMessages as $message) {
+                            echo "Réception du message : \"" . $message . "\" sur le topic \"" . $topicMessage . "\"" . PHP_EOL;
                         }
                     }
                 }
-                // Déconnecte le broker
-                $this->communicationBroker->deconnecter();
             }
         }
+        // Déconnecte le broker
+        $communicationBroker->deconnecter();
     }
-
-    public function getBrokerMQTTActif()
-    {
-        // Récupère le broker actif
-        $this->query("SELECT * FROM brokerMQTT WHERE actif = 1");
-        $broker = $this->getResult();
-        return $broker ?? null;
-    }
+} else {
+    echo ("Erreur de connexion au broker !");
 }
-
-$receptionMQTT = new ReceptionMQTT();
-$receptionMQTT->recevoir("artnet/test");
-die;

@@ -265,7 +265,7 @@ class BrokerModel extends Model
 		}
 	}
 
-	private function getBrokerMQTT($idBrokerMQTT)
+	public function getBrokerMQTT($idBrokerMQTT)
 	{
 		// Récupère le broker à modifier
 		$this->query("SELECT * FROM brokerMQTT WHERE idBrokerMQTT = :idBrokerMQTT");
@@ -278,7 +278,15 @@ class BrokerModel extends Model
 		return $broker ?? null;
 	}
 
-	private function existeIdBrokerMQTT($idBrokerMQTT)
+	public function getBrokerMQTTActif()
+	{
+		// Récupère le broker actif
+		$this->query("SELECT * FROM brokerMQTT WHERE actif = 1");
+		$broker = $this->getResult();
+		return $broker ?? null;
+	}
+
+	public function existeIdBrokerMQTT($idBrokerMQTT)
 	{
 		$this->query("SELECT hostname FROM brokerMQTT WHERE idBrokerMQTT = :idBrokerMQTT");
 		$this->bind(':idBrokerMQTT', $idBrokerMQTT);
