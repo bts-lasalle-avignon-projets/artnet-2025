@@ -25,6 +25,9 @@
         <li class="nav-item">
           <a class="nav-link" href="<?php echo URL_PATH; ?>">Accueil</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo URL_PATH; ?>broker">Broker MQTT</a>
+        </li>
       </ul>
 
       <ul class="navbar-nav ml-auto">

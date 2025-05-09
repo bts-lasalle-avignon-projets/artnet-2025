@@ -17,16 +17,14 @@ DROP TABLE IF EXISTS `brokerMQTT`;
 --
 
 CREATE TABLE IF NOT EXISTS `brokerMQTT` (
-  `idBrokerMQTT`	int,
+  `idBrokerMQTT` int AUTO_INCREMENT PRIMARY KEY,
 	`hostname`	varchar(255) NOT NULL,
 	`port`	int NOT NULL DEFAULT '1883',
 	`username`	varchar(64) DEFAULT NULL,
 	`password`	varchar(64) DEFAULT NULL,
-	`actif` tinyint(1) NOT NULL DEFAULT '0'
+	`actif` tinyint(1) NOT NULL DEFAULT '0',
+  CONSTRAINT Unique_Broker UNIQUE (hostname,port)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-ALTER TABLE `brokerMQTT`
-  ADD PRIMARY KEY (`idBrokerMQTT`);
 
 -- --------------------------------------------------------
 
