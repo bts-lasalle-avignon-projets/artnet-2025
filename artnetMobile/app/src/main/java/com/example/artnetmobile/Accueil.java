@@ -8,10 +8,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class Accueil extends AppCompatActivity
 {
@@ -19,12 +27,15 @@ public class Accueil extends AppCompatActivity
      * Constantes
      */
     private static final String TAG = "_Accueil"; //!< TAG pour les logs (cf. Logcat)
+    private final String Config = "artnet/config/#";
 
     /**
      * Attributs
      */
     private CommunicationBroker communicationBroker;
     private Handler             handler = null;
+
+    private RecyclerView recyclerViewUnivers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -36,6 +47,17 @@ public class Accueil extends AppCompatActivity
 
         initialiserHandler();
         initialiserCommunicationBroker();
+
+        Button boutonRechercheUnivers = findViewById(R.id.boutonUniversExistants);
+
+        boutonRechercheUnivers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Log.d(TAG, "Abonnement au topic artnet/config/#");
+                communicationBroker.sabonner(Config);
+            }
+        });
     }
 
     /**
@@ -99,8 +121,22 @@ public class Accueil extends AppCompatActivity
 
     private void traiterMessageMQTT(String topicMQTT, String messageMQTT)
     {
-        /**
-         * @todo Gérer les messages MQTT reçus
-         */
+        if(topicMQTT.startsWith("arnet/config"))
+        {
+            String nomUnivers = topicMQTT.substring("artnet/config/".length());
+            Log.d(TAG, "Nouvel univers trouvé : " + nomUnivers);
+
+            try {
+                JSONObject json = new JSONObject(messageMQTT);
+                int univers = json.getInt("univers");
+                String ip = json.getString("ip");
+                String mac = json.getString("mac");
+                int rssi = json.getInt("rssi");
+
+                Univers u = new Univers(nomUnivers, univers, ip, mac, rssi);
+            } catch (JSONException e) {
+                Log.e(TAG, "Erreur JSON : " + messageMQTT, e);
+            }
+        }
     }
 }
