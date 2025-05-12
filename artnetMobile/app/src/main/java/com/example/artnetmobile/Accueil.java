@@ -54,7 +54,6 @@ public class Accueil extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                Log.d(TAG, "Abonnement au topic artnet/config/#");
                 communicationBroker.sabonner(Config);
             }
         });
@@ -121,19 +120,24 @@ public class Accueil extends AppCompatActivity
 
     private void traiterMessageMQTT(String topicMQTT, String messageMQTT)
     {
-        if(topicMQTT.startsWith("arnet/config"))
+        if(topicMQTT.startsWith("artnet/config/"))
         {
-            String nomUnivers = topicMQTT.substring("artnet/config/".length());
-            Log.d(TAG, "Nouvel univers trouvé : " + nomUnivers);
-
             try {
                 JSONObject json = new JSONObject(messageMQTT);
+                String nomUnivers = topicMQTT.substring("artnet/config/".length());
                 int univers = json.getInt("univers");
                 String ip = json.getString("ip");
                 String mac = json.getString("mac");
                 int rssi = json.getInt("rssi");
 
-                Univers u = new Univers(nomUnivers, univers, ip, mac, rssi);
+                Univers existant = Univers.rechercherUnivers(nomUnivers);
+
+                if (existant != null) {
+                    existant.mettreAJour(univers, ip, mac, rssi);
+                } else {
+                    new Univers(nomUnivers, univers, ip, mac, rssi);
+                }
+
             } catch (JSONException e) {
                 Log.e(TAG, "Erreur JSON : " + messageMQTT, e);
             }
