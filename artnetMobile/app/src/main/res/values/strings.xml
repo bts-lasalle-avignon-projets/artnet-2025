@@ -20,4 +20,11 @@
     <string name="equipements">Page Equipements</string>
     <string name="configuration">Page Configuration</string>
     <string name="credits">Crédits</string>
+
+    <!-- Univers -->
+    <string name="nomUnivers">Nom :</string>
+    <string name="numeroUnivers">Univers :</string>
+    <string name="ip">IP :</string>
+    <string name="mac">Mac :</string>
+    <string name="rssi">RSSI :</string>
 </resources>

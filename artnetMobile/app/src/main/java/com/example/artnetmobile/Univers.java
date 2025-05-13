@@ -27,7 +27,7 @@ public class Univers {
     }
 
     public String getNom() { return nom; }
-    public int getUnivers() { return univers; }
+    public int getNum() { return univers; }
     public String getIp() { return ip; }
     public String getMac() { return mac; }
     public int getRssi() { return rssi; }

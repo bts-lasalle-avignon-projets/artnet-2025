@@ -2,7 +2,11 @@ package com.example.artnetmobile;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.util.Log;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class VueArtnet
 {
@@ -49,5 +53,23 @@ public class VueArtnet
         Log.d(TAG, "afficherCredits()");
         Intent intent = new Intent(activite, Credits.class);
         activite.startActivity(intent);
+    }
+
+    public void afficherUniversExistants(LinearLayout conteneur) {
+        Log.d(TAG, "afficherUniversExistants()");
+        conteneur.removeAllViews();
+
+        for(Univers u : Univers.getListeUnivers()) {
+            Log.d(TAG, "Univers" + u.getNum() + " : " + u.getNom());
+
+            TextView textView = new TextView(conteneur.getContext());
+
+            String texte = "Univers n°" + u.getNum() + " : " + u.getNom();
+
+            textView.setText(texte);
+            textView.setTextSize(16);
+
+            conteneur.addView(textView);
+        }
     }
 }

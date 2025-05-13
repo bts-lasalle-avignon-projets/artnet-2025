@@ -18,6 +18,10 @@ import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.List;
 
 public class CommunicationBroker
 {
@@ -25,7 +29,7 @@ public class CommunicationBroker
      * Constantes
      */
     private static final String TAG                   = "_CommunicationBroker";
-    public static final String  TEST_IP_BROKER        = "192.168.1.104";
+    public static final String  TEST_IP_BROKER        = "192.168.1.44";
     public static final int     TEST_PORT_BROKER      = 1883;
     public static final String  TOPIC_ARTNET          = "Artnet/#"; // par défaut
     public static final int     BROKER_ERREUR         = 0;
@@ -247,6 +251,29 @@ public class CommunicationBroker
             if(handler != null)
                 handler.sendMessage(message);
             return false;
+        }
+    }
+
+    public void traiterMessageConfig(String topicMQTT, String messageMQTT)
+    {
+        try {
+            JSONObject json = new JSONObject(messageMQTT);
+            String nomUnivers = topicMQTT.substring("artnet/config/".length());
+            int univers = json.getInt("univers");
+            String ip = json.getString("ip");
+            String mac = json.getString("mac");
+            int rssi = json.getInt("rssi");
+
+            Univers existant = Univers.rechercherUnivers(nomUnivers);
+
+            if (existant != null) {
+                existant.mettreAJour(univers, ip, mac, rssi);
+            } else {
+                new Univers(nomUnivers, univers, ip, mac, rssi);
+            }
+
+        } catch (JSONException e) {
+            Log.e(TAG, "Erreur JSON : " + messageMQTT, e);
         }
     }
 }

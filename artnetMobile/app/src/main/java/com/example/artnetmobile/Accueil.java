@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
@@ -15,6 +16,8 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,14 +31,14 @@ public class Accueil extends AppCompatActivity
      */
     private static final String TAG = "_Accueil"; //!< TAG pour les logs (cf. Logcat)
     private final String Config = "artnet/config/#";
+    VueArtnet        vue = VueArtnet.getInstance();
 
     /**
      * Attributs
      */
     private CommunicationBroker communicationBroker;
     private Handler             handler = null;
-
-    private RecyclerView recyclerViewUnivers;
+    private LinearLayout conteneurUnivers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -48,13 +51,16 @@ public class Accueil extends AppCompatActivity
         initialiserHandler();
         initialiserCommunicationBroker();
 
+        communicationBroker.sabonner(Config);
+
         Button boutonRechercheUnivers = findViewById(R.id.boutonUniversExistants);
+        conteneurUnivers = findViewById(R.id.conteneurUnivers);
 
         boutonRechercheUnivers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                communicationBroker.sabonner(Config);
+                vue.afficherUniversExistants(conteneurUnivers);
             }
         });
     }
@@ -122,25 +128,7 @@ public class Accueil extends AppCompatActivity
     {
         if(topicMQTT.startsWith("artnet/config/"))
         {
-            try {
-                JSONObject json = new JSONObject(messageMQTT);
-                String nomUnivers = topicMQTT.substring("artnet/config/".length());
-                int univers = json.getInt("univers");
-                String ip = json.getString("ip");
-                String mac = json.getString("mac");
-                int rssi = json.getInt("rssi");
-
-                Univers existant = Univers.rechercherUnivers(nomUnivers);
-
-                if (existant != null) {
-                    existant.mettreAJour(univers, ip, mac, rssi);
-                } else {
-                    new Univers(nomUnivers, univers, ip, mac, rssi);
-                }
-
-            } catch (JSONException e) {
-                Log.e(TAG, "Erreur JSON : " + messageMQTT, e);
-            }
+            communicationBroker.traiterMessageConfig(topicMQTT, messageMQTT);
         }
     }
 }
