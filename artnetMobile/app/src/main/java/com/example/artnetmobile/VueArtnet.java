@@ -60,16 +60,36 @@ public class VueArtnet
         conteneur.removeAllViews();
 
         for(Univers u : Univers.getListeUnivers()) {
-            Log.d(TAG, "Univers" + u.getNum() + " : " + u.getNom());
+            Log.d(TAG, "Univers " + u.getNum() + " : " + u.getNom());
 
             TextView textView = new TextView(conteneur.getContext());
 
-            String texte = "Univers n°" + u.getNum() + " : " + u.getNom();
+            String texte = "Univers n°" + u.getNum() + " : " + "\n"
+                            + "\tNom : " + u.getNom() + "\n"
+                            + "\tIp : " + u.getIp() + "\n"
+                            + "\tMac : " + u.getMac() + "\n"
+                            + "\tSignal : " + afficherRssi(u.getRssi()) + " (" + u.getRssi() + "dBm)";
 
             textView.setText(texte);
             textView.setTextSize(16);
 
             conteneur.addView(textView);
+        }
+    }
+
+    private String afficherRssi(int rssi) {
+        if (rssi > -30) {
+            return "Incroyable";
+        } else if (rssi > -55) {
+            return "Très bon";
+        } else if (rssi > -67) {
+            return "Assez bon";
+        } else if (rssi > -70) {
+            return "D'accord";
+        } else if (rssi > -80) {
+            return "Pas bon";
+        } else {
+            return "Extrêmement faible (inutilisable)";
         }
     }
 }

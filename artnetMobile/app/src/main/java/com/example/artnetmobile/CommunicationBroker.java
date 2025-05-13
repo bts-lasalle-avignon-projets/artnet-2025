@@ -42,6 +42,7 @@ public class CommunicationBroker
      * Attributs
      */
     private static CommunicationBroker    instance; // Singleton
+    private final String Config = "artnet/config/#";
     Handler           handler    = null;
     public MqttClient mqttClient = null;
     String            serveurUri;
@@ -83,6 +84,7 @@ public class CommunicationBroker
                     message.what    = BROKER_CONNECTE;
                     if(handler != null)
                         handler.sendMessage(message);
+                    sabonner(Config);
                 }
 
                 @Override

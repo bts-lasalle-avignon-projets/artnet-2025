@@ -30,7 +30,6 @@ public class Accueil extends AppCompatActivity
      * Constantes
      */
     private static final String TAG = "_Accueil"; //!< TAG pour les logs (cf. Logcat)
-    private final String Config = "artnet/config/#";
     VueArtnet        vue = VueArtnet.getInstance();
 
     /**
@@ -50,8 +49,6 @@ public class Accueil extends AppCompatActivity
 
         initialiserHandler();
         initialiserCommunicationBroker();
-
-        communicationBroker.sabonner(Config);
 
         Button boutonRechercheUnivers = findViewById(R.id.boutonUniversExistants);
         conteneurUnivers = findViewById(R.id.conteneurUnivers);
