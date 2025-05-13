@@ -42,7 +42,8 @@ public class CommunicationBroker
      * Attributs
      */
     private static CommunicationBroker    instance; // Singleton
-    private final String Config = "artnet/config/#";
+    private final String config = "artnet/config/#";
+    private final String universTopic = "arnet/univers/";
     Handler           handler    = null;
     public MqttClient mqttClient = null;
     String            serveurUri;
@@ -84,7 +85,7 @@ public class CommunicationBroker
                     message.what    = BROKER_CONNECTE;
                     if(handler != null)
                         handler.sendMessage(message);
-                    sabonner(Config);
+                    sabonner(config);
                 }
 
                 @Override
@@ -278,4 +279,18 @@ public class CommunicationBroker
             Log.e(TAG, "Erreur JSON : " + messageMQTT, e);
         }
     }
+
+    public void basculerAbonnementUnivers(Univers u) {
+        Log.d(TAG, "basculerAbonnementUnivers() -> " + u.getNom());
+        String topic = universTopic + u.getNom();
+
+        if (!u.getAbonne()) {
+            sabonner(topic);
+            u.setAbonne(true);
+        } else {
+            desabonner(topic);
+            u.setAbonne(false);
+        }
+    }
+
 }

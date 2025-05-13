@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -68,16 +69,34 @@ public class VueArtnet
                             + "\tNom : " + u.getNom() + "\n"
                             + "\tIp : " + u.getIp() + "\n"
                             + "\tMac : " + u.getMac() + "\n"
-                            + "\tSignal : " + afficherRssi(u.getRssi()) + " (" + u.getRssi() + "dBm)";
+                            + "\tSignal : " + afficherRssi(u.getRssi()) + " (" + u.getRssi() + "dBm) \n"
+                            + "\tAbonné au topic ? " + afficherAbonne(u.getAbonne());
 
             textView.setText(texte);
             textView.setTextSize(16);
+            textView.setClickable(true);
+
+            if (u.getAbonne()) {
+                textView.setTextColor(Color.GREEN);
+            } else {
+                textView.setTextColor(Color.RED);
+            }
 
             conteneur.addView(textView);
+
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d(TAG, "onClick() -> Univers : " + u.getNom());
+                    CommunicationBroker.getInstance().basculerAbonnementUnivers(u);
+                    afficherUniversExistants(conteneur);
+                }
+            });
         }
     }
 
-    private String afficherRssi(int rssi) {
+    private String afficherRssi(int rssi)
+    {
         if (rssi > -30) {
             return "Incroyable";
         } else if (rssi > -55) {
@@ -92,4 +111,9 @@ public class VueArtnet
             return "Extrêmement faible (inutilisable)";
         }
     }
+
+    private String afficherAbonne(boolean abonne) {
+        return abonne ? "Oui" : "Non";
+    }
+
 }

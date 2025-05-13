@@ -13,6 +13,7 @@ public class Univers {
     private String ip;
     private String mac;
     private int rssi;
+    private boolean abonne;
 
     private static final Vector<Univers> listeUnivers = new Vector<>();
 
@@ -22,6 +23,7 @@ public class Univers {
         this.ip = ip;
         this.mac = mac;
         this.rssi = rssi;
+        this.abonne = false;
         Log.d(TAG, "Univers()" + " -> " + "Num univers : " + univers + " ; Nom : " + nom + " ; IP : " + ip + " ; MAC : " + mac + " ; RSSI : " + rssi);
         listeUnivers.add(this);
     }
@@ -31,6 +33,7 @@ public class Univers {
     public String getIp() { return ip; }
     public String getMac() { return mac; }
     public int getRssi() { return rssi; }
+    public boolean getAbonne() { return abonne; }
 
     public static List<Univers> getListeUnivers() {
         return listeUnivers;
@@ -51,6 +54,10 @@ public class Univers {
         this.mac = mac;
         this.rssi = rssi;
         Log.d(TAG, "mettreAJour()");
+    }
+
+    public void setAbonne(boolean abonne) {
+        this.abonne = abonne;
     }
 }
 
