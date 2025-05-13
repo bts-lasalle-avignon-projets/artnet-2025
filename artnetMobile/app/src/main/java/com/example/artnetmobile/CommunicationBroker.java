@@ -43,7 +43,7 @@ public class CommunicationBroker
      */
     private static CommunicationBroker    instance; // Singleton
     private final String config = "artnet/config/#";
-    private final String universTopic = "arnet/univers/";
+    private final String universTopic = "artnet/univers/";
     Handler           handler    = null;
     public MqttClient mqttClient = null;
     String            serveurUri;
@@ -280,16 +280,14 @@ public class CommunicationBroker
         }
     }
 
-    public void basculerAbonnementUnivers(Univers u) {
-        Log.d(TAG, "basculerAbonnementUnivers() -> " + u.getNom());
+    public void basculerEmissionUnivers(Univers u) {
+        Log.d(TAG, "basculerEmissionUnivers() -> " + u.getNom());
         String topic = universTopic + u.getNom();
 
-        if (!u.getAbonne()) {
-            sabonner(topic);
-            u.setAbonne(true);
+        if (!u.getActif()) {
+            u.setActif(true);
         } else {
-            desabonner(topic);
-            u.setAbonne(false);
+            u.setActif(false);
         }
     }
 

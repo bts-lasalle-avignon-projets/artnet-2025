@@ -70,13 +70,13 @@ public class VueArtnet
                             + "\tIp : " + u.getIp() + "\n"
                             + "\tMac : " + u.getMac() + "\n"
                             + "\tSignal : " + afficherRssi(u.getRssi()) + " (" + u.getRssi() + "dBm) \n"
-                            + "\tAbonné au topic ? " + afficherAbonne(u.getAbonne());
+                            + "\tTopic actif ? " + afficherAbonne(u.getActif());
 
             textView.setText(texte);
             textView.setTextSize(16);
             textView.setClickable(true);
 
-            if (u.getAbonne()) {
+            if (u.getActif()) {
                 textView.setTextColor(Color.GREEN);
             } else {
                 textView.setTextColor(Color.RED);
@@ -88,7 +88,7 @@ public class VueArtnet
                 @Override
                 public void onClick(View v) {
                     Log.d(TAG, "onClick() -> Univers : " + u.getNom());
-                    CommunicationBroker.getInstance().basculerAbonnementUnivers(u);
+                    CommunicationBroker.getInstance().basculerEmissionUnivers(u);
                     afficherUniversExistants(conteneur);
                 }
             });
