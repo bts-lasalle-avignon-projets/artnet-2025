@@ -29,7 +29,7 @@ public class CommunicationBroker
      * Constantes
      */
     private static final String TAG                   = "_CommunicationBroker";
-    public static final String  TEST_IP_BROKER        = "192.168.1.44";
+    public static final String  TEST_IP_BROKER        = "192.168.1.104";
     public static final int     TEST_PORT_BROKER      = 1883;
     public static final String  TOPIC_ARTNET          = "Artnet/#"; // par défaut
     public static final int     BROKER_ERREUR         = 0;

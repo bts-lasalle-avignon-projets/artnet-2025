@@ -6,6 +6,7 @@
     <string name="cD_artnet" translatable="false">Logo - Artnet</string>
     <string name="boutonDemarrage">Démarrer</string>
     <string name="copyright" translatable="false">(c) CLEMENT Aymeric - 2025</string>
+    <string name="bienvenue">Bienvenue dans l\'application !</string>
     <string name="accueilUnivers">Sélectionnez un univers en-dessous pour continuer</string>
     <string name="universExistants">Rechercher des univers existants</string>
 
