@@ -14,13 +14,16 @@ require('classes/model.php');
 // Les controleurs
 require('controllers/accueil.php');
 require('controllers/broker.php');
+require('controllers/moduleDMXWiFi.php');
 
 // Les modèles
 require('models/accueil.php');
 require('models/broker.php');
+require('models/moduleDMXWiFi.php');
 
 // Les classes du projet
 require('classes/communicationBroker.php');
+require('classes/communicationModuleDMXWiFi.php');
 
 require './vendor/autoload.php';
 
