@@ -15,14 +15,18 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Accueil extends AppCompatActivity
 {
@@ -38,8 +42,8 @@ public class Accueil extends AppCompatActivity
     private CommunicationBroker communicationBroker;
     private Handler             handler = null;
     private LinearLayout conteneurUnivers;
+    private LinearLayout conteneurDetails;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -50,14 +54,15 @@ public class Accueil extends AppCompatActivity
         initialiserHandler();
         initialiserCommunicationBroker();
 
-        Button boutonRechercheUnivers = findViewById(R.id.boutonUniversExistants);
+        Button boutonRechercherUnivers = findViewById(R.id.boutonRechercherUnivers);
         conteneurUnivers = findViewById(R.id.conteneurUnivers);
+        conteneurDetails = findViewById(R.id.conteneurDetails);
 
-        boutonRechercheUnivers.setOnClickListener(new View.OnClickListener() {
+        boutonRechercherUnivers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                vue.afficherUniversExistants(conteneurUnivers);
+                vue.afficherUniversExistants(conteneurUnivers, conteneurDetails);
             }
         });
     }

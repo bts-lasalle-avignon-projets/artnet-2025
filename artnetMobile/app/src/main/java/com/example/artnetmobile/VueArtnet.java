@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -56,40 +57,35 @@ public class VueArtnet
         activite.startActivity(intent);
     }
 
-    public void afficherUniversExistants(LinearLayout conteneur) {
+    public void afficherUniversExistants(LinearLayout conteneurUnivers, LinearLayout conteneurDetails) {
         Log.d(TAG, "afficherUniversExistants()");
-        conteneur.removeAllViews();
+        conteneurUnivers.removeAllViews();
 
         for(Univers u : Univers.getListeUnivers()) {
             Log.d(TAG, "Univers " + u.getNum() + " : " + u.getNom());
 
-            TextView textView = new TextView(conteneur.getContext());
+            TextView textView = new TextView(conteneurUnivers.getContext());
 
-            String texte = "Univers n°" + u.getNum() + " : " + "\n"
-                            + "\tNom : " + u.getNom() + "\n"
-                            + "\tIp : " + u.getIp() + "\n"
-                            + "\tMac : " + u.getMac() + "\n"
-                            + "\tSignal : " + afficherRssi(u.getRssi()) + " (" + u.getRssi() + "dBm) \n"
-                            + "\tTopic actif ? " + afficherAbonne(u.getActif());
+            String texte = "Univers n°" + u.getNum() + " : " + u.getNom();
 
             textView.setText(texte);
             textView.setTextSize(16);
+            textView.setPadding(0, 0, 0, 30);
             textView.setClickable(true);
 
-            if (u.getActif()) {
+            if (u.getActif())
                 textView.setTextColor(Color.GREEN);
-            } else {
+            else
                 textView.setTextColor(Color.RED);
-            }
 
-            conteneur.addView(textView);
+
+            conteneurUnivers.addView(textView);
 
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.d(TAG, "onClick() -> Univers : " + u.getNom());
-                    CommunicationBroker.getInstance().basculerEmissionUnivers(u);
-                    afficherUniversExistants(conteneur);
+                    afficherDetailsUnivers(conteneurDetails, u);
                 }
             });
         }
@@ -112,8 +108,68 @@ public class VueArtnet
         }
     }
 
-    private String afficherAbonne(boolean abonne) {
+    private String afficherActif(boolean abonne)
+    {
         return abonne ? "Oui" : "Non";
     }
 
+    private void afficherDetailsUnivers(LinearLayout conteneur, Univers u) {
+        Log.d(TAG, "affichageDetailsUnivers()");
+        conteneur.removeAllViews();
+        TextView affichageNum = new TextView(conteneur.getContext());
+        String texteNum = "Univers n°" + u.getNum();
+        affichageNum.setTextSize(20);
+        affichageNum.setText(texteNum);
+
+        TextView affichageNom = new TextView(conteneur.getContext());
+        String texteNom = "Nom : " + u.getNom();
+        affichageNom.setTextSize(18);
+        affichageNom.setText(texteNom);
+
+        TextView affichageIP = new TextView(conteneur.getContext());
+        String texteIP = "IP : " + u.getIp();
+        affichageIP.setTextSize(16);
+        affichageIP.setText(texteIP);
+
+        TextView affichageMAC = new TextView(conteneur.getContext());
+        String texteMac = "MAC : " + u.getMac();
+        affichageMAC.setTextSize(16);
+        affichageMAC.setText(texteMac);
+
+        TextView affichageRSSI = new TextView(conteneur.getContext());
+        String texteRSSI = "RSSI : " + afficherRssi(u.getRssi()) + " (" + u.getRssi() + ")";
+        affichageRSSI.setTextSize(16);
+        affichageRSSI.setText(texteRSSI);
+
+        TextView affichageActif = new TextView(conteneur.getContext());
+        String texteActif = "Topic actif ? : " + afficherActif(u.getActif());
+        affichageActif.setTextSize(16);
+        affichageActif.setText(texteActif);
+
+        Button boutonBasculementActif = new Button(conteneur.getContext());
+        String texteBoutonBasculement;
+        if (u.getActif())
+            texteBoutonBasculement = "Désactiver le topic";
+        else
+            texteBoutonBasculement = "Activer le topic";
+
+        boutonBasculementActif.setTextSize(16);
+        boutonBasculementActif.setText(texteBoutonBasculement);
+        affichageActif.setTextSize(16);
+        conteneur.addView(affichageNum);
+        conteneur.addView(affichageNom);
+        conteneur.addView(affichageIP);
+        conteneur.addView(affichageMAC);
+        conteneur.addView(affichageRSSI);
+        conteneur.addView(affichageActif);
+        conteneur.addView(boutonBasculementActif);
+
+        boutonBasculementActif.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommunicationBroker.getInstance().basculerEmissionUnivers(u);
+                afficherDetailsUnivers(conteneur, u);
+            }
+        });
+    }
 }

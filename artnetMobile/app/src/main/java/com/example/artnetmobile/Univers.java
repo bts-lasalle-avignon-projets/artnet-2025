@@ -59,5 +59,10 @@ public class Univers {
     public void setActif(boolean actif) {
         this.actif = actif;
     }
+
+    @Override
+    public String toString() {
+        return nom;
+    }
 }
 

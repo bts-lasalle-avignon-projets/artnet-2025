@@ -282,12 +282,13 @@ public class CommunicationBroker
 
     public void basculerEmissionUnivers(Univers u) {
         Log.d(TAG, "basculerEmissionUnivers() -> " + u.getNom());
-        String topic = universTopic + u.getNom();
 
         if (!u.getActif()) {
             u.setActif(true);
+            Log.d(TAG, u.getNom() + "-> Actif");
         } else {
             u.setActif(false);
+            Log.d(TAG, u.getNom() + "-> Inactif");
         }
     }
 
