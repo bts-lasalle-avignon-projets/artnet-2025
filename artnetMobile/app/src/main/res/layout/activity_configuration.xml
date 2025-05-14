@@ -1,10 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Configuration">
+    android:layout_height="match_parent">
+
+    <!-- HEADER -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:background="@color/bgHeaderFooter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/titre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/configuration"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"/>
+
+        <Button
+            android:id="@+id/boutonAccueil"
+            style="@style/CustomTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/boutonAccueil"
+            android:textSize="20sp"
+            android:backgroundTint="@color/bgHeaderFooter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titre"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="8dp"/>
+
+        <Button
+            android:id="@+id/boutonEquipements"
+            style="@style/CustomTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/boutonEquipements"
+            android:textSize="20sp"
+            android:backgroundTint="@color/bgHeaderFooter"
+            app:layout_constraintStart_toEndOf="@id/boutonAccueil"
+            app:layout_constraintTop_toTopOf="@id/boutonAccueil"
+            app:layout_constraintBottom_toBottomOf="@id/boutonAccueil"
+            android:layout_marginStart="8dp"/>
+
+        <Button
+            android:id="@+id/boutonConfiguration"
+            style="@style/CustomTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/boutonConfiguration"
+            android:textSize="20sp"
+            android:backgroundTint="@color/bgHeaderFooter"
+            app:layout_constraintStart_toEndOf="@id/boutonEquipements"
+            app:layout_constraintTop_toTopOf="@id/boutonEquipements"
+            app:layout_constraintBottom_toBottomOf="@id/boutonEquipements"
+            android:layout_marginStart="8dp"/>
+
+        <Button
+            android:id="@+id/boutonCredits"
+            style="@style/CustomTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/boutonCredits"
+            android:textSize="20sp"
+            android:backgroundTint="@color/bgHeaderFooter"
+            app:layout_constraintStart_toEndOf="@id/boutonConfiguration"
+            app:layout_constraintTop_toTopOf="@id/boutonConfiguration"
+            app:layout_constraintBottom_toBottomOf="@id/boutonConfiguration"
+            android:layout_marginStart="8dp"/>
+
+        <ImageView
+            android:id="@+id/logoLaSalle"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:contentDescription="@string/cD_lasalle"
+            android:src="@drawable/lasalle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="10dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- CONTENU PRINCIPAL -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintBottom_toTopOf="@id/footer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- FOOTER -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/footer"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:background="@color/bgHeaderFooter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/textViewCommentaires"
+            style="@style/CustomTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/copyright"
+            android:textSize="25sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="20dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

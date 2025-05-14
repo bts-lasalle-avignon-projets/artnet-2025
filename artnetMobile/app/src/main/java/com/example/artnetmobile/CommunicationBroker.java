@@ -18,6 +18,10 @@ import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.List;
 
 public class CommunicationBroker
 {
@@ -38,6 +42,8 @@ public class CommunicationBroker
      * Attributs
      */
     private static CommunicationBroker    instance; // Singleton
+    private final String config = "artnet/config/#";
+    private final String universTopic = "artnet/univers/";
     Handler           handler    = null;
     public MqttClient mqttClient = null;
     String            serveurUri;
@@ -79,6 +85,7 @@ public class CommunicationBroker
                     message.what    = BROKER_CONNECTE;
                     if(handler != null)
                         handler.sendMessage(message);
+                    sabonner(config);
                 }
 
                 @Override
@@ -249,4 +256,39 @@ public class CommunicationBroker
             return false;
         }
     }
+
+    public void traiterMessageConfig(String topicMQTT, String messageMQTT)
+    {
+        try {
+            JSONObject json = new JSONObject(messageMQTT);
+            String nomUnivers = topicMQTT.substring("artnet/config/".length());
+            int univers = json.getInt("univers");
+            String ip = json.getString("ip");
+            String mac = json.getString("mac");
+            int rssi = json.getInt("rssi");
+
+            Univers existant = Univers.rechercherUnivers(nomUnivers);
+
+            if (existant != null) {
+                existant.mettreAJour(univers, ip, mac, rssi);
+            } else {
+                new Univers(nomUnivers, univers, ip, mac, rssi);
+            }
+
+        } catch (JSONException e) {
+            Log.e(TAG, "Erreur JSON : " + messageMQTT, e);
+        }
+    }
+
+    public void basculerEmissionUnivers(Univers u) {
+        Log.d(TAG, "basculerEmissionUnivers() -> " + u.getNom());
+        String topic = universTopic + u.getNom();
+
+        if (!u.getActif()) {
+            u.setActif(true);
+        } else {
+            u.setActif(false);
+        }
+    }
+
 }

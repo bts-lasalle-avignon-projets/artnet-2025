@@ -1,9 +1,31 @@
 <resources>
     <string name="Hello">Hello World!</string>
-    <string name="appName">Artnet Mobile</string>
-    <string name="app_name">Artnet Mobile</string>
-    <string name="cD_lasalle">Logo - Campus Lasalle</string>
-    <string name="cD_artnet">Logo - Artnet</string>
+    <string name="appName" translatable="false">Artnet Mobile</string>
+    <string name="app_name" translatable="false">Artnet Mobile</string>
+    <string name="cD_lasalle" translatable="false">Logo - Campus Lasalle</string>
+    <string name="cD_artnet" translatable="false">Logo - Artnet</string>
     <string name="boutonDemarrage">Démarrer</string>
-    <string name="copyright">(c) CLEMENT Aymeric - 2025</string>
+    <string name="copyright" translatable="false">(c) CLEMENT Aymeric - 2025</string>
+    <string name="bienvenue">Bienvenue dans l\'application !</string>
+    <string name="accueilUnivers">Sélectionnez un univers en-dessous pour continuer</string>
+    <string name="universExistants">Rechercher des univers existants</string>
+
+    <!-- Navbar -->
+    <string name="boutonAccueil">Accueil</string>
+    <string name="boutonEquipements">Equipements</string>
+    <string name="boutonConfiguration">Configurer</string>
+    <string name="boutonCredits">Crédits</string>
+
+    <!-- Titre des pages -->
+    <string name="accueil">Accueil</string>
+    <string name="equipements">Page Equipements</string>
+    <string name="configuration">Page Configuration</string>
+    <string name="credits">Crédits</string>
+
+    <!-- Univers -->
+    <string name="nomUnivers">Nom :</string>
+    <string name="numeroUnivers">Univers :</string>
+    <string name="ip">IP :</string>
+    <string name="mac">Mac :</string>
+    <string name="rssi">RSSI :</string>
 </resources>

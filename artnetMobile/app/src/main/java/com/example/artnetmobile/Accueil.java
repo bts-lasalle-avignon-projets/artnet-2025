@@ -8,10 +8,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class Accueil extends AppCompatActivity
 {
@@ -19,12 +30,14 @@ public class Accueil extends AppCompatActivity
      * Constantes
      */
     private static final String TAG = "_Accueil"; //!< TAG pour les logs (cf. Logcat)
+    VueArtnet        vue = VueArtnet.getInstance();
 
     /**
      * Attributs
      */
     private CommunicationBroker communicationBroker;
     private Handler             handler = null;
+    private LinearLayout conteneurUnivers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -36,6 +49,17 @@ public class Accueil extends AppCompatActivity
 
         initialiserHandler();
         initialiserCommunicationBroker();
+
+        Button boutonRechercheUnivers = findViewById(R.id.boutonUniversExistants);
+        conteneurUnivers = findViewById(R.id.conteneurUnivers);
+
+        boutonRechercheUnivers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                vue.afficherUniversExistants(conteneurUnivers);
+            }
+        });
     }
 
     /**
@@ -99,8 +123,9 @@ public class Accueil extends AppCompatActivity
 
     private void traiterMessageMQTT(String topicMQTT, String messageMQTT)
     {
-        /**
-         * @todo Gérer les messages MQTT reçus
-         */
+        if(topicMQTT.startsWith("artnet/config/"))
+        {
+            communicationBroker.traiterMessageConfig(topicMQTT, messageMQTT);
+        }
     }
 }
