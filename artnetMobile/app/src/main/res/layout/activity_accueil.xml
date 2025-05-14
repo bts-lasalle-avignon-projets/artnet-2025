@@ -32,7 +32,7 @@
 
             <Button
                 android:id="@+id/boutonAccueil"
-                style="@style/CustomTextView"
+                style="@style/CustomTextViewOn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/boutonAccueil"

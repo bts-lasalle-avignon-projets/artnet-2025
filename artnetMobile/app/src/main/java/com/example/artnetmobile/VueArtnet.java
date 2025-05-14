@@ -29,6 +29,43 @@ public class VueArtnet
         return instance;
     }
 
+    public void initialiserNavbar(Activity activite)
+    {
+        Log.d(TAG, "afficherNavbar()");
+        Button accueil = activite.findViewById(R.id.boutonAccueil);
+        Button equipements = activite.findViewById(R.id.boutonEquipements);
+        Button configurer = activite.findViewById(R.id.boutonConfiguration);
+        Button credits = activite.findViewById(R.id.boutonCredits);
+
+        accueil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                afficherAccueil(activite);
+            }
+        });
+
+        equipements.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                afficherEquipement(activite);
+            }
+        });
+
+        configurer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                afficherConfiguration(activite);
+            }
+        });
+
+        credits.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                afficherCredits(activite);
+            }
+        });
+    }
+
     public void afficherAccueil(Activity activite)
     {
         Log.d(TAG, "afficherAccueil()");

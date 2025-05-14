@@ -54,6 +54,8 @@ public class Accueil extends AppCompatActivity
         initialiserHandler();
         initialiserCommunicationBroker();
 
+        vue.initialiserNavbar(this);
+
         Button boutonRechercherUnivers = findViewById(R.id.boutonRechercherUnivers);
         conteneurUnivers = findViewById(R.id.conteneurUnivers);
         conteneurDetails = findViewById(R.id.conteneurDetails);

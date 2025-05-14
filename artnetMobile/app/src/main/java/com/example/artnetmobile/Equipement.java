@@ -15,6 +15,7 @@ public class Equipement extends AppCompatActivity
      * Constantes
      */
     private static final String TAG = "_Equipement"; //!< TAG pour les logs (cf. Logcat)
+    VueArtnet        vue = VueArtnet.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -23,5 +24,6 @@ public class Equipement extends AppCompatActivity
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_equipement);
         Log.d(TAG, "onCreate()");
+        vue.initialiserNavbar(this);
     }
 }
