@@ -10,10 +10,15 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 public class VueArtnet
 {
     private static final String TAG = "_VueArtnet";
     private static VueArtnet    instance; // Singleton
+
+    private static final int INVISIBLE = 8;
+    private static final int VISIBLE = 0;
 
     private VueArtnet()
     {
@@ -183,6 +188,11 @@ public class VueArtnet
         affichageActif.setTextSize(16);
         affichageActif.setText(texteActif);
 
+        TextView affichageNbEquipements = new TextView(conteneur.getContext());
+        String texteNbEquipements = "Nombre d'équipements : " + u.getNbEquipements();
+        affichageNbEquipements.setTextSize(16);
+        affichageNbEquipements.setText(texteNbEquipements);
+
         Button boutonBasculementActif = new Button(conteneur.getContext());
         String texteBoutonBasculement;
         if (u.getActif())
@@ -199,6 +209,7 @@ public class VueArtnet
         conteneur.addView(affichageMAC);
         conteneur.addView(affichageRSSI);
         conteneur.addView(affichageActif);
+        conteneur.addView(affichageNbEquipements);
         conteneur.addView(boutonBasculementActif);
 
         boutonBasculementActif.setOnClickListener(new View.OnClickListener() {
@@ -208,5 +219,19 @@ public class VueArtnet
                 afficherDetailsUnivers(conteneur, u);
             }
         });
+    }
+
+    public void afficherCreationEquipement(ConstraintLayout creationEquipement, ConstraintLayout configurationEquiepemnt)
+    {
+        Log.d(TAG, "afficherCreationEquipement()");
+        configurationEquiepemnt.setVisibility(INVISIBLE);
+        creationEquipement.setVisibility(VISIBLE);
+    }
+
+    public void afficherConfigurationEquipement(ConstraintLayout creationEquipement, ConstraintLayout configurationEquiepemnt)
+    {
+        Log.d(TAG, "afficherConfigurationEquipement()");
+        creationEquipement.setVisibility(INVISIBLE);
+        configurationEquiepemnt.setVisibility(VISIBLE);
     }
 }
