@@ -119,7 +119,7 @@
         <!-- Zone 1 invisible -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/creationEquipement"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/configurerEquipement"
@@ -284,7 +284,7 @@
         <!-- Zone 2 Invisible -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/configurationEquipement"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/configurerEquipement"
