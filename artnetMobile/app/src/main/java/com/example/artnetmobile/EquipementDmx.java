@@ -1,18 +1,35 @@
 package com.example.artnetmobile;
 
+import android.util.Log;
+
 import java.util.Vector;
 
 public class EquipementDmx
 {
+    private static final String TAG = "_EquipementDmx";
+    private static int         compteurID;
     private int                idEquipement;
     private int                univers;
     private String             nom;
     private String             type;
     private int                nbCanaux;
     private int                adresseDMX;
-    private Vector<Equipement> canaux = new Vector<>();
+    private Vector<String> canaux = new Vector<>();
 
-    public Vector<Equipement> getCanaux()
+    public EquipementDmx(int univers, String nom, String type, int nbCanaux, int adresseDMX, Vector<String> canaux) {
+        Log.d(TAG, "EquipementDmx()");
+        this.idEquipement = ++compteurID;
+        this.univers = univers;
+        this.nom = nom;
+        this.type = type;
+        this.nbCanaux = nbCanaux;
+        this.adresseDMX = adresseDMX;
+        this.canaux = canaux;
+        Univers.ajouterEquipementUnivers(this);
+        Log.d(TAG, "ID : " + idEquipement + " - Univers : " + univers + " - Nom : " + nom + " - Type : " + type + " - Nombre canaux : " + nbCanaux + " - Premier canal : " + adresseDMX);
+    }
+
+    public Vector<String> getCanaux()
     {
         return canaux;
     }
@@ -81,7 +98,5 @@ public class EquipementDmx
         return nbCanaux;
     }
 
-    public void configurerEquipement()
-    {
-    }
+    public void configurerEquipement() {}
 }

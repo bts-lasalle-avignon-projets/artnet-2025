@@ -5,7 +5,7 @@
     <string name="cD_lasalle" translatable="false">Logo - Campus Lasalle</string>
     <string name="cD_artnet" translatable="false">Logo - Artnet</string>
     <string name="boutonDemarrage">Démarrer</string>
-    <string name="copyright" translatable="false">(c) CLEMENT Aymeric - 2025</string>
+    <string name="copyright" translatable="false">© CLEMENT Aymeric - 2025</string>
     <string name="bienvenue">Bienvenue dans l\'application !</string>
     <string name="accueilUnivers">Sélectionnez un univers à droite pour continuer</string>
     <string name="universExistants">Actualiser la liste des univers existants</string>
@@ -28,5 +28,17 @@
     <string name="numeroUnivers">Univers :</string>
     <string name="ip">IP :</string>
     <string name="mac">Mac :</string>
-    <string name="rssi">RSSI :</string>
+    <string name="rssi">Signal :</string>
+
+    <!-- Equipements -->
+    <string name="titreCreation">Création d\'un équipement :</string>
+    <string name="titreConfiguration">Configuration des équipements : </string>
+    <string name="entreeUtilisateurNom">Nom : </string>
+    <string name="entreeUtilisateurType">Type : </string>
+    <string name="entreeUtilisateurNbCanaux">Nombre de canaux : </string>
+    <string name="entreeUtilisateurAdresse">Adresse* : </string>
+    <string name="hintAdresse">*numéro du premier canal</string>
+    <string name="boutonAjoutEquipement">Ajouter l\'équipement</string>
+    <string name="entreeUtilisateurUnivers">Univers :</string>
+    <string name="maximumCanaux">(max 20)</string>
 </resources>

@@ -267,7 +267,7 @@ public class CommunicationBroker
             String mac = json.getString("mac");
             int rssi = json.getInt("rssi");
 
-            Univers existant = Univers.rechercherUnivers(nomUnivers);
+            Univers existant = Univers.rechercherUniversNom(nomUnivers);
 
             if (existant != null) {
                 existant.mettreAJour(univers, ip, mac, rssi);
@@ -282,6 +282,7 @@ public class CommunicationBroker
 
     public void basculerEmissionUnivers(Univers u) {
         Log.d(TAG, "basculerEmissionUnivers() -> " + u.getNom());
+        String topic = universTopic + u.getNom();
 
         if (!u.getActif()) {
             u.setActif(true);
