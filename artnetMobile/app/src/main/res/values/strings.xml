@@ -28,7 +28,7 @@
     <string name="numeroUnivers">Univers :</string>
     <string name="ip">IP :</string>
     <string name="mac">Mac :</string>
-    <string name="rssi">RSSI :</string>
+    <string name="rssi">Signal :</string>
 
     <!-- Equipements -->
     <string name="titreCreation">Création d\'un équipement :</string>

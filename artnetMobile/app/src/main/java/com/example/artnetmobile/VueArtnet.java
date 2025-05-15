@@ -17,8 +17,11 @@ public class VueArtnet
     private static final String TAG = "_VueArtnet";
     private static VueArtnet    instance; // Singleton
 
-    private static final int INVISIBLE = 8;
-    private static final int VISIBLE = 0;
+    private static final int RSSI_INCROYABLE = -30;
+    private static final int RSSI_TRES_BON = -55;
+    private static final int RSSI_ASSEZ_BON = -67;
+    private static final int RSSI_MOYEN = -70;
+    private static final int RSSI_PAS_BON = -80;
 
     private VueArtnet()
     {
@@ -113,7 +116,6 @@ public class VueArtnet
             textView.setText(texte);
             textView.setTextSize(16);
             textView.setPadding(0, 0, 0, 30);
-            textView.setClickable(true);
 
             if (u.getActif())
                 textView.setTextColor(Color.GREEN);
@@ -135,15 +137,15 @@ public class VueArtnet
 
     private String afficherRssi(int rssi)
     {
-        if (rssi > -30) {
+        if (rssi > RSSI_INCROYABLE) {
             return "Incroyable";
-        } else if (rssi > -55) {
+        } else if (rssi > RSSI_TRES_BON) {
             return "Très bon";
-        } else if (rssi > -67) {
+        } else if (rssi > RSSI_ASSEZ_BON) {
             return "Assez bon";
-        } else if (rssi > -70) {
-            return "D'accord";
-        } else if (rssi > -80) {
+        } else if (rssi > RSSI_MOYEN) {
+            return "Moyen";
+        } else if (rssi > RSSI_PAS_BON) {
             return "Pas bon";
         } else {
             return "Extrêmement faible (inutilisable)";
@@ -158,80 +160,44 @@ public class VueArtnet
     private void afficherDetailsUnivers(LinearLayout conteneur, Univers u) {
         Log.d(TAG, "affichageDetailsUnivers()");
         conteneur.removeAllViews();
-        TextView affichageNum = new TextView(conteneur.getContext());
-        String texteNum = "Univers n°" + u.getNum();
-        affichageNum.setTextSize(20);
-        affichageNum.setText(texteNum);
 
-        TextView affichageNom = new TextView(conteneur.getContext());
-        String texteNom = "Nom : " + u.getNom();
-        affichageNom.setTextSize(18);
-        affichageNom.setText(texteNom);
-
-        TextView affichageIP = new TextView(conteneur.getContext());
-        String texteIP = "IP : " + u.getIp();
-        affichageIP.setTextSize(16);
-        affichageIP.setText(texteIP);
-
-        TextView affichageMAC = new TextView(conteneur.getContext());
-        String texteMac = "MAC : " + u.getMac();
-        affichageMAC.setTextSize(16);
-        affichageMAC.setText(texteMac);
-
-        TextView affichageRSSI = new TextView(conteneur.getContext());
-        String texteRSSI = "RSSI : " + afficherRssi(u.getRssi()) + " (" + u.getRssi() + ")";
-        affichageRSSI.setTextSize(16);
-        affichageRSSI.setText(texteRSSI);
-
-        TextView affichageActif = new TextView(conteneur.getContext());
-        String texteActif = "Topic actif ? : " + afficherActif(u.getActif());
-        affichageActif.setTextSize(16);
-        affichageActif.setText(texteActif);
-
-        TextView affichageNbEquipements = new TextView(conteneur.getContext());
-        String texteNbEquipements = "Nombre d'équipements : " + u.getNbEquipements();
-        affichageNbEquipements.setTextSize(16);
-        affichageNbEquipements.setText(texteNbEquipements);
+        ajouterLabel(conteneur, "Univers n°" + u.getNum(), 20);
+        ajouterLabel(conteneur, "Nom : " + u.getNom(), 18);
+        ajouterLabel(conteneur, "IP : " + u.getIp(), 16);
+        ajouterLabel(conteneur, "MAC : " + u.getMac(), 16);
+        ajouterLabel(conteneur, "RSSI : " + afficherRssi(u.getRssi()) + " (" + u.getRssi() + ")", 16);
+        ajouterLabel(conteneur, "Topic actif ? : " + (u.getActif() ? "Oui" : "Non"), 16);
+        ajouterLabel(conteneur, "Nombre d'équipements : " + u.getNbEquipements(), 16);
 
         Button boutonBasculementActif = new Button(conteneur.getContext());
-        String texteBoutonBasculement;
-        if (u.getActif())
-            texteBoutonBasculement = "Désactiver le topic";
-        else
-            texteBoutonBasculement = "Activer le topic";
-
-        boutonBasculementActif.setTextSize(16);
-        boutonBasculementActif.setText(texteBoutonBasculement);
-        affichageActif.setTextSize(16);
-        conteneur.addView(affichageNum);
-        conteneur.addView(affichageNom);
-        conteneur.addView(affichageIP);
-        conteneur.addView(affichageMAC);
-        conteneur.addView(affichageRSSI);
-        conteneur.addView(affichageActif);
-        conteneur.addView(affichageNbEquipements);
+        boutonBasculementActif.setText(u.getActif() ? "Désactiver le topic" : "Activer le topic");
         conteneur.addView(boutonBasculementActif);
 
-        boutonBasculementActif.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CommunicationBroker.getInstance().basculerEmissionUnivers(u);
-                afficherDetailsUnivers(conteneur, u);
-            }
+        boutonBasculementActif.setOnClickListener(v -> {
+            CommunicationBroker.getInstance().basculerEmissionUnivers(u);
+            afficherDetailsUnivers(conteneur, u);
         });
     }
 
-    public void afficherCreationEquipement(ConstraintLayout creationEquipement, ConstraintLayout configurationEquiepemnt)
+    private static void ajouterLabel(LinearLayout conteneur, String texte, int tailleTexte)
     {
-        Log.d(TAG, "afficherCreationEquipement()");
-        configurationEquiepemnt.setVisibility(INVISIBLE);
-        creationEquipement.setVisibility(VISIBLE);
+        TextView textView = new TextView(conteneur.getContext());
+        textView.setText(texte);
+        textView.setTextSize(tailleTexte);
+        conteneur.addView(textView);
     }
 
-    public void afficherConfigurationEquipement(ConstraintLayout creationEquipement, ConstraintLayout configurationEquiepemnt)
+    public void afficherCreationEquipement(ConstraintLayout creationEquipement, ConstraintLayout configurationEquipement)
+    {
+        Log.d(TAG, "afficherCreationEquipement()");
+        configurationEquipement.setVisibility(View.GONE);
+        creationEquipement.setVisibility(View.VISIBLE);
+    }
+
+    public void afficherConfigurationEquipement(ConstraintLayout creationEquipement, ConstraintLayout configurationEquipement)
     {
         Log.d(TAG, "afficherConfigurationEquipement()");
-        creationEquipement.setVisibility(INVISIBLE);
-        configurationEquiepemnt.setVisibility(VISIBLE);
+        creationEquipement.setVisibility(View.GONE);
+        configurationEquipement.setVisibility(View.VISIBLE);
     }
 }

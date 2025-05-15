@@ -100,6 +100,4 @@ public class Univers {
             Log.w(TAG, "Erreur : Aucun univers trouvé pour le numéro : " + equipement.getUnivers());
         }
     }
-
 }
-
