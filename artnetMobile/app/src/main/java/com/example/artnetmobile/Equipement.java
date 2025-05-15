@@ -8,12 +8,21 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
+
+import java.util.Vector;
 
 public class Equipement extends AppCompatActivity
 {
@@ -27,6 +36,8 @@ public class Equipement extends AppCompatActivity
     private ConstraintLayout configurationEquipement;
     private Spinner spinnerEquipement;
     private Spinner spinnerUnivers;
+    private LinearLayout conteneurCanaux;
+
     private String[] equipements = {"Scanner", "Pars", "Lyres", "Lasers", "Spots"};
 
     @Override
@@ -44,6 +55,7 @@ public class Equipement extends AppCompatActivity
 
         creationEquipement = findViewById(R.id.creationEquipement);
         configurationEquipement = findViewById(R.id.configurationEquipement);
+        conteneurCanaux = findViewById(R.id.conteneurCanaux);
         spinnerEquipement = findViewById(R.id.spinnerEquipement);
         spinnerUnivers = findViewById(R.id.spinnerUnivers);
 
@@ -76,6 +88,37 @@ public class Equipement extends AppCompatActivity
             }
         });
 
+        EditText editTextNbCanaux = findViewById(R.id.editNbCanaux);
+
+        editTextNbCanaux.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                conteneurCanaux.removeAllViews();
+                if (!s.toString().isEmpty()) {
+                    try {
+                        int nbCanaux = Integer.parseInt(s.toString());
+                        if(nbCanaux > 20) { nbCanaux = 20; }
+                        for (int i = 0; i < nbCanaux; i++) {
+                            EditText canal = new EditText(Equipement.this);
+                            canal.setHint("Canal " + (i + 1));
+                            canal.setInputType(InputType.TYPE_CLASS_TEXT);
+                            canal.setGravity(Gravity.CENTER);
+                            canal.setWidth(200);
+                            conteneurCanaux.addView(canal);
+                        }
+                    } catch (NumberFormatException e) {
+                        Log.w(TAG, "Nombre de canaux invalide");
+                    }
+                }
+            }
+        });
+
     }
 
     private void afficherVueEquipement() {
@@ -104,9 +147,16 @@ public class Equipement extends AppCompatActivity
         EditText editTextAdresse = findViewById(R.id.editAdresse);
         int adresse = Integer.parseInt(editTextAdresse.getText().toString());
 
-        /* @todo S'occuper du vector canaux */
+        Vector<String> canaux = new Vector<>();
+        for (int i = 0; i < conteneurCanaux.getChildCount(); i++) {
+            EditText editText = (EditText) conteneurCanaux.getChildAt(i);
+            String val = editText.getText().toString().trim();
+            if (!val.isEmpty()) {
+                canaux.add(val);
+            }
+        }
 
-        new EquipementDmx(numUnivers, nomEquipement, typeSelectionne, nbCanaux, adresse);
+        new EquipementDmx(numUnivers, nomEquipement, typeSelectionne, nbCanaux, adresse, canaux);
 
         editTextNom.setText("");
         editTextNbCanaux.setText("");

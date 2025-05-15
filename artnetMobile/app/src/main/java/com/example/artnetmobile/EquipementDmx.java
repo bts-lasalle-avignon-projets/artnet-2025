@@ -14,9 +14,9 @@ public class EquipementDmx
     private String             type;
     private int                nbCanaux;
     private int                adresseDMX;
-    private Vector<Equipement> canaux = new Vector<>();
+    private Vector<String> canaux = new Vector<>();
 
-    public EquipementDmx(int univers, String nom, String type, int nbCanaux, int adresseDMX) {
+    public EquipementDmx(int univers, String nom, String type, int nbCanaux, int adresseDMX, Vector<String> canaux) {
         Log.d(TAG, "EquipementDmx()");
         this.idEquipement = ++compteurID;
         this.univers = univers;
@@ -24,12 +24,12 @@ public class EquipementDmx
         this.type = type;
         this.nbCanaux = nbCanaux;
         this.adresseDMX = adresseDMX;
-        // this.canaux = canaux;
+        this.canaux = canaux;
         Univers.ajouterEquipementUnivers(this);
         Log.d(TAG, "ID : " + idEquipement + " - Univers : " + univers + " - Nom : " + nom + " - Type : " + type + " - Nombre canaux : " + nbCanaux + " - Premier canal : " + adresseDMX);
     }
 
-    public Vector<Equipement> getCanaux()
+    public Vector<String> getCanaux()
     {
         return canaux;
     }

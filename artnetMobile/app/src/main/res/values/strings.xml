@@ -40,4 +40,5 @@
     <string name="hintAdresse">*numéro du premier canal</string>
     <string name="boutonAjoutEquipement">Ajouter l\'équipement</string>
     <string name="entreeUtilisateurUnivers">Univers :</string>
+    <string name="maximumCanaux">(max 20)</string>
 </resources>
