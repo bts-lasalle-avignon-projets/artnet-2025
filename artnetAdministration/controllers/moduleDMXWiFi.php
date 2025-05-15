@@ -17,4 +17,13 @@ class ModuleDMXWiFi extends Controller
 		// Affiche la liste des module DMX WIFI
 		$this->display($listeModuleDMXWiFi);
 	}
+	
+	public function testConnection()
+	{
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			if (isset($_POST['submit']) && $_POST['submit'] === "Connecter") {
+				return $this->test();
+			}
+		}
+	}
 }

@@ -1,4 +1,7 @@
 <?php
+$topic = "artnet/config";
+$qos = 0;
+$timeout = 10; // en secondes (sinon 0 pour aucun timeout)
 
 class ModuleDMXWiFiModel extends Model
 {
@@ -16,39 +19,57 @@ class ModuleDMXWiFiModel extends Model
 		return $moduleDMX;
 	}
 
+    public function test()
+    {
+        // Instancie le module
+        $communicationModule = new CommunicationModule($broker);
+        
+        // Connecte le module
+        $connectionResult = $communicationModule->connecter();
+
+        if ($connectionResult) {
+            Messages::setMsg("Test de connexion au module réussi !", "success");
+            $communicationModule->deconnecter();
+            return ACTION_SUCCESS;
+        } else {
+            Messages::setMsg("Erreur de connexion au module !", "error");
+            return ACTION_ERREUR;
+        }
+    }
+
     public function sauvegardeTopicConfig()
     {
-        // Instancie le broker
-        $communicationBroker = new CommunicationBroker($broker);
+        // Instancie le module
+        $communicationModule = new CommunicationModule($broker);
         
-        // Connecte le broker
-        $communicationBroker->connecter();
+        // Connecte le module
+        $communicationModule->connecter();
 
         // Souscrit au topic artnet/config
-        $resultatSouscription = $communicationBroker->souscrire($broker['topic'] . "/artnet/config", 0);
+        $resultatSouscription = $communicationModule->souscrire($broker['topic'] . $topic, $qos);
         if ($resultatSouscription) {
             Messages::setMsg("Souscription au topic artnet/config réussie !", "success");
 
             // Recevoir le message
-            $result = $communicationBroker->recevoirMessage($broker['topic'] . "/artnet/config", 10); // 10 secondes
+            $result = $communicationModule->recevoirMessage($broker['topic'] . $topic, $timeout); 
             if ($result) {
                 // Récupère le message reçu sur le topic artnet/config
-                $message = $communicationBroker->getMessage($broker['topic'] . "/artnet/config");
+                $message = $communicationModule->getMessage($broker['topic'] . $topic);
                 if ($message != null) {
                     // Enregistre le message dans la base de données
                     if ($this->enregistrerDansBDD($message)) {
-                        Messages::setMsg("Message reçu et enregistré : \"" . $message . "\" sur le topic \"" . $broker['topic'] . "/artnet/config\"", "success");
+                        Messages::setMsg("Message reçu et enregistré : \"" . $message . "\" sur le topic \"" . $broker['topic'] . $topic, "success");
                         return ACTION_SUCCESS;
                     } else {
                         Messages::setMsg("Erreur lors de l'enregistrement du message dans la base de données !", "error");
                         return ACTION_ERREUR;
                     }
                 } else {
-                    Messages::setMsg("Aucun message reçu sur le topic \"" . $broker['topic'] . "/artnet/config\"" . " !", "error");
+                    Messages::setMsg("Aucun message reçu sur le topic \"" . $broker['topic'] . $topic . " !", "error");
                     return ACTION_ERREUR;
                 }
             } else {
-                Messages::setMsg("Aucun message reçu sur le topic \"" . $broker['topic'] . "/artnet/config\"" . " !", "error");
+                Messages::setMsg("Aucun message reçu sur le topic \"" . $broker['topic'] . $topic . " !", "error");
                 return ACTION_ERREUR;
             }
         } else {
@@ -56,30 +77,15 @@ class ModuleDMXWiFiModel extends Model
             return ACTION_ERREUR;
         }
 
-        $communicationBroker->deconnecter();
+        $communicationModule->deconnecter();
     }
 
-    // Fonction pour enregistrer le message dans la base de données
     private function enregistrerDansBDD($message)
     {
-        // Connexion à la base de données (exemple avec PDO)
+        // Insère le module dans la base de données
         try {
-            $pdo = new PDO('mysql:host=localhost;dbname=nom_de_la_base', 'utilisateur', 'mot_de_passe');
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            // Préparez la requête d'insertion
-            $stmt = $pdo->prepare("INSERT INTO votre_table (colonne_message) VALUES (:message)");
-            $stmt->bindParam(':message', $message);
-
-            // Exécutez la requête
-            return $stmt->execute();
-        } catch (PDOException $e) {
-            // Gérer les erreurs de connexion ou d'exécution
-            Messages::setMsg("Erreur de base de données : " . $e->getMessage(), "error");
-            return false;
-        }
-        try {
-            $this->query("INSERT INTO moduleDMXWiFi (univers,nomBoitier,adresseIP,adresseMAC,rssi,actif) VALUES (:univers, :nomBoitier, :adresseIP, :adresseMAC, :rssi, :actif)");
+            $this->query("INSERT INTO moduleDMXWiFi (univers,nomBoitier,adresseIP,adresseMAC,rssi,actif) 
+                            VALUES (:univers, :nomBoitier, :adresseIP, :adresseMAC, :rssi, :actif)");
             $this->bind(':univers', $univers);
             $this->bind(':nomBoitier', $nomBoitier);
             $this->bind(':adresseIP', $adresseIP);
@@ -87,8 +93,7 @@ class ModuleDMXWiFiModel extends Model
             $this->bind(':rssi', $rssi);
             $this->bind(':actif', $actif);
             $this->execute();
-            $idBroker = $this->getLastInsertId();
-            Messages::setMsg("Broker ajouté avec succès !", "success");
+            Messages::setMsg("Module ajouté avec succès !", "success");
             return ACTION_SUCCESS;
         } catch (PDOException $e) {
             Messages::setMsg("Erreur lors de l'insertion : " . $e->getMessage(), "error");
