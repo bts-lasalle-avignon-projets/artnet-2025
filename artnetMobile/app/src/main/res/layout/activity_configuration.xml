@@ -34,39 +34,51 @@
                 android:id="@+id/boutonAccueil"
                 style="@style/CustomTextView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:minWidth="64dp"
                 android:text="@string/boutonAccueil"
                 android:textSize="20sp"
-                android:backgroundTint="@color/bgHeaderFooter" />
+                android:background="@android:color/transparent"
+                android:paddingHorizontal="12dp" />
 
             <Button
                 android:id="@+id/boutonEquipements"
                 style="@style/CustomTextView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:minWidth="64dp"
                 android:text="@string/boutonEquipements"
                 android:textSize="20sp"
-                android:backgroundTint="@color/bgHeaderFooter"
+                android:background="@android:color/transparent"
+                android:paddingHorizontal="12dp"
                 android:layout_marginStart="16dp" />
 
             <Button
                 android:id="@+id/boutonConfiguration"
                 style="@style/CustomTextViewOn"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:minWidth="64dp"
                 android:text="@string/boutonConfiguration"
                 android:textSize="20sp"
-                android:backgroundTint="@color/bgHeaderFooter"
+                android:background="@android:color/transparent"
+                android:paddingHorizontal="12dp"
                 android:layout_marginStart="16dp" />
 
             <Button
                 android:id="@+id/boutonCredits"
                 style="@style/CustomTextView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:minWidth="64dp"
                 android:text="@string/boutonCredits"
                 android:textSize="20sp"
-                android:backgroundTint="@color/bgHeaderFooter"
+                android:background="@android:color/transparent"
+                android:paddingHorizontal="12dp"
                 android:layout_marginStart="16dp" />
         </LinearLayout>
 
@@ -87,16 +99,17 @@
         android:id="@+id/mainContent"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:padding="16dp"
         app:layout_constraintTop_toBottomOf="@id/header"
         app:layout_constraintBottom_toTopOf="@id/footer"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:padding="16dp">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <Spinner
             android:id="@+id/spinnerUnivers"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
+            android:minHeight="48dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -106,15 +119,33 @@
             android:text="@string/rechercherEquipements"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
             app:layout_constraintTop_toBottomOf="@id/spinnerUnivers"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="12dp" />
+            android:layout_marginTop="12dp"
+            android:paddingHorizontal="16dp"/>
+
+        <TextView
+            android:id="@+id/textViewAttentionUnivers"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/alerte_recherche"
+            android:textColor="@android:color/holo_red_dark"
+            android:textStyle="italic"
+            android:textSize="14sp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@id/boutonRechercherEquipements"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <Spinner
             android:id="@+id/spinnerEquipement"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
+            android:minHeight="48dp"
             app:layout_constraintTop_toBottomOf="@id/boutonRechercherEquipements"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -124,11 +155,13 @@
             android:id="@+id/boutonControler"
             android:text="@string/controlerEquipement"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
+            android:minHeight="48dp"
             app:layout_constraintTop_toBottomOf="@id/spinnerEquipement"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="12dp" />
+            android:layout_marginTop="12dp"
+            android:paddingHorizontal="16dp"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/controlerEquipement"
@@ -172,12 +205,14 @@
             <Button
                 android:id="@+id/boutonEnvoyerCommande"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
                 android:text="@string/envoyer"
                 app:layout_constraintTop_toBottomOf="@id/scrollViewCanaux"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="12dp"
-                android:layout_marginEnd="8dp" />
+                android:layout_marginEnd="8dp"
+                android:paddingHorizontal="16dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -199,7 +234,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/copyright"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
