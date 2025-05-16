@@ -93,10 +93,11 @@ public class EquipementDmx
         return type;
     }
 
-    public int getNbCanaux()
-    {
-        return nbCanaux;
-    }
+    public int getNbCanaux() { return nbCanaux; }
 
     public void configurerEquipement() {}
+
+    @Override
+    public String toString() { return nom; }
+
 }

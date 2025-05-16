@@ -43,6 +43,16 @@ public class Univers {
         return listeUnivers;
     }
 
+    public static List<Univers> getListeUniversActif() {
+        List<Univers> actifs = new Vector<>();
+        for (Univers u : listeUnivers) {
+            if (u.getActif()) {
+                actifs.add(u);
+            }
+        }
+        return actifs;
+    }
+
     public static Univers rechercherUniversNom(String nom) {
         for (Univers u : listeUnivers) {
             if(u.nom.equals(nom)) {
@@ -99,5 +109,18 @@ public class Univers {
         } else {
             Log.w(TAG, "Erreur : Aucun univers trouvé pour le numéro : " + equipement.getUnivers());
         }
+    }
+
+    public static List<EquipementDmx> getListeEquipement(Univers u) {
+        return u.listeEquipement;
+    }
+
+    public static EquipementDmx recupererEquipement(Univers u, String nom) {
+        for (EquipementDmx e : listeEquipement) {
+            if (e.getUnivers() == u.getNum() && e.getNom().equals(nom)) {
+                return e;
+            }
+        }
+        return null;
     }
 }

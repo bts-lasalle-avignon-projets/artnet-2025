@@ -16,80 +16,82 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
-            android:id="@+id/titre"
-            android:layout_width="wrap_content"
+        <!-- Navbar -->
+        <LinearLayout
+            android:id="@+id/navbar"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/configuration"
-            android:textSize="20sp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintEnd_toStartOf="@id/logoLaSalle">
 
-        <Button
-            android:id="@+id/boutonAccueil"
-            style="@style/CustomTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/boutonAccueil"
-            android:textSize="20sp"
-            android:backgroundTint="@color/bgHeaderFooter"
-            android:layout_marginStart="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/titre"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            <Button
+                android:id="@+id/boutonAccueil"
+                style="@style/CustomTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:minWidth="64dp"
+                android:text="@string/boutonAccueil"
+                android:textSize="20sp"
+                android:background="@android:color/transparent"
+                android:paddingHorizontal="12dp" />
 
-        <Button
-            android:id="@+id/boutonEquipements"
-            style="@style/CustomTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/boutonEquipements"
-            android:textSize="20sp"
-            android:backgroundTint="@color/bgHeaderFooter"
-            android:layout_marginStart="8dp"
-            app:layout_constraintStart_toEndOf="@id/boutonAccueil"
-            app:layout_constraintTop_toTopOf="@id/boutonAccueil"
-            app:layout_constraintBottom_toBottomOf="@id/boutonAccueil"/>
+            <Button
+                android:id="@+id/boutonEquipements"
+                style="@style/CustomTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:minWidth="64dp"
+                android:text="@string/boutonEquipements"
+                android:textSize="20sp"
+                android:background="@android:color/transparent"
+                android:paddingHorizontal="12dp"
+                android:layout_marginStart="16dp" />
 
-        <Button
-            android:id="@+id/boutonConfiguration"
-            style="@style/CustomTextViewOn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/boutonConfiguration"
-            android:textSize="20sp"
-            android:backgroundTint="@color/bgHeaderFooter"
-            android:layout_marginStart="8dp"
-            app:layout_constraintStart_toEndOf="@id/boutonEquipements"
-            app:layout_constraintTop_toTopOf="@id/boutonEquipements"
-            app:layout_constraintBottom_toBottomOf="@id/boutonEquipements"/>
+            <Button
+                android:id="@+id/boutonConfiguration"
+                style="@style/CustomTextViewOn"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:minWidth="64dp"
+                android:text="@string/boutonConfiguration"
+                android:textSize="20sp"
+                android:background="@android:color/transparent"
+                android:paddingHorizontal="12dp"
+                android:layout_marginStart="16dp" />
 
-        <Button
-            android:id="@+id/boutonCredits"
-            style="@style/CustomTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/boutonCredits"
-            android:textSize="20sp"
-            android:backgroundTint="@color/bgHeaderFooter"
-            android:layout_marginStart="8dp"
-            app:layout_constraintStart_toEndOf="@id/boutonConfiguration"
-            app:layout_constraintTop_toTopOf="@id/boutonConfiguration"
-            app:layout_constraintBottom_toBottomOf="@id/boutonConfiguration"/>
+            <Button
+                android:id="@+id/boutonCredits"
+                style="@style/CustomTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:minWidth="64dp"
+                android:text="@string/boutonCredits"
+                android:textSize="20sp"
+                android:background="@android:color/transparent"
+                android:paddingHorizontal="12dp"
+                android:layout_marginStart="16dp" />
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/logoLaSalle"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginEnd="10dp"
             android:contentDescription="@string/cD_lasalle"
             android:src="@drawable/lasalle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="10dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- CONTENU PRINCIPAL -->
@@ -97,10 +99,122 @@
         android:id="@+id/mainContent"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:padding="16dp"
         app:layout_constraintTop_toBottomOf="@id/header"
         app:layout_constraintBottom_toTopOf="@id/footer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
+
+        <Spinner
+            android:id="@+id/spinnerUnivers"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:minHeight="48dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/boutonRechercherEquipements"
+            android:text="@string/rechercherEquipements"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            app:layout_constraintTop_toBottomOf="@id/spinnerUnivers"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="12dp"
+            android:paddingHorizontal="16dp"/>
+
+        <TextView
+            android:id="@+id/textViewAttentionUnivers"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/alerte_recherche"
+            android:textColor="@android:color/holo_red_dark"
+            android:textStyle="italic"
+            android:textSize="14sp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@id/boutonRechercherEquipements"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Spinner
+            android:id="@+id/spinnerEquipement"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:minHeight="48dp"
+            app:layout_constraintTop_toBottomOf="@id/boutonRechercherEquipements"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="12dp" />
+
+        <Button
+            android:id="@+id/boutonControler"
+            android:text="@string/controlerEquipement"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:minHeight="48dp"
+            app:layout_constraintTop_toBottomOf="@id/spinnerEquipement"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="12dp"
+            android:paddingHorizontal="16dp"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/controlerEquipement"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/boutonControler"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/labelTitreControle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/titreControleEquipement"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <HorizontalScrollView
+                android:id="@+id/scrollViewCanaux"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fillViewport="true"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/labelTitreControle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/conteneurControleCanaux"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
+            </HorizontalScrollView>
+
+            <Button
+                android:id="@+id/boutonEnvoyerCommande"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:text="@string/envoyer"
+                app:layout_constraintTop_toBottomOf="@id/scrollViewCanaux"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="8dp"
+                android:paddingHorizontal="16dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -120,7 +234,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/copyright"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

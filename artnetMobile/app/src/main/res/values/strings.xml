@@ -14,7 +14,7 @@
     <!-- Navbar -->
     <string name="boutonAccueil">Accueil</string>
     <string name="boutonEquipements">Equipements</string>
-    <string name="boutonConfiguration">Configurer</string>
+    <string name="boutonConfiguration">Contrôle</string>
     <string name="boutonCredits">Crédits</string>
 
     <!-- Titre des pages -->
@@ -41,4 +41,10 @@
     <string name="boutonAjoutEquipement">Ajouter l\'équipement</string>
     <string name="entreeUtilisateurUnivers">Univers :</string>
     <string name="maximumCanaux">(max 20)</string>
+    <string name="rechercherEquipements">Rechercher les équipements dans cet univers</string>
+    <string name="controlerEquipement">Contrôler cet équipement</string>
+    <string name="envoyer">Envoyer les valeurs</string>
+    <string name="titreControleEquipement">Controler l\'équipement :</string>
+    <string name="version">V 0.9 – Mai 2025</string>
+    <string name="alerte_recherche">Attention : Les univers doivent être actifs pour être contrôlés !</string>
 </resources>

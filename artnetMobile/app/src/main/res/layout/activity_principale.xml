@@ -108,11 +108,11 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
-            android:id="@+id/textViewCommentaires"
+            android:id="@+id/textViewVersion"
             style="@style/CustomTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/copyright"
+            android:text="@string/version"
             android:textSize="25sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
