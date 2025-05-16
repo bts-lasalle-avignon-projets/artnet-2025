@@ -200,4 +200,9 @@ public class VueArtnet
         creationEquipement.setVisibility(View.GONE);
         configurationEquipement.setVisibility(View.VISIBLE);
     }
+
+    public void afficherControlerEquipement(ConstraintLayout controlerEquipement) {
+        Log.d(TAG, "afficherControlerEquipement()");
+        controlerEquipement.setVisibility(View.VISIBLE);
+    }
 }
