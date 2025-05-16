@@ -24,12 +24,12 @@ class EquipementDMX extends Controller
 			$result = $this->viewmodel->add();
 			$this->display();
 			if ($result == ACTION_SUCCESS) {
-				// Retour à la liste des brokers
-				header('Location: ' . URL_PATH . 'broker');
+				// Retour à la liste des équipements
+				header('Location: ' . URL_PATH . 'equipementDMX');
 			}
 		} else {
 			if (!isset($_SESSION['is_logged_in'])) {
-				header('Location: ' . URL_PATH . 'broker');
+				header('Location: ' . URL_PATH . 'equipementDMX');
 			} else {
 				// @todo
 			}
@@ -39,22 +39,22 @@ class EquipementDMX extends Controller
 	protected function edit()
 	{
 		if (NO_LOGIN) {
-			$idBroker = $this->getID();
-			if ($idBroker > 0) {
-				$broker = $this->viewmodel->edit($idBroker);
-				if (is_array($broker)) {
+			$idEquipement = $this->getID();
+			if ($idEquipement > 0) {
+				$equipement = $this->viewmodel->edit($idEquipement);
+				if (is_array($equipement)) {
 					// Affiche le formulaire de modification
-					$this->display($broker);
+					$this->display($equipement);
 				} else {
 					// Retour à la liste des brokers
-					header('Location: ' . URL_PATH . 'broker');
+					header('Location: ' . URL_PATH . 'equipementDMX');
 				}
 			} else {
-				header('Location: ' . URL_PATH . 'broker');
+				header('Location: ' . URL_PATH . 'equipementDMX');
 			}
 		} else {
 			if (!isset($_SESSION['is_logged_in'])) {
-				header('Location: ' . URL_PATH . 'broker');
+				header('Location: ' . URL_PATH . 'equipementDMX');
 			} else {
 				// @todo
 			}
@@ -64,21 +64,21 @@ class EquipementDMX extends Controller
 	protected function delete()
 	{
 		if (NO_LOGIN) {
-			$idBroker = $this->getID();
-			if ($idBroker > 0) {
-				$result = $this->viewmodel->delete($idBroker);
+			$idEquipement = $this->getID();
+			if ($idEquipement > 0) {
+				$result = $this->viewmodel->delete($idEquipement);
 				// Affiche le message de confirmation
-				$this->display($idBroker);
+				$this->display($idEquipement);
 				if ($result == ACTION_SUCCESS) {
 					// Retour à la liste des brokers
-					header('Location: ' . URL_PATH . 'broker');
+					header('Location: ' . URL_PATH . 'equipementDMX');
 				}
 			} else {
-				header('Location: ' . URL_PATH . 'broker');
+				header('Location: ' . URL_PATH . 'equipementDMX');
 			}
 		} else {
 			if (!isset($_SESSION['is_logged_in'])) {
-				header('Location: ' . URL_PATH . 'broker');
+				header('Location: ' . URL_PATH . 'equipementDMX');
 			} else {
 				// @todo
 			}
@@ -88,11 +88,11 @@ class EquipementDMX extends Controller
     private function getID()
 	{
 		if (!isset($this->request['id']) || empty($this->request['id'])) {
-			Messages::setMsg("ID broker manquant !", "error");
+			Messages::setMsg("ID équipement manquant !", "error");
 			return -1;
 		}
 		if ($this->request['id'] < 0) {
-			Messages::setMsg("ID broker invalide !", "error");
+			Messages::setMsg("ID équipement invalide !", "error");
 			return -1;
 		}
 		return (int) $this->request['id'];

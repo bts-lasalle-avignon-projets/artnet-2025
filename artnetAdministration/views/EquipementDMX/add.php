@@ -10,7 +10,18 @@
 			</div>
 			<div class="form-group">
 				<label for="type">Type</label>
-				<input type="text" name="type" class="form-control" id="type" required />
+				<select name="type" id="type" class="form-control" required>
+					<option value="" disabled selected>-- Sélectionnez un type d'équipement --</option>
+					<?php if (!empty($types)): ?>
+						<?php foreach ($types as $type): ?>
+							<option value="<?= htmlspecialchars($type['idTypeEquipement']) ?>">
+								<?= htmlspecialchars($type['typeEquipement']) ?>
+							</option>
+						<?php endforeach; ?>
+					<?php else: ?>
+						<option value="" disabled>Aucun type disponible</option>
+					<?php endif; ?>
+				</select>
 			</div>
 			<div class="form-group">
 				<label for="univers">Univers</label>
