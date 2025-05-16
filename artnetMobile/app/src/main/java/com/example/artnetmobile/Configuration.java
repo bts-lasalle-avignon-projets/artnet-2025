@@ -25,20 +25,22 @@ import java.util.Vector;
 
 public class Configuration extends AppCompatActivity
 {
-    private static final String TAG = "_Configuration"; //!< TAG pour les logs (cf. Logcat)
+    private static final String TAG = "_Configuration";
     VueArtnet        vue = VueArtnet.getInstance();
     CommunicationBroker communicationBroker = CommunicationBroker.getInstance();
 
     private List<EditText> listeCanaux = new ArrayList<>();
 
-    private Spinner spinnerUnivers;
-    private Spinner spinnerEquipement;
+    private Spinner spinnerUnivers, spinnerEquipement;
+    private LinearLayout conteneurCanaux;
+    private ConstraintLayout layoutControle;
 
     private Univers univers;
     private EquipementDmx equipement;
 
-    private LinearLayout conteneurControleCanaux;
-    private ConstraintLayout controlerEquipementLayout;
+    Button rechercherEquipement;
+    Button boutonControlerEquipement;
+    Button boutonEnvoyerValeurs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -49,62 +51,18 @@ public class Configuration extends AppCompatActivity
         Log.d(TAG, "onCreate()");
 
         vue.initialiserNavbar(this);
-
-        Button rechercherEquipement = findViewById(R.id.boutonRechercherEquipements);
-        Button boutonControlerEquipement = findViewById(R.id.boutonControler);
-        Button boutonEnvoyerValeurs = findViewById(R.id.boutonEnvoyerCommande);
-
-        conteneurControleCanaux = findViewById(R.id.conteneurControleCanaux);
-        controlerEquipementLayout = findViewById(R.id.controlerEquipement);
-        spinnerUnivers = findViewById(R.id.spinnerUnivers);
-        spinnerEquipement = findViewById(R.id.spinnerEquipement);
-
-        ArrayAdapter<Univers> adapterUnivers = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Univers.getListeUniversActif());
-        adapterUnivers.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerUnivers.setAdapter(adapterUnivers);
-
-        rechercherEquipement.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String nomUnivers = spinnerUnivers.getSelectedItem().toString().trim();
-                univers = Univers.rechercherUniversNom(nomUnivers);
-
-                ArrayAdapter<EquipementDmx> adapterEquipement = new ArrayAdapter<>(Configuration.this, android.R.layout.simple_spinner_item, Univers.getListeEquipement(univers));
-                adapterEquipement.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spinnerEquipement.setAdapter(adapterEquipement);
-            }
-        });
-
-        boutonControlerEquipement.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                equipement = (EquipementDmx) spinnerEquipement.getSelectedItem();
-                vue.afficherControlerEquipement(controlerEquipementLayout);
-                controlerEquipement();
-            }
-        });
-
-        boutonEnvoyerValeurs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    String json = construireJson();
-                    communicationBroker.envoyer("artnet/univers", univers.getNum(), json);
-                } catch (Exception e) {
-                    Log.e(TAG, "Erreur :", e);
-                }
-            }
-        });
-
+        initialiserUI();
+        initialiserListener();
     }
 
     private void controlerEquipement()
     {
+        conteneurCanaux.removeAllViews();
+        listeCanaux.clear();
+
         int nbCanaux = equipement.getNbCanaux();
         int adresse = equipement.getAdresseDMX();
         Vector<String> canaux = equipement.getCanaux();
-        conteneurControleCanaux.removeAllViews();
-        listeCanaux.clear();
 
         for (int i = 0; i < nbCanaux; i++) {
             LinearLayout blocCanal = new LinearLayout(Configuration.this);
@@ -124,7 +82,7 @@ public class Configuration extends AppCompatActivity
 
             blocCanal.addView(canal);
             blocCanal.addView(description);
-            conteneurControleCanaux.addView(blocCanal);
+            conteneurCanaux.addView(blocCanal);
 
             listeCanaux.add(canal);
         }
@@ -154,25 +112,73 @@ public class Configuration extends AppCompatActivity
 
     private String construireJson()
     {
-        List<Integer> valeurs = recupererValeurCanaux();
         JSONArray jsonArray = new JSONArray();
-
+        List<Integer> valeurs = recupererValeurCanaux();
         int adresseBase = equipement.getAdresseDMX();
 
         for (int i = 0; i < valeurs.size(); i++) {
-            int numeroCanal = adresseBase + i;
-            int valeur = valeurs.get(i);
-
             try {
                 org.json.JSONObject jsonCanal = new org.json.JSONObject();
-                jsonCanal.put("canal", numeroCanal);
-                jsonCanal.put("valeur", valeur);
+                jsonCanal.put("canal", adresseBase + i);
+                jsonCanal.put("valeur", valeurs.get(i));
                 jsonArray.put(jsonCanal);
             } catch (Exception e) {
-                Log.e(TAG, "Erreur lors de la création du JSON pour le canal " + numeroCanal, e);
+                Log.e(TAG, "Erreur : ", e);
             }
         }
-
         return jsonArray.toString();
+    }
+
+    private void initialiserUI()
+    {
+
+        rechercherEquipement = findViewById(R.id.boutonRechercherEquipements);
+        boutonControlerEquipement = findViewById(R.id.boutonControler);
+        boutonEnvoyerValeurs = findViewById(R.id.boutonEnvoyerCommande);
+
+        spinnerUnivers = findViewById(R.id.spinnerUnivers);
+        spinnerEquipement = findViewById(R.id.spinnerEquipement);
+        conteneurCanaux = findViewById(R.id.conteneurControleCanaux);
+        layoutControle = findViewById(R.id.controlerEquipement);
+
+        ArrayAdapter<Univers> adapterUnivers = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Univers.getListeUniversActif());
+        adapterUnivers.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerUnivers.setAdapter(adapterUnivers);
+    }
+
+    private void initialiserListener()
+    {
+        rechercherEquipement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String nomUnivers = spinnerUnivers.getSelectedItem().toString().trim();
+                univers = Univers.rechercherUniversNom(nomUnivers);
+
+                ArrayAdapter<EquipementDmx> adapterEquipement = new ArrayAdapter<>(Configuration.this, android.R.layout.simple_spinner_item, Univers.getListeEquipement(univers));
+                adapterEquipement.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinnerEquipement.setAdapter(adapterEquipement);
+            }
+        });
+
+        boutonControlerEquipement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                equipement = (EquipementDmx) spinnerEquipement.getSelectedItem();
+                vue.afficherControlerEquipement(layoutControle);
+                controlerEquipement();
+            }
+        });
+
+        boutonEnvoyerValeurs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    String json = construireJson();
+                    communicationBroker.envoyer("artnet/univers", univers.getNum(), json);
+                } catch (Exception e) {
+                    Log.e(TAG, "Erreur :", e);
+                }
+            }
+        });
     }
 }
