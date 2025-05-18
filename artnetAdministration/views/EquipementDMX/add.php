@@ -12,10 +12,10 @@
 				<label for="type">Type</label>
 				<select name="type" id="type" class="form-control" required>
 					<option value="" disabled selected>-- Sélectionnez un type d'équipement --</option>
-					<?php if (!empty($types)): ?>
-						<?php foreach ($types as $type): ?>
+					<?php if (!empty($datas)): ?>
+						<?php foreach ($datas as $type): ?>
 							<option value="<?= htmlspecialchars($type['idTypeEquipement']) ?>">
-								<?= htmlspecialchars($type['typeEquipement']) ?>
+								<?php echo htmlspecialchars($type['typeEquipement']) . " (" . $type['nbCanaux'] . " canaux)";  ?>
 							</option>
 						<?php endforeach; ?>
 					<?php else: ?>

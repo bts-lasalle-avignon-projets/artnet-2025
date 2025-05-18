@@ -2,7 +2,7 @@
 
 class EquipementDMXModel extends Model
 {
-    public function index()
+	public function index()
 	{
 		// Récupère la liste des équipements
 		$this->query("
@@ -12,20 +12,20 @@ class EquipementDMXModel extends Model
             ORDER BY equipementDMX.nomEquipement
 		");
 
-		$equipement = $this->getResults();
+		$equipements = $this->getResults();
 
-		return $equipement;
+		return $equipements;
 	}
 
-    public function add()
+	public function add()
 	{
 		// Le formulaire a été soumis ?
 		if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 			// Récupère les données du formulaire
 			$nom = trim($_POST['nom']);
 			$type = trim($_POST['type']);
-            $univers = trim($_POST['univers']);
-            $canalInitial = trim($_POST['canalInitial']);
+			$univers = trim($_POST['univers']);
+			$canalInitial = trim($_POST['canalInitial']);
 
 			// Vérifie les données du formulaire
 			if (empty($nom)) {
@@ -38,7 +38,7 @@ class EquipementDMXModel extends Model
 				return ACTION_ERREUR;
 			}
 
-            if (empty($univers) || !is_numeric($univers)) {
+			if (empty($univers) || !is_numeric($univers)) {
 				Messages::setMsg("L'univers est requis et doit être un nombre !", "erreur");
 				return ACTION_ERREUR;
 			}
@@ -49,30 +49,106 @@ class EquipementDMXModel extends Model
 			}
 
 			// Insère l'équipement dans la base de données
-            try {
-                $this->query("INSERT INTO equipementDMX (nomEquipement, idTypeEquipement, univers, canalInitial)
+			try {
+				$this->query("INSERT INTO equipementDMX (nomEquipement, idTypeEquipement, univers, canalInitial)
                     			VALUES (:nomEquipement, :idTypeEquipement, :univers, :canalInitial)");
-                $this->bind(':nomEquipement', $nom);
-                $this->bind(':idTypeEquipement', $type);
-                $this->bind(':univers', $univers, PDO::PARAM_INT);
-                $this->bind(':canalInitial', $canalInitial, PDO::PARAM_INT);
-                $this->execute();
-                $idEquipement = $this->getLastInsertId();
-                Messages::setMsg("Équipement ajouté avec succès !", "success");
-                return ACTION_SUCCESS;
-            } catch (PDOException $e) {
-                Messages::setMsg("Erreur lors de l'insertion : " . $e->getMessage(), "error");
-                return ACTION_ERREUR;
-            }
+				$this->bind(':nomEquipement', $nom);
+				$this->bind(':idTypeEquipement', $type);
+				$this->bind(':univers', $univers, PDO::PARAM_INT);
+				$this->bind(':canalInitial', $canalInitial, PDO::PARAM_INT);
+				$this->execute();
+				$idEquipement = $this->getLastInsertId();
+				Messages::setMsg("Équipement ajouté avec succès !", "success");
+				return ACTION_SUCCESS;
+			} catch (PDOException $e) {
+				Messages::setMsg("Erreur lors de l'insertion : " . $e->getMessage(), "error");
+				return ACTION_ERREUR;
+			}
+		} else {
+			// Récupère la liste des types d'équipements
+			$this->query("
+				SELECT typeEquipementDMX.*
+				FROM typeEquipementDMX
+				ORDER BY typeEquipementDMX.typeEquipement
+			");
+			$typeEquipements = $this->getResults();
+			return $typeEquipements ?? ACTION_ERREUR;
 		}
-		return ACTION_ENCOURS;
 	}
 
-	public function canaux($idEquipement)
+	public function command($idEquipement)
 	{
+		// Le formulaire a été soumis ?
+		if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
+			// TODO : Récupère les données du formulaire
 
+
+			// TODO : Vérifie les données du formulaire
+
+
+			// Récupère le broker
+			$broker = $this->getBrokerMQTTActif();
+
+			if ($broker == null) {
+				Messages::setMsg("Le broker n'existe pas !", "error");
+				return ACTION_ERREUR;
+			}
+
+			// Instancie le broker
+			$communicationBroker = new CommunicationBroker($broker);
+			// Connecte le broker
+			$result = $communicationBroker->connecter();
+			if ($result) {
+				if ($communicationBroker->estConnecte()) {
+					// Modifie l'état du broker dans la base de données
+					try {
+						$this->query("UPDATE brokerMQTT SET actif = 1 WHERE idBrokerMQTT = :idBroker");
+						$this->bind(':idBroker', $broker['idBroker'], PDO::PARAM_INT);
+						$this->execute();
+					} catch (PDOException $e) {
+					}
+					// TODO : Publier un message sur le topic de l'univers
+					if ($_POST['submit'] == "Publier") {
+						// TODO
+						$result = $communicationBroker->publier($broker['topic'] . "/", "test", 0);
+						if ($result) {
+							Messages::setMsg("Commande de l'équipement réussie !", "success");
+							return ACTION_SUCCESS;
+						} else {
+							Messages::setMsg("Erreur lors de la commande de l'équipement !", "error");
+							return ACTION_ERREUR;
+						}
+					}
+					$communicationBroker->deconnecter();
+				} else {
+					// Modifie l'état du broker dans la base de données
+					try {
+						$this->query("UPDATE brokerMQTT SET actif = 0 WHERE idBrokerMQTT = :idBroker");
+						$this->bind(':idBroker', $broker['idBroker'], PDO::PARAM_INT);
+						$this->execute();
+					} catch (PDOException $e) {
+					}
+					Messages::setMsg("Erreur de connexion au broker !", "error");
+					return ACTION_ERREUR;
+				}
+			} else {
+				// Modifie l'état du broker dans la base de données
+				try {
+					$this->query("UPDATE brokerMQTT SET actif = 0 WHERE idBrokerMQTT = :idBroker");
+					$this->bind(':idBroker', $broker['idBroker'], PDO::PARAM_INT);
+					$this->execute();
+				} catch (PDOException $e) {
+				}
+				Messages::setMsg("Erreur de connexion au broker !", "error");
+				return ACTION_ERREUR;
+			}
+		} else {
+			// Récupère l'équipement à commander
+			$equipement = $this->getEquipementDMX($idEquipement);
+			return $equipement ?? ACTION_ERREUR;
+		}
 	}
-	
+
 	public function edit($idEquipement)
 	{
 		// Le formulaire a été soumis ?
@@ -81,8 +157,8 @@ class EquipementDMXModel extends Model
 			$idEquipement = trim($_POST['idEquipement']);
 			$nom = trim($_POST['nom']);
 			$type = trim($_POST['type']);
-            $univers = trim($_POST['univers']);
-            $canalInitial = trim($_POST['canalInitial']);
+			$univers = trim($_POST['univers']);
+			$canalInitial = trim($_POST['canalInitial']);
 
 			// Vérifie les données du formulaire
 			if (empty($nom)) {
@@ -95,7 +171,7 @@ class EquipementDMXModel extends Model
 				return ACTION_ERREUR;
 			}
 
-            if (empty($univers) || !is_numeric($univers)) {
+			if (empty($univers) || !is_numeric($univers)) {
 				Messages::setMsg("L'univers est requis et doit être un nombre !", "erreur");
 				return ACTION_ERREUR;
 			}
@@ -105,13 +181,13 @@ class EquipementDMXModel extends Model
 				return ACTION_ERREUR;
 			}
 
-			// Modifie le broker dans la base de données
+			// Modifie l'equipement dans la base de données
 			try {
 				$this->query("UPDATE equipementDMX SET nom = :nom, type = :type, univers = :univers, canalInitial = :canalInitial WHERE idEquipement = :idEquipement");
 				$this->bind(':nomEquipement', $nom);
-                $this->bind(':idTypeEquipement', $type);
-                $this->bind(':univers', $univers, PDO::PARAM_INT);
-                $this->bind(':canalInitial', $canalInitial, PDO::PARAM_INT);
+				$this->bind(':idTypeEquipement', $type);
+				$this->bind(':univers', $univers, PDO::PARAM_INT);
+				$this->bind(':canalInitial', $canalInitial, PDO::PARAM_INT);
 				$this->execute();
 				Messages::setMsg("Équipement modifié avec succès !", "success");
 				return ACTION_SUCCESS;
@@ -154,7 +230,7 @@ class EquipementDMXModel extends Model
 				return ACTION_ERREUR;
 			}
 
-			// Supprime le broker de la base de données
+			// Supprime l'equipement de la base de données
 			try {
 				$this->query("DELETE FROM equipementDMX WHERE idEquipement = :idEquipement");
 				$this->bind(':idEquipement', $idEquipement, PDO::PARAM_INT);
@@ -169,19 +245,30 @@ class EquipementDMXModel extends Model
 		return ACTION_ENCOURS;
 	}
 
-    public function getEquipementDMX($idEquipement)
+	public function getEquipementDMX($idEquipement)
 	{
-		// Récupère le broker à modifier
-		$this->query("SELECT * FROM equipementDMX WHERE idEquipement = :idEquipement");
+		// Récupère l'equipement à modifier
+		$this->query("SELECT equipementDMX.*, typeEquipementDMX.* 
+            FROM equipementDMX 
+            JOIN typeEquipementDMX ON equipementDMX.idTypeEquipement = typeEquipementDMX.idTypeEquipement 
+			WHERE idEquipement = :idEquipement");
 		$this->bind(':idEquipement', $idEquipement, PDO::PARAM_INT);
 		$equipement = $this->getResult();
-		
+		// Récupère la liste des types d'équipements
+		$this->query("
+			SELECT typeEquipementDMX.*
+            FROM typeEquipementDMX
+			ORDER BY typeEquipementDMX.typeEquipement
+		");
+		$typeEquipements = $this->getResults();
+		$equipement['typeEquipements'] = $typeEquipements;
+
 		return $equipement ?? null;
 	}
 
 	public function existeIdEquipementDMX($idEquipement)
 	{
-		$this->query("SELECT nom FROM equipementDMX WHERE idEquipement = :idEquipement");
+		$this->query("SELECT nomEquipement FROM equipementDMX WHERE idEquipement = :idEquipement");
 		$this->bind(':idEquipement', $idEquipement);
 		$this->execute();
 		$nom = $this->getResult();
@@ -189,5 +276,13 @@ class EquipementDMXModel extends Model
 			return false;
 		}
 		return true;
+	}
+
+	public function getBrokerMQTTActif()
+	{
+		// Récupère le broker actif
+		$this->query("SELECT * FROM brokerMQTT WHERE actif = 1");
+		$broker = $this->getResult();
+		return $broker ?? null;
 	}
 }

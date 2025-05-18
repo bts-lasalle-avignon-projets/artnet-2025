@@ -10,7 +10,7 @@
 					<br>
 					<small class="card-subtitle">MAC : <?php echo $item['adresseMAC']; ?></small>
 					<br>
-					<small class="card-subtitle">RSSI : <?php echo $item['rssi']; ?></small>
+					<small class="card-subtitle">RSSI : <?php echo $item['rssi']; ?> dBm</small>
 					<br>
 					<small class="card-subtitle">Actif : <?php echo $item['actif']; ?></small>
 				</div>
@@ -19,9 +19,6 @@
 					<img src="data:<?php echo htmlspecialchars($item['username']); ?>
 				<?php endif; ?>
 				<hr />
-				<small class=" card-subtitle">
-					<input class="btn btn-primary" name="submit" type="submit" value="Test connection" />
-					</small>
 			</div>
 		</div>
 	<?php endforeach; ?>

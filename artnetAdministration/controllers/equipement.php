@@ -2,15 +2,15 @@
 
 class EquipementDMX extends Controller
 {
-    private $viewmodel;
-    
-    public function __construct($action, $request)
+	private $viewmodel;
+
+	public function __construct($action, $request)
 	{
 		parent::__construct($action, $request);
 		$this->viewmodel = new EquipementDMXModel();
 	}
 
-    protected function index()
+	protected function index()
 	{
 		// Récupère la liste des équipements
 		$listeEquipement = $this->viewmodel->index();
@@ -18,13 +18,40 @@ class EquipementDMX extends Controller
 		$this->display($listeEquipement);
 	}
 
-    protected function add()
+	protected function add()
 	{
 		if (NO_LOGIN) {
-			$result = $this->viewmodel->add();
-			$this->display();
-			if ($result == ACTION_SUCCESS) {
+			$typeEquipements = $this->viewmodel->add();
+			if (is_array($typeEquipements)) {
+				// Affiche le formulaire d'ajout
+				$this->display($typeEquipements);
+			} else {
 				// Retour à la liste des équipements
+				header('Location: ' . URL_PATH . 'equipementDMX');
+			}
+		} else {
+			if (!isset($_SESSION['is_logged_in'])) {
+				header('Location: ' . URL_PATH . 'equipementDMX');
+			} else {
+				// @todo
+			}
+		}
+	}
+
+	protected function command()
+	{
+		if (NO_LOGIN) {
+			$idEquipement = $this->getID();
+			if ($idEquipement > 0) {
+				$equipement = $this->viewmodel->command($idEquipement);
+				if (is_array($equipement)) {
+					// Affiche le formulaire de commande de canaux
+					$this->display($equipement);
+				} else {
+					// Retour au formulaire de test de connexion
+					//header('Location: ' . URL_PATH . 'equipementDMX' . '/command/' . $idEquipement);
+				}
+			} else {
 				header('Location: ' . URL_PATH . 'equipementDMX');
 			}
 		} else {
@@ -85,7 +112,7 @@ class EquipementDMX extends Controller
 		}
 	}
 
-    private function getID()
+	private function getID()
 	{
 		if (!isset($this->request['id']) || empty($this->request['id'])) {
 			Messages::setMsg("ID équipement manquant !", "error");

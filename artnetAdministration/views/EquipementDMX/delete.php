@@ -1,6 +1,6 @@
 <div class="card col col-md-6 mx-3 mx-md-auto p-3 text-center">
 	<div class="card-text">
-		<p>Êtes-vous sûr de vouloir supprimer cette équipement ? Cela ne peut pas être annulé.
+		<p>Êtes-vous sûr de vouloir supprimer cet équipement ? Cela ne peut pas être annulé.
 		</p>
 	</div>
 	<form method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
