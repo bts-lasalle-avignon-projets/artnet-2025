@@ -47,4 +47,16 @@
     <string name="titreControleEquipement">Controler l\'équipement :</string>
     <string name="version">V 0.9 – Mai 2025</string>
     <string name="alerte_recherche">Attention : Les univers doivent être actifs pour être contrôlés !</string>
+
+    <!-- Credits -->
+    <string name="titreCredits">Crédits</string>
+    <string name="partie_application">Application mobile : (IR) CLEMENT Aymeric</string>
+    <string name="partie_serveur">Serveur : (IR) VAUDAINE Dylan</string>
+    <string name="prof_responsables">Responsables : LANDRIT Maxime (IR) - Beaumont Jerôme (ER)</string>
+    <string name="support_pedagogique">Support pédagogique : Campus LaSalle Avignon</string>
+    <string name="annee">Année : 2025</string>
+    <string name="github_ca">GitHub - CLEMENT Aymeric</string>
+    <string name="github_vd">GitHub - VAUDAINE Dylan</string>
+    <string name="github_projet">Github - Projet</string>
+    <string name="partie_module">Module WIFI-DMX : (ER) MARTIN Mathis</string>
 </resources>
