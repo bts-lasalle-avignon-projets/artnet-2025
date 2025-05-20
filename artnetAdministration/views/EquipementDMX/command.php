@@ -11,11 +11,6 @@
             <div class="form-group">
                 Type : <?php echo htmlspecialchars($datas['typeEquipement']) . " (" . $datas['nbCanaux'] . " canaux)";  ?>
             </div>
-            <!-- <div class="form-group"> -->
-            <!--    <label for="canaux">Canaux : </label> -->
-            <!--    <textarea name="canaux" class="form-control" id="canaux" rows="10"><?php echo htmlspecialchars($datas['canaux']); ?></textarea> -->
-            <!-- </div>-->
-            <!-- Affichage des canaux de 132 à 136 en colonne -->
             <div class="form-group">
                 <label for="canaux">Canaux : </label>
                 <div class="container border h-100 pb-2 justify-content-center align-items-center" name="canaux">

@@ -70,13 +70,10 @@
 
   <script>
     $(document).ready(function() {
-      /*$('.slider').slider();*/
+      /* Les sliders en mode vertical */
       $(".slider").slider({
         reversed: true
       });
-      /*$("#canal-132").slider({
-        reversed: true
-      });*/
     });
   </script>
 </body>
