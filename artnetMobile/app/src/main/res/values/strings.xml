@@ -59,4 +59,7 @@
     <string name="github_vd">GitHub - VAUDAINE Dylan</string>
     <string name="github_projet">Github - Projet</string>
     <string name="partie_module">Module WIFI-DMX : (ER) MARTIN Mathis</string>
+    <string name="alerte_zoneDanger">Zone de danger :</string>
+    <string name="reset">Réinitialiser les valeurs à 0</string>
+    <string name="supprimerEquipement">Supprimer l\'équipement</string>
 </resources>
