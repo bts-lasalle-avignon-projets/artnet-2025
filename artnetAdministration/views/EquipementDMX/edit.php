@@ -37,10 +37,6 @@
 				<label for="canalInitial">Canal initial</label>
 				<input type="number" name="canalInitial" class="form-control" id="canalInitial" value="<?php echo $datas['canalInitial']; ?>" />
 			</div>
-			<div class="form-group">
-				<label for="nbCanaux">Nombre Canaux</label>
-				<input type="number" name="nbCanaux" class="form-control" id="nbCanaux" value="<?php echo $datas['nbCanaux']; ?>" />
-			</div>
 			<input type="hidden" name="idEquipement" value="<?php echo $datas['idEquipement']; ?>" />
 			<input class="btn btn-primary" name="submit" type="submit" value="Envoyer" />
 			<a class="btn btn-danger" href="<?php echo ROOT_PATH; ?>equipementDMX">Annuler</a>

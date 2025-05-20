@@ -80,11 +80,14 @@ class EquipementDMXModel extends Model
 	{
 		// Le formulaire a été soumis ?
 		if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
-			// TODO : Récupère les données du formulaire
+			$canaux = trim($_POST['canaux']);
+			$canauxDecoded = json_decode($canaux, true);
 
-
-			// TODO : Vérifie les données du formulaire
-
+			// Vérifie si le JSON est valide
+			if (json_last_error() !== JSON_ERROR_NONE) {
+				Messages::setMsg("Erreur dans le format JSON des canaux !", "error");
+				return ACTION_ERREUR;
+			}
 
 			// Récupère le broker
 			$broker = $this->getBrokerMQTTActif();
@@ -102,15 +105,13 @@ class EquipementDMXModel extends Model
 				if ($communicationBroker->estConnecte()) {
 					// Modifie l'état du broker dans la base de données
 					try {
-						$this->query("UPDATE brokerMQTT SET actif = 1 WHERE idBrokerMQTT = :idBroker");
-						$this->bind(':idBroker', $broker['idBroker'], PDO::PARAM_INT);
+						$this->query("UPDATE brokerMQTT SET actif = 1 WHERE idBrokerMQTT = :idBrokerMQTT");
+						$this->bind(':idBrokerMQTT', $broker['idBrokerMQTT'], PDO::PARAM_INT);
 						$this->execute();
 					} catch (PDOException $e) {
 					}
-					// TODO : Publier un message sur le topic de l'univers
 					if ($_POST['submit'] == "Publier") {
-						// TODO
-						$result = $communicationBroker->publier($broker['topic'] . "/", "test", 0);
+						$result = $communicationBroker->publier($broker['topic'] . "/univers/1", $canaux, 0);
 						if ($result) {
 							Messages::setMsg("Commande de l'équipement réussie !", "success");
 							return ACTION_SUCCESS;
@@ -123,8 +124,8 @@ class EquipementDMXModel extends Model
 				} else {
 					// Modifie l'état du broker dans la base de données
 					try {
-						$this->query("UPDATE brokerMQTT SET actif = 0 WHERE idBrokerMQTT = :idBroker");
-						$this->bind(':idBroker', $broker['idBroker'], PDO::PARAM_INT);
+						$this->query("UPDATE brokerMQTT SET actif = 0 WHERE idBrokerMQTT = :idBrokerMQTT");
+						$this->bind(':idBrokerMQTT', $broker['idBrokerMQTT'], PDO::PARAM_INT);
 						$this->execute();
 					} catch (PDOException $e) {
 					}
@@ -134,8 +135,8 @@ class EquipementDMXModel extends Model
 			} else {
 				// Modifie l'état du broker dans la base de données
 				try {
-					$this->query("UPDATE brokerMQTT SET actif = 0 WHERE idBrokerMQTT = :idBroker");
-					$this->bind(':idBroker', $broker['idBroker'], PDO::PARAM_INT);
+					$this->query("UPDATE brokerMQTT SET actif = 0 WHERE idBrokerMQTT = :idBrokerMQTT");
+					$this->bind(':idBrokerMQTT', $broker['idBrokerMQTT'], PDO::PARAM_INT);
 					$this->execute();
 				} catch (PDOException $e) {
 				}
@@ -183,7 +184,8 @@ class EquipementDMXModel extends Model
 
 			// Modifie l'equipement dans la base de données
 			try {
-				$this->query("UPDATE equipementDMX SET nom = :nom, type = :type, univers = :univers, canalInitial = :canalInitial WHERE idEquipement = :idEquipement");
+				$this->query("UPDATE equipementDMX SET nomEquipement = :nomEquipement, idTypeEquipement = :idTypeEquipement, univers = :univers, canalInitial = :canalInitial WHERE idEquipement = :idEquipement");
+				$this->bind(':idEquipement', $idEquipement, PDO::PARAM_INT);
 				$this->bind(':nomEquipement', $nom);
 				$this->bind(':idTypeEquipement', $type);
 				$this->bind(':univers', $univers, PDO::PARAM_INT);
@@ -283,6 +285,9 @@ class EquipementDMXModel extends Model
 		// Récupère le broker actif
 		$this->query("SELECT * FROM brokerMQTT WHERE actif = 1");
 		$broker = $this->getResult();
+		if ($broker) {
+			$broker['topic'] = BROKER_MQTT_TOPIC;
+		}
 		return $broker ?? null;
 	}
 }

@@ -49,7 +49,7 @@ class EquipementDMX extends Controller
 					$this->display($equipement);
 				} else {
 					// Retour au formulaire de test de connexion
-					//header('Location: ' . URL_PATH . 'equipementDMX' . '/command/' . $idEquipement);
+					header('Location: ' . URL_PATH . 'equipementDMX' . '/command/' . $idEquipement);
 				}
 			} else {
 				header('Location: ' . URL_PATH . 'equipementDMX');

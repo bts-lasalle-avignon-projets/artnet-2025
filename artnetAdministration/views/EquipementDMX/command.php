@@ -12,7 +12,8 @@
                 Type : <?php echo htmlspecialchars($datas['typeEquipement']) . " (" . $datas['nbCanaux'] . " canaux)";  ?>
             </div>
             <div class="form-group">
-                Canaux : TODO
+                <label for="canaux">Canaux : </label>
+                <textarea name="canaux" class="form-control" id="canaux" rows="10"><?php echo htmlspecialchars($datas['canaux']); ?></textarea>
             </div>
             <input type="hidden" name="idEquipement" value="<?php echo $datas['idEquipement']; ?>" />
             <input class="btn btn-primary" name="submit" type="submit" value="Publier" />
