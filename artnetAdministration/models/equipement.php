@@ -92,6 +92,9 @@ class EquipementDMXModel extends Model
 			// Récupère le broker
 			$broker = $this->getBrokerMQTTActif();
 
+			// Récupère l'univers
+			$idUnivers = $this->getIdUnivers($idEquipement);
+
 			if ($broker == null) {
 				Messages::setMsg("Le broker n'existe pas !", "error");
 				return ACTION_ERREUR;
@@ -111,10 +114,20 @@ class EquipementDMXModel extends Model
 					} catch (PDOException $e) {
 					}
 					if ($_POST['submit'] == "Publier") {
-						$result = $communicationBroker->publier($broker['topic'] . "/univers/1", $canaux, 0);
+						$result = $communicationBroker->publier($broker['topic'] . "/univers/$idUnivers", $canaux, 0);
 						if ($result) {
-							Messages::setMsg("Commande de l'équipement réussie !", "success");
-							return ACTION_SUCCESS;
+							try {
+								$this->query("UPDATE equipementDMX SET canaux = :canaux WHERE idEquipement = :idEquipement");
+								$this->bind(':canaux', $canaux);
+								$this->bind(':idEquipement', $idEquipement, PDO::PARAM_INT);
+								$this->execute();
+
+								Messages::setMsg("Commande de l'équipement réussie et sauvegardée !", "success");
+								return ACTION_SUCCESS;
+							} catch (PDOException $e) {
+								Messages::setMsg("Commande envoyée, mais erreur lors de la sauvegarde des canaux : " . $e->getMessage(), "error");
+								return ACTION_ERREUR;
+							}
 						} else {
 							Messages::setMsg("Erreur lors de la commande de l'équipement !", "error");
 							return ACTION_ERREUR;
@@ -185,11 +198,11 @@ class EquipementDMXModel extends Model
 			// Modifie l'equipement dans la base de données
 			try {
 				$this->query("UPDATE equipementDMX SET nomEquipement = :nomEquipement, idTypeEquipement = :idTypeEquipement, univers = :univers, canalInitial = :canalInitial WHERE idEquipement = :idEquipement");
-				$this->bind(':idEquipement', $idEquipement, PDO::PARAM_INT);
 				$this->bind(':nomEquipement', $nom);
 				$this->bind(':idTypeEquipement', $type);
 				$this->bind(':univers', $univers, PDO::PARAM_INT);
 				$this->bind(':canalInitial', $canalInitial, PDO::PARAM_INT);
+				$this->bind(':idEquipement', $idEquipement, PDO::PARAM_INT);
 				$this->execute();
 				Messages::setMsg("Équipement modifié avec succès !", "success");
 				return ACTION_SUCCESS;
@@ -289,5 +302,15 @@ class EquipementDMXModel extends Model
 			$broker['topic'] = BROKER_MQTT_TOPIC;
 		}
 		return $broker ?? null;
+	}
+
+	public function getIdUnivers($idEquipement)
+	{
+		// Récupère l'univers sur lequel publier
+		$this->query("SELECT univers FROM equipementDMX WHERE idEquipement = :idEquipement");
+		$this->bind(':idEquipement', $idEquipement, PDO::PARAM_INT);
+
+		$result = $this->getResult();
+		return $result['univers'] ?? null;
 	}
 }
