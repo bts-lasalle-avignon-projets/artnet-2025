@@ -1,0 +1,8 @@
+class WorksWithBuffers
+!!!143618.php!!!	pop(inout buffer : string, in limit : int) : string
+        $limit = min(strlen($buffer), $limit);
+
+        $result = substr($buffer, 0, $limit);
+        $buffer = substr($buffer, $limit);
+
+        return $result;

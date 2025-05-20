@@ -1,0 +1,810 @@
+format 224
+"Concerns" // artnetAdministration::vendor::php-mqtt::client::src::Concerns
+  revision 1
+  modified_by 2 "btssn2"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  php_dir "/var/www/html/artnet-2025/artnetAdministration/vendor/php-mqtt/client/src/Concerns/"
+  php_namespace "PhpMqtt\\Client\\Concerns"
+  classview 129410 "Concerns"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 132226 "GeneratesRandomClientIds"
+      visibility package stereotype "trait"
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}trait ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Provides common methods used to generate random client ids.
+
+@package PhpMqtt\\Client\\Concerns
+"
+      operation 141186 "generateRandomClientId"
+	protected explicit_return_type "string"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Generates a random client id in the form of an md5 hash.
+
+@return ${type}
+"
+      end
+    end
+
+    class 132354 "OffersHooks"
+      visibility package stereotype "trait"
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}trait ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Contains common methods and properties necessary to offer hooks.
+
+@mixin MqttClient
+@package PhpMqtt\\Client\\Concerns
+"
+      attribute 135042 "loopEventHandlers"
+	private explicit_type "\\SplObjectStorage|array<\\Closure>"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " @var ${type} "
+      end
+
+      attribute 135170 "publishEventHandlers"
+	private explicit_type "\\SplObjectStorage|array<\\Closure>"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " @var ${type} "
+      end
+
+      attribute 135298 "messageReceivedEventHandlers"
+	private explicit_type "\\SplObjectStorage|array<\\Closure>"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " @var ${type} "
+      end
+
+      attribute 135426 "connectedEventHandlers"
+	private explicit_type "\\SplObjectStorage|array<\\Closure>"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " @var ${type} "
+      end
+
+      operation 141314 "initializeEventHandlers"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Needs to be called in order to initialize the trait.
+
+@return ${type}
+"
+      end
+
+      operation 141442 "registerLoopEventHandler"
+	public explicit_return_type "MqttClient"
+	nparams 1
+	  param in name "callback" explicit_type "\\Closure"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Registers a loop event handler which is called each iteration of the loop.
+This event handler can be used for example to interrupt the loop under
+certain conditions.
+
+The loop event handler is passed the MQTT client instance as first and
+the elapsed time which the loop is already running for as second
+parameter. The elapsed time is a float containing seconds.
+
+Example:
+```php
+$mqtt->registerLoopEventHandler(function (
+    MqttClient $mqtt,
+    float $elapsedTime
+) use ($logger) {
+    $logger->info(\"Running for [{$elapsedTime}] seconds already.\");
+});
+```
+
+Multiple event handlers can be registered at the same time.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 141570 "unregisterLoopEventHandler"
+	public explicit_return_type "MqttClient"
+	nparams 1
+	  param in name "callback" explicit_type "\\Closure|null"
+	    defaultvalue "null"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Unregisters a loop event handler which prevents it from being called
+in the future.
+
+This does not affect other registered event handlers. It is possible
+to unregister all registered event handlers by passing null as callback.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 141698 "runLoopEventHandlers"
+	private explicit_return_type "void"
+	nparams 1
+	  param in name "elapsedTime" explicit_type "float"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Runs all registered loop event handlers with the given parameters.
+Each event handler is executed in a try-catch block to avoid spilling exceptions.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 141826 "registerPublishEventHandler"
+	public explicit_return_type "MqttClient"
+	nparams 1
+	  param in name "callback" explicit_type "\\Closure"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Registers a loop event handler which is called when a message is published.
+
+The loop event handler is passed the MQTT client as first, the topic as
+second and the message as third parameter. As fourth parameter, the message identifier
+will be passed, which can be null in case of QoS 0. The QoS level as well as the retained
+flag will also be passed as fifth and sixth parameters.
+
+Example:
+```php
+$mqtt->registerPublishEventHandler(function (
+    MqttClient $mqtt,
+    string $topic,
+    string $message,
+    ?int $messageId,
+    int $qualityOfService,
+    bool $retain
+) use ($logger) {
+    $logger->info(\"Sending message on topic [{$topic}]: {$message}\");
+});
+```
+
+Multiple event handlers can be registered at the same time.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 141954 "unregisterPublishEventHandler"
+	public explicit_return_type "MqttClient"
+	nparams 1
+	  param in name "callback" explicit_type "\\Closure|null"
+	    defaultvalue "null"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Unregisters a publish event handler which prevents it from being called
+in the future.
+
+This does not affect other registered event handlers. It is possible
+to unregister all registered event handlers by passing null as callback.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 142082 "runPublishEventHandlers"
+	private explicit_return_type "void"
+	nparams 5
+	  param in name "topic" explicit_type "string"
+	  param in name "message" explicit_type "string"
+	  param in name "messageId" explicit_type "int|null"
+	  param in name "qualityOfService" explicit_type "int"
+	  param in name "retain" explicit_type "bool"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ?${t2} ${p2}${v2}, ${t3} ${p3}${v3}, ${t4} ${p4}${v4}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Runs all the registered publish event handlers with the given parameters.
+Each event handler is executed in a try-catch block to avoid spilling exceptions.
+
+@param ${t0}   ${p0}
+@param ${t1}   ${p1}
+@param ${t2} ${p2}
+@param ${t3}      ${p3}
+@param ${t4}     ${p4}
+@return ${type}
+"
+      end
+
+      operation 142210 "registerMessageReceivedEventHandler"
+	public explicit_return_type "MqttClient"
+	nparams 1
+	  param in name "callback" explicit_type "\\Closure"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Registers an event handler which is called when a message is received from the broker.
+
+The message received event handler is passed the MQTT client as first, the topic as
+second and the message as third parameter. As fourth parameter, the QoS level will be
+passed and the retained flag as fifth.
+
+Example:
+```php
+$mqtt->registerReceivedMessageEventHandler(function (
+    MqttClient $mqtt,
+    string $topic,
+    string $message,
+    int $qualityOfService,
+    bool $retained
+) use ($logger) {
+    $logger->info(\"Received message on topic [{$topic}]: {$message}\");
+});
+```
+
+Multiple event handlers can be registered at the same time.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 142338 "unregisterMessageReceivedEventHandler"
+	public explicit_return_type "MqttClient"
+	nparams 1
+	  param in name "callback" explicit_type "\\Closure|null"
+	    defaultvalue "null"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Unregisters a message received event handler which prevents it from being called in the future.
+
+This does not affect other registered event handlers. It is possible
+to unregister all registered event handlers by passing null as callback.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 142466 "runMessageReceivedEventHandlers"
+	private explicit_return_type "void"
+	nparams 4
+	  param in name "topic" explicit_type "string"
+	  param in name "message" explicit_type "string"
+	  param in name "qualityOfService" explicit_type "int"
+	  param in name "retained" explicit_type "bool"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}, ${t3} ${p3}${v3}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Runs all the registered message received event handlers with the given parameters.
+Each event handler is executed in a try-catch block to avoid spilling exceptions.
+
+@param ${t0} ${p0}
+@param ${t1} ${p1}
+@param ${t2}    ${p2}
+@param ${t3}   ${p3}
+@return ${type}
+"
+      end
+
+      operation 142594 "registerConnectedEventHandler"
+	public explicit_return_type "MqttClient"
+	nparams 1
+	  param in name "callback" explicit_type "\\Closure"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Registers an event handler which is called when the client established a connection to the broker.
+This also includes manual reconnects as well as auto-reconnects by the client itself.
+
+The event handler is passed the MQTT client as first argument,
+followed by a flag which indicates whether an auto-reconnect occurred as second argument.
+
+Example:
+```php
+$mqtt->registerConnectedEventHandler(function (
+    MqttClient $mqtt,
+    bool $isAutoReconnect
+) use ($logger) {
+    if ($isAutoReconnect) {
+        $logger->info(\"Client successfully auto-reconnected to the broker.);
+    } else {
+        $logger->info(\"Client successfully connected to the broker.\");
+    }
+});
+```
+
+Multiple event handlers can be registered at the same time.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 142722 "unregisterConnectedEventHandler"
+	public explicit_return_type "MqttClient"
+	nparams 1
+	  param in name "callback" explicit_type "\\Closure|null"
+	    defaultvalue "null"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Unregisters a connected event handler which prevents it from being called in the future.
+
+This does not affect other registered event handlers. It is possible
+to unregister all registered event handlers by passing null as callback.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 142850 "runConnectedEventHandlers"
+	private explicit_return_type "void"
+	nparams 1
+	  param in name "isAutoReconnect" explicit_type "bool"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Runs all the registered connected event handlers.
+Each event handler is executed in a try-catch block to avoid spilling exceptions.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+    end
+
+    class 132482 "ValidatesConfiguration"
+      visibility package stereotype "trait"
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}trait ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Provides methods to validate the configuration of an {@see MqttClient} and
+the {@see ConnectionSettings} being used to connect to a broker.
+
+@package PhpMqtt\\Client\\Concerns
+"
+      operation 143490 "ensureConnectionSettingsAreValid"
+	protected explicit_return_type "void"
+	nparams 1
+	  param in name "settings" explicit_type "ConnectionSettings"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Ensures the given connection settings are valid. If they are not valid,
+which means they are misconfigured, an exception containing information about
+the configuration error is thrown.
+
+@param ${t0} ${p0}
+@return ${type}
+@throws ConfigurationInvalidException
+"
+      end
+    end
+
+    class 133250 "TranscodesData"
+      visibility package stereotype "trait"
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}trait ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Provides common methods to encode data before sending it to a broker
+and to decode data received from a broker.
+
+@package PhpMqtt\\Client\\Concerns
+"
+      operation 142978 "buildLengthPrefixedString"
+	protected explicit_return_type "string"
+	nparams 1
+	  param in name "data" explicit_type "string"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Creates a string which is prefixed with its own length as bytes.
+This means a string like 'hello world' will become
+
+  \\x00\\x0bhello world
+
+where \\x00\\0x0b is the hex representation of 00000000 00001011 = 11
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 143106 "decodeMessageId"
+	protected explicit_return_type "int"
+	nparams 1
+	  param in name "encodedMessageId" explicit_type "string"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Converts the given string to a number, assuming it is an MSB encoded message id.
+MSB means preceding characters have higher value.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 143234 "encodeMessageId"
+	protected explicit_return_type "string"
+	nparams 1
+	  param in name "messageId" explicit_type "int"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Encodes the given message identifier as string.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 143362 "encodeMessageLength"
+	protected explicit_return_type "string"
+	nparams 1
+	  param in name "length" explicit_type "int"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Encodes the length of a message as string, so it can be transmitted
+over the wire.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+    end
+
+    class 133378 "WorksWithBuffers"
+      visibility package stereotype "trait"
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}trait ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Provides common methods to work with buffers.
+
+@package PhpMqtt\\Client\\Concerns
+"
+      operation 143618 "pop"
+	protected explicit_return_type "string"
+	nparams 2
+	  param inout name "buffer" explicit_type "string"
+	  param in name "limit" explicit_type "int"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} & ${p0}${v0}, ${t1} ${p1}${v1}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Pops the first $limit bytes from the given buffer and returns them.
+
+@param ${t0} ${p0}
+@param ${t1}    ${p1}
+@return ${type}
+"
+      end
+    end
+  end
+
+  deploymentview 129410 "Concerns"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 133250 "GeneratesRandomClientIds"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+${namespace}
+${definition}
+
+"
+      associated_elems
+	class_ref 132226 // GeneratesRandomClientIds
+      end
+    end
+
+    artifact 133378 "OffersHooks"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+${namespace}
+
+use PhpMqtt\\Client\\Contracts\\MqttClient;
+
+${definition}
+
+"
+      associated_elems
+	class_ref 132354 // OffersHooks
+      end
+    end
+
+    artifact 133506 "TranscodesData"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+${namespace}
+${definition}
+
+"
+      associated_elems
+	class_ref 133250 // TranscodesData
+      end
+    end
+
+    artifact 133634 "ValidatesConfiguration"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+${namespace}
+
+use PhpMqtt\\Client\\ConnectionSettings;
+use PhpMqtt\\Client\\Exceptions\\ConfigurationInvalidException;
+use PhpMqtt\\Client\\MqttClient;
+
+${definition}
+
+"
+      associated_elems
+	class_ref 132482 // ValidatesConfiguration
+      end
+    end
+
+    artifact 133762 "WorksWithBuffers"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+${namespace}
+${definition}
+
+"
+      associated_elems
+	class_ref 133378 // WorksWithBuffers
+      end
+    end
+  end
+end

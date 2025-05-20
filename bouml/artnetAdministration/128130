@@ -1,0 +1,233 @@
+format 224
+"artnetAdministration" // artnetAdministration
+  revision 1
+  modified_by 2 "btssn2"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  php_dir "/var/www/html/artnet-2025/artnetAdministration/"
+  deploymentview 128130 "artnetAdministration"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 128130 "config"
+      stereotype "source"
+      php_src "<?php
+
+// le nom à ajouter dans l'URL
+define(\"URL_NAME\", \"/artnet-2025/artnetAdministration/\");
+
+// Pour le debug
+define(\"DEBUG\", false);
+
+// Pour les tests (sans authentification)
+define(\"NO_LOGIN\", true);
+
+// Pour le broker MQTT par défaut
+define(\"BROKER_MQTT_HOSTNAME\", \"127.0.0.1\");
+define(\"BROKER_MQTT_PORT\", 1883);
+define(\"BROKER_MQTT_TOPIC\", \"artnet\");
+
+// Pour la base de données
+define(\"DB_DRIVER\", true); // true pour MySQL, false sans base de données
+define(\"DB_HOST\", \"127.0.0.1\");
+define(\"DB_USER\", \"artnet_User\");
+define(\"DB_PASS\", \"password\");
+define(\"DB_NAME\", \"artnet\");
+
+// Racine et URL
+define(\"ROOT_PATH\", URL_NAME);
+define(\"URL_PATH\", \"http://\" . $_SERVER['HTTP_HOST'] . URL_NAME);
+
+// Divers
+define(\"TITRE_SITE\", \"ArtNet\");
+
+// Pour les actions
+define(\"ACTION_ENCOURS\", 0);
+define(\"ACTION_SUCCESS\", 1);
+define(\"ACTION_ERREUR\", -1);
+
+if (DEBUG) {
+    ini_set('display_errors', 1);
+    error_reporting(E_ALL);
+}
+"
+      associated_elems
+      end
+    end
+
+    artifact 128258 "index"
+      stereotype "source"
+      php_src "<?php
+// Démarre la session PHP
+session_start();
+
+require('config.php');
+
+// Les classes du modèle MVC
+require('classes/message.php');
+require('classes/messages.php');
+require('classes/router.php');
+require('classes/controller.php');
+require('classes/model.php');
+
+// Les controleurs
+require('controllers/accueil.php');
+require('controllers/broker.php');
+require('controllers/moduleDMXWiFi.php');
+require('controllers/equipement.php');
+
+// Les modèles
+require('models/accueil.php');
+require('models/broker.php');
+require('models/moduleDMXWiFi.php');
+require('models/equipement.php');
+
+// Les classes du projet
+require('classes/communicationBroker.php');
+require('classes/communicationModuleDMXWiFi.php');
+require('classes/communicationEquipementDMX.php');
+
+require './vendor/autoload.php';
+
+// Forme de l'URL, après réécriture : http://root/controleur/action/id
+$router = new Router($_GET);
+$controller = $router->createController();
+
+if ($controller) {
+	$controller->executeAction();
+}
+"
+      associated_elems
+      end
+    end
+
+    artifact 128386 "test-mqtt"
+      stereotype "source"
+      php_src "<?php
+require('config.php');
+require('classes/communicationBroker.php');
+require('classes/model.php');
+require('models/broker.php');
+require './vendor/autoload.php';
+
+// Exemple subscribe
+
+// Sélectionne le topic
+$topic = \"artnet/#\";
+$qos = 0;
+$timeout = 15; // en secondes (sinon 0 pour aucun timeout)
+
+// Récupère le broker actif
+$brokerModel = new BrokerModel();
+$broker = $brokerModel->getBrokerMQTTActif();
+var_dump($broker);
+
+// Instancie le broker
+$communicationBroker = new CommunicationBroker($broker);
+
+// Connecte le broker
+$resultatConnexion = $communicationBroker->connecter();
+if ($resultatConnexion) {
+    if ($communicationBroker->estConnecte()) {
+        // Souscrit au topic de test
+        $resultatSouscription = $communicationBroker->souscrire($topic, $qos);
+        if ($resultatSouscription) {
+            // Exemple 1 : reçoit un message
+            /*
+            $retour = $communicationBroker->recevoirMessage($topic, $timeout);
+            if ($retour) {
+                // Récupère le premier message reçu sur le topic de test
+                $message = $communicationBroker->getMessage($topic);
+                if ($message != null) {
+                    echo \"Réception du message : \\\"\" . $message . \"\\\" sur le topic \\\"\" . $topic . \"\\\"\" . PHP_EOL;
+                }
+            }*/
+            // Exemple 2 : reçoit plusieurs messages
+            $retour = $communicationBroker->recevoirMessages(null, $timeout);
+            if ($retour) {
+                // Récupère tous les messages reçus
+                $messages = $communicationBroker->getMessages();
+                if ($messages != null) {
+                    foreach ($messages as $topicMessage => $listeMessages) {
+                        echo count($listeMessages) . \" message(s) reçu(s) sur le topic \\\"\" . $topicMessage . \"\\\"\" . PHP_EOL;
+                        foreach ($listeMessages as $message) {
+                            echo \"Réception du message : \\\"\" . $message . \"\\\" sur le topic \\\"\" . $topicMessage . \"\\\"\" . PHP_EOL;
+                        }
+                    }
+                }
+            }
+        }
+        // Déconnecte le broker
+        $communicationBroker->deconnecter();
+    }
+} else {
+    echo (\"Erreur de connexion au broker !\");
+}
+"
+      associated_elems
+      end
+    end
+  end
+
+  package_ref 128258 // classes
+
+  package_ref 128386 // controllers
+
+  package_ref 128514 // models
+
+  package_ref 128642 // vendor
+
+  package_ref 131586 // views
+
+  classview 130306 "Artnet classe"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    classdiagram 128130 "ArtNet"
+      classdiagramsettings member_max_width 0 end
+      size A0
+    end
+  end
+end

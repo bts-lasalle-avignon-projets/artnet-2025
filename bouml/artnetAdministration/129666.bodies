@@ -1,0 +1,9 @@
+class ModuleDMXWiFi
+!!!132994.php!!!	__construct(in action : , in request : )
+		parent::__construct($action, $request);
+		$this->viewmodel = new ModuleDMXWiFiModel();
+!!!133122.php!!!	index()
+		// Récupère la liste des module DMX WIFI
+		$listeModuleDMXWiFi = $this->viewmodel->index();
+		// Affiche la liste des module DMX WIFI
+		$this->display($listeModuleDMXWiFi);

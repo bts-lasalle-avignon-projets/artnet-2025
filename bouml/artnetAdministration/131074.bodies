@@ -1,0 +1,24 @@
+class Comparator
+!!!140802.php!!!	accepts(in expected : , in actual : )
+        return $expected instanceof Enum && (
+                $actual instanceof Enum || $actual === null
+            );
+!!!140930.php!!!	assertEquals(in expected : Enum, in actual : Enum|null, in delta :  = 0.0, in canonicalize :  = false, in ignoreCase :  = false) : void
+        if ($expected->equals($actual)) {
+            return;
+        }
+
+        throw new ComparisonFailure(
+            $expected,
+            $actual,
+            $this->formatEnum($expected),
+            $this->formatEnum($actual),
+            false,
+            'Failed asserting that two Enums are equal.'
+        );
+!!!141058.php!!!	formatEnum(in enum : Enum = null)
+        if ($enum === null) {
+            return "null";
+        }
+
+        return get_class($enum)."::{$enum->getKey()}()";
