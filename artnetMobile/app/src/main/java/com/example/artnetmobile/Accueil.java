@@ -5,13 +5,16 @@ import android.os.Bundle;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.View;
+
+import android.widget.Button;
+import android.widget.LinearLayout;
+
+
 
 public class Accueil extends AppCompatActivity
 {
@@ -19,14 +22,16 @@ public class Accueil extends AppCompatActivity
      * Constantes
      */
     private static final String TAG = "_Accueil"; //!< TAG pour les logs (cf. Logcat)
+    VueArtnet        vue = VueArtnet.getInstance();
 
     /**
      * Attributs
      */
     private CommunicationBroker communicationBroker;
     private Handler             handler = null;
+    private LinearLayout conteneurUnivers;
+    private LinearLayout conteneurDetails;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -36,6 +41,20 @@ public class Accueil extends AppCompatActivity
 
         initialiserHandler();
         initialiserCommunicationBroker();
+
+        vue.initialiserNavbar(this);
+
+        Button boutonRechercherUnivers = findViewById(R.id.boutonRechercherUnivers);
+        conteneurUnivers = findViewById(R.id.conteneurUnivers);
+        conteneurDetails = findViewById(R.id.conteneurDetails);
+
+        boutonRechercherUnivers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                vue.afficherUniversExistants(conteneurUnivers, conteneurDetails);
+            }
+        });
     }
 
     /**
@@ -99,8 +118,9 @@ public class Accueil extends AppCompatActivity
 
     private void traiterMessageMQTT(String topicMQTT, String messageMQTT)
     {
-        /**
-         * @todo Gérer les messages MQTT reçus
-         */
+        if(topicMQTT.startsWith("artnet/config/"))
+        {
+            communicationBroker.traiterMessageConfig(topicMQTT, messageMQTT);
+        }
     }
 }

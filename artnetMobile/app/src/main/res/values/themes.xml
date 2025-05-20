@@ -8,7 +8,10 @@
     <style name="Theme.ArtnetMobile" parent="Base.Theme.ArtnetMobile" />
 
     <style name="CustomTextView">
-        <item name="android:fontFamily">@font/playfairdisplay</item>
         <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="CustomTextViewOn">
+        <item name="android:textColor">@color/grey</item>
     </style>
 </resources>

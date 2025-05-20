@@ -3,7 +3,6 @@ package com.example.artnetmobile;
 public class Artnet
 {
     private VueArtnet           vueArtnet;
-    private ModuleDmxWifi       moduleDmxWifi;
     private CommunicationBroker communicationBroker;
 
     public Artnet(CommunicationBroker communicationBroker)

@@ -285,7 +285,7 @@ class BrokerModel extends Model
 		$broker = $this->getResult();
 		return $broker ?? null;
 	}
-
+  
 	public function existeIdBrokerMQTT($idBrokerMQTT)
 	{
 		$this->query("SELECT hostname FROM brokerMQTT WHERE idBrokerMQTT = :idBrokerMQTT");
