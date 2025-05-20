@@ -80,20 +80,33 @@ class EquipementDMXModel extends Model
 	{
 		// Le formulaire a été soumis ?
 		if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
-			$canaux = trim($_POST['canaux']);
-			$canauxDecoded = json_decode($canaux, true);
+			// Récupère l'équipement à commander
+			$equipement = $this->getEquipementDMX($idEquipement);
+			if ($equipement == null) {
+				Messages::setMsg("L'équipement n'existe pas !", "error");
+				return ACTION_ERREUR;
+			}
+
+			// Générer le JSON comme : [{"canal":10, "valeur":255},{"canal":11, "valeur":10},{"canal":12, "valeur":55}]
+			$canaux = [];
+			for ($i = $equipement['canalInitial']; $i < ($equipement['canalInitial'] + $equipement['nbCanaux']); $i++) {
+				$canaux[$i - $equipement['canalInitial']] = [
+					'canal' => $i,
+					'valeur' => $_POST['canal-' . $i]
+				];
+			}
+
+			// Encode le tableau en JSON
+			$canaux = json_encode($canaux);
 
 			// Vérifie si le JSON est valide
 			if (json_last_error() !== JSON_ERROR_NONE) {
-				Messages::setMsg("Erreur dans le format JSON des canaux !", "error");
+				Messages::setMsg("Erreur dans le formatage JSON des canaux !", "error");
 				return ACTION_ERREUR;
 			}
 
 			// Récupère le broker
 			$broker = $this->getBrokerMQTTActif();
-
-			// Récupère l'univers
-			$idUnivers = $this->getIdUnivers($idEquipement);
 
 			if ($broker == null) {
 				Messages::setMsg("Le broker n'existe pas !", "error");
@@ -102,6 +115,7 @@ class EquipementDMXModel extends Model
 
 			// Instancie le broker
 			$communicationBroker = new CommunicationBroker($broker);
+
 			// Connecte le broker
 			$result = $communicationBroker->connecter();
 			if ($result) {
@@ -114,7 +128,8 @@ class EquipementDMXModel extends Model
 					} catch (PDOException $e) {
 					}
 					if ($_POST['submit'] == "Publier") {
-						$result = $communicationBroker->publier($broker['topic'] . "/univers/$idUnivers", $canaux, 0);
+						$topic = $broker['topic'] . "/univers/" . $equipement['univers'];
+						$result = $communicationBroker->publier($topic, $canaux, 0);
 						if ($result) {
 							try {
 								$this->query("UPDATE equipementDMX SET canaux = :canaux WHERE idEquipement = :idEquipement");
@@ -302,15 +317,5 @@ class EquipementDMXModel extends Model
 			$broker['topic'] = BROKER_MQTT_TOPIC;
 		}
 		return $broker ?? null;
-	}
-
-	public function getIdUnivers($idEquipement)
-	{
-		// Récupère l'univers sur lequel publier
-		$this->query("SELECT univers FROM equipementDMX WHERE idEquipement = :idEquipement");
-		$this->bind(':idEquipement', $idEquipement, PDO::PARAM_INT);
-
-		$result = $this->getResult();
-		return $result['univers'] ?? null;
 	}
 }

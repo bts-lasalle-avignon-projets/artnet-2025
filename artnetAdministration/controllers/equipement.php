@@ -48,7 +48,7 @@ class EquipementDMX extends Controller
 					// Affiche le formulaire de commande de canaux
 					$this->display($equipement);
 				} else {
-					// Retour au formulaire de test de connexion
+					// Retour au formulaire de commande de canaux
 					header('Location: ' . URL_PATH . 'equipementDMX' . '/command/' . $idEquipement);
 				}
 			} else {

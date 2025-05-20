@@ -11,9 +11,25 @@
             <div class="form-group">
                 Type : <?php echo htmlspecialchars($datas['typeEquipement']) . " (" . $datas['nbCanaux'] . " canaux)";  ?>
             </div>
+            <!-- <div class="form-group"> -->
+            <!--    <label for="canaux">Canaux : </label> -->
+            <!--    <textarea name="canaux" class="form-control" id="canaux" rows="10"><?php echo htmlspecialchars($datas['canaux']); ?></textarea> -->
+            <!-- </div>-->
+            <!-- Affichage des canaux de 132 à 136 en colonne -->
             <div class="form-group">
                 <label for="canaux">Canaux : </label>
-                <textarea name="canaux" class="form-control" id="canaux" rows="10"><?php echo htmlspecialchars($datas['canaux']); ?></textarea>
+                <div class="container border h-100 pb-2 justify-content-center align-items-center" name="canaux">
+                    <div class="d-flex flex-wrap">
+                        <?php for ($i = $datas['canalInitial']; $i < ($datas['canalInitial'] + $datas['nbCanaux']); $i++): ?>
+                            <?php echo "<div class=\"p-2 ml-auto text-center\" style=\"width: " . (100 / $datas['nbCanaux']) . "%;\">Canal " . $i . "</div>";  ?>
+                        <?php endfor; ?>
+                    </div>
+                    <div class="d-flex flex-wrap justify-content-center">
+                        <?php for ($i = $datas['canalInitial']; $i < ($datas['canalInitial'] + $datas['nbCanaux']); $i++): ?>
+                            <?php echo "<div class=\"p-2 ml-auto text-center\" style=\"width: " . (100 / $datas['nbCanaux']) . "%;\"><input id=\"canal-" . $i . "\" name=\"canal-" . $i . "\" class=\"slider\" type=\"text\" data-slider-min=\"0\" data-slider-max=\"255\" data-slider-step=\"1\" data-slider-value=\"0\" data-slider-orientation=\"vertical\" /></div>";  ?>
+                        <?php endfor; ?>
+                    </div>
+                </div>
             </div>
             <input type="hidden" name="idEquipement" value="<?php echo $datas['idEquipement']; ?>" />
             <input class="btn btn-primary" name="submit" type="submit" value="Publier" />
