@@ -14,10 +14,21 @@ require('classes/model.php');
 // Les controleurs
 require('controllers/accueil.php');
 require('controllers/broker.php');
+require('controllers/moduleDMXWiFi.php');
+require('controllers/equipement.php');
 
 // Les modèles
 require('models/accueil.php');
 require('models/broker.php');
+require('models/moduleDMXWiFi.php');
+require('models/equipement.php');
+
+// Les classes du projet
+require('classes/communicationBroker.php');
+require('classes/communicationModuleDMXWiFi.php');
+require('classes/communicationEquipementDMX.php');
+
+require './vendor/autoload.php';
 
 // Forme de l'URL, après réécriture : http://root/controleur/action/id
 $router = new Router($_GET);

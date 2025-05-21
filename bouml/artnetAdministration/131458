@@ -1,0 +1,976 @@
+format 224
+"MessageProcessors" // artnetAdministration::vendor::php-mqtt::client::tests::Unit::MessageProcessors
+  revision 1
+  modified_by 2 "btssn2"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  php_dir "/var/www/html/artnet-2025/artnetAdministration/vendor/php-mqtt/client/tests/Unit/MessageProcessors/"
+  php_namespace "Tests\\Unit\\MessageProcessors"
+  deploymentview 130306 "MessageProcessors"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 137858 "Mqtt311MessageProcessorTest"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+${namespace}
+
+use PhpMqtt\\Client\\ConnectionSettings;
+use PhpMqtt\\Client\\Logger;
+use PhpMqtt\\Client\\Subscription;
+use PhpMqtt\\Client\\MessageProcessors\\Mqtt311MessageProcessor;
+use PHPUnit\\Framework\\TestCase;
+
+${definition}
+
+"
+      associated_elems
+	class_ref 137602 // Mqtt311MessageProcessorTest
+      end
+    end
+
+    artifact 137986 "Mqtt31MessageProcessorTest"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+${namespace}
+
+use PhpMqtt\\Client\\ConnectionSettings;
+use PhpMqtt\\Client\\Logger;
+use PhpMqtt\\Client\\Subscription;
+use PhpMqtt\\Client\\MessageProcessors\\Mqtt31MessageProcessor;
+use PHPUnit\\Framework\\TestCase;
+
+${definition}
+
+"
+      associated_elems
+	class_ref 137730 // Mqtt31MessageProcessorTest
+      end
+    end
+  end
+
+  classview 130178 "MessageProcessors"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 137602 "Mqtt311MessageProcessorTest"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 134530 // <generalisation>
+	relation 134530 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 134530 // <generalisation>
+	  b parent class_ref 135938 // \PHPUnit\Framework\TestCase
+      end
+
+      attribute 137346 "CLIENT_ID"
+	const_attribute package explicit_type ""
+	init_value " 'test-client'"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 137474 "messageProcessor"
+	protected explicit_type "Mqtt311MessageProcessor"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " @var ${type} "
+      end
+
+      operation 159618 "setUp"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 159746 "tryFindMessageInBuffer_testDataProvider"
+	public explicit_return_type "array"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 159874 "test_tryFindMessageInBuffer_finds_messages_correctly"
+	public explicit_return_type "void"
+	nparams 4
+	  param in name "buffer" explicit_type "string"
+	  param in name "expectedResult" explicit_type "bool"
+	  param in name "expectedMessage" explicit_type "string|null"
+	  param in name "expectedRequiredBytes" explicit_type "int|null"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ?${t2} ${p2}${v2}, ?${t3} ${p3}${v3}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@dataProvider tryFindMessageInBuffer_testDataProvider
+
+@param ${t0}      ${p0}
+@param ${t1}        ${p1}
+@param ${t2} ${p2}
+@param ${t3}    ${p3}
+"
+      end
+
+      operation 160002 "buildConnectMessage_testDataProvider"
+	public explicit_return_type "array[]"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Message format:
+
+  <fixed header><protocol name><protocol version><flags><keep alive><client id><will topic><will message><username><password>
+
+@return ${type}
+@throws \\Exception
+"
+      end
+
+      operation 160130 "test_buildConnectMessage_builds_correct_message"
+	public explicit_return_type "void"
+	nparams 3
+	  param in name "connectionSettings" explicit_type "ConnectionSettings"
+	  param in name "useCleanSession" explicit_type "bool"
+	  param in name "expectedResult" explicit_type "string"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@dataProvider buildConnectMessage_testDataProvider
+
+@param ${t0} ${p0}
+@param ${t1}               ${p1}
+@param ${t2}             ${p2}
+"
+      end
+
+      operation 160258 "buildSubscribeMessage_testDataProvider"
+	public explicit_return_type "array[]"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Message format:
+
+  <fixed header><message id><topic><QoS>
+
+@return ${type}
+@throws \\Exception
+"
+      end
+
+      operation 160386 "test_buildSubscribeMessage_builds_correct_message"
+	public explicit_return_type "void"
+	nparams 3
+	  param in name "messageId" explicit_type "int"
+	  param in name "subscriptions" explicit_type "Subscription[]"
+	  param in name "expectedResult" explicit_type "string"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, array ${p1}${v1}, ${t2} ${p2}${v2}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@dataProvider buildSubscribeMessage_testDataProvider
+
+@param ${t0}            ${p0}
+@param ${t1} ${p1}
+@param ${t2}         ${p2}
+"
+      end
+
+      operation 160514 "buildUnsubscribeMessage_testDataProvider"
+	public explicit_return_type "array[]"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Message format:
+
+  <fixed header><message id><topic>
+
+@return ${type}
+@throws \\Exception
+"
+      end
+
+      operation 160642 "test_buildUnsubscribeMessage_builds_correct_message"
+	public explicit_return_type "void"
+	nparams 4
+	  param in name "messageId" explicit_type "int"
+	  param in name "topics" explicit_type "string[]"
+	  param in name "isDuplicate" explicit_type "bool"
+	  param in name "expectedResult" explicit_type "string"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, array ${p1}${v1}, ${t2} ${p2}${v2}, ${t3} ${p3}${v3}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@dataProvider buildUnsubscribeMessage_testDataProvider
+
+@param ${t0}      ${p0}
+@param ${t1} ${p1}
+@param ${t2}     ${p2}
+@param ${t3}   ${p3}
+"
+      end
+
+      operation 160770 "buildPublishMessage_testDataProvider"
+	public explicit_return_type "array[]"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Message format:
+
+  <fixed header><topic><message id><payload>
+
+@return ${type}
+@throws \\Exception
+"
+      end
+
+      operation 160898 "test_buildPublishMessage_builds_correct_message"
+	public explicit_return_type "void"
+	nparams 7
+	  param in name "topic" explicit_type "string"
+	  param in name "message" explicit_type "string"
+	  param in name "qualityOfService" explicit_type "int"
+	  param in name "retain" explicit_type "bool"
+	  param in name "messageId" explicit_type "int"
+	  param in name "isDuplicate" explicit_type "bool"
+	  param in name "expectedResult" explicit_type "string"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}, ${t3} ${p3}${v3}, ${t4} ${p4}${v4}, ${t5} ${p5}${v5}, ${t6} ${p6}${v6}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@dataProvider buildPublishMessage_testDataProvider
+
+@param ${t0} ${p0}
+@param ${t1} ${p1}
+@param ${t2}    ${p2}
+@param ${t3}   ${p3}
+@param ${t4}    ${p4}
+@param ${t5}   ${p5}
+@param ${t6} ${p6}
+"
+      end
+
+      operation 161026 "buildPublishAcknowledgementMessage_testDataProvider"
+	public explicit_return_type "array[]"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Message format:
+
+  <fixed header><message id>
+
+@return ${type}
+@throws \\Exception
+"
+      end
+
+      operation 161154 "test_buildPublishAcknowledgementMessage_builds_correct_message"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "messageId" explicit_type "int"
+	  param in name "expectedResult" explicit_type "string"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@dataProvider buildPublishAcknowledgementMessage_testDataProvider
+
+@param ${t0}    ${p0}
+@param ${t1} ${p1}
+"
+      end
+
+      operation 161282 "buildPublishReceivedMessage_testDataProvider"
+	public explicit_return_type "array[]"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Message format:
+
+  <fixed header><message id>
+
+@return ${type}
+@throws \\Exception
+"
+      end
+
+      operation 161410 "test_buildPublishReceivedMessage_builds_correct_message"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "messageId" explicit_type "int"
+	  param in name "expectedResult" explicit_type "string"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@dataProvider buildPublishReceivedMessage_testDataProvider
+
+@param ${t0}    ${p0}
+@param ${t1} ${p1}
+"
+      end
+
+      operation 161538 "buildPublishCompleteMessage_testDataProvider"
+	public explicit_return_type "array[]"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Message format:
+
+  <fixed header><message id>
+
+@return ${type}
+@throws \\Exception
+"
+      end
+
+      operation 161666 "test_buildPublishCompleteMessage_builds_correct_message"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "messageId" explicit_type "int"
+	  param in name "expectedResult" explicit_type "string"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@dataProvider buildPublishCompleteMessage_testDataProvider
+
+@param ${t0}    ${p0}
+@param ${t1} ${p1}
+"
+      end
+
+      operation 161794 "test_buildPingMessage_builds_correct_message"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 161922 "test_buildDisconnectMessage_builds_correct_message"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+
+    class 137730 "Mqtt31MessageProcessorTest"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 134658 // <generalisation>
+	relation 134658 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 134658 // <generalisation>
+	  b parent class_ref 135938 // \PHPUnit\Framework\TestCase
+      end
+
+      attribute 137602 "CLIENT_ID"
+	const_attribute package explicit_type ""
+	init_value " 'test-client'"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 137730 "messageProcessor"
+	protected explicit_type "Mqtt31MessageProcessor"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " @var ${type} "
+      end
+
+      operation 162050 "setUp"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 162178 "tryFindMessageInBuffer_testDataProvider"
+	public explicit_return_type "array"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 162306 "test_tryFindMessageInBuffer_finds_messages_correctly"
+	public explicit_return_type "void"
+	nparams 4
+	  param in name "buffer" explicit_type "string"
+	  param in name "expectedResult" explicit_type "bool"
+	  param in name "expectedMessage" explicit_type "string|null"
+	  param in name "expectedRequiredBytes" explicit_type "int|null"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ?${t2} ${p2}${v2}, ?${t3} ${p3}${v3}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@dataProvider tryFindMessageInBuffer_testDataProvider
+
+@param ${t0}      ${p0}
+@param ${t1}        ${p1}
+@param ${t2} ${p2}
+@param ${t3}    ${p3}
+"
+      end
+
+      operation 162434 "buildConnectMessage_testDataProvider"
+	public explicit_return_type "array[]"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Message format:
+
+  <fixed header><protocol name><protocol version><flags><keep alive><client id><will topic><will message><username><password>
+
+@return ${type}
+@throws \\Exception
+"
+      end
+
+      operation 162562 "test_buildConnectMessage_builds_correct_message"
+	public explicit_return_type "void"
+	nparams 3
+	  param in name "connectionSettings" explicit_type "ConnectionSettings"
+	  param in name "useCleanSession" explicit_type "bool"
+	  param in name "expectedResult" explicit_type "string"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@dataProvider buildConnectMessage_testDataProvider
+
+@param ${t0} ${p0}
+@param ${t1}               ${p1}
+@param ${t2}             ${p2}
+"
+      end
+
+      operation 162690 "buildSubscribeMessage_testDataProvider"
+	public explicit_return_type "array[]"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Message format:
+
+  <fixed header><message id><topic><QoS>
+
+@return ${type}
+@throws \\Exception
+"
+      end
+
+      operation 162818 "test_buildSubscribeMessage_builds_correct_message"
+	public explicit_return_type "void"
+	nparams 3
+	  param in name "messageId" explicit_type "int"
+	  param in name "subscriptions" explicit_type "Subscription[]"
+	  param in name "expectedResult" explicit_type "string"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, array ${p1}${v1}, ${t2} ${p2}${v2}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@dataProvider buildSubscribeMessage_testDataProvider
+
+@param ${t0}            ${p0}
+@param ${t1} ${p1}
+@param ${t2}         ${p2}
+"
+      end
+
+      operation 162946 "buildUnsubscribeMessage_testDataProvider"
+	public explicit_return_type "array[]"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Message format:
+
+  <fixed header><message id><topic>
+
+@return ${type}
+@throws \\Exception
+"
+      end
+
+      operation 163074 "test_buildUnsubscribeMessage_builds_correct_message"
+	public explicit_return_type "void"
+	nparams 4
+	  param in name "messageId" explicit_type "int"
+	  param in name "topics" explicit_type "string[]"
+	  param in name "isDuplicate" explicit_type "bool"
+	  param in name "expectedResult" explicit_type "string"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, array ${p1}${v1}, ${t2} ${p2}${v2}, ${t3} ${p3}${v3}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@dataProvider buildUnsubscribeMessage_testDataProvider
+
+@param ${t0}      ${p0}
+@param ${t1} ${p1}
+@param ${t2}     ${p2}
+@param ${t3}   ${p3}
+"
+      end
+
+      operation 163202 "buildPublishMessage_testDataProvider"
+	public explicit_return_type "array[]"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Message format:
+
+  <fixed header><topic><message id><payload>
+
+@return ${type}
+@throws \\Exception
+"
+      end
+
+      operation 163330 "test_buildPublishMessage_builds_correct_message"
+	public explicit_return_type "void"
+	nparams 7
+	  param in name "topic" explicit_type "string"
+	  param in name "message" explicit_type "string"
+	  param in name "qualityOfService" explicit_type "int"
+	  param in name "retain" explicit_type "bool"
+	  param in name "messageId" explicit_type "int"
+	  param in name "isDuplicate" explicit_type "bool"
+	  param in name "expectedResult" explicit_type "string"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}, ${t3} ${p3}${v3}, ${t4} ${p4}${v4}, ${t5} ${p5}${v5}, ${t6} ${p6}${v6}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@dataProvider buildPublishMessage_testDataProvider
+
+@param ${t0} ${p0}
+@param ${t1} ${p1}
+@param ${t2}    ${p2}
+@param ${t3}   ${p3}
+@param ${t4}    ${p4}
+@param ${t5}   ${p5}
+@param ${t6} ${p6}
+"
+      end
+
+      operation 163458 "buildPublishAcknowledgementMessage_testDataProvider"
+	public explicit_return_type "array[]"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Message format:
+
+  <fixed header><message id>
+
+@return ${type}
+@throws \\Exception
+"
+      end
+
+      operation 163586 "test_buildPublishAcknowledgementMessage_builds_correct_message"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "messageId" explicit_type "int"
+	  param in name "expectedResult" explicit_type "string"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@dataProvider buildPublishAcknowledgementMessage_testDataProvider
+
+@param ${t0}    ${p0}
+@param ${t1} ${p1}
+"
+      end
+
+      operation 163714 "buildPublishReceivedMessage_testDataProvider"
+	public explicit_return_type "array[]"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Message format:
+
+  <fixed header><message id>
+
+@return ${type}
+@throws \\Exception
+"
+      end
+
+      operation 163842 "test_buildPublishReceivedMessage_builds_correct_message"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "messageId" explicit_type "int"
+	  param in name "expectedResult" explicit_type "string"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@dataProvider buildPublishReceivedMessage_testDataProvider
+
+@param ${t0}    ${p0}
+@param ${t1} ${p1}
+"
+      end
+
+      operation 163970 "buildPublishCompleteMessage_testDataProvider"
+	public explicit_return_type "array[]"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Message format:
+
+  <fixed header><message id>
+
+@return ${type}
+@throws \\Exception
+"
+      end
+
+      operation 164098 "test_buildPublishCompleteMessage_builds_correct_message"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "messageId" explicit_type "int"
+	  param in name "expectedResult" explicit_type "string"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@dataProvider buildPublishCompleteMessage_testDataProvider
+
+@param ${t0}    ${p0}
+@param ${t1} ${p1}
+"
+      end
+
+      operation 164226 "test_buildPingMessage_builds_correct_message"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 164354 "test_buildDisconnectMessage_builds_correct_message"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+  end
+end

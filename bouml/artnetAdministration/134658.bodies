@@ -1,0 +1,3 @@
+class PendingMessageAlreadyExistsException
+!!!150530.php!!!	__construct(in messageId : int)
+        parent::__construct(sprintf('A pending message with the message identifier [%s] exists already.', $messageId));

@@ -1,26 +1,13 @@
-<?php
-
-class Broker extends Controller
-{
-	private $id;
-	private $viewmodel;
-
-	public function __construct($action, $request)
-	{
+class Broker
+!!!131202.php!!!	__construct(in action : , in request : )
 		parent::__construct($action, $request);
 		$this->viewmodel = new BrokerModel();
-	}
-
-	protected function index()
-	{
+!!!131330.php!!!	index()
 		// Récupère la liste des brokers
 		$listeBrokers = $this->viewmodel->index();
 		// Affiche la liste des brokers
 		$this->display($listeBrokers);
-	}
-
-	protected function add()
-	{
+!!!131458.php!!!	add()
 		if (NO_LOGIN) {
 			$result = $this->viewmodel->add();
 			$this->display();
@@ -35,10 +22,7 @@ class Broker extends Controller
 				// @todo
 			}
 		}
-	}
-
-	protected function edit()
-	{
+!!!131586.php!!!	edit()
 		if (NO_LOGIN) {
 			$idBroker = $this->getID();
 			if ($idBroker > 0) {
@@ -60,10 +44,7 @@ class Broker extends Controller
 				// @todo
 			}
 		}
-	}
-
-	protected function delete()
-	{
+!!!131714.php!!!	delete()
 		if (NO_LOGIN) {
 			$idBroker = $this->getID();
 			if ($idBroker > 0) {
@@ -84,10 +65,7 @@ class Broker extends Controller
 				// @todo
 			}
 		}
-	}
-
-	protected function test()
-	{
+!!!131842.php!!!	test()
 		if (NO_LOGIN) {
 			$idBroker = $this->getID();
 			if ($idBroker > 0) {
@@ -109,10 +87,7 @@ class Broker extends Controller
 				// @todo
 			}
 		}
-	}
-  
-	private function getID()
-	{
+!!!131970.php!!!	getID()
 		if (!isset($this->request['id']) || empty($this->request['id'])) {
 			Messages::setMsg("ID broker manquant !", "error");
 			return -1;
@@ -122,5 +97,3 @@ class Broker extends Controller
 			return -1;
 		}
 		return (int) $this->request['id'];
-	}
-}

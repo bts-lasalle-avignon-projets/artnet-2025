@@ -1,0 +1,3 @@
+class ProtocolNotSupportedException
+!!!150786.php!!!	__construct(in protocol : string)
+        parent::__construct(sprintf('The given protocol version [%s] is not supported.', $protocol));

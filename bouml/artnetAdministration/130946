@@ -1,0 +1,107 @@
+format 224
+"Repositories" // artnetAdministration::vendor::php-mqtt::client::src::Repositories
+  revision 1
+  modified_by 2 "btssn2"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  php_dir "/var/www/html/artnet-2025/artnetAdministration/vendor/php-mqtt/client/src/Repositories/"
+  php_namespace "PhpMqtt\\Client\\Repositories"
+  deploymentview 129922 "Repositories"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 136066 "MemoryRepository"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+namespace PhpMqtt\\Client\\Repositories;
+
+use PhpMqtt\\Client\\Contracts\\Repository;
+use PhpMqtt\\Client\\Exceptions\\PendingMessageAlreadyExistsException;
+use PhpMqtt\\Client\\Exceptions\\PendingMessageNotFoundException;
+use PhpMqtt\\Client\\Exceptions\\RepositoryException;
+use PhpMqtt\\Client\\PendingMessage;
+use PhpMqtt\\Client\\PublishedMessage;
+use PhpMqtt\\Client\\Subscription;
+"
+      associated_elems
+      end
+    end
+  end
+
+  classview 129794 "Repositories"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 135682 "MemoryRepository"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Provides an in-memory implementation which manages message ids, subscriptions and pending messages.
+Instances of this type do not persist any data and are only meant for simple uses cases.
+
+@package PhpMqtt\\Client\\Repositories
+"
+      classrelation 132738 // <realization>
+	relation 132738 -_-|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 132738 // <realization>
+	  b parent class_ref 133634 // Repository
+      end
+    end
+  end
+end

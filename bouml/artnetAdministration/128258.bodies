@@ -1,0 +1,19 @@
+class CommunicationEquipementDMX
+!!!128130.php!!!	__construct(in parametres : )
+        if ($parametres != null) {
+            $this->nom = $parametres['nom'];
+            $this->type = $parametres['type'];
+            $this->univers = $parametres['univers'];
+            $this->canalInitial = $parametres['canalInitial'];
+            $this->nbCanaux = $parametres['nbCanaux'];
+        }
+!!!128258.php!!!	getNom() : string
+        return $this->nom;
+!!!128386.php!!!	getType() : int
+        return $this->type;
+!!!128514.php!!!	getUnivers() : string
+        return $this->univers;
+!!!128642.php!!!	getCanalInitial() : int
+        return $this->canalInitial;
+!!!128770.php!!!	getNombreCanaux() : int
+        return $this->nbCanaux;

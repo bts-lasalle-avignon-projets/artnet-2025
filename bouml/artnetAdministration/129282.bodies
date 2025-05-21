@@ -1,0 +1,7 @@
+class Accueil
+!!!130946.php!!!	__construct(in action : , in request : )
+		parent::__construct($action, $request);
+		$this->viewmodel = new AccueilModel();
+!!!131074.php!!!	index()
+		$this->viewmodel->index();
+		$this->display();

@@ -1,9 +1,5 @@
-<?php
-
-class BrokerModel extends Model
-{
-	public function index()
-	{
+class BrokerModel
+!!!133378.php!!!	index()
 		// Récupère la liste des brokers MQTT
 		$this->query("
 			SELECT *
@@ -14,10 +10,7 @@ class BrokerModel extends Model
 		$brokers = $this->getResults();
 
 		return $brokers;
-	}
-
-	public function add()
-	{
+!!!133506.php!!!	add()
 		// Le formulaire a été soumis ?
 		if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 			// Récupère les données du formulaire
@@ -53,10 +46,7 @@ class BrokerModel extends Model
 			}
 		}
 		return ACTION_ENCOURS;
-	}
-
-	public function edit($idBroker)
-	{
+!!!133634.php!!!	edit(in idBroker : )
 		// Le formulaire a été soumis ?
 		if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 			// Récupère les données du formulaire
@@ -108,10 +98,7 @@ class BrokerModel extends Model
 			$broker = $this->getBrokerMQTT($idBroker);
 			return $broker ?? ACTION_ERREUR;
 		}
-	}
-
-	public function delete($idBroker)
-	{
+!!!133762.php!!!	delete(in idBroker : )
 		// La demande de suppresion a été soumise ?
 		if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 			// Récupère les données du formulaire
@@ -151,10 +138,7 @@ class BrokerModel extends Model
 			}
 		}
 		return ACTION_ENCOURS;
-	}
-
-	public function test($idBroker)
-	{
+!!!133890.php!!!	test(in idBroker : )
 		// Le formulaire a été soumis ?
 		if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 			// Récupère les données du formulaire
@@ -263,10 +247,7 @@ class BrokerModel extends Model
 			$broker = $this->getBrokerMQTT($idBroker);
 			return $broker ?? ACTION_ERREUR;
 		}
-	}
-
-	public function getBrokerMQTT($idBrokerMQTT)
-	{
+!!!134018.php!!!	getBrokerMQTT(in idBrokerMQTT : )
 		// Récupère le broker à modifier
 		$this->query("SELECT * FROM brokerMQTT WHERE idBrokerMQTT = :idBrokerMQTT");
 		$this->bind(':idBrokerMQTT', $idBrokerMQTT, PDO::PARAM_INT);
@@ -276,18 +257,12 @@ class BrokerModel extends Model
 			$broker['topic'] = BROKER_MQTT_TOPIC;
 		}
 		return $broker ?? null;
-	}
-
-	public function getBrokerMQTTActif()
-	{
+!!!134146.php!!!	getBrokerMQTTActif()
 		// Récupère le broker actif
 		$this->query("SELECT * FROM brokerMQTT WHERE actif = 1");
 		$broker = $this->getResult();
 		return $broker ?? null;
-	}
-  
-	public function existeIdBrokerMQTT($idBrokerMQTT)
-	{
+!!!134274.php!!!	existeIdBrokerMQTT(in idBrokerMQTT : )
 		$this->query("SELECT hostname FROM brokerMQTT WHERE idBrokerMQTT = :idBrokerMQTT");
 		$this->bind(':idBrokerMQTT', $idBrokerMQTT);
 		$this->execute();
@@ -296,5 +271,3 @@ class BrokerModel extends Model
 			return false;
 		}
 		return true;
-	}
-}

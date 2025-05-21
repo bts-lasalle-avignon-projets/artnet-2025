@@ -1,0 +1,1518 @@
+format 224
+"Feature" // artnetAdministration::vendor::php-mqtt::client::tests::Feature
+  revision 1
+  modified_by 2 "btssn2"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  php_dir "/var/www/html/artnet-2025/artnetAdministration/vendor/php-mqtt/client/tests/Feature/"
+  php_namespace "Tests\\Feature"
+  deploymentview 130178 "Feature"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 136322 "ActionsWithoutActiveConnectionTest"
+      stereotype "source"
+      php_src "<?php
+
+/** @noinspection PhpUnhandledExceptionInspection */
+
+declare(strict_types=1);
+
+${namespace}
+
+use PhpMqtt\\Client\\Exceptions\\ClientNotConnectedToBrokerException;
+use PhpMqtt\\Client\\MqttClient;
+use Tests\\TestCase;
+
+${definition}
+
+"
+      associated_elems
+	class_ref 136066 // ActionsWithoutActiveConnectionTest
+      end
+    end
+
+    artifact 136450 "ClientUtilsTest"
+      stereotype "source"
+      php_src "<?php
+
+/** @noinspection PhpUnhandledExceptionInspection */
+
+declare(strict_types=1);
+
+${namespace}
+
+use PhpMqtt\\Client\\MqttClient;
+use Tests\\TestCase;
+
+${definition}
+
+"
+      associated_elems
+	class_ref 136194 // ClientUtilsTest
+      end
+    end
+
+    artifact 136578 "ConnectedEventHandlerTest"
+      stereotype "source"
+      php_src "<?php
+
+/** @noinspection PhpUnhandledExceptionInspection */
+
+declare(strict_types=1);
+
+${namespace}
+
+use PhpMqtt\\Client\\MqttClient;
+use Tests\\TestCase;
+
+${definition}
+
+"
+      associated_elems
+	class_ref 136322 // ConnectedEventHandlerTest
+      end
+    end
+
+    artifact 136706 "ConnectWithCustomConnectionSettingsTest"
+      stereotype "source"
+      php_src "<?php
+
+/** @noinspection PhpUnhandledExceptionInspection */
+
+declare(strict_types=1);
+
+${namespace}
+
+use PhpMqtt\\Client\\ConnectionSettings;
+use PhpMqtt\\Client\\MqttClient;
+use Tests\\TestCase;
+
+${definition}
+
+"
+      associated_elems
+	class_ref 136450 // ConnectWithCustomConnectionSettingsTest
+      end
+    end
+
+    artifact 136834 "ConnectWithInvalidConfigurationTest"
+      stereotype "source"
+      php_src "<?php
+
+/** @noinspection PhpDocSignatureInspection */
+/** @noinspection PhpUnhandledExceptionInspection */
+
+declare(strict_types=1);
+
+${namespace}
+
+use PhpMqtt\\Client\\ConnectionSettings;
+use PhpMqtt\\Client\\Exceptions\\ConfigurationInvalidException;
+use PhpMqtt\\Client\\Exceptions\\ConnectingToBrokerFailedException;
+use PhpMqtt\\Client\\Exceptions\\ProtocolNotSupportedException;
+use PhpMqtt\\Client\\MqttClient;
+use Tests\\TestCase;
+
+${definition}
+
+"
+      associated_elems
+	class_ref 136578 // ConnectWithInvalidConfigurationTest
+      end
+    end
+
+    artifact 136962 "ConnectWithInvalidHostAndPortTest"
+      stereotype "source"
+      php_src "<?php
+
+/** @noinspection PhpUnhandledExceptionInspection */
+
+declare(strict_types=1);
+
+${namespace}
+
+use PhpMqtt\\Client\\Exceptions\\ConnectingToBrokerFailedException;
+use PhpMqtt\\Client\\MqttClient;
+use Tests\\TestCase;
+
+${definition}
+
+"
+      associated_elems
+	class_ref 136706 // ConnectWithInvalidHostAndPortTest
+      end
+    end
+
+    artifact 137090 "ConnectWithTlsSettingsTest"
+      stereotype "source"
+      php_src "<?php
+
+/** @noinspection PhpUnhandledExceptionInspection */
+
+declare(strict_types=1);
+
+${namespace}
+
+use PhpMqtt\\Client\\ConnectionSettings;
+use PhpMqtt\\Client\\Exceptions\\ConnectingToBrokerFailedException;
+use PhpMqtt\\Client\\MqttClient;
+use Tests\\TestCase;
+
+${definition}
+
+"
+      associated_elems
+	class_ref 136834 // ConnectWithTlsSettingsTest
+      end
+    end
+
+    artifact 137218 "LoopEventHandlerTest"
+      stereotype "source"
+      php_src "<?php
+
+/** @noinspection PhpUnhandledExceptionInspection */
+
+declare(strict_types=1);
+
+${namespace}
+
+use PhpMqtt\\Client\\MqttClient;
+use Tests\\TestCase;
+
+${definition}
+
+"
+      associated_elems
+	class_ref 136962 // LoopEventHandlerTest
+      end
+    end
+
+    artifact 137346 "MessageReceivedEventHandlerTest"
+      stereotype "source"
+      php_src "<?php
+
+/** @noinspection PhpUnhandledExceptionInspection */
+
+declare(strict_types=1);
+
+${namespace}
+
+use PhpMqtt\\Client\\MqttClient;
+use Tests\\TestCase;
+
+${definition}
+
+"
+      associated_elems
+	class_ref 137090 // MessageReceivedEventHandlerTest
+      end
+    end
+
+    artifact 137474 "PublishEventHandlerTest"
+      stereotype "source"
+      php_src "<?php
+
+/** @noinspection PhpUnhandledExceptionInspection */
+
+declare(strict_types=1);
+
+${namespace}
+
+use PhpMqtt\\Client\\MqttClient;
+use Tests\\TestCase;
+
+${definition}
+
+"
+      associated_elems
+	class_ref 137218 // PublishEventHandlerTest
+      end
+    end
+
+    artifact 137602 "PublishSubscribeTest"
+      stereotype "source"
+      php_src "<?php
+
+/** @noinspection PhpDocSignatureInspection */
+/** @noinspection PhpUnhandledExceptionInspection */
+
+declare(strict_types=1);
+
+${namespace}
+
+use PhpMqtt\\Client\\ConnectionSettings;
+use PhpMqtt\\Client\\MqttClient;
+use Tests\\TestCase;
+
+${definition}
+
+"
+      associated_elems
+	class_ref 137346 // PublishSubscribeTest
+      end
+    end
+
+    artifact 137730 "SupportedProtocolsTest"
+      stereotype "source"
+      php_src "<?php
+
+/** @noinspection PhpUnhandledExceptionInspection */
+
+declare(strict_types=1);
+
+${namespace}
+
+use PhpMqtt\\Client\\Exceptions\\ProtocolNotSupportedException;
+use PhpMqtt\\Client\\MqttClient;
+use Tests\\TestCase;
+
+${definition}
+
+"
+      associated_elems
+	class_ref 137474 // SupportedProtocolsTest
+      end
+    end
+  end
+
+  classview 130050 "Feature"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 136066 "ActionsWithoutActiveConnectionTest"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Tests that the client throws an exception if not connected.
+
+@package Tests\\Feature
+"
+      classrelation 132994 // <generalisation>
+	relation 132994 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 132994 // <generalisation>
+	  b parent class_ref 135810 // TestCase
+      end
+
+      operation 151554 "test_throws_exception_when_message_is_published_without_connecting_to_broker"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 151682 "test_throws_exception_when_topic_is_subscribed_without_connecting_to_broker"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 151810 "test_throws_exception_when_topic_is_unsubscribed_without_connecting_to_broker"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 151938 "test_throws_exception_when_disconnecting_without_connecting_to_broker_first"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+
+    class 136194 "ClientUtilsTest"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Tests that the client utils (optional methods) work as intended.
+
+@package Tests\\Feature
+"
+      classrelation 133122 // <generalisation>
+	relation 133122 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 133122 // <generalisation>
+	  b parent class_ref 135810 // TestCase
+      end
+
+      operation 152066 "test_counts_sent_and_received_bytes_correctly"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 152194 "test_is_connected_returns_correct_state"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 152322 "test_configured_client_id_is_returned_if_client_id_is_passed_to_constructor"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 152450 "test_generated_client_id_is_returned_if_no_client_id_is_passed_to_constructor"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 152578 "test_configured_broker_host_and_port_are_returned"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+
+    class 136322 "ConnectedEventHandlerTest"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Tests that the connected event handler work as intended.
+
+@package Tests\\Feature
+"
+      classrelation 133250 // <generalisation>
+	relation 133250 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 133250 // <generalisation>
+	  b parent class_ref 135810 // TestCase
+      end
+
+      operation 152706 "test_connected_event_handlers_are_called_every_time_the_client_connects_successfully"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 152834 "test_connected_event_handlers_can_be_unregistered_and_will_not_be_called_anymore"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 152962 "test_connected_event_handlers_can_throw_exceptions_which_does_not_affect_other_handlers_or_the_application"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 153090 "test_connected_event_handler_is_passed_the_mqtt_client_and_the_auto_reconnect_flag_as_arguments"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+
+    class 136450 "ConnectWithCustomConnectionSettingsTest"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Tests that the client is able to connect to a broker with custom connection settings.
+
+@package Tests\\Feature
+"
+      classrelation 133378 // <generalisation>
+	relation 133378 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 133378 // <generalisation>
+	  b parent class_ref 135810 // TestCase
+      end
+
+      operation 153218 "test_connecting_using_mqtt31_with_custom_connection_settings_works_as_intended"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 153346 "test_connecting_using_mqtt311_with_custom_connection_settings_works_as_intended"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+
+    class 136578 "ConnectWithInvalidConfigurationTest"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Tests that the client cannot connect with invalid configuration.
+
+@package Tests\\Feature
+"
+      classrelation 133506 // <generalisation>
+	relation 133506 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 133506 // <generalisation>
+	  b parent class_ref 135810 // TestCase
+      end
+
+      operation 153474 "invalidTimeouts"
+	public explicit_return_type "array"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 153602 "test_connect_timeout_cannot_be_below_1_second"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "timeout" explicit_type "int"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@dataProvider invalidTimeouts
+"
+      end
+
+      operation 153730 "test_socket_timeout_cannot_be_below_1_second"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "timeout" explicit_type "int"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@dataProvider invalidTimeouts
+"
+      end
+
+      operation 153858 "test_resend_timeout_cannot_be_below_1_second"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "timeout" explicit_type "int"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@dataProvider invalidTimeouts
+"
+      end
+
+      operation 153986 "invalidKeepAliveIntervals"
+	public explicit_return_type "array"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 154114 "test_keep_alive_interval_cannot_be_value_below_1_or_greater_than_65535"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "keepAliveInterval" explicit_type "int"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@dataProvider invalidKeepAliveIntervals
+"
+      end
+
+      operation 154242 "invalidUsernames"
+	public explicit_return_type "array"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 154370 "test_username_cannot_be_empty_or_whitespace"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "username" explicit_type "string"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@dataProvider invalidUsernames
+"
+      end
+
+      operation 154498 "invalidLastWillTopics"
+	public explicit_return_type "array"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 154626 "test_last_will_topic_cannot_be_empty_or_whitespace"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "topic" explicit_type "string"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@dataProvider invalidLastWillTopics
+"
+      end
+
+      operation 154754 "invalidLastWillQualityOfService"
+	public explicit_return_type "array"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 154882 "test_last_will_quality_of_service_cannot_be_outside_the_0_to_2_range"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "qualityOfService" explicit_type "int"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@dataProvider invalidLastWillQualityOfService
+"
+      end
+
+      operation 155010 "test_tls_certificate_authority_file_cannot_be_invalid_file_path"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 155138 "test_tls_certificate_authority_path_cannot_be_invalid_directory_path"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 155266 "test_tls_client_certificate_file_cannot_be_invalid_file_path"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 155394 "test_tls_client_certificate_key_file_cannot_be_invalid_file_path"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 155522 "test_tls_client_certificate_file_must_be_set_if_client_certificate_key_file_is_set"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 155650 "test_tls_client_certificate_key_file_must_be_set_if_client_certificate_key_passphrase_is_set"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 155778 "connectAndExpectConfigurationExceptionUsingSettings"
+	private explicit_return_type "void"
+	nparams 1
+	  param in name "connectionSettings" explicit_type "ConnectionSettings"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Performs the actual connection test using the given connection settings. Expects the settings to be invalid.
+
+@param ${t0} ${p0}
+@return ${type}
+@throws ConfigurationInvalidException
+@throws ConnectingToBrokerFailedException
+@throws ProtocolNotSupportedException
+"
+      end
+    end
+
+    class 136706 "ConnectWithInvalidHostAndPortTest"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Tests that the client throws an exception if connecting using invalid host and port.
+
+@package Tests\\Feature
+"
+      classrelation 133634 // <generalisation>
+	relation 133634 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 133634 // <generalisation>
+	  b parent class_ref 135810 // TestCase
+      end
+
+      operation 155906 "test_throws_exception_when_connecting_using_invalid_host_and_port"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+
+    class 136834 "ConnectWithTlsSettingsTest"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Tests that the client is able to connect to a broker using TLS.
+
+@package Tests\\Feature
+"
+      classrelation 133762 // <generalisation>
+	relation 133762 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 133762 // <generalisation>
+	  b parent class_ref 135810 // TestCase
+      end
+
+      operation 156034 "setUp"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 156162 "test_connecting_with_tls_but_without_further_configuration_throws_for_self_signed_certificate"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 156290 "test_connecting_with_tls_with_ignored_self_signed_certificate_works_as_intended"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 156418 "test_connecting_with_tls_with_validated_self_signed_certificate_using_cafile__works_as_intended"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 156546 "test_connecting_with_tls_with_validated_self_signed_certificate_using_capath_works_as_intended"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 156674 "test_connecting_with_tls_and_client_certificate_with_validated_self_signed_certificate_works_as_intended"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 156802 "test_connecting_with_tls_and_passphrase_protected_client_certificate_with_validated_self_signed_certificate_works_as_intended"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+
+    class 136962 "LoopEventHandlerTest"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Tests that the loop event handler work as intended.
+
+@package Tests\\Feature
+"
+      classrelation 133890 // <generalisation>
+	relation 133890 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 133890 // <generalisation>
+	  b parent class_ref 135810 // TestCase
+      end
+
+      operation 156930 "test_loop_event_handlers_are_called_for_each_loop_iteration"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 157058 "test_loop_event_handler_can_be_unregistered_and_will_not_be_called_anymore"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 157186 "test_all_loop_event_handlers_can_be_unregistered_and_will_not_be_called_anymore"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 157314 "test_loop_event_handlers_can_throw_exceptions_which_does_not_affect_other_handlers_or_the_application"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+
+    class 137090 "MessageReceivedEventHandlerTest"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Tests that the message received event handler work as intended.
+
+@package Tests\\Feature
+"
+      classrelation 134018 // <generalisation>
+	relation 134018 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 134018 // <generalisation>
+	  b parent class_ref 135810 // TestCase
+      end
+
+      operation 157442 "test_message_received_event_handlers_are_called_for_each_received_message"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 157570 "test_message_received_event_handler_can_be_unregistered_and_will_not_be_called_anymore"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 157698 "test_message_received_event_handlers_can_be_unregistered_and_will_not_be_called_anymore"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 157826 "test_message_received_event_handlers_can_throw_exceptions_which_does_not_affect_other_handlers_or_the_application"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+
+    class 137218 "PublishEventHandlerTest"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Tests that the publish event handler work as intended.
+
+@package Tests\\Feature
+"
+      classrelation 134146 // <generalisation>
+	relation 134146 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 134146 // <generalisation>
+	  b parent class_ref 135810 // TestCase
+      end
+
+      operation 157954 "test_publish_event_handlers_are_called_for_each_published_message"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 158082 "test_publish_event_handlers_can_be_unregistered_and_will_not_be_called_anymore"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 158210 "test_publish_event_handlers_can_throw_exceptions_which_does_not_affect_other_handlers_or_the_application"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+
+    class 137346 "PublishSubscribeTest"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Tests that publishing messages and subscribing to topics using an MQTT broker works.
+
+@package Tests\\Feature
+"
+      classrelation 134274 // <generalisation>
+	relation 134274 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 134274 // <generalisation>
+	  b parent class_ref 135810 // TestCase
+      end
+
+      operation 158338 "publishSubscribeData"
+	public explicit_return_type "array"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 158466 "test_publishing_and_subscribing_using_quality_of_service_0_works_as_intended"
+	public explicit_return_type "void"
+	nparams 5
+	  param in name "useBlockingSocket" explicit_type "bool"
+	  param in name "subscriptionTopicFilter" explicit_type "string"
+	  param in name "publishTopic" explicit_type "string"
+	  param in name "publishMessage" explicit_type "string"
+	  param in name "matchedTopicWildcards" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}, ${t3} ${p3}${v3}, array ${p4}${v4}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@dataProvider publishSubscribeData
+"
+      end
+
+      operation 158594 "test_publishing_and_subscribing_using_quality_of_service_1_works_as_intended"
+	public explicit_return_type "void"
+	nparams 5
+	  param in name "useBlockingSocket" explicit_type "bool"
+	  param in name "subscriptionTopicFilter" explicit_type "string"
+	  param in name "publishTopic" explicit_type "string"
+	  param in name "publishMessage" explicit_type "string"
+	  param in name "matchedTopicWildcards" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}, ${t3} ${p3}${v3}, array ${p4}${v4}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@dataProvider publishSubscribeData
+"
+      end
+
+      operation 158722 "test_publishing_and_subscribing_using_quality_of_service_2_works_as_intended"
+	public explicit_return_type "void"
+	nparams 5
+	  param in name "useBlockingSocket" explicit_type "bool"
+	  param in name "subscriptionTopicFilter" explicit_type "string"
+	  param in name "publishTopic" explicit_type "string"
+	  param in name "publishMessage" explicit_type "string"
+	  param in name "matchedTopicWildcards" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}, ${t3} ${p3}${v3}, array ${p4}${v4}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@dataProvider publishSubscribeData
+"
+      end
+
+      operation 158850 "test_unsubscribe_stops_receiving_messages_on_topic"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 158978 "test_shared_subscriptions_using_quality_of_service_0_work_as_intended"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+
+    class 137474 "SupportedProtocolsTest"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Tests the protocols supported (and not supported) by the client.
+
+@package Tests\\Feature
+"
+      classrelation 134402 // <generalisation>
+	relation 134402 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 134402 // <generalisation>
+	  b parent class_ref 135810 // TestCase
+      end
+
+      operation 159106 "test_client_supports_mqtt_3_1_protocol"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 159234 "test_client_supports_mqtt_3_1_1_protocol"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 159362 "test_client_does_not_support_mqtt_3_protocol"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 159490 "test_client_does_not_support_mqtt_5_protocol"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+  end
+end

@@ -1,0 +1,3 @@
+class ProtocolViolationException
+!!!150914.php!!!	__construct(in error : string)
+        parent::__construct(sprintf('Protocol violation: %s.', $error));

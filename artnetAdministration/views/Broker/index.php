@@ -13,6 +13,7 @@
 				<?php endif; ?>
 				<hr />
 				<small class=" card-subtitle">
+					<a class="card-link text-success" href="<?php echo ROOT_PATH; ?>broker/test/<?php echo $item['idBrokerMQTT']; ?>">Tester</a>
 					<a class="card-link text-primary" href="<?php echo ROOT_PATH; ?>broker/edit/<?php echo $item['idBrokerMQTT']; ?>">Modifier</a>
 					<a class="card-link text-danger" href="<?php echo ROOT_PATH; ?>broker/delete/<?php echo $item['idBrokerMQTT']; ?>">Supprimer</a>
 					</small>

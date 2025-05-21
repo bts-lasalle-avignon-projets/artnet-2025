@@ -1,0 +1,6 @@
+class DataTransferException
+!!!150274.php!!!	__construct(in code : int, in error : string)
+        parent::__construct(
+            sprintf('[%s] Transferring data over socket failed: %s', $code, $error),
+            $code
+        );
