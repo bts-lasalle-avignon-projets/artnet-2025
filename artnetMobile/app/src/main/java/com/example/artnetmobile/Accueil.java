@@ -74,6 +74,7 @@ public class Accueil extends AppCompatActivity
     {
         Log.d(TAG, "initialiserCommunicationBroker()");
         communicationBroker = CommunicationBroker.getInstance();
+        CommunicationBroker.getInstance().initialiserContexte(getApplicationContext());
         communicationBroker.setHandler(handler);
         if(!communicationBroker.estConnecte())
             communicationBroker.connecter();
