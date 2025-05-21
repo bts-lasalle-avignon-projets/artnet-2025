@@ -45,7 +45,7 @@
     <string name="controlerEquipement">Contrôler cet équipement</string>
     <string name="envoyer">Envoyer les valeurs</string>
     <string name="titreControleEquipement">Controler l\'équipement :</string>
-    <string name="version">V 0.9 – Mai 2025</string>
+    <string name="version">V 0.1 – Mai 2025</string>
     <string name="alerte_recherche">Attention : Les univers doivent être actifs pour être contrôlés !</string>
 
     <!-- Credits -->
@@ -62,4 +62,5 @@
     <string name="alerte_zoneDanger">Zone de danger :</string>
     <string name="reset">Réinitialiser les valeurs à 0</string>
     <string name="supprimerEquipement">Supprimer l\'équipement</string>
+    <string name="creer_equipement">Créer un équipement</string>
 </resources>

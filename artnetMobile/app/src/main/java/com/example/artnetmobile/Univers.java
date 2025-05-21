@@ -35,7 +35,6 @@ public class Univers {
         listeUnivers.add(this);
     }
 
-    // --- Getters ---
     public String getNom() { return nom; }
     public int getNum() { return univers; }
     public String getIp() { return ip; }
@@ -45,7 +44,6 @@ public class Univers {
     public int getNbEquipements() { return nbEquipements; }
     public List<EquipementDmx> getEquipements() { return equipements; }
 
-    // --- Méthodes statiques ---
     public static List<Univers> getListeUnivers() {
         return listeUnivers;
     }
@@ -78,7 +76,6 @@ public class Univers {
         return null;
     }
 
-    // --- Méthodes d'instance ---
     public void mettreAJour(int univers, String ip, String mac, int rssi) {
         this.univers = univers;
         this.ip = ip;

@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 
@@ -40,6 +41,7 @@ public class Configuration extends AppCompatActivity {
     Button boutonControlerEquipement;
     Button boutonEnvoyerValeurs;
     Button boutonReset;
+    Button boutonSupprimerEquipement;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +138,7 @@ public class Configuration extends AppCompatActivity {
         boutonControlerEquipement = findViewById(R.id.boutonControler);
         boutonEnvoyerValeurs = findViewById(R.id.boutonEnvoyerCommande);
         boutonReset = findViewById(R.id.boutonReset);
+        boutonSupprimerEquipement = findViewById(R.id.boutonSupprimer);
 
         spinnerUnivers = findViewById(R.id.spinnerUnivers);
         spinnerEquipement = findViewById(R.id.spinnerEquipement);
@@ -181,6 +184,7 @@ public class Configuration extends AppCompatActivity {
                 try {
                     String json = construireJson();
                     Log.d("JSON", json);
+                    Toast.makeText(v.getContext(), "Valeurs envoyées à l'équipement : " + equipement.getNom(), Toast.LENGTH_SHORT).show();
                     communicationBroker.envoyer("artnet/univers", univers.getNum(), json);
                 } catch (Exception e) {
                     Log.e(TAG, "Erreur :", e);
@@ -196,7 +200,17 @@ public class Configuration extends AppCompatActivity {
                 }
                 String json = resetJSON();
                 Log.d("JSON", json);
+                Toast.makeText(v.getContext(), "Equipement réinitialisé : " + equipement.getNom(), Toast.LENGTH_SHORT).show();
                 communicationBroker.envoyer("artnet/univers", univers.getNum(), json);
+            }
+        });
+
+        boutonSupprimerEquipement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(), "Equipement supprimé : " + equipement.getNom(), Toast.LENGTH_SHORT).show();
+                univers.retirerEquipement(equipement);
+                layoutControle.removeAllViews();
             }
         });
     }
