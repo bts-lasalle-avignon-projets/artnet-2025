@@ -174,7 +174,7 @@ public class VueArtnet
         conteneur.addView(boutonBasculementActif);
 
         boutonBasculementActif.setOnClickListener(v -> {
-            CommunicationBroker.getInstance().basculerEmissionUnivers(u);
+            Univers.basculerEmissionUnivers(u);
             afficherDetailsUnivers(conteneur, u);
         });
     }

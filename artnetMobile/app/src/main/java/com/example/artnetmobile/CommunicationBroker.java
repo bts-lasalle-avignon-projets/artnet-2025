@@ -46,7 +46,6 @@ public class CommunicationBroker
     private static CommunicationBroker    instance; // Singleton
     private Context context;
     private final String config = "artnet/config/#";
-    private final String universTopic = "artnet/univers/";
     Handler           handler    = null;
     public MqttClient mqttClient = null;
     String            serveurUri;
@@ -283,19 +282,6 @@ public class CommunicationBroker
             }
         } catch (JSONException e) {
             Log.e(TAG, "Erreur JSON : " + messageMQTT, e);
-        }
-    }
-
-    public void basculerEmissionUnivers(Univers u) {
-        Log.d(TAG, "basculerEmissionUnivers() -> " + u.getNom());
-        String topic = universTopic + u.getNom();
-
-        if (!u.getActif()) {
-            u.setActif(true);
-            Log.d(TAG, u.getNom() + "-> Actif");
-        } else {
-            u.setActif(false);
-            Log.d(TAG, u.getNom() + "-> Inactif");
         }
     }
 

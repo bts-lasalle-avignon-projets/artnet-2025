@@ -8,6 +8,7 @@ import java.util.Vector;
 
 public class Univers {
     private static final String TAG = "Univers"; //!< TAG pour les logs (cf. Logcat)
+    static CommunicationBroker communicationBroker = CommunicationBroker.getInstance();
 
     private final String nom;
     private int univers;
@@ -120,5 +121,21 @@ public class Univers {
             }
         }
         return null;
+    }
+
+    public static void basculerEmissionUnivers(Univers u) {
+        Log.d(TAG, "basculerEmissionUnivers() -> " + u.getNom());
+        String universTopic = "artnet/univers/";
+        String topic = universTopic + u.getNum();
+
+        if (!u.getActif()) {
+            u.setActif(true);
+            communicationBroker.sabonner(topic);
+            Log.d(TAG, u.getNom() + "-> Actif");
+        } else {
+            u.setActif(false);
+            communicationBroker.desabonner(topic);
+            Log.d(TAG, u.getNom() + "-> Inactif");
+        }
     }
 }
