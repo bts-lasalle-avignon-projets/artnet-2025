@@ -155,7 +155,7 @@ public class Configuration extends AppCompatActivity {
 
                 if (selectedItem != null) {
                     univers = (Univers) selectedItem;
-                    ArrayAdapter<EquipementDmx> adapterEquipement = new ArrayAdapter<>(Configuration.this, android.R.layout.simple_spinner_item, Univers.getListeEquipement(univers));
+                    ArrayAdapter<EquipementDmx> adapterEquipement = new ArrayAdapter<>(Configuration.this, android.R.layout.simple_spinner_item, univers.getEquipements());
                     adapterEquipement.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinnerEquipement.setAdapter(adapterEquipement);
                 }

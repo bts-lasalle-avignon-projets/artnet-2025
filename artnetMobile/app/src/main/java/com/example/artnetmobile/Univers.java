@@ -2,6 +2,7 @@ package com.example.artnetmobile;
 
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -16,8 +17,9 @@ public class Univers {
     private boolean actif;
     private int nbEquipements;
 
+    private final List<EquipementDmx> equipements; // Liste propre à l'univers
+
     private static final Vector<Univers> listeUnivers = new Vector<>();
-    private static final Vector<EquipementDmx> listeEquipement = new Vector<>();
 
     public Univers(String nom, int univers, String ip, String mac, int rssi) {
         this.nom = nom;
@@ -27,10 +29,13 @@ public class Univers {
         this.rssi = rssi;
         this.actif = false;
         this.nbEquipements = 0;
-        Log.d(TAG, "Univers()" + " -> " + "Num univers : " + univers + " ; Nom : " + nom + " ; IP : " + ip + " ; MAC : " + mac + " ; RSSI : " + rssi);
+        this.equipements = new ArrayList<>(); // Initialisation de la liste
+
+        Log.d(TAG, "Univers() -> Num univers : " + univers + " ; Nom : " + nom + " ; IP : " + ip + " ; MAC : " + mac + " ; RSSI : " + rssi);
         listeUnivers.add(this);
     }
 
+    // --- Getters ---
     public String getNom() { return nom; }
     public int getNum() { return univers; }
     public String getIp() { return ip; }
@@ -38,7 +43,9 @@ public class Univers {
     public int getRssi() { return rssi; }
     public boolean getActif() { return actif; }
     public int getNbEquipements() { return nbEquipements; }
+    public List<EquipementDmx> getEquipements() { return equipements; }
 
+    // --- Méthodes statiques ---
     public static List<Univers> getListeUnivers() {
         return listeUnivers;
     }
@@ -71,6 +78,7 @@ public class Univers {
         return null;
     }
 
+    // --- Méthodes d'instance ---
     public void mettreAJour(int univers, String ip, String mac, int rssi) {
         this.univers = univers;
         this.ip = ip;
@@ -88,36 +96,29 @@ public class Univers {
         return nom;
     }
 
-    public void ajouterEquipement(Univers u) {
-        u.nbEquipements++;
+    public void ajouterEquipement(EquipementDmx e) {
+        equipements.add(e);
+        nbEquipements++;
     }
 
-    public void retirerEquipement(Univers u) {
-        u.nbEquipements--;
-    }
-
-    public static int recupererNumUnivers(Univers u) {
-        return u.getNum();
+    public void retirerEquipement(EquipementDmx e) {
+        if (equipements.remove(e)) {
+            nbEquipements--;
+        }
     }
 
     public static void ajouterEquipementUnivers(EquipementDmx equipement) {
-        listeEquipement.add(equipement);
-
         Univers u = rechercherUniversNum(equipement.getUnivers());
         if (u != null) {
-            u.nbEquipements++;
+            u.ajouterEquipement(equipement);
         } else {
             Log.w(TAG, "Erreur : Aucun univers trouvé pour le numéro : " + equipement.getUnivers());
         }
     }
 
-    public static List<EquipementDmx> getListeEquipement(Univers u) {
-        return u.listeEquipement;
-    }
-
     public static EquipementDmx recupererEquipement(Univers u, String nom) {
-        for (EquipementDmx e : listeEquipement) {
-            if (e.getUnivers() == u.getNum() && e.getNom().equals(nom)) {
+        for (EquipementDmx e : u.getEquipements()) {
+            if (e.getNom().equals(nom)) {
                 return e;
             }
         }
