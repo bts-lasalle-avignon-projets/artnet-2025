@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.widget.Toast;
+
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.DisconnectedBufferOptions;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
@@ -42,6 +44,7 @@ public class CommunicationBroker
      * Attributs
      */
     private static CommunicationBroker    instance; // Singleton
+    private Context context;
     private final String config = "artnet/config/#";
     private final String universTopic = "artnet/univers/";
     Handler           handler    = null;
@@ -273,8 +276,11 @@ public class CommunicationBroker
                 existant.mettreAJour(univers, ip, mac, rssi);
             } else {
                 new Univers(nomUnivers, univers, ip, mac, rssi);
+                if (context != null) {
+                    Handler mainHandler = new Handler(context.getMainLooper());
+                    mainHandler.post(() -> Toast.makeText(context, "Nouveau module détecté ! Nom : " + nomUnivers + " - Univers : " + univers, Toast.LENGTH_SHORT).show());
+                }
             }
-
         } catch (JSONException e) {
             Log.e(TAG, "Erreur JSON : " + messageMQTT, e);
         }
@@ -321,4 +327,9 @@ public class CommunicationBroker
             }
         }
     }
+
+    public void initialiserContexte(Context context) {
+        this.context = context.getApplicationContext();
+    }
+
 }

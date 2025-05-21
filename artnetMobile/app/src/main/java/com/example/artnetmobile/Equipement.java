@@ -18,20 +18,22 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.Vector;
 
 public class Equipement extends AppCompatActivity {
-    private static final String TAG = "_Equipement"; //!< TAG pour les logs (cf. Logcat)
+    private static final String TAG = "_Equipement";
     VueArtnet vue = VueArtnet.getInstance();
 
     private ConstraintLayout creationEquipement;
-    private ConstraintLayout configurationEquipement;
     private Spinner spinnerEquipement;
     private Spinner spinnerUnivers;
     private LinearLayout conteneurCanaux;
 
     private int compteurEquipement;
+
+    Button ajouterNouvelEquipement;
 
     private String[] equipements = {"Scanner", "Pars", "Lyres", "Lasers", "Spots"};
 
@@ -84,6 +86,7 @@ public class Equipement extends AppCompatActivity {
         }
 
         new EquipementDmx(numUnivers, nomEquipement, typeSelectionne, nbCanaux, adresse, canaux);
+        Toast.makeText(Equipement.this, "Equipement créé : " + nomEquipement + ", sur l'univers " + numUnivers, Toast.LENGTH_SHORT).show();
 
         editTextNom.setText("");
         editTextNbCanaux.setText("");
@@ -94,7 +97,6 @@ public class Equipement extends AppCompatActivity {
     private void initialiserUI() {
 
         creationEquipement = findViewById(R.id.creationEquipement);
-        configurationEquipement = findViewById(R.id.configurationEquipement);
         conteneurCanaux = findViewById(R.id.conteneurCanaux);
         spinnerEquipement = findViewById(R.id.spinnerEquipement);
         spinnerUnivers = findViewById(R.id.spinnerUnivers);
@@ -109,12 +111,7 @@ public class Equipement extends AppCompatActivity {
     }
 
     private void initialiserListeners() {
-        Button afficherVueCreation = findViewById(R.id.ajouterEquipement);
-        Button afficherVueConfiguration = findViewById(R.id.configurerEquipement);
-        Button ajouterNouvelEquipement = findViewById(R.id.boutonAjoutEquipements);
-
-        afficherVueCreation.setOnClickListener(v -> afficherVueEquipement());
-        afficherVueConfiguration.setOnClickListener(v -> afficherVueConfiguration());
+        ajouterNouvelEquipement = findViewById(R.id.boutonAjoutEquipements);
         ajouterNouvelEquipement.setOnClickListener(v -> creerNouvelEquipement());
     }
 
@@ -143,21 +140,14 @@ public class Equipement extends AppCompatActivity {
                             canal.setWidth(200);
                             conteneurCanaux.addView(canal);
                         }
+                        ajouterNouvelEquipement.setVisibility(View.VISIBLE);
                     } catch (NumberFormatException e) {
                         Log.w(TAG, "Nombre de canaux invalide");
                     }
+                } else {
+                    ajouterNouvelEquipement.setVisibility(View.INVISIBLE);
                 }
             }
         });
-    }
-
-    private void afficherVueEquipement() {
-        Log.d(TAG, "ajouterEquipement()");
-        vue.afficherCreationEquipement(creationEquipement, configurationEquipement);
-    }
-
-    private void afficherVueConfiguration() {
-        Log.d(TAG, "configurerEquipement()");
-        vue.afficherConfigurationEquipement(creationEquipement, configurationEquipement);
     }
 }

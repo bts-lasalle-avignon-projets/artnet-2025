@@ -187,18 +187,10 @@ public class VueArtnet
         conteneur.addView(textView);
     }
 
-    public void afficherCreationEquipement(ConstraintLayout creationEquipement, ConstraintLayout configurationEquipement)
+    public void afficherCreationEquipement(ConstraintLayout creationEquipement)
     {
         Log.d(TAG, "afficherCreationEquipement()");
-        configurationEquipement.setVisibility(View.GONE);
         creationEquipement.setVisibility(View.VISIBLE);
-    }
-
-    public void afficherConfigurationEquipement(ConstraintLayout creationEquipement, ConstraintLayout configurationEquipement)
-    {
-        Log.d(TAG, "afficherConfigurationEquipement()");
-        creationEquipement.setVisibility(View.GONE);
-        configurationEquipement.setVisibility(View.VISIBLE);
     }
 
     public void afficherControlerEquipement(ConstraintLayout controlerEquipement) {

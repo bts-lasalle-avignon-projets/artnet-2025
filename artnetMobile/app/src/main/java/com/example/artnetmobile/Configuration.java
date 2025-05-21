@@ -6,16 +6,16 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.text.InputType;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 
@@ -28,7 +28,7 @@ public class Configuration extends AppCompatActivity {
     VueArtnet vue = VueArtnet.getInstance();
     CommunicationBroker communicationBroker = CommunicationBroker.getInstance();
 
-    private List<EditText> listeCanaux = new ArrayList<>();
+    private List<SeekBar> listeCanaux = new ArrayList<SeekBar>();
 
     private Spinner spinnerUnivers, spinnerEquipement;
     private LinearLayout conteneurCanaux;
@@ -40,6 +40,8 @@ public class Configuration extends AppCompatActivity {
     Button rechercherEquipement;
     Button boutonControlerEquipement;
     Button boutonEnvoyerValeurs;
+    Button boutonReset;
+    Button boutonSupprimerEquipement;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,40 +68,48 @@ public class Configuration extends AppCompatActivity {
             blocCanal.setOrientation(LinearLayout.VERTICAL);
             blocCanal.setPadding(16, 0, 16, 0);
 
-            EditText canal = new EditText(Configuration.this);
-            canal.setHint("Val. Canal " + (adresse + i));
-            canal.setInputType(InputType.TYPE_CLASS_NUMBER);
-            canal.setGravity(Gravity.CENTER);
-            canal.setWidth(250);
+            TextView valeurSlider = new TextView(Configuration.this);
+            valeurSlider.setGravity(Gravity.CENTER);
+            valeurSlider.setText("0");
+
+            SeekBar slider = new SeekBar(Configuration.this);
+            slider.setMax(255);
+            slider.setProgress(0);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(500, 100); // largeur, hauteur en pixels
+            slider.setLayoutParams(params);
+
+            slider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    valeurSlider.setText(String.valueOf(progress));
+                }
+
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {}
+
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {}
+            });
 
             TextView description = new TextView(Configuration.this);
             description.setText((canaux != null && i < canaux.size()) ? canaux.get(i) : "Canal " + (adresse + i));
             description.setGravity(Gravity.CENTER);
             description.setTextSize(12);
 
-            blocCanal.addView(canal);
+            blocCanal.addView(valeurSlider);
+            blocCanal.addView(slider);
             blocCanal.addView(description);
             conteneurCanaux.addView(blocCanal);
 
-            listeCanaux.add(canal);
+            listeCanaux.add(slider);
         }
     }
 
     private List<Integer> recupererValeurCanaux() {
         List<Integer> valeurs = new ArrayList<>();
 
-        for (EditText canal : listeCanaux) {
-            String texte = canal.getText().toString().trim();
-            if (!texte.isEmpty()) {
-                try {
-                    int val = Integer.parseInt(texte);
-                    valeurs.add(val);
-                } catch (NumberFormatException e) {
-                    throw new RuntimeException(e);
-                }
-            } else {
-                valeurs.add(0);
-            }
+        for (SeekBar slider : listeCanaux) {
+            valeurs.add(slider.getProgress());
         }
         return valeurs;
     }
@@ -127,6 +137,8 @@ public class Configuration extends AppCompatActivity {
         rechercherEquipement = findViewById(R.id.boutonRechercherEquipements);
         boutonControlerEquipement = findViewById(R.id.boutonControler);
         boutonEnvoyerValeurs = findViewById(R.id.boutonEnvoyerCommande);
+        boutonReset = findViewById(R.id.boutonReset);
+        boutonSupprimerEquipement = findViewById(R.id.boutonSupprimer);
 
         spinnerUnivers = findViewById(R.id.spinnerUnivers);
         spinnerEquipement = findViewById(R.id.spinnerEquipement);
@@ -146,7 +158,7 @@ public class Configuration extends AppCompatActivity {
 
                 if (selectedItem != null) {
                     univers = (Univers) selectedItem;
-                    ArrayAdapter<EquipementDmx> adapterEquipement = new ArrayAdapter<>(Configuration.this, android.R.layout.simple_spinner_item, Univers.getListeEquipement(univers));
+                    ArrayAdapter<EquipementDmx> adapterEquipement = new ArrayAdapter<>(Configuration.this, android.R.layout.simple_spinner_item, univers.getEquipements());
                     adapterEquipement.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinnerEquipement.setAdapter(adapterEquipement);
                 }
@@ -172,11 +184,52 @@ public class Configuration extends AppCompatActivity {
                 try {
                     String json = construireJson();
                     Log.d("JSON", json);
+                    Toast.makeText(v.getContext(), "Valeurs envoyées à l'équipement : " + equipement.getNom(), Toast.LENGTH_SHORT).show();
                     communicationBroker.envoyer("artnet/univers", univers.getNum(), json);
                 } catch (Exception e) {
                     Log.e(TAG, "Erreur :", e);
                 }
             }
         });
+
+        boutonReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (SeekBar slider : listeCanaux) {
+                    slider.setProgress(0);
+                }
+                String json = resetJSON();
+                Log.d("JSON", json);
+                Toast.makeText(v.getContext(), "Equipement réinitialisé : " + equipement.getNom(), Toast.LENGTH_SHORT).show();
+                communicationBroker.envoyer("artnet/univers", univers.getNum(), json);
+            }
+        });
+
+        boutonSupprimerEquipement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(), "Equipement supprimé : " + equipement.getNom(), Toast.LENGTH_SHORT).show();
+                univers.retirerEquipement(equipement);
+                layoutControle.removeAllViews();
+            }
+        });
+    }
+
+    private String resetJSON() {
+        JSONArray jsonArray = new JSONArray();
+        List<Integer> valeurs = recupererValeurCanaux();
+        int adresseBase = equipement.getAdresseDMX();
+
+        for (int i = 0; i < valeurs.size(); i++) {
+            try {
+                org.json.JSONObject jsonCanal = new org.json.JSONObject();
+                jsonCanal.put("canal", adresseBase + i);
+                jsonCanal.put("valeur", 0);
+                jsonArray.put(jsonCanal);
+            } catch (Exception e) {
+                Log.e(TAG, "Erreur : ", e);
+            }
+        }
+        return jsonArray.toString();
     }
 }

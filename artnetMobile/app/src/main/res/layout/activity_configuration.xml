@@ -214,6 +214,50 @@
                 android:layout_marginEnd="8dp"
                 android:paddingHorizontal="16dp" />
 
+            <TextView
+                android:id="@+id/textViewZoneDanger"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/alerte_zoneDanger"
+                android:textColor="@android:color/holo_red_dark"
+                android:textStyle="italic"
+                android:textSize="14sp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                app:layout_constraintTop_toBottomOf="@id/boutonEnvoyerCommande"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/boutonReset"
+                android:backgroundTint="@android:color/holo_red_dark"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:text="@string/reset"
+                app:layout_constraintTop_toBottomOf="@id/textViewZoneDanger"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/boutonSupprimer"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="8dp"
+                android:paddingHorizontal="16dp" />
+
+            <Button
+                android:id="@+id/boutonSupprimer"
+                android:backgroundTint="@android:color/holo_red_dark"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:text="@string/supprimerEquipement"
+                app:layout_constraintTop_toBottomOf="@id/textViewZoneDanger"
+                app:layout_constraintStart_toEndOf="@id/boutonReset"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="8dp"
+                android:paddingHorizontal="16dp" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -227,18 +271,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
-
-        <TextView
-            android:id="@+id/textViewCommentaires"
-            style="@style/CustomTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/copyright"
-            android:textSize="20sp"
-            android:layout_marginStart="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
