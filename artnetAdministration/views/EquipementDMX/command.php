@@ -21,7 +21,7 @@
                     </div>
                     <div class="d-flex flex-wrap justify-content-center">
                         <?php for ($i = $datas['canalInitial']; $i < ($datas['canalInitial'] + $datas['nbCanaux']); $i++): ?>
-                            <?php echo "<div class=\"p-2 ml-auto text-center\" style=\"width: " . (100 / $datas['nbCanaux']) . "%;\"><input id=\"canal-" . $i . "\" name=\"canal-" . $i . "\" class=\"slider\" type=\"text\" data-slider-min=\"0\" data-slider-max=\"255\" data-slider-step=\"1\" data-slider-value=\"0\" data-slider-orientation=\"vertical\" /></div>";  ?>
+                            <?php echo "<div class=\"p-2 ml-auto text-center\" style=\"width: " . (100 / $datas['nbCanaux']) . "%;\"><input id=\"canal-" . $i . "\" name=\"canal-" . $i . "\" class=\"slider\" type=\"text\" data-slider-min=\"0\" data-slider-max=\"255\" data-slider-step=\"1\" data-slider-value=\"" . $datas['canaux'][$i] . "\" data-slider-orientation=\"vertical\" /></div>";  ?>
                         <?php endfor; ?>
                     </div>
                 </div>

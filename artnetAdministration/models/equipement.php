@@ -82,6 +82,7 @@ class EquipementDMXModel extends Model
 		if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 			// Récupère l'équipement à commander
 			$equipement = $this->getEquipementDMX($idEquipement);
+
 			if ($equipement == null) {
 				Messages::setMsg("L'équipement n'existe pas !", "error");
 				return ACTION_ERREUR;
@@ -174,6 +175,13 @@ class EquipementDMXModel extends Model
 		} else {
 			// Récupère l'équipement à commander
 			$equipement = $this->getEquipementDMX($idEquipement);
+			$canauxArray = json_decode($equipement['canaux'], true) ?? [];
+			$mapCanaux = [];
+			foreach ($canauxArray as $item) {
+				$mapCanaux[$item['canal']] = $item['valeur'];
+			}
+			$equipement['canaux'] = $mapCanaux;
+
 			return $equipement ?? ACTION_ERREUR;
 		}
 	}
