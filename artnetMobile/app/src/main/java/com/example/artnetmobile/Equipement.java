@@ -33,6 +33,8 @@ public class Equipement extends AppCompatActivity {
 
     private int compteurEquipement;
 
+    Button ajouterNouvelEquipement;
+
     private String[] equipements = {"Scanner", "Pars", "Lyres", "Lasers", "Spots"};
 
     @Override
@@ -109,7 +111,7 @@ public class Equipement extends AppCompatActivity {
     }
 
     private void initialiserListeners() {
-        Button ajouterNouvelEquipement = findViewById(R.id.boutonAjoutEquipements);
+        ajouterNouvelEquipement = findViewById(R.id.boutonAjoutEquipements);
         ajouterNouvelEquipement.setOnClickListener(v -> creerNouvelEquipement());
     }
 
@@ -138,9 +140,12 @@ public class Equipement extends AppCompatActivity {
                             canal.setWidth(200);
                             conteneurCanaux.addView(canal);
                         }
+                        ajouterNouvelEquipement.setVisibility(View.VISIBLE);
                     } catch (NumberFormatException e) {
                         Log.w(TAG, "Nombre de canaux invalide");
                     }
+                } else {
+                    ajouterNouvelEquipement.setVisibility(View.INVISIBLE);
                 }
             }
         });
