@@ -150,7 +150,7 @@ class CommunicationBroker
     public function traiterMessage($topic, $message)
     {
         // @todo Traiter le message reçu
-        echo ("traiterMessage() message : \"" . $message . "\" sur le topic \"" . $topic . "\"" . PHP_EOL);
+        //echo ("traiterMessage() message : \"" . $message . "\" sur le topic \"" . $topic . "\"" . PHP_EOL);
         if (!isset($this->messages[$topic])) {
             $this->messages[$topic] = array();
         }

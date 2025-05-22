@@ -1,0 +1,15 @@
+[Unit]
+Description=Script du projet Artnet - Notifications MQTT
+After=network.target
+Wants=network.target
+After=mysql.service
+
+[Service]
+Type=simple
+ExecStartPre=/bin/mkdir -m 740 -p /var/log/artnet
+ExecStartPre=/usr/bin/touch /var/log/artnet/gestionModulesDMXWiFi.log
+ExecStart=/usr/bin/php /var/www/html/artnet-2025/artnetAdministration/gestionModulesDMXWiFi.php
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
