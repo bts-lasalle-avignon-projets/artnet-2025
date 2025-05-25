@@ -23,49 +23,55 @@ class ModuleDMXWiFiModel extends Model
         // Décode le JSON
         $data = json_decode($json, true);
         if (!$data) {
-            // Json invalide
+            // JSON invalide
             return false;
         }
 
         if (!isset($data['mac'])) {
-            return false;
+            return false; // MAC manquante
         }
 
         // Vérifier si le module existe déjà dans la base de données par MAC
-        $this->query("SELECT COUNT(*) FROM moduleDMXWiFi WHERE adresseMAC = :adresseMAC");
-        $this->bind(':adresseMAC', $data['mac']);
-        $this->execute();
-        $count = $this->count();
-
-        if ($count > 0) {
-            // Modifie le module dans la base de données
-            $this->query("UPDATE moduleDMXWiFi SET univers = :univers, adresseIP = :adresseIP, rssi = :rssi WHERE adresseMAC = :adresseMAC");
-            $this->bind(':univers', $data['univers']);
-            $this->bind(':adresseIP', $data['ip']);
-            $this->bind(':rssi', $data['rssi']);
-            $this->bind(':adresseMAC', $data['mac']);
-            return $this->execute();
+        if ($this->existeModuleDMXWiFi($data['mac'])) {
+            return $this->updateModule($data);
         } else {
-            // Construction du nom Module_<4 derniers caractères de la MAC>
-            $mac = $data['mac'];
-            $macClean = str_replace(':', '', $mac);
-            $nom = 'Module_' . substr($macClean, -4);
-
-            // Insert le module dans la base de données
-            $this->query("INSERT INTO moduleDMXWiFi (univers, nomBoitier, adresseIP, adresseMAC, rssi) VALUES (:univers, :nomBoitier, :adresseIP, :adresseMAC, :rssi)");
-            $this->bind(':univers', $data['univers']);
-            $this->bind(':nomBoitier', $nom);
-            $this->bind(':adresseIP', $data['ip']);
-            $this->bind(':adresseMAC', $mac,);
-            $this->bind(':rssi', $data['rssi']);
-            return $this->execute();
+            return $this->insertModule($data);
         }
     }
 
-
-    public function existeModuleDMXWiFi()
+    private function existeModuleDMXWiFi($mac): bool
     {
+        $this->query("SELECT COUNT(*) FROM moduleDMXWiFi WHERE adresseMAC = :adresseMAC");
+        $this->bind(':adresseMAC', $mac);
+        $this->execute();
+        return $this->count() > 0; // Retourne true si le module existe
+    }
 
-        return true;
+    private function updateModule($data): bool
+    {
+        // Modifie le module dans la base de données
+        $this->query("UPDATE moduleDMXWiFi SET univers = :univers, adresseIP = :adresseIP, rssi = :rssi WHERE adresseMAC = :adresseMAC");
+        $this->bind(':univers', $data['univers']);
+        $this->bind(':adresseIP', $data['ip']);
+        $this->bind(':rssi', $data['rssi']);
+        $this->bind(':adresseMAC', $data['mac']);
+        return $this->execute();
+    }
+
+    private function insertModule($data): bool
+    {
+        // Construction du nom Module_<4 derniers caractères de la MAC>
+        $mac = $data['mac'];
+        $macClean = str_replace(':', '', $mac);
+        $nom = 'Module_' . substr($macClean, -4);
+
+        // Insert le module dans la base de données
+        $this->query("INSERT INTO moduleDMXWiFi (univers, nomBoitier, adresseIP, adresseMAC, rssi) VALUES (:univers, :nomBoitier, :adresseIP, :adresseMAC, :rssi)");
+        $this->bind(':univers', $data['univers']);
+        $this->bind(':nomBoitier', $nom);
+        $this->bind(':adresseIP', $data['ip']);
+        $this->bind(':adresseMAC', $mac);
+        $this->bind(':rssi', $data['rssi']);
+        return $this->execute();
     }
 }
