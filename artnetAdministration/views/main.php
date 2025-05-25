@@ -36,6 +36,9 @@
           <a class="nav-link" href="<?php echo URL_PATH; ?>moduleDMXWiFi">Module DMX WiFi</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="<?php echo URL_PATH; ?>typeEquipementDMX">Type d'équipement</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="<?php echo URL_PATH; ?>equipementDMX">Équipement DMX</a>
         </li>
       </ul>

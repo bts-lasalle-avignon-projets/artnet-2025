@@ -16,17 +16,20 @@ require('controllers/accueil.php');
 require('controllers/broker.php');
 require('controllers/moduleDMXWiFi.php');
 require('controllers/equipement.php');
+require('controllers/typeEquipement.php');
 
 // Les modèles
 require('models/accueil.php');
 require('models/broker.php');
 require('models/moduleDMXWiFi.php');
 require('models/equipement.php');
+require('models/typeEquipement.php');
 
 // Les classes du projet
 require('classes/communicationBroker.php');
 require('classes/communicationModuleDMXWiFi.php');
 require('classes/communicationEquipementDMX.php');
+require('classes/communicationTypeEquipementDMX.php');
 
 require './vendor/autoload.php';
 
