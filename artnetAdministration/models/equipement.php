@@ -326,4 +326,63 @@ class EquipementDMXModel extends Model
 		}
 		return $broker ?? null;
 	}
+
+	public function topicADD($json): bool
+	{
+		// Exemple de json : {"nomEquipement":"lyre","univers":1,"typeEquipement":"Scanner","nombreCanaux":8,"canalInitial":24}
+
+		// Décode le JSON
+		$data = json_decode($json, true);
+		if (!$data) {
+			// JSON invalide
+			return false;
+		}
+
+		if (!isset($data['nomEquipement'])) {
+			return false; // univers manquant
+		}
+
+		// Vérifier si l'équipement existe déjà dans la base de données
+		if ($this->existeIdEquipementDMX($data['nomEquipement'])) {
+			return $this->updateTopicEquipement($data);
+		} else {
+			return $this->insertTopicEquipement($data);
+		}
+	}
+
+	private function updateTopicEquipement($data): bool
+	{
+		$this->query("SELECT idEquipement FROM equipementDMX WHERE nomEquipement = :nomEquipement AND univers = :univers");
+		$this->bind(':nomEquipement', $data['nomEquipement']);
+		$this->bind(':univers', $data['univers']);
+		$idEquipement = $this->getResult();
+
+		// Vérifier si l'idEquipement a été trouvé
+		if (!$idEquipement) {
+			journaliser("Aucun équipement trouvé avec nomEquipement: " . $data['nomEquipement'] . " et univers: " . $data['univers']);
+			return false; // Équipement non trouvé
+		} // Vérifier si l'idEquipement a été trouvé
+		if (!$idEquipement) {
+			journaliser("Aucun équipement trouvé avec nomEquipement: " . $data['nomEquipement'] . " et univers: " . $data['univers']);
+			return false; // Équipement non trouvé
+		}
+
+		// Modifie l'équipement dans la base de données
+		$this->query("UPDATE equipementDMX SET nomEquipement = :nomEquipement, univers = :univers, canalInitial = :canalInitial WHERE idEquipement = :idEquipement");
+		$this->bind(':nomEquipement', $data['nomEquipement']);
+		$this->bind(':univers', $data['univers']);
+		$this->bind(':canalInitial', $data['canalInitial']);
+		$this->bind(':idEquipement', $idEquipement);
+		return $this->execute();
+	}
+
+	private function insertTopicEquipement($data): bool
+	{
+		// Insert l'équipement dans la base de données
+		$this->query("INSERT INTO equipementDMX (nomEquipement, univers, canalInitial) VALUES (:nomEquipement, :univers, :canalInitial)");
+		$this->bind(':nomEquipement', $data['nomEquipement']);
+		$this->bind(':univers', $data['univers']);
+		$this->bind(':canalInitial', $data['canalInitial']);
+		return $this->execute();
+	}
 }
