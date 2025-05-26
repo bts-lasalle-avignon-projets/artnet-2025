@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -43,6 +44,7 @@ public class VueArtnet
         Button accueil = activite.findViewById(R.id.boutonAccueil);
         Button equipements = activite.findViewById(R.id.boutonEquipements);
         Button configurer = activite.findViewById(R.id.boutonConfiguration);
+        Button parametres = activite.findViewById(R.id.boutonParametres);
         Button credits = activite.findViewById(R.id.boutonCredits);
 
         accueil.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +65,13 @@ public class VueArtnet
             @Override
             public void onClick(View v) {
                 afficherConfiguration(activite);
+            }
+        });
+
+        parametres.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                afficherParametres(activite);
             }
         });
 
@@ -95,6 +104,13 @@ public class VueArtnet
         activite.startActivity(intent);
     }
 
+    public void afficherParametres(Activity activite)
+    {
+        Log.d(TAG, "afficherParametres()");
+        Intent intent = new Intent(activite, Parametres.class);
+        activite.startActivity(intent);
+    }
+
     public void afficherCredits(Activity activite)
     {
         Log.d(TAG, "afficherCredits()");
@@ -117,11 +133,12 @@ public class VueArtnet
             textView.setTextSize(16);
             textView.setPadding(0, 0, 0, 30);
 
+            textView.setGravity(Gravity.CENTER_HORIZONTAL);
+
             if (u.getActif())
                 textView.setTextColor(Color.GREEN);
             else
                 textView.setTextColor(Color.RED);
-
 
             conteneurUnivers.addView(textView);
 
@@ -165,12 +182,25 @@ public class VueArtnet
         ajouterLabel(conteneur, "Nom : " + u.getNom(), 18);
         ajouterLabel(conteneur, "IP : " + u.getIp(), 16);
         ajouterLabel(conteneur, "MAC : " + u.getMac(), 16);
-        ajouterLabel(conteneur, "RSSI : " + afficherRssi(u.getRssi()) + " (" + u.getRssi() + ")", 16);
-        ajouterLabel(conteneur, "Topic actif ? : " + (u.getActif() ? "Oui" : "Non"), 16);
+        ajouterLabel(conteneur, "RSSI : " + afficherRssi(u.getRssi()) + " (" + u.getRssi() + " dBm)", 16);
+        ajouterLabel(conteneur, (u.getActif() ? "Contrôle activé" : "Contrôle désactivé"), 16);
         ajouterLabel(conteneur, "Nombre d'équipements : " + u.getNbEquipements(), 16);
 
         Button boutonBasculementActif = new Button(conteneur.getContext());
-        boutonBasculementActif.setText(u.getActif() ? "Désactiver le topic" : "Activer le topic");
+        boolean estActif = u.getActif();
+        boutonBasculementActif.setText(estActif ? "Désactiver le contrôle" : "Activer le contrôle");
+        boutonBasculementActif.setBackgroundColor(estActif ? 0xFF4CAF50 : 0xFFF44336);
+        boutonBasculementActif.setTextColor(0xFFFFFFFF);
+        int paddingHorizontal = (int)(20 * conteneur.getContext().getResources().getDisplayMetrics().density);
+        int paddingVertical = (int)(10 * conteneur.getContext().getResources().getDisplayMetrics().density);
+        boutonBasculementActif.setPadding(paddingHorizontal, paddingVertical, paddingHorizontal, paddingVertical);
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        int margin = (int)(8 * conteneur.getContext().getResources().getDisplayMetrics().density);
+        params.setMargins(margin, margin, margin, margin);
+        boutonBasculementActif.setLayoutParams(params);
         conteneur.addView(boutonBasculementActif);
 
         boutonBasculementActif.setOnClickListener(v -> {

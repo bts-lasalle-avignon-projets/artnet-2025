@@ -100,6 +100,7 @@ public class Univers {
     }
 
     public void retirerEquipement(EquipementDmx e) {
+        Log.d(TAG, "retirerEquipement()");
         if (equipements.remove(e)) {
             nbEquipements--;
         }
