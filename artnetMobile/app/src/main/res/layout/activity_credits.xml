@@ -27,8 +27,7 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/logoLaSalle">
+        app:layout_constraintStart_toStartOf="parent">
 
       <Button
           android:id="@+id/boutonAccueil"
@@ -60,6 +59,16 @@
           android:layout_marginStart="16dp" />
 
       <Button
+          android:id="@+id/boutonParametres"
+          style="@style/CustomTextView"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/boutonParametres"
+          android:textSize="20sp"
+          android:backgroundTint="@color/bgHeaderFooter"
+          android:layout_marginStart="16dp" />
+
+      <Button
           android:id="@+id/boutonCredits"
           style="@style/CustomTextViewOn"
           android:layout_width="wrap_content"
@@ -70,16 +79,6 @@
           android:layout_marginStart="16dp" />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/logoLaSalle"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:contentDescription="@string/cD_lasalle"
-        android:src="@drawable/lasalle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginEnd="10dp"/>
   </androidx.constraintlayout.widget.ConstraintLayout>
 
   <!-- CONTENU PRINCIPAL -->
@@ -192,6 +191,17 @@
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent">
+
+    <ImageView
+        android:id="@+id/logoLaSalle"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:contentDescription="@string/cD_lasalle"
+        android:src="@drawable/lasalle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="10dp"/>
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

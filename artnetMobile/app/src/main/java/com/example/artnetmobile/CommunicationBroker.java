@@ -20,148 +20,130 @@ import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
 
-public class CommunicationBroker
-{
+public class CommunicationBroker {
     /**
      * Constantes
      */
-    private static final String TAG                   = "_CommunicationBroker";
-    public static final String  TEST_IP_BROKER        = "192.168.1.104";
-    public static final int     TEST_PORT_BROKER      = 1883;
-    public static final String  TOPIC_ARTNET          = "Artnet/#"; // par défaut
-    public static final int     BROKER_ERREUR         = 0;
-    public static final int     BROKER_CONNECTE       = 1;
-    public static final int     BROKER_DECONNECTE     = 2;
-    public static final int     BROKER_MESSAGE_RECU   = 3;
-    public static final int     BROKER_MESSAGE_ENVOYE = 4;
+    private static final String TAG = "_CommunicationBroker";
+    public static final String TEST_IP_BROKER = "192.168.1.104";
+    public static final int TEST_PORT_BROKER = 1883;
+    public static final String TOPIC_ARTNET = "Artnet/#"; // par défaut
+    public static final int BROKER_ERREUR = 0;
+    public static final int BROKER_CONNECTE = 1;
+    public static final int BROKER_DECONNECTE = 2;
+    public static final int BROKER_MESSAGE_RECU = 3;
+    public static final int BROKER_MESSAGE_ENVOYE = 4;
 
     /**
      * Attributs
      */
-    private static CommunicationBroker    instance; // Singleton
+    private static CommunicationBroker instance; // Singleton
     private Context context;
     private final String config = "artnet/config/#";
-    private final String universTopic = "artnet/univers/";
-    Handler           handler    = null;
+    Handler handler = null;
     public MqttClient mqttClient = null;
-    String            serveurUri;
-    String            clientId = MqttClient.generateClientId();
+    String serveurUri;
+    String clientId = MqttClient.generateClientId();
 
-    private CommunicationBroker()
-    {
+    private CommunicationBroker() {
         Log.d(TAG, "CommunicationBroker()");
         this.serveurUri = "tcp://" + TEST_IP_BROKER + ":" + TEST_PORT_BROKER;
         initialiser();
     }
 
-    public static CommunicationBroker getInstance()
-    {
-        if(instance == null)
-        {
-            instance = new CommunicationBroker();
+    public static CommunicationBroker getInstance() {
+        if (instance == null) {
+                instance = new CommunicationBroker();
         }
         return instance;
     }
 
-    public void setHandler(Handler handler)
-    {
+    public void setHandler(Handler handler) {
         this.handler = handler;
     }
 
-    private void initialiser()
-    {
+    private void initialiser() {
         Log.d(TAG, "initialiser()");
-        try
-        {
+        try {
             mqttClient = new MqttClient(serveurUri, clientId, new MemoryPersistence());
             mqttClient.setCallback(new MqttCallbackExtended() {
                 @Override
-                public void connectComplete(boolean b, String s)
-                {
+                public void connectComplete(boolean b, String s) {
                     Log.d(TAG, "connectComplete() -> " + s + " (" + b + ")");
                     Message message = new Message();
-                    message.what    = BROKER_CONNECTE;
-                    if(handler != null)
+                    message.what = BROKER_CONNECTE;
+                    if (handler != null)
                         handler.sendMessage(message);
                     sabonner(config);
                 }
 
                 @Override
-                public void connectionLost(Throwable throwable)
-                {
+                public void connectionLost(Throwable throwable) {
                     Log.d(TAG, "connectionLost() -> " + throwable.toString());
                     Message message = new Message();
-                    message.what    = BROKER_DECONNECTE;
-                    if(handler != null)
+                    message.what = BROKER_DECONNECTE;
+                    if (handler != null)
                         handler.sendMessage(message);
                 }
 
                 @Override
-                public void messageArrived(String topic, MqttMessage mqttMessage)
-                {
+                public void messageArrived(String topic, MqttMessage mqttMessage) {
                     Log.d(TAG, "messageArrived() " + topic + " -> " + mqttMessage.toString());
                     Message message = new Message();
-                    message.what    = BROKER_MESSAGE_RECU;
-                    Bundle b        = new Bundle();
+                    message.what = BROKER_MESSAGE_RECU;
+                    Bundle b = new Bundle();
                     b.putString("topic", topic);
                     b.putString("message", mqttMessage.toString());
                     message.obj = b;
-                    if(handler != null)
+                    if (handler != null)
                         handler.sendMessage(message);
                 }
 
                 @Override
-                public void deliveryComplete(IMqttDeliveryToken token)
-                {
+                public void deliveryComplete(IMqttDeliveryToken token) {
                     Log.d(TAG, "deliveryComplete()");
                     Message message = new Message();
-                    message.what    = BROKER_MESSAGE_ENVOYE;
-                    if(handler != null)
+                    message.what = BROKER_MESSAGE_ENVOYE;
+                    if (handler != null)
                         handler.sendMessage(message);
                 }
             });
-        }
-        catch(MqttException e)
-        {
+        } catch (MqttException e) {
             Log.e(TAG, "Erreur lors de l'initialisation du client MQTT", e);
             Message message = new Message();
-            message.what    = BROKER_ERREUR;
-            Bundle b        = new Bundle();
+            message.what = BROKER_ERREUR;
+            Bundle b = new Bundle();
             b.putString("erreur", e.toString());
-            if(handler != null)
+            if (handler != null)
                 handler.sendMessage(message);
         }
     }
 
-    public void connecter()
-    {
-        if(estConnecte())
+    public void connecter() {
+        if (estConnecte())
             deconnecter();
         Log.d(TAG, "connecter() serveurUri -> " + serveurUri);
 
         Thread connexion = new Thread(new Runnable() {
-            public void run()
-            {
+            public void run() {
                 MqttConnectOptions mqttConnectOptions = new MqttConnectOptions();
                 mqttConnectOptions.setAutomaticReconnect(true);
                 mqttConnectOptions.setCleanSession(true);
-                try
-                {
+                try {
                     mqttClient.connect(mqttConnectOptions);
-                }
-                catch(MqttException e)
-                {
+                } catch (MqttException e) {
                     Log.e(TAG, "Erreur de connexion MQTT", e);
                     Message message = new Message();
-                    message.what    = BROKER_ERREUR;
-                    Bundle b        = new Bundle();
+                    message.what = BROKER_ERREUR;
+                    Bundle b = new Bundle();
                     b.putString("erreur", e.toString());
-                    if(handler != null)
+                    if (handler != null)
                         handler.sendMessage(message);
                 }
             }
@@ -170,26 +152,21 @@ public class CommunicationBroker
         connexion.start();
     }
 
-    public void deconnecter()
-    {
-        if(!estConnecte())
+    public void deconnecter() {
+        if (!estConnecte())
             return;
         Log.d(TAG, "deconnecter() serveurUri -> " + serveurUri);
         Thread deconnexion = new Thread(new Runnable() {
-            public void run()
-            {
-                try
-                {
+            public void run() {
+                try {
                     mqttClient.disconnect();
-                }
-                catch(MqttException e)
-                {
+                } catch (MqttException e) {
                     Log.e(TAG, "Erreur de déconnexion MQTT", e);
                     Message message = new Message();
-                    message.what    = BROKER_ERREUR;
-                    Bundle b        = new Bundle();
+                    message.what = BROKER_ERREUR;
+                    Bundle b = new Bundle();
                     b.putString("erreur", e.toString());
-                    if(handler != null)
+                    if (handler != null)
                         handler.sendMessage(message);
                 }
             }
@@ -198,70 +175,58 @@ public class CommunicationBroker
         deconnexion.start();
     }
 
-    public boolean estConnecte()
-    {
+    public boolean estConnecte() {
         Log.d(TAG, "estConnecte() " + (mqttClient != null && mqttClient.isConnected()));
         return mqttClient != null && mqttClient.isConnected();
     }
 
-    public boolean sabonner(String topic)
-    {
+    public boolean sabonner(String topic) {
         Log.d(TAG, "sabonner() topic -> " + topic);
-        if(mqttClient == null || !mqttClient.isConnected())
-        {
+        if (mqttClient == null || !mqttClient.isConnected()) {
             return false;
         }
-        if(topic.isEmpty())
+        if (topic.isEmpty())
             return false;
 
-        try
-        {
+        try {
             mqttClient.subscribe(topic);
             return true;
-        }
-        catch(MqttException e)
-        {
+        } catch (MqttException e) {
             Log.e(TAG, "Erreur lors de l'abonnement MQTT", e);
             Message message = new Message();
-            message.what    = BROKER_ERREUR;
-            Bundle b        = new Bundle();
+            message.what = BROKER_ERREUR;
+            Bundle b = new Bundle();
             b.putString("erreur", e.toString());
-            if(handler != null)
+            if (handler != null)
                 handler.sendMessage(message);
             return false;
         }
     }
 
-    public boolean desabonner(String topic)
-    {
+    public boolean desabonner(String topic) {
         Log.d(TAG, "desabonner() topic -> " + topic);
-        if(mqttClient == null || !mqttClient.isConnected())
-        {
+        if (mqttClient == null || !mqttClient.isConnected()) {
             return false;
         }
-        if(topic.isEmpty())
+        if (topic.isEmpty())
             return false;
 
-        try
-        {
+        try {
             mqttClient.unsubscribe(topic);
             return true;
-        }
-        catch(MqttException e)
-        {
+        } catch (MqttException e) {
             Log.e(TAG, "Erreur lors du désabonnement MQTT", e);
             Message message = new Message();
-            message.what    = BROKER_ERREUR;
-            Bundle b        = new Bundle();
+            message.what = BROKER_ERREUR;
+            Bundle b = new Bundle();
             b.putString("erreur", e.toString());
-            if(handler != null)
+            if (handler != null)
                 handler.sendMessage(message);
             return false;
         }
     }
 
-    public void traiterMessageConfig(String topicMQTT, String messageMQTT)
-    {
+    public void traiterMessageConfig(String topicMQTT, String messageMQTT) {
         try {
             JSONObject json = new JSONObject(messageMQTT);
             String nomUnivers = topicMQTT.substring("artnet/config/".length());
@@ -286,24 +251,11 @@ public class CommunicationBroker
         }
     }
 
-    public void basculerEmissionUnivers(Univers u) {
-        Log.d(TAG, "basculerEmissionUnivers() -> " + u.getNom());
-        String topic = universTopic + u.getNom();
-
-        if (!u.getActif()) {
-            u.setActif(true);
-            Log.d(TAG, u.getNom() + "-> Actif");
-        } else {
-            u.setActif(false);
-            Log.d(TAG, u.getNom() + "-> Inactif");
-        }
-    }
-
-    public void envoyer(String topic, int num, String json) {
+    public void envoyer(String topic, Object nom, String json) {
         Log.d(TAG, "envoyer()");
 
         try {
-            String topicComplet = topic + "/" + num;
+            String topicComplet = topic + "/" + nom;
             MqttMessage message = new MqttMessage(json.getBytes());
             message.setQos(0);
             message.setRetained(false);
@@ -332,4 +284,28 @@ public class CommunicationBroker
         this.context = context.getApplicationContext();
     }
 
+    public void sauvegarderEquipement(EquipementDmx equipementDmx) {
+        String topic = "artnet/bdd/equipements/ecriture/" + Univers.rechercherUniversNum(equipementDmx.getUnivers());
+        String nomEquipement = equipementDmx.getNom();
+
+        JSONObject json = new JSONObject();
+        try {
+            json.put("nomEquipement", equipementDmx.getNom());
+            json.put("univers", equipementDmx.getUnivers());
+            json.put("typeEquipement", equipementDmx.getType());
+            json.put("nombreCanaux", equipementDmx.getNbCanaux());
+            json.put("canalInitial", equipementDmx.getAdresseDMX());
+
+            JSONArray canauxArray = new JSONArray();
+            for (String canal : equipementDmx.getCanaux()) {
+                canauxArray.put(canal);
+            }
+            json.put("canaux", canauxArray);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+        Log.d("JSON", "PUBLISH (création équipement) --> " + topic + " : " + json);
+        envoyer(topic, nomEquipement, json.toString());
+    }
 }

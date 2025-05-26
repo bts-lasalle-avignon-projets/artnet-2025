@@ -25,6 +25,7 @@ import java.util.Vector;
 public class Equipement extends AppCompatActivity {
     private static final String TAG = "_Equipement";
     VueArtnet vue = VueArtnet.getInstance();
+    private CommunicationBroker communicationBroker = CommunicationBroker.getInstance();;
 
     private ConstraintLayout creationEquipement;
     private Spinner spinnerEquipement;
@@ -82,10 +83,13 @@ public class Equipement extends AppCompatActivity {
             String val = editText.getText().toString().trim();
             if (!val.isEmpty()) {
                 canaux.add(val);
+            } else {
+                canaux.add("Canal " + (adresse + i));
             }
         }
 
-        new EquipementDmx(numUnivers, nomEquipement, typeSelectionne, nbCanaux, adresse, canaux);
+        EquipementDmx equipement = new EquipementDmx(numUnivers, nomEquipement, typeSelectionne, nbCanaux, adresse, canaux);
+        communicationBroker.sauvegarderEquipement(equipement);
         Toast.makeText(Equipement.this, "Equipement créé : " + nomEquipement + ", sur l'univers " + numUnivers, Toast.LENGTH_SHORT).show();
 
         editTextNom.setText("");

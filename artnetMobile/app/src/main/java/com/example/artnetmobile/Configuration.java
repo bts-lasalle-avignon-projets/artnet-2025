@@ -1,5 +1,6 @@
 package com.example.artnetmobile;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -55,6 +56,7 @@ public class Configuration extends AppCompatActivity {
         initialiserListener();
     }
 
+    @SuppressLint("SetTextI18n")
     private void controlerEquipement() {
         conteneurCanaux.removeAllViews();
         listeCanaux.clear();
@@ -74,8 +76,10 @@ public class Configuration extends AppCompatActivity {
 
             SeekBar slider = new SeekBar(Configuration.this);
             slider.setMax(255);
-            slider.setProgress(0);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(500, 100); // largeur, hauteur en pixels
+            slider.setMin(-1);
+            slider.setProgress(equipement.getValeurCanaux(i));
+            valeurSlider.setText(Integer.toString(equipement.getValeurCanaux(i)));
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(500, 100);
             slider.setLayoutParams(params);
 
             slider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -92,7 +96,7 @@ public class Configuration extends AppCompatActivity {
             });
 
             TextView description = new TextView(Configuration.this);
-            description.setText((canaux != null && i < canaux.size()) ? canaux.get(i) : "Canal " + (adresse + i));
+            description.setText(canaux.get(i));
             description.setGravity(Gravity.CENTER);
             description.setTextSize(12);
 
@@ -120,13 +124,18 @@ public class Configuration extends AppCompatActivity {
         int adresseBase = equipement.getAdresseDMX();
 
         for (int i = 0; i < valeurs.size(); i++) {
-            try {
-                org.json.JSONObject jsonCanal = new org.json.JSONObject();
-                jsonCanal.put("canal", adresseBase + i);
-                jsonCanal.put("valeur", valeurs.get(i));
-                jsonArray.put(jsonCanal);
-            } catch (Exception e) {
-                Log.e(TAG, "Erreur : ", e);
+            int valeur = valeurs.get(i);
+            equipement.setValeurCanaux(i, valeur);
+
+            if(valeur != -1) {
+                try {
+                    org.json.JSONObject jsonCanal = new org.json.JSONObject();
+                    jsonCanal.put("canal", adresseBase + i);
+                    jsonCanal.put("valeur", valeur);
+                    jsonArray.put(jsonCanal);
+                } catch (Exception e) {
+                    Log.e(TAG, "Erreur : ", e);
+                }
             }
         }
         return jsonArray.toString();
@@ -182,10 +191,11 @@ public class Configuration extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
+                    String topic = "artnet/univers";
                     String json = construireJson();
-                    Log.d("JSON", json);
+                    Log.d("JSON", "PUBLISH (envoyer valeurs) --> " + topic + "/" + univers.getNum() + " : " + json);
                     Toast.makeText(v.getContext(), "Valeurs envoyées à l'équipement : " + equipement.getNom(), Toast.LENGTH_SHORT).show();
-                    communicationBroker.envoyer("artnet/univers", univers.getNum(), json);
+                    communicationBroker.envoyer(topic, univers.getNum(), json);
                 } catch (Exception e) {
                     Log.e(TAG, "Erreur :", e);
                 }
@@ -196,19 +206,23 @@ public class Configuration extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 for (SeekBar slider : listeCanaux) {
-                    slider.setProgress(0);
+                    slider.setProgress(-1);
                 }
+                String topic = "artnet/univers";
                 String json = resetJSON();
-                Log.d("JSON", json);
+                Log.d("JSON", "PUBLISH (envoyer valeurs) --> " + topic + "/" + univers.getNum() + " : " + json);
                 Toast.makeText(v.getContext(), "Equipement réinitialisé : " + equipement.getNom(), Toast.LENGTH_SHORT).show();
-                communicationBroker.envoyer("artnet/univers", univers.getNum(), json);
+                communicationBroker.envoyer(topic, univers.getNum(), json);
             }
         });
 
         boutonSupprimerEquipement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String topic = "artnet/bdd/equipements/ecriture/" + Univers.rechercherUniversNum(equipement.getUnivers());
                 Toast.makeText(v.getContext(), "Equipement supprimé : " + equipement.getNom(), Toast.LENGTH_SHORT).show();
+                Log.d("JSON", "PUBLISH (supprimer equipement) --> " + topic);
+                communicationBroker.envoyer(topic, equipement.getNom(), "");
                 univers.retirerEquipement(equipement);
                 layoutControle.removeAllViews();
             }
@@ -222,6 +236,7 @@ public class Configuration extends AppCompatActivity {
 
         for (int i = 0; i < valeurs.size(); i++) {
             try {
+                equipement.setValeurCanaux(i, 0);
                 org.json.JSONObject jsonCanal = new org.json.JSONObject();
                 jsonCanal.put("canal", adresseBase + i);
                 jsonCanal.put("valeur", 0);

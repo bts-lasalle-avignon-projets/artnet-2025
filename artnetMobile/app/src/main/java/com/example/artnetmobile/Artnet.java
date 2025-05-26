@@ -1,9 +1,12 @@
 package com.example.artnetmobile;
 
+import android.util.Log;
+
 public class Artnet
 {
     private VueArtnet           vueArtnet;
     private CommunicationBroker communicationBroker;
+    private static final String TAG = "_Artnet";
 
     public Artnet(CommunicationBroker communicationBroker)
     {
@@ -20,15 +23,9 @@ public class Artnet
         return vueArtnet;
     }
 
-    public void ajouterEquipement()
+    public void sauvegarderEquipement(EquipementDmx equipementDmx)
     {
-    }
-
-    public void modifierCanal()
-    {
-    }
-
-    public void envoyerCommande()
-    {
+        Log.d(TAG, "sauvegarderEquipement()");
+        communicationBroker.sauvegarderEquipement(equipementDmx);
     }
 }

@@ -8,7 +8,7 @@
     <string name="copyright" translatable="false">© CLEMENT Aymeric - 2025</string>
     <string name="bienvenue">Bienvenue dans l\'application !</string>
     <string name="accueilUnivers">Sélectionnez un univers à droite pour continuer</string>
-    <string name="universExistants">Actualiser la liste des univers existants</string>
+    <string name="universExistants">Actualiser la liste des modules</string>
     <string name="afficherUnivers">Afficher l\'univers</string>
 
     <!-- Navbar -->
@@ -63,4 +63,5 @@
     <string name="reset">Réinitialiser les valeurs à 0</string>
     <string name="supprimerEquipement">Supprimer l\'équipement</string>
     <string name="creer_equipement">Créer un équipement</string>
+    <string name="boutonParametres">Parametres</string>
 </resources>

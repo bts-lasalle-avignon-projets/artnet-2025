@@ -15,6 +15,7 @@ public class EquipementDmx
     private int                nbCanaux;
     private int                adresseDMX;
     private Vector<String> canaux = new Vector<>();
+    private Vector<Integer> valeursCanaux = new Vector<>();
 
     public EquipementDmx(int univers, String nom, String type, int nbCanaux, int adresseDMX, Vector<String> canaux) {
         Log.d(TAG, "EquipementDmx()");
@@ -26,6 +27,11 @@ public class EquipementDmx
         this.adresseDMX = adresseDMX;
         this.canaux = canaux;
         Univers.ajouterEquipementUnivers(this);
+
+        for (int i = 0; i < nbCanaux; i++) {
+            valeursCanaux.add(-1);
+        }
+
         Log.d(TAG, "ID : " + idEquipement + " - Univers : " + univers + " - Nom : " + nom + " - Type : " + type + " - Nombre canaux : " + nbCanaux + " - Premier canal : " + adresseDMX);
     }
 
@@ -100,4 +106,13 @@ public class EquipementDmx
     @Override
     public String toString() { return nom; }
 
+    public int getValeurCanaux(int numCanal)
+    {
+        return valeursCanaux.get(numCanal);
+    }
+
+    public void setValeurCanaux(int numCanal, int valeur)
+    {
+        valeursCanaux.set(numCanal, valeur);
+    }
 }
