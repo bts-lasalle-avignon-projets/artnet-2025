@@ -64,4 +64,5 @@
     <string name="supprimerEquipement">Supprimer l\'équipement</string>
     <string name="creer_equipement">Créer un équipement</string>
     <string name="boutonParametres">Parametres</string>
+    <string name="chargerBDDEquipements">Charger les équipements</string>
 </resources>
