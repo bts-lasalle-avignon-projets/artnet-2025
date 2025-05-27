@@ -56,4 +56,4 @@ jobs:
         run: php -S localhost:8000 -t ./artnetAdministration/ &
 
       - name: Run tests
-        run: ./artnetAdministration/vendor/bin/phpunit tests/ArtnetAdministrationTest.php
+        run: ./artnetAdministration/vendor/bin/phpunit artnetAdministration/tests/ArtnetAdministrationTest.php
