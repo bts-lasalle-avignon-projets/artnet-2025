@@ -1,6 +1,6 @@
 [![Java Format](https://github.com/bts-lasalle-avignon-projets/artnet-2025/actions/workflows/clang-format.yml/badge.svg)](https://github.com/bts-lasalle-avignon-projets/artnet-2025/actions/workflows/clang-format.yml)
 [![Build Android App](https://github.com/bts-lasalle-avignon-projets/artnet-2025/actions/workflows/androidBuild.yml/badge.svg)](https://github.com/bts-lasalle-avignon-projets/artnet-2025/actions/workflows/androidBuild.yml)
-[![Build PHP MVC framework](https://github.com/bts-lasalle-avignon-projets/artnet-2025/actions/workflows/php-artnet.yml/badge.svg)](https://github.com/bts-lasalle-avignon-projets/artnet-2025/actions/workflows/php-artnet.yml)
+[![Tests PHP artnetAdministration](https://github.com/bts-lasalle-avignon-projets/artnet-2025/actions/workflows/php-artnet.yml/badge.svg)](https://github.com/bts-lasalle-avignon-projets/artnet-2025/actions/workflows/php-artnet.yml)
 
 # <img src="images/projecteurs.png" alt="Logo ArtNet" width="10%"> Projet Artnet 2025 
 
