@@ -34,16 +34,16 @@ function journaliser($message)
 }
 
 // Programme principal
-// Sélectionne le topic pour les nouveaux modules WiFi DMX
-$topicSouscri = "artnet/bdd/equipements/ecriture/univers/#";  //TODO univers
-$topicPublish = "artnet/bdd/equipements/lecture/univers/";    //TODO univers
+// Sélectionne le topic pour les équipement DMX
+$topicSouscrit = "artnet/bdd/equipements/ecriture/#";
+$topicPublish = "artnet/bdd/equipements/lecture/";
 $qos = 0;
 $timeout = 1; // période de récupération des messages en secondes (sinon 0 pour aucun timeout)
 
 // Récupère le broker actif
 $brokerModel = new BrokerModel();
 $broker = $brokerModel->getBrokerMQTTActif();
-$EquipementDMXModel = new EquipementDMXModel();
+$equipementDMXModel = new EquipementDMXModel();
 
 // Il y a un broker actif ?
 if ($broker) {
@@ -57,8 +57,8 @@ if ($broker) {
         if ($communicationBroker->estConnecte()) {
             journaliser("Broker connecté");
             // Souscrit au topic
-            journaliser("Souscription au topic \"" . $topicSouscri . "\"");
-            $resultatSouscription = $communicationBroker->souscrire($topicSouscri, $qos);
+            journaliser("Souscription au topic \"" . $topicSouscrit . "\"");
+            $resultatSouscription = $communicationBroker->souscrire($topicSouscrit, $qos);
             if ($resultatSouscription) {
                 // C'est un service ...
                 while (true) {
@@ -71,7 +71,7 @@ if ($broker) {
                             foreach ($messages as $topicMessage => $listeMessages) {
                                 foreach ($listeMessages as $message) {
                                     journaliser("Réception du message : \"" . $message . "\" sur le topic \"" . $topicMessage . "\"");
-                                    $ajout = $EquipementDMXModel->topicADD($message);
+                                    $ajout = $equipementDMXModel->addEquipementDepuisTopic($message);
                                     if ($ajout) {
                                         journaliser("Equipement DMX ajouté !");
                                     }
@@ -85,7 +85,7 @@ if ($broker) {
             $communicationBroker->deconnecter();
         }
     } else {
-        journaliser("Erreur de connexion au broker ! \"" . $topicSouscri . "\"");
+        journaliser("Erreur de connexion au broker ! \"" . $topicSouscrit . "\"");
     }
 } else {
     journaliser("Aucun broker actif !");
