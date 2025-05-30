@@ -72,7 +72,19 @@ class EquipementDMXModel extends Model
 				ORDER BY typeEquipementDMX.typeEquipement
 			");
 			$typeEquipements = $this->getResults();
-			return $typeEquipements ?? ACTION_ERREUR;
+
+			// Récupère la liste des univers
+			$this->query("
+				SELECT moduleDMXWiFi.*
+				FROM moduleDMXWiFi
+				ORDER BY moduleDMXWiFi.nomBoitier
+			");
+			$universModuleDMXWiFi = $this->getResults();
+
+			return [
+				'typeEquipements' => $typeEquipements,
+				'universModuleDMXWiFi' => $universModuleDMXWiFi
+			];
 		}
 	}
 
