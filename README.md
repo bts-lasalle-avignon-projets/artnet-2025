@@ -34,7 +34,7 @@
 
 - Nom du projet : ARTNET
 - Date de début : 25 Février 2025
-- Version : --
+- Version : 1.0
 
 ### Présentation
 
