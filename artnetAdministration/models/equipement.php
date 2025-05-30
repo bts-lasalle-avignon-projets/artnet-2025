@@ -328,20 +328,6 @@ class EquipementDMXModel extends Model
 		return true;
 	}
 
-	public function getUniversModule($adresseMAC)
-	{
-		// Récupère la liste des univers des modules
-		$this->query("
-			SELECT *
-			FROM moduleDMXWiFi
-			WHERE adresseMAC = :adresseMAC
-			ORDER BY nomBoitier
-			");
-		$this->bind(':adresseMac', $adresseMAC);
-		$universModule = $this->getResults();
-		return $universModule ?? null;
-	}
-
 	public function getBrokerMQTTActif()
 	{
 		// Récupère le broker actif
