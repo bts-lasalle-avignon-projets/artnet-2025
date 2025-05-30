@@ -12,8 +12,8 @@
 				<label for="type">Type</label>
 				<select name="type" id="type" class="form-control" required>
 					<option value="" disabled selected>-- Sélectionnez un type d'équipement --</option>
-					<?php if (!empty($datas)): ?>
-						<?php foreach ($datas as $type): ?>
+					<?php if (!empty($datas['typeEquipements'])): ?>
+						<?php foreach ($datas['typeEquipements'] as $type): ?>
 							<option value="<?= htmlspecialchars($type['idTypeEquipement']) ?>">
 								<?php echo htmlspecialchars($type['typeEquipement']) . " (" . $type['nbCanaux'] . " canaux)";  ?>
 							</option>
@@ -25,15 +25,22 @@
 			</div>
 			<div class="form-group">
 				<label for="univers">Univers</label>
-				<input type="number" name="univers" class="form-control" id="univers" required />
+				<select name="univers" id="univers" class="form-control" required>
+					<option value="" disabled selected>-- Sélectionnez un univers --</option>
+					<?php if (!empty($datas['universModuleDMXWiFi'])): ?>
+						<?php foreach ($datas['universModuleDMXWiFi'] as $univers): ?>
+							<option value="<?= htmlspecialchars($univers['univers']) ?>">
+								<?php echo htmlspecialchars($univers['univers']) . " (" . $univers['nomBoitier'] . ")";  ?>
+							</option>
+						<?php endforeach; ?>
+					<?php else: ?>
+						<option value="" disabled>Aucun univers disponible</option>
+					<?php endif; ?>
+				</select>
 			</div>
 			<div class="form-group">
 				<label for="canalInitial">Canal initial</label>
 				<input type="number" name="canalInitial" class="form-control" id="canalInitial" required />
-			</div>
-			<div class="form-group">
-				<label for="nbCanaux">Nombre Canaux</label>
-				<input type="number" name="nbCanaux" class="form-control" id="nbCanaux" required />
 			</div>
 			<input class="btn btn-primary" name="submit" type="submit" value="Envoyer" />
 			<a class="btn btn-danger" href="<?php echo ROOT_PATH; ?>equipementDMX">Annuler</a>

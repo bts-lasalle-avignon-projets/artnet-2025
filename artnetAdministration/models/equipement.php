@@ -72,7 +72,19 @@ class EquipementDMXModel extends Model
 				ORDER BY typeEquipementDMX.typeEquipement
 			");
 			$typeEquipements = $this->getResults();
-			return $typeEquipements ?? ACTION_ERREUR;
+
+			// Récupère la liste des univers
+			$this->query("
+				SELECT moduleDMXWiFi.*
+				FROM moduleDMXWiFi
+				ORDER BY moduleDMXWiFi.nomBoitier
+			");
+			$universModuleDMXWiFi = $this->getResults();
+
+			return [
+				'typeEquipements' => $typeEquipements,
+				'universModuleDMXWiFi' => $universModuleDMXWiFi
+			];
 		}
 	}
 
@@ -314,6 +326,20 @@ class EquipementDMXModel extends Model
 			return false;
 		}
 		return true;
+	}
+
+	public function getUniversModule($adresseMAC)
+	{
+		// Récupère la liste des univers des modules
+		$this->query("
+			SELECT *
+			FROM moduleDMXWiFi
+			WHERE adresseMAC = :adresseMAC
+			ORDER BY nomBoitier
+			");
+		$this->bind(':adresseMac', $adresseMAC);
+		$universModule = $this->getResults();
+		return $universModule ?? null;
 	}
 
 	public function getBrokerMQTTActif()
