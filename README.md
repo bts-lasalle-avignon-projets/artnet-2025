@@ -62,19 +62,43 @@ La communication entre les modules est basée sur MQTT (_Message Queuing Telemet
 
 ### Module Serveur
 
+- Gérer un broker :
+
+![](./images/ihm/serveur/gerer-broker.png)
+
+- Liste des modules :
+
+![](./images/ihm/serveur/liste-module.png)
+
+- Gérer un type d'équipement DMX :
+
+![](./images/ihm/serveur/gerer-type-equipement.png)
+
+- Création d'un équipement DMX :
+
+![](./images/ihm/serveur/creation-equipement.png)
+
+- Gérer un équipement DMX :
+
+![](./images/ihm/serveur/gerer-equipement.png)
+
+- Contrôle d'un équipement DMX :
+
+![](./images/ihm/serveur/controle-equipement.png)
+
 ### Module Application de commande
 
 - Sélection d'un univers :
 
-![](./images/ihm/mobile-selection-univers.jpg)
+![](./images/ihm/mobile/mobile-selection-univers.jpg)
 
 - Création d'un équipement DMX :
 
-![](./images/ihm/mobile-creation-equipement.jpg)
+![](./images/ihm/mobile/mobile-creation-equipement.jpg)
 
 - Contrôle d'un équipement DMX :
 
-![](./images/ihm/mobile-controle-equipement.jpg)
+![](./images/ihm/mobile/mobile-controle-equipement.jpg)
 
 ## Gestion de projet
 
