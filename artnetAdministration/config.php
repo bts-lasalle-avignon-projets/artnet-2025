@@ -1,9 +1,7 @@
 <?php
 
 // le nom à ajouter dans l'URL
-//define("URL_NAME", "/artnet-2025/artnetAdministration/"); // serveur de développement
-define("URL_NAME", "/"); // serveur de test GitHub
-
+define("URL_NAME", "/");
 
 // Pour le debug
 define("DEBUG", false);

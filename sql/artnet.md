@@ -1,4 +1,4 @@
-# Installation base de données artnet
+# Installation de la base de données
 
 ## MySQL
 
@@ -45,35 +45,15 @@ $ docker compose version
 $ docker version
 ```
 
-- Fichier [docker-compose.yml](./docker-compose.yml) :
-
-```yaml
-version: '3'
-services:
-    mysql:
-        image: mysql:latest
-        environment:
-            MYSQL_ROOT_PASSWORD: 'password'
-            MYSQL_DATABASE: 'artnet'
-            MYSQL_USER: 'artnet_User'
-            MYSQL_PASSWORD: 'password'
-        ports:
-            - 3306:3306
-        volumes:
-            - bdd:/var/lib/mysql
-volumes:
-    bdd:
-```
+- Création d'un fichier [docker-compose.yml](./docker-compose.yml)
 
 - Création et démarrage du serveur MySQL :
 
 > Vérifier que le serveur MySQL ne s'exécute pas en local : `systemctl status mysql.service` sinon il faut l'arrêter avec `sudo systemctl stop mysql.service`.
 
 ```sh
-$ docker compose --file sql/docker-compose.yml up --detach
+$ ./start-mysql.sh
 ```
-
-> Sinon pour simplement démarrer le service mysql : `$ docker compose start mysql`
 
 - Vérifications :
 
@@ -88,23 +68,25 @@ $ docker images
 $ docker compose top
 ```
 
-- Redémarrer le service mysql :
+- Redémarrer le service db :
 
 ```bash
-$ docker compose restart mysql
+$ docker compose restart db
 ```
 
 - Arrêter le service mysql :
 
 ```bash
-$ docker compose stop mysql
+$ ./stop-mysql.sh
 ```
 
-- Si besoin, supprimer l'image `mysql` :
+- Nettoyage complet :
 
 ```bash
-$ docker compose rm mysql
+$ docker system prune -f
+$ docker compose --file docker-compose.yml rm -f db
 $ docker rmi $(docker images mysql -q)
+$ docker volume rm docker_bdd
 ```
 
 ## Base de données artnet

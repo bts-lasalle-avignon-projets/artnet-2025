@@ -27,7 +27,7 @@
                 </div>
             </div>
             <input type="hidden" name="idEquipement" value="<?php echo $datas['idEquipement']; ?>" />
-            <input class="btn btn-primary" name="submit" type="submit" value="Publier" />
+            <input class="btn btn-primary" name="submit" type="submit" value="Envoyer" />
             <a class="btn btn-danger" href="<?php echo ROOT_PATH; ?>equipementDMX">Annuler</a>
         </form>
     </div>
