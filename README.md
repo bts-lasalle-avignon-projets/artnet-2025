@@ -1,6 +1,6 @@
-[![Java Format](https://github.com/bts-lasalle-avignon-projets/artnet-2025/actions/workflows/clang-format.yml/badge.svg)](https://github.com/bts-lasalle-avignon-projets/artnet-2025/actions/workflows/clang-format.yml)
-[![Build Android App](https://github.com/bts-lasalle-avignon-projets/artnet-2025/actions/workflows/androidBuild.yml/badge.svg)](https://github.com/bts-lasalle-avignon-projets/artnet-2025/actions/workflows/androidBuild.yml)
-[![Tests PHP artnetAdministration](https://github.com/bts-lasalle-avignon-projets/artnet-2025/actions/workflows/php-artnet.yml/badge.svg)](https://github.com/bts-lasalle-avignon-projets/artnet-2025/actions/workflows/php-artnet.yml) [![release](https://img.shields.io/github/v/release/bts-lasalle-avignon-projets/artnet-2025)](https://github.com/bts-lasalle-avignon-projets/artnet-2025/releases)
+[![Build Android App](https://github.com/bts-lasalle-avignon-projets/artnet-2025/actions/workflows/androidBuild.yml/badge.svg)](https://github.com/bts-lasalle-avignon-projets/artnet-2025/actions/workflows/androidBuild.yml) [![Java Format](https://github.com/bts-lasalle-avignon-projets/artnet-2025/actions/workflows/clang-format.yml/badge.svg)](https://github.com/bts-lasalle-avignon-projets/artnet-2025/actions/workflows/clang-format.yml)
+[![Tests PHP artnetAdministration](https://github.com/bts-lasalle-avignon-projets/artnet-2025/actions/workflows/php-artnet.yml/badge.svg)](https://github.com/bts-lasalle-avignon-projets/artnet-2025/actions/workflows/php-artnet.yml)
+[![release](https://img.shields.io/github/v/release/bts-lasalle-avignon-projets/artnet-2025)](https://github.com/bts-lasalle-avignon-projets/artnet-2025/releases)
 
 # <img src="images/projecteurs.png" alt="Logo ArtNet" width="10%"> Projet BTS CIEL 2025 : Artnet 2025
 
@@ -77,10 +77,6 @@ La communication entre les modules est basée sur MQTT (_Message Queuing Telemet
 - Création d'un équipement DMX :
 
 ![](./images/ihm/serveur/creation-equipement.png)
-
-- Gérer un équipement DMX :
-
-![](./images/ihm/serveur/gerer-equipement.png)
 
 - Contrôle d'un équipement DMX :
 
