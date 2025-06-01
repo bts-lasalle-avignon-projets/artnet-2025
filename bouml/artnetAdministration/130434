@@ -1,0 +1,1409 @@
+format 224
+"Contracts" // artnetAdministration::vendor::php-mqtt::client::src::Contracts
+  revision 1
+  modified_by 2 "btssn2"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  php_dir "/var/www/html/artnet-2025/artnetAdministration/vendor/php-mqtt/client/src/Contracts/"
+  php_namespace "PhpMqtt\\Client\\Contracts"
+  classview 129282 "Contracts"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 132098 "MqttClient"
+      visibility package stereotype "interface"
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}interface ${name}${extends} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+An interface for the MQTT client.
+
+@package PhpMqtt\\Client\\Contracts
+"
+      operation 145538 "connect"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "settings" explicit_type "ConnectionSettings|null"
+	    defaultvalue "null"
+	  param in name "useCleanSession" explicit_type "bool"
+	    defaultvalue "false
+    "
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Connect to the MQTT broker using the given settings.
+If no custom settings are passed, the client will use the default settings.
+See {@see ConnectionSettings} for more details about the defaults.
+
+@param ${t0} ${p0}
+@param ${t1}                    ${p1}
+@return ${type}
+@throws ConfigurationInvalidException
+@throws ConnectingToBrokerFailedException
+"
+      end
+
+      operation 145666 "disconnect"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Sends a disconnect message to the broker and closes the socket.
+
+@return ${type}
+@throws DataTransferException
+"
+      end
+
+      operation 145794 "isConnected"
+	public explicit_return_type "bool"
+	nparams 0
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Returns an indication, whether the client is supposed to be connected already or not.
+
+Note: the result of this method should be used carefully, since we can only detect a
+closed socket once we try to send or receive data. Therefore, this method only gives
+an indication whether the client is in a connected state or not.
+
+This information may be useful in applications where multiple parts use the client.
+
+@return ${type}
+"
+      end
+
+      operation 145922 "publish"
+	public explicit_return_type "void"
+	nparams 4
+	  param in name "topic" explicit_type "string"
+	  param in name "message" explicit_type "string"
+	  param in name "qualityOfService" explicit_type "int"
+	    defaultvalue "0"
+	  param in name "retain" explicit_type "bool"
+	    defaultvalue "false"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}, ${t3} ${p3}${v3}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Publishes the given message on the given topic. If the additional quality of service
+and retention flags are set, the message will be published using these settings.
+
+@param ${t0} ${p0}
+@param ${t1} ${p1}
+@param ${t2}    ${p2}
+@param ${t3}   ${p3}
+@return ${type}
+@throws DataTransferException
+@throws RepositoryException
+"
+      end
+
+      operation 146050 "subscribe"
+	public explicit_return_type "void"
+	nparams 3
+	  param in name "topicFilter" explicit_type "string"
+	  param in name "callback" explicit_type "callable|null"
+	    defaultvalue "null"
+	  param in name "qualityOfService" explicit_type "int"
+	    defaultvalue "0"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Subscribe to the given topic with the given quality of service.
+
+The subscription callback is passed the topic as first and the message as second
+parameter. A third parameter indicates whether the received message has been sent
+because it was retained by the broker. A fourth parameter contains matched topic wildcards.
+
+Example:
+```php
+$mqtt->subscribe(
+    '/foo/bar/+',
+    function (string $topic, string $message, bool $retained, array $matchedWildcards) use ($logger) {
+        $logger->info(\"Received {retained} message on topic [{topic}]: {message}\", [
+            'topic' => $topic,
+            'message' => $message,
+            'retained' => $retained ? 'retained' : 'live'
+        ]);
+    }
+);
+```
+
+If no callback is passed, a subscription will still be made. Received messages are delivered only to
+event handlers for received messages though.
+
+@param ${t0}        ${p0}
+@param ${t1} ${p1}
+@param ${t2}           ${p2}
+@return ${type}
+@throws DataTransferException
+@throws RepositoryException
+"
+      end
+
+      operation 146178 "unsubscribe"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "topicFilter" explicit_type "string"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Unsubscribe from the given topic.
+
+@param ${t0} ${p0}
+@return ${type}
+@throws DataTransferException
+@throws RepositoryException
+"
+      end
+
+      operation 146306 "interrupt"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Sets the interrupted signal. Doing so instructs the client to exit the loop, if it is
+actually looping.
+
+Sending multiple interrupt signals has no effect, unless the client exits the loop,
+which resets the signal for another loop.
+
+@return ${type}
+"
+      end
+
+      operation 146434 "loop"
+	public explicit_return_type "void"
+	nparams 3
+	  param in name "allowSleep" explicit_type "bool"
+	    defaultvalue "true"
+	  param in name "exitWhenQueuesEmpty" explicit_type "bool"
+	    defaultvalue "false"
+	  param in name "queueWaitLimit" explicit_type "int|null"
+	    defaultvalue "null"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Runs an event loop that handles messages from the server and calls the registered
+callbacks for published messages.
+
+If the second parameter is provided, the loop will exit as soon as all
+queues are empty. This means there may be no open subscriptions,
+no pending messages as well as acknowledgments and no pending unsubscribe requests.
+
+The third parameter will, if set, lead to a forceful exit after the specified
+amount of seconds, but only if the second parameter is set to true. This basically
+means that if we wait for all pending messages to be acknowledged, we only wait
+a maximum of $queueWaitLimit seconds until we give up. We do not exit after the
+given amount of time if there are open topic subscriptions though.
+
+@param ${t0}     ${p0}
+@param ${t1}     ${p1}
+@param ${t2} ${p2}
+@return ${type}
+@throws DataTransferException
+@throws InvalidMessageException
+@throws MqttClientException
+@throws ProtocolViolationException
+"
+      end
+
+      operation 146562 "loopOnce"
+	public explicit_return_type "void"
+	nparams 3
+	  param in name "loopStartedAt" explicit_type "float"
+	  param in name "allowSleep" explicit_type "bool"
+	    defaultvalue "false"
+	  param in name "sleepMicroseconds" explicit_type "int"
+	    defaultvalue "100000"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Runs an event loop iteration that handles messages from the server and calls the registered
+callbacks for published messages. Also resends pending messages and calls loop event handlers.
+
+This method can be used to integrate the MQTT client in another event loop (like ReactPHP or Ratchet).
+
+Note: To ensure the event handlers called by this method will receive the correct elapsed time,
+      the caller is responsible to provide the correct starting time of the loop as returned by `microtime(true)`.
+
+@param ${t0} ${p0}
+@param ${t1}  ${p1}
+@param ${t2}   ${p2}
+@return ${type}
+@throws DataTransferException
+@throws InvalidMessageException
+@throws MqttClientException
+@throws ProtocolViolationException
+"
+      end
+
+      operation 146690 "getHost"
+	public explicit_return_type "string"
+	nparams 0
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Returns the host used by the client to connect to.
+
+@return ${type}
+"
+      end
+
+      operation 146818 "getPort"
+	public explicit_return_type "int"
+	nparams 0
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Returns the port used by the client to connect to.
+
+@return ${type}
+"
+      end
+
+      operation 146946 "getClientId"
+	public explicit_return_type "string"
+	nparams 0
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Returns the identifier used by the client.
+
+@return ${type}
+"
+      end
+
+      operation 147074 "getReceivedBytes"
+	public explicit_return_type "int"
+	nparams 0
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Returns the total number of received bytes, across reconnects.
+
+@return ${type}
+"
+      end
+
+      operation 147202 "getSentBytes"
+	public explicit_return_type "int"
+	nparams 0
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Returns the total number of sent bytes, across reconnects.
+
+@return ${type}
+"
+      end
+
+      operation 147330 "registerLoopEventHandler"
+	public explicit_return_type "MqttClient"
+	nparams 1
+	  param in name "callback" explicit_type "\\Closure"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Registers a loop event handler which is called each iteration of the loop.
+This event handler can be used for example to interrupt the loop under
+certain conditions.
+
+The loop event handler is passed the MQTT client instance as first and
+the elapsed time which the loop is already running for as second
+parameter. The elapsed time is a float containing seconds.
+
+Example:
+```php
+$mqtt->registerLoopEventHandler(function (
+    MqttClient $mqtt,
+    float $elapsedTime
+) use ($logger) {
+    $logger->info(\"Running for [{$elapsedTime}] seconds already.\");
+});
+```
+
+Multiple event handlers can be registered at the same time.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 147458 "unregisterLoopEventHandler"
+	public explicit_return_type "MqttClient"
+	nparams 1
+	  param in name "callback" explicit_type "\\Closure|null"
+	    defaultvalue "null"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Unregisters a loop event handler which prevents it from being called
+in the future.
+
+This does not affect other registered event handlers. It is possible
+to unregister all registered event handlers by passing null as callback.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 147586 "registerPublishEventHandler"
+	public explicit_return_type "MqttClient"
+	nparams 1
+	  param in name "callback" explicit_type "\\Closure"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Registers a loop event handler which is called when a message is published.
+
+The loop event handler is passed the MQTT client as first, the topic as
+second and the message as third parameter. As fourth parameter, the
+message identifier will be passed. The QoS level as well as the retained
+flag will also be passed as fifth and sixth parameters.
+
+Example:
+```php
+$mqtt->registerPublishEventHandler(function (
+    MqttClient $mqtt,
+    string $topic,
+    string $message,
+    int $messageId,
+    int $qualityOfService,
+    bool $retain
+) use ($logger) {
+    $logger->info(\"Received message on topic [{$topic}]: {$message}\");
+});
+```
+
+Multiple event handlers can be registered at the same time.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 147714 "unregisterPublishEventHandler"
+	public explicit_return_type "MqttClient"
+	nparams 1
+	  param in name "callback" explicit_type "\\Closure|null"
+	    defaultvalue "null"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Unregisters a publish event handler which prevents it from being called
+in the future.
+
+This does not affect other registered event handlers. It is possible
+to unregister all registered event handlers by passing null as callback.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 147842 "registerMessageReceivedEventHandler"
+	public explicit_return_type "MqttClient"
+	nparams 1
+	  param in name "callback" explicit_type "\\Closure"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Registers an event handler which is called when a message is received from the broker.
+
+The message received event handler is passed the MQTT client as first, the topic as
+second and the message as third parameter. As fourth parameter, the QoS level will be
+passed and the retained flag as fifth.
+
+Example:
+```php
+$mqtt->registerReceivedMessageEventHandler(function (
+    MqttClient $mqtt,
+    string $topic,
+    string $message,
+    int $qualityOfService,
+    bool $retained
+) use ($logger) {
+    $logger->info(\"Received message on topic [{$topic}]: {$message}\");
+});
+```
+
+Multiple event handlers can be registered at the same time.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 147970 "unregisterMessageReceivedEventHandler"
+	public explicit_return_type "MqttClient"
+	nparams 1
+	  param in name "callback" explicit_type "\\Closure|null"
+	    defaultvalue "null"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Unregisters a message received event handler which prevents it from being called in the future.
+
+This does not affect other registered event handlers. It is possible
+to unregister all registered event handlers by passing null as callback.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+    end
+
+    class 133506 "MessageProcessor"
+      visibility package stereotype "interface"
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}interface ${name}${extends} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Implementations of this interface provide message parsing capabilities.
+Services of this type are used by the {@see MqttClient} to implement multiple protocol versions.
+
+@package PhpMqtt\\Client\\Contracts
+"
+      operation 143746 "tryFindMessageInBuffer"
+	public explicit_return_type "bool"
+	nparams 4
+	  param in name "buffer" explicit_type "string"
+	  param in name "bufferLength" explicit_type "int"
+	  param inout name "message" explicit_type "string|null"
+	    defaultvalue "null"
+	  param inout name "requiredBytes" explicit_type "int"
+	    defaultvalue "-1"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} & ${p2}${v2}, ${t3} & ${p3}${v3}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Try to parse a message from the incoming buffer. If a message could be parsed successfully,
+the given message parameter is set to the parsed message and the result is true.
+If no message could be parsed, the result is false and the required bytes parameter indicates
+how many bytes are missing for the message to be complete. If this parameter is set to -1,
+it means we have no (or not yet) knowledge about the required bytes.
+
+@param ${t0}      ${p0}
+@param ${t1}         ${p1}
+@param ${t2} ${p2}
+@param ${t3}         ${p3}
+@return ${type}
+"
+      end
+
+      operation 143874 "parseAndValidateMessage"
+	public explicit_return_type "Message|null"
+	nparams 1
+	  param in name "message" explicit_type "string"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}?${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Parses and validates the given message based on its message type and contents.
+If no valid message could be found in the data, and no further action is required by the caller,
+null is returned.
+
+@param ${t0} ${p0}
+@return ${type}
+@throws InvalidMessageException
+@throws ProtocolViolationException
+@throws MqttClientException
+"
+      end
+
+      operation 144002 "buildConnectMessage"
+	public explicit_return_type "string"
+	nparams 2
+	  param in name "connectionSettings" explicit_type "ConnectionSettings"
+	  param in name "useCleanSession" explicit_type "bool"
+	    defaultvalue "false"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Builds a connect message from the given connection settings, taking the protocol
+specifics into account.
+
+@param ${t0} ${p0}
+@param ${t1}               ${p1}
+@return ${type}
+"
+      end
+
+      operation 144130 "buildPingRequestMessage"
+	public explicit_return_type "string"
+	nparams 0
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Builds a ping request message.
+
+@return ${type}
+"
+      end
+
+      operation 144258 "buildPingResponseMessage"
+	public explicit_return_type "string"
+	nparams 0
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Builds a ping response message.
+
+@return ${type}
+"
+      end
+
+      operation 144386 "buildDisconnectMessage"
+	public explicit_return_type "string"
+	nparams 0
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Builds a disconnect message.
+
+@return ${type}
+"
+      end
+
+      operation 144514 "buildSubscribeMessage"
+	public explicit_return_type "string"
+	nparams 3
+	  param in name "messageId" explicit_type "int"
+	  param in name "subscriptions" explicit_type "Subscription[]"
+	  param in name "isDuplicate" explicit_type "bool"
+	    defaultvalue "false"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, array ${p1}${v1}, ${t2} ${p2}${v2}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Builds a subscribe message from the given parameters.
+
+@param ${t0}            ${p0}
+@param ${t1} ${p1}
+@param ${t2}           ${p2}
+@return ${type}
+"
+      end
+
+      operation 144642 "buildUnsubscribeMessage"
+	public explicit_return_type "string"
+	nparams 3
+	  param in name "messageId" explicit_type "int"
+	  param in name "topics" explicit_type "string[]"
+	  param in name "isDuplicate" explicit_type "bool"
+	    defaultvalue "false"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, array ${p1}${v1}, ${t2} ${p2}${v2}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Builds an unsubscribe message from the given parameters.
+
+@param ${t0}      ${p0}
+@param ${t1} ${p1}
+@param ${t2}     ${p2}
+@return ${type}
+"
+      end
+
+      operation 144770 "buildPublishMessage"
+	public explicit_return_type "string"
+	nparams 6
+	  param in name "topic" explicit_type "string"
+	  param in name "message" explicit_type "string"
+	  param in name "qualityOfService" explicit_type "int"
+	  param in name "retain" explicit_type "bool"
+	  param in name "messageId" explicit_type "int|null"
+	    defaultvalue "null"
+	  param in name "isDuplicate" explicit_type "bool"
+	    defaultvalue "false
+    "
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}, ${t3} ${p3}${v3}, ${t4} ${p4}${v4}, ${t5} ${p5}${v5}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Builds a publish message based on the given parameters.
+
+@param ${t0}   ${p0}
+@param ${t1}   ${p1}
+@param ${t2}      ${p2}
+@param ${t3}     ${p3}
+@param ${t4} ${p4}
+@param ${t5}     ${p5}
+@return ${type}
+"
+      end
+
+      operation 144898 "buildPublishAcknowledgementMessage"
+	public explicit_return_type "string"
+	nparams 1
+	  param in name "messageId" explicit_type "int"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Builds a publish acknowledgement for the given message identifier.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 145026 "buildPublishReceivedMessage"
+	public explicit_return_type "string"
+	nparams 1
+	  param in name "messageId" explicit_type "int"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Builds a publish received message for the given message identifier.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 145154 "buildPublishReleaseMessage"
+	public explicit_return_type "string"
+	nparams 1
+	  param in name "messageId" explicit_type "int"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Builds a publish release message for the given message identifier.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 145282 "buildPublishCompleteMessage"
+	public explicit_return_type "string"
+	nparams 1
+	  param in name "messageId" explicit_type "int"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Builds a publish complete message for the given message identifier.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 145410 "handleConnectAcknowledgement"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "message" explicit_type "string"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Handles the connect acknowledgement received from the broker. Exits normally if the
+connection could be established successfully according to the response. Throws an
+exception if the broker responded with an error.
+
+@param ${t0} ${p0}
+@throws ConnectingToBrokerFailedException
+"
+      end
+    end
+
+    class 133634 "Repository"
+      visibility package stereotype "interface"
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}interface ${name}${extends} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Implementations of this interface provide storage capabilities to an MQTT client.
+
+Services of this type have three primary goals:
+  1. Providing and keeping track of message identifiers, since they must be unique
+     within the message flow (i.e. there may not be duplicates of different messages
+     at the same time).
+  2. Storing and keeping track of subscriptions, which is especially necessary in case
+     of persisted sessions.
+  3. Storing and keeping track of pending messages (i.e. sent messages, which have not
+     been acknowledged yet by the broker).
+
+@package PhpMqtt\\Client\\Contracts
+"
+      operation 148098 "reset"
+	public explicit_return_type "bool"
+	nparams 0
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Re-initializes the repository by deleting all persisted data and restoring the original state,
+which was given when the repository was first created. This is used when a clean session
+is requested by a client during connection.
+
+@return ${type}
+"
+      end
+
+      operation 148226 "newMessageId"
+	public explicit_return_type "int"
+	nparams 0
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Returns a new message id. The message id might have been used before,
+but it is currently not being used (i.e. in a resend queue).
+
+@return ${type}
+@throws RepositoryException
+"
+      end
+
+      operation 148354 "countPendingOutgoingMessages"
+	public explicit_return_type "int"
+	nparams 0
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Returns the number of pending outgoing messages.
+
+@return ${type}
+"
+      end
+
+      operation 148482 "getPendingOutgoingMessage"
+	public explicit_return_type "PendingMessage|null"
+	nparams 1
+	  param in name "messageId" explicit_type "int"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}?${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Gets a pending outgoing message with the given message identifier, if found.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 148610 "getPendingOutgoingMessagesLastSentBefore"
+	public explicit_return_type "PendingMessage[]"
+	nparams 1
+	  param in name "dateTime" explicit_type "DateTime|null"
+	    defaultvalue "null"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Gets a list of pending outgoing messages last sent before the given date time.
+
+If date time is `null`, all pending messages are returned.
+
+The messages are returned in the same order they were added to the repository.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 148738 "addPendingOutgoingMessage"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "message" explicit_type "PendingMessage"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Adds a pending outgoing message to the repository.
+
+@param ${t0} ${p0}
+@return ${type}
+@throws PendingMessageAlreadyExistsException
+"
+      end
+
+      operation 148866 "markPendingOutgoingPublishedMessageAsReceived"
+	public explicit_return_type "bool"
+	nparams 1
+	  param in name "messageId" explicit_type "int"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Marks an existing pending outgoing published message as received in the repository.
+
+If the message does not exists, an exception is thrown,
+otherwise `true` is returned if the message was marked as received, and `false`
+in case it was already marked as received.
+
+@param ${t0} ${p0}
+@return ${type}
+@throws PendingMessageNotFoundException
+"
+      end
+
+      operation 148994 "removePendingOutgoingMessage"
+	public explicit_return_type "bool"
+	nparams 1
+	  param in name "messageId" explicit_type "int"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Removes a pending outgoing message from the repository.
+
+If a pending message with the given identifier is found and
+successfully removed from the repository, `true` is returned.
+Otherwise `false` will be returned.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 149122 "countPendingIncomingMessages"
+	public explicit_return_type "int"
+	nparams 0
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Returns the number of pending incoming messages.
+
+@return ${type}
+"
+      end
+
+      operation 149250 "getPendingIncomingMessage"
+	public explicit_return_type "PendingMessage|null"
+	nparams 1
+	  param in name "messageId" explicit_type "int"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}?${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Gets a pending incoming message with the given message identifier, if found.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 149378 "addPendingIncomingMessage"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "message" explicit_type "PendingMessage"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Adds a pending outgoing message to the repository.
+
+@param ${t0} ${p0}
+@return ${type}
+@throws PendingMessageAlreadyExistsException
+"
+      end
+
+      operation 149506 "removePendingIncomingMessage"
+	public explicit_return_type "bool"
+	nparams 1
+	  param in name "messageId" explicit_type "int"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Removes a pending incoming message from the repository.
+
+If a pending message with the given identifier is found and
+successfully removed from the repository, `true` is returned.
+Otherwise `false` will be returned.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 149634 "countSubscriptions"
+	public explicit_return_type "int"
+	nparams 0
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Returns the number of registered subscriptions.
+
+@return ${type}
+"
+      end
+
+      operation 149762 "addSubscription"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "subscription" explicit_type "Subscription"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Adds a subscription to the repository.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 149890 "getSubscriptionsMatchingTopic"
+	public explicit_return_type "Subscription[]"
+	nparams 1
+	  param in name "topicName" explicit_type "string"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Gets all subscriptions matching the given topic.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 150018 "removeSubscription"
+	public explicit_return_type "bool"
+	nparams 1
+	  param in name "topicFilter" explicit_type "string"
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Removes the subscription with the given topic filter from the repository.
+
+Returns `true` if a topic subscription existed and has been removed.
+Otherwise, `false` is returned.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+    end
+  end
+
+  deploymentview 129538 "Contracts"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 133890 "MessageProcessor"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+${namespace}
+
+use PhpMqtt\\Client\\ConnectionSettings;
+use PhpMqtt\\Client\\Exceptions\\ConnectingToBrokerFailedException;
+use PhpMqtt\\Client\\Exceptions\\InvalidMessageException;
+use PhpMqtt\\Client\\Exceptions\\MqttClientException;
+use PhpMqtt\\Client\\Exceptions\\ProtocolViolationException;
+use PhpMqtt\\Client\\Message;
+use PhpMqtt\\Client\\Subscription;
+
+${definition}
+
+"
+      associated_elems
+	class_ref 133506 // MessageProcessor
+      end
+    end
+
+    artifact 134018 "MqttClient"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+${namespace}
+
+use PhpMqtt\\Client\\ConnectionSettings;
+use PhpMqtt\\Client\\Exceptions\\ConfigurationInvalidException;
+use PhpMqtt\\Client\\Exceptions\\ConnectingToBrokerFailedException;
+use PhpMqtt\\Client\\Exceptions\\DataTransferException;
+use PhpMqtt\\Client\\Exceptions\\InvalidMessageException;
+use PhpMqtt\\Client\\Exceptions\\MqttClientException;
+use PhpMqtt\\Client\\Exceptions\\ProtocolViolationException;
+use PhpMqtt\\Client\\Exceptions\\RepositoryException;
+
+${definition}
+
+"
+      associated_elems
+	class_ref 132098 // MqttClient
+      end
+    end
+
+    artifact 134146 "Repository"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+${namespace}
+
+use DateTime;
+use PhpMqtt\\Client\\Exceptions\\PendingMessageAlreadyExistsException;
+use PhpMqtt\\Client\\Exceptions\\PendingMessageNotFoundException;
+use PhpMqtt\\Client\\Exceptions\\RepositoryException;
+use PhpMqtt\\Client\\PendingMessage;
+use PhpMqtt\\Client\\Subscription;
+
+${definition}
+
+"
+      associated_elems
+	class_ref 133634 // Repository
+      end
+    end
+  end
+end

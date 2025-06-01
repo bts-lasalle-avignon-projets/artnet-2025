@@ -1,0 +1,6 @@
+class Chargement
+!!!129687.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_chargement);
+        Log.d(TAG, "onCreate()");

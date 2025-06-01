@@ -1,0 +1,794 @@
+format 224
+"Exceptions" // artnetAdministration::vendor::php-mqtt::client::src::Exceptions
+  revision 1
+  modified_by 2 "btssn2"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  php_dir "/var/www/html/artnet-2025/artnetAdministration/vendor/php-mqtt/client/src/Exceptions/"
+  php_namespace "PhpMqtt\\Client\\Exceptions"
+  deploymentview 129666 "Exceptions"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 134274 "ClientNotConnectedToBrokerException"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+${namespace}
+${definition}
+
+"
+      associated_elems
+	class_ref 133762 // ClientNotConnectedToBrokerException
+      end
+    end
+
+    artifact 134402 "ConfigurationInvalidException"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+${namespace}
+${definition}
+
+"
+      associated_elems
+	class_ref 134018 // ConfigurationInvalidException
+      end
+    end
+
+    artifact 134530 "ConnectingToBrokerFailedException"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+namespace PhpMqtt\\Client\\Exceptions;"
+      associated_elems
+      end
+    end
+
+    artifact 134658 "DataTransferException"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+${namespace}
+${definition}
+
+"
+      associated_elems
+	class_ref 133890 // DataTransferException
+      end
+    end
+
+    artifact 134786 "InvalidMessageException"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+${namespace}
+${definition}
+
+"
+      associated_elems
+	class_ref 134402 // InvalidMessageException
+      end
+    end
+
+    artifact 134914 "MqttClientException"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+${namespace}
+${definition}
+
+"
+      associated_elems
+	class_ref 134146 // MqttClientException
+      end
+    end
+
+    artifact 135042 "PendingMessageAlreadyExistsException"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+${namespace}
+${definition}
+
+"
+      associated_elems
+	class_ref 134658 // PendingMessageAlreadyExistsException
+      end
+    end
+
+    artifact 135170 "PendingMessageNotFoundException"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+${namespace}
+${definition}
+
+"
+      associated_elems
+	class_ref 134914 // PendingMessageNotFoundException
+      end
+    end
+
+    artifact 135298 "ProtocolNotSupportedException"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+${namespace}
+${definition}
+
+"
+      associated_elems
+	class_ref 135042 // ProtocolNotSupportedException
+      end
+    end
+
+    artifact 135426 "ProtocolViolationException"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+${namespace}
+${definition}
+
+"
+      associated_elems
+	class_ref 135170 // ProtocolViolationException
+      end
+    end
+
+    artifact 135554 "RepositoryException"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+${namespace}
+${definition}
+
+"
+      associated_elems
+	class_ref 134786 // RepositoryException
+      end
+    end
+  end
+
+  classview 129538 "Exceptions"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 133762 "ClientNotConnectedToBrokerException"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Exception to be thrown if an MQTT client is not connected to a broker and tries
+to perform an action which requires a connection (e.g. publish or subscribe).
+
+@package PhpMqtt\\Client\\Exceptions
+"
+      classrelation 130690 // <generalisation>
+	relation 130690 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 130690 // <generalisation>
+	  b parent class_ref 133890 // DataTransferException
+      end
+
+      attribute 135554 "EXCEPTION_CONNECTION_LOST"
+	const_attribute package explicit_type ""
+	init_value " 0300"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 150146 "__construct"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "error" explicit_type "string"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${visibility}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+ClientNotConnectedToBrokerException constructor.
+
+@param ${t0} ${p0}
+"
+      end
+    end
+
+    class 133890 "DataTransferException"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Exception to be thrown if an MQTT client encountered an error while transferring data.
+
+@package PhpMqtt\\Client\\Exceptions
+"
+      classrelation 131074 // <generalisation>
+	relation 131074 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 131074 // <generalisation>
+	  b parent class_ref 134146 // MqttClientException
+      end
+
+      attribute 136706 "EXCEPTION_TX_DATA"
+	const_attribute package explicit_type ""
+	init_value " 0101"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 136834 "EXCEPTION_RX_DATA"
+	const_attribute package explicit_type ""
+	init_value " 0102"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 150274 "__construct"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "code" explicit_type "int"
+	  param in name "error" explicit_type "string"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${visibility}function ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+DataTransferException constructor.
+
+@param ${t0}    ${p0}
+@param ${t1} ${p1}
+"
+      end
+    end
+
+    class 134018 "ConfigurationInvalidException"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Exception to be thrown if an MQTT client has been misconfigured or wrong connection
+settings are being used.
+
+@package PhpMqtt\\Client\\Exceptions
+"
+      classrelation 130818 // <generalisation>
+	relation 130818 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 130818 // <generalisation>
+	  b parent class_ref 134146 // MqttClientException
+      end
+    end
+
+    class 134146 "MqttClientException"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Exception to be thrown if an MQTT client error occurs.
+
+@package PhpMqtt\\Client\\Exceptions
+"
+      classrelation 131330 // <generalisation>
+	relation 131330 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 131330 // <generalisation>
+	  b parent class_ref 134530 // \Exception
+      end
+
+      operation 150402 "__construct"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "message" explicit_type "string"
+	    defaultvalue "''"
+	  param in name "code" explicit_type "int"
+	    defaultvalue "0"
+	  param in name "parentException" explicit_type "\\Throwable|null"
+	    defaultvalue "null"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${visibility}function ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+MqttClientException constructor.
+
+@param ${t0}          ${p0}
+@param ${t1}             ${p1}
+@param ${t2} ${p2}
+"
+      end
+    end
+
+    class 134274 "ConnectingToBrokerFailedException"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Exception to be thrown if an MQTT client could not connect to the broker.
+
+@package PhpMqtt\\Client\\Exceptions
+"
+      classrelation 130946 // <generalisation>
+	relation 130946 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 130946 // <generalisation>
+	  b parent class_ref 134146 // MqttClientException
+      end
+
+      attribute 135682 "EXCEPTION_CONNECTION_FAILED"
+	const_attribute package explicit_type ""
+	init_value " 0001"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 135810 "EXCEPTION_CONNECTION_PROTOCOL_VERSION"
+	const_attribute package explicit_type ""
+	init_value " 0002"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 135938 "EXCEPTION_CONNECTION_IDENTIFIER_REJECTED"
+	const_attribute package explicit_type ""
+	init_value " 0003"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 136066 "EXCEPTION_CONNECTION_BROKER_UNAVAILABLE"
+	const_attribute package explicit_type ""
+	init_value " 0004"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 136194 "EXCEPTION_CONNECTION_INVALID_CREDENTIALS"
+	const_attribute package explicit_type ""
+	init_value " 0005"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 136322 "EXCEPTION_CONNECTION_UNAUTHORIZED"
+	const_attribute package explicit_type ""
+	init_value " 0006"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 136450 "EXCEPTION_CONNECTION_SOCKET_ERROR"
+	const_attribute package explicit_type ""
+	init_value " 1000"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 136578 "EXCEPTION_CONNECTION_TLS_ERROR"
+	const_attribute package explicit_type ""
+	init_value " 2000"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+    end
+
+    class 134402 "InvalidMessageException"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Exception to be thrown if an MQTT client encounters an invalid message.
+
+@package PhpMqtt\\Client\\Exceptions
+"
+      classrelation 131202 // <generalisation>
+	relation 131202 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 131202 // <generalisation>
+	  b parent class_ref 134146 // MqttClientException
+      end
+    end
+
+    class 134658 "PendingMessageAlreadyExistsException"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Exception to be thrown if a pending message with the same packet identifier is still pending.
+
+@package PhpMqtt\\Client\\Exceptions
+"
+      classrelation 131458 // <generalisation>
+	relation 131458 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 131458 // <generalisation>
+	  b parent class_ref 134786 // RepositoryException
+      end
+
+      operation 150530 "__construct"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "messageId" explicit_type "int"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${visibility}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+PendingMessageAlreadyExistsException constructor.
+
+@param ${t0} ${p0}
+"
+      end
+    end
+
+    class 134786 "RepositoryException"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Exception to be thrown if an MQTT client repository encounters an error.
+
+@package PhpMqtt\\Client\\Exceptions
+"
+      classrelation 131970 // <generalisation>
+	relation 131970 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 131970 // <generalisation>
+	  b parent class_ref 134146 // MqttClientException
+      end
+    end
+
+    class 134914 "PendingMessageNotFoundException"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Exception to be thrown if a pending message with the same packet identifier is not found.
+
+@package PhpMqtt\\Client\\Exceptions
+"
+      classrelation 131586 // <generalisation>
+	relation 131586 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 131586 // <generalisation>
+	  b parent class_ref 134786 // RepositoryException
+      end
+
+      operation 150658 "__construct"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "messageId" explicit_type "int"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${visibility}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+PendingMessageNotFoundException constructor.
+
+@param ${t0} ${p0}
+"
+      end
+    end
+
+    class 135042 "ProtocolNotSupportedException"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Exception to be thrown if an invalid MQTT version is given.
+
+@package PhpMqtt\\Client\\Exceptions
+"
+      classrelation 131714 // <generalisation>
+	relation 131714 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 131714 // <generalisation>
+	  b parent class_ref 134146 // MqttClientException
+      end
+
+      operation 150786 "__construct"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "protocol" explicit_type "string"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${visibility}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+ProtocolNotSupportedException constructor.
+
+@param ${t0} ${p0}
+"
+      end
+    end
+
+    class 135170 "ProtocolViolationException"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Exception to be thrown if an MQTT client encountered a protocol violation.
+
+@package PhpMqtt\\Client\\Exceptions
+"
+      classrelation 131842 // <generalisation>
+	relation 131842 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 131842 // <generalisation>
+	  b parent class_ref 134146 // MqttClientException
+      end
+
+      operation 150914 "__construct"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "error" explicit_type "string"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${visibility}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+ProtocolViolationException constructor.
+
+@param ${t0} ${p0}
+"
+      end
+    end
+  end
+end

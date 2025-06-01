@@ -1,0 +1,490 @@
+format 224
+"src" // artnetAdministration::vendor::psr::log::src
+  revision 1
+  modified_by 2 "btssn2"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  php_dir "/var/www/html/artnet-2025/artnetAdministration/vendor/psr/log/src/"
+  php_namespace "Psr\\Log"
+  classview 129154 "src"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 131586 "LoggerInterface"
+      visibility package stereotype "interface"
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}interface ${name}${extends} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Describes a logger instance.
+
+The message MUST be a string or object implementing __toString().
+
+The message MAY contain placeholders in the form: {foo} where foo
+will be replaced by the context data in key \"foo\".
+
+The context array can contain arbitrary data. The only assumption that
+can be made by implementors is that if an Exception instance is given
+to produce a stack trace, it MUST be in a key named \"exception\".
+
+See https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md
+for the full interface specification.
+"
+      operation 164610 "emergency"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)};"
+	
+	
+      end
+    end
+
+    class 137858 "AbstractLogger"
+      abstract visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+This is a simple Logger implementation that other Loggers can inherit from.
+
+It simply delegates all log-level-specific methods to the `log` method to
+reduce boilerplate code that a simple Logger that does the same thing with
+messages regardless of the error level has to implement.
+"
+      classrelation 134786 // <realization>
+	relation 134786 -_-|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 134786 // <realization>
+	  b parent class_ref 131586 // LoggerInterface
+      end
+
+      classrelation 134914 // <generalisation>
+	relation 134914 ---|>
+	  a public
+	    php "  use ${type};"
+	    classrelation_ref 134914 // <generalisation>
+	  b parent class_ref 137986 // LoggerTrait
+      end
+    end
+
+    class 137986 "LoggerTrait"
+      visibility package stereotype "trait"
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}trait ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+This is a simple Logger trait that classes unable to extend AbstractLogger
+(because they extend another class, etc) can include.
+
+It simply delegates all log-level-specific methods to the `log` method to
+reduce boilerplate code that a simple Logger that does the same thing with
+messages regardless of the error level has to implement.
+"
+      operation 164738 "emergency"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+
+    class 138114 "InvalidArgumentException"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 135042 // <generalisation>
+	relation 135042 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 135042 // <generalisation>
+	  b parent class_ref 138242 // \InvalidArgumentException
+      end
+    end
+
+    class 138370 "LoggerAwareInterface"
+      visibility package stereotype "interface"
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}interface ${name}${extends} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Describes a logger-aware instance.
+"
+      operation 164482 "setLogger"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "logger" type class_ref 131586 // LoggerInterface
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Sets a logger instance on the object.
+"
+      end
+    end
+
+    class 138498 "LoggerAwareTrait"
+      visibility package stereotype "trait"
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}trait ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Basic Implementation of LoggerAwareInterface.
+"
+    end
+
+    class 138626 "LogLevel"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Describes log levels.
+"
+      attribute 137858 "EMERGENCY"
+	const_attribute package explicit_type ""
+	init_value " 'emergency'"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 137986 "ALERT"
+	const_attribute package explicit_type ""
+	init_value " 'alert'"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 138114 "CRITICAL"
+	const_attribute package explicit_type ""
+	init_value " 'critical'"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 138242 "ERROR"
+	const_attribute package explicit_type ""
+	init_value " 'error'"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 138370 "WARNING"
+	const_attribute package explicit_type ""
+	init_value " 'warning'"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 138498 "NOTICE"
+	const_attribute package explicit_type ""
+	init_value " 'notice'"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 138626 "INFO"
+	const_attribute package explicit_type ""
+	init_value " 'info'"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 138754 "DEBUG"
+	const_attribute package explicit_type ""
+	init_value " 'debug'"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+    end
+
+    class 138754 "NullLogger"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+This Logger can be used to avoid conditional log calls.
+
+Logging should always be optional, and if no logger is provided to your
+library creating a NullLogger instance to have something to throw logs at
+is a good way to avoid littering your code with `if ($this->logger) { }`
+blocks.
+"
+      classrelation 135170 // <generalisation>
+	relation 135170 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 135170 // <generalisation>
+	  b parent class_ref 137858 // AbstractLogger
+      end
+
+      operation 164866 "log"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "level" explicit_type ""
+	
+	
+	php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+  end
+
+  deploymentview 130434 "src"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 138114 "AbstractLogger"
+      stereotype "source"
+      php_src "<?php
+
+${namespace}
+${definition}
+
+"
+      associated_elems
+	class_ref 137858 // AbstractLogger
+      end
+    end
+
+    artifact 138242 "InvalidArgumentException"
+      stereotype "source"
+      php_src "<?php
+
+${namespace}
+${definition}
+
+"
+      associated_elems
+	class_ref 138114 // InvalidArgumentException
+      end
+    end
+
+    artifact 138370 "LoggerAwareInterface"
+      stereotype "source"
+      php_src "<?php
+
+${namespace}
+${definition}
+
+"
+      associated_elems
+	class_ref 138370 // LoggerAwareInterface
+      end
+    end
+
+    artifact 138498 "LoggerAwareTrait"
+      stereotype "source"
+      php_src "<?php
+
+namespace Psr\\Log;"
+      associated_elems
+      end
+    end
+
+    artifact 138626 "LoggerInterface"
+      stereotype "source"
+      php_src "<?php
+
+namespace Psr\\Log;"
+      associated_elems
+      end
+    end
+
+    artifact 138754 "LoggerTrait"
+      stereotype "source"
+      php_src "<?php
+
+namespace Psr\\Log;"
+      associated_elems
+      end
+    end
+
+    artifact 138882 "LogLevel"
+      stereotype "source"
+      php_src "<?php
+
+${namespace}
+${definition}
+
+"
+      associated_elems
+	class_ref 138626 // LogLevel
+      end
+    end
+
+    artifact 139010 "NullLogger"
+      stereotype "source"
+      php_src "<?php
+
+namespace Psr\\Log;"
+      associated_elems
+      end
+    end
+  end
+end

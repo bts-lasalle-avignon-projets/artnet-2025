@@ -1,0 +1,3 @@
+class ClientNotConnectedToBrokerException
+!!!150146.php!!!	__construct(in error : string)
+        parent::__construct(self::EXCEPTION_CONNECTION_LOST, $error);

@@ -1,0 +1,3 @@
+class PendingMessageNotFoundException
+!!!150658.php!!!	__construct(in messageId : int)
+        parent::__construct(sprintf('No pending message with the message identifier [%s].', $messageId));

@@ -1,0 +1,322 @@
+format 224
+"MessageProcessors" // artnetAdministration::vendor::php-mqtt::client::src::MessageProcessors
+  revision 1
+  modified_by 2 "btssn2"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  php_dir "/var/www/html/artnet-2025/artnetAdministration/vendor/php-mqtt/client/src/MessageProcessors/"
+  php_namespace "PhpMqtt\\Client\\MessageProcessors"
+  deploymentview 129794 "MessageProcessors"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 135682 "BaseMessageProcessor"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+namespace PhpMqtt\\Client\\MessageProcessors;
+
+use PhpMqtt\\Client\\Concerns\\TranscodesData;
+use PhpMqtt\\Client\\Concerns\\WorksWithBuffers;
+use Psr\\Log\\LoggerInterface;
+"
+      associated_elems
+      end
+    end
+
+    artifact 135810 "Mqtt311MessageProcessor"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+${namespace}
+
+use PhpMqtt\\Client\\Exceptions\\InvalidMessageException;
+use PhpMqtt\\Client\\Exceptions\\ProtocolViolationException;
+use PhpMqtt\\Client\\Message;
+use PhpMqtt\\Client\\MessageType;
+
+${definition}
+
+"
+      associated_elems
+	class_ref 135426 // Mqtt311MessageProcessor
+      end
+    end
+
+    artifact 135938 "Mqtt31MessageProcessor"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+namespace PhpMqtt\\Client\\MessageProcessors;
+
+use PhpMqtt\\Client\\ConnectionSettings;
+use PhpMqtt\\Client\\Contracts\\MessageProcessor;
+use PhpMqtt\\Client\\Exceptions\\ConnectingToBrokerFailedException;
+use PhpMqtt\\Client\\Exceptions\\InvalidMessageException;
+use PhpMqtt\\Client\\Exceptions\\ProtocolViolationException;
+use PhpMqtt\\Client\\Message;
+use PhpMqtt\\Client\\MessageType;
+use Psr\\Log\\LoggerInterface;
+"
+      associated_elems
+      end
+    end
+  end
+
+  classview 129666 "MessageProcessors"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 135298 "BaseMessageProcessor"
+      abstract visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+This message processor serves as base for other message processors, providing
+default implementations for some methods.
+
+@package PhpMqtt\\Client\\MessageProcessors
+"
+      classrelation 132098 // <generalisation>
+	relation 132098 ---|>
+	  a public
+	    php "  use ${type},"
+	    classrelation_ref 132098 // <generalisation>
+	  b parent class_ref 133250 // TranscodesData
+      end
+
+      classrelation 132226 // <generalisation>
+	relation 132226 ---|>
+	  a public
+	    php "${type};"
+	    classrelation_ref 132226 // <generalisation>
+	  b parent class_ref 133378 // WorksWithBuffers
+      end
+
+      attribute 136962 "QOS_AT_MOST_ONCE"
+	const_attribute package explicit_type ""
+	init_value " 0"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 137090 "QOS_AT_LEAST_ONCE"
+	const_attribute package explicit_type ""
+	init_value " 1"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 137218 "QOS_EXACTLY_ONCE"
+	const_attribute package explicit_type ""
+	init_value " 2"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+    end
+
+    class 135426 "Mqtt311MessageProcessor"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+This message processor implements the MQTT protocol version 3.1.1.
+
+@package PhpMqtt\\Client\\MessageProcessors
+"
+      classrelation 132354 // <generalisation>
+	relation 132354 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 132354 // <generalisation>
+	  b parent class_ref 135554 // Mqtt31MessageProcessor
+      end
+
+      operation 151042 "getEncodedProtocolNameAndVersion"
+	protected explicit_return_type "string"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+{@inheritDoc}
+"
+      end
+
+      operation 151170 "parseAndValidateMessage"
+	public return_type class_ref 131714 // Message
+	nparams 1
+	  param in name "message" explicit_type "string"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}?${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+{@inheritDoc}
+"
+      end
+
+      operation 151298 "parseAndValidateSubscribeAcknowledgementMessage"
+	protected return_type class_ref 131714 // Message
+	nparams 1
+	  param in name "data" explicit_type "string"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+{@inheritDoc}
+"
+      end
+
+      operation 151426 "isPublishMessageWithNullCharacter"
+	private explicit_return_type "bool"
+	nparams 1
+	  param in name "message" explicit_type "Message|null"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}?${t0} ${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Determines if the given message is a PUBLISH message and contains the unicode null character U+0000.
+
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+    end
+
+    class 135554 "Mqtt31MessageProcessor"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+This message processor implements the MQTT protocol version 3.1.
+
+@package PhpMqtt\\Client\\MessageProcessors
+"
+      classrelation 132482 // <generalisation>
+	relation 132482 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 132482 // <generalisation>
+	  b parent class_ref 135298 // BaseMessageProcessor
+      end
+
+      classrelation 132610 // <realization>
+	relation 132610 -_-|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 132610 // <realization>
+	  b parent class_ref 133506 // MessageProcessor
+      end
+    end
+  end
+end

@@ -1,0 +1,696 @@
+format 224
+"src" // artnetAdministration::vendor::php-mqtt::client::src
+  revision 1
+  modified_by 2 "btssn2"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  php_dir "/var/www/html/artnet-2025/artnetAdministration/vendor/php-mqtt/client/src/"
+  php_namespace "PhpMqtt\\Client"
+  deploymentview 129282 "src"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 131970 "ConnectionSettings"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+namespace PhpMqtt\\Client;"
+      associated_elems
+      end
+    end
+
+    artifact 132098 "Logger"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+namespace PhpMqtt\\Client;
+
+use Psr\\Log\\LoggerInterface;
+use Psr\\Log\\LogLevel;
+"
+      associated_elems
+      end
+    end
+
+    artifact 132226 "Message"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+namespace PhpMqtt\\Client;
+
+use PhpMqtt\\Client\\Contracts\\MessageProcessor;
+use PhpMqtt\\Client\\Contracts\\MqttClient;
+"
+      associated_elems
+      end
+    end
+
+    artifact 132354 "MessageType"
+      stereotype "source"
+      php_src "<?php
+
+/** @noinspection PhpUnusedPrivateFieldInspection */
+
+declare(strict_types=1);
+
+${namespace}
+
+use MyCLabs\\Enum\\Enum;
+
+${definition}
+
+"
+      associated_elems
+	class_ref 131842 // MessageType
+      end
+    end
+
+    artifact 132482 "MqttClient"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+namespace PhpMqtt\\Client;
+
+use PhpMqtt\\Client\\Concerns\\GeneratesRandomClientIds;
+use PhpMqtt\\Client\\Concerns\\OffersHooks;
+use PhpMqtt\\Client\\Concerns\\ValidatesConfiguration;
+use PhpMqtt\\Client\\Contracts\\MessageProcessor;
+use PhpMqtt\\Client\\Contracts\\MqttClient as ClientContract;
+use PhpMqtt\\Client\\Contracts\\Repository;
+use PhpMqtt\\Client\\Exceptions\\ClientNotConnectedToBrokerException;
+use PhpMqtt\\Client\\Exceptions\\ConfigurationInvalidException;
+use PhpMqtt\\Client\\Exceptions\\ConnectingToBrokerFailedException;
+use PhpMqtt\\Client\\Exceptions\\DataTransferException;
+use PhpMqtt\\Client\\Exceptions\\InvalidMessageException;
+use PhpMqtt\\Client\\Exceptions\\MqttClientException;
+use PhpMqtt\\Client\\Exceptions\\PendingMessageAlreadyExistsException;
+use PhpMqtt\\Client\\Exceptions\\PendingMessageNotFoundException;
+use PhpMqtt\\Client\\Exceptions\\ProtocolNotSupportedException;
+use PhpMqtt\\Client\\Exceptions\\ProtocolViolationException;
+use PhpMqtt\\Client\\MessageProcessors\\Mqtt311MessageProcessor;
+use PhpMqtt\\Client\\MessageProcessors\\Mqtt31MessageProcessor;
+use PhpMqtt\\Client\\Repositories\\MemoryRepository;
+use Psr\\Log\\LoggerInterface;
+"
+      associated_elems
+      end
+    end
+
+    artifact 132610 "PendingMessage"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+namespace PhpMqtt\\Client;
+
+use DateTime;
+"
+      associated_elems
+      end
+    end
+
+    artifact 132738 "PublishedMessage"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+namespace PhpMqtt\\Client;"
+      associated_elems
+      end
+    end
+
+    artifact 132866 "SubscribeRequest"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+namespace PhpMqtt\\Client;"
+      associated_elems
+      end
+    end
+
+    artifact 132994 "Subscription"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+namespace PhpMqtt\\Client;"
+      associated_elems
+      end
+    end
+
+    artifact 133122 "UnsubscribeRequest"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+namespace PhpMqtt\\Client;"
+      associated_elems
+      end
+    end
+  end
+
+  classview 129026 "src"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 131330 "ConnectionSettings"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+The settings used during connection to a broker.
+
+This class is immutable and all setters return a clone of the original class because
+connection settings must not change once passed to MqttClient.
+
+@package PhpMqtt\\Client
+"
+    end
+
+    class 131458 "Logger"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Wrapper for another logger. Drops logged messages if no logger is available.
+
+@internal This class is not part of the public API of the library and used internally only.
+@package PhpMqtt\\Client
+"
+      classrelation 129538 // <realization>
+	relation 129538 -_-|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 129538 // <realization>
+	  b parent class_ref 131586 // LoggerInterface
+      end
+    end
+
+    class 131714 "Message"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Describes an action which is supposed to be performed after receiving a message.
+Objects of this type are used by the {@see MessageProcessor} to instruct the
+{@see MqttClient} about required steps to take.
+
+@package PhpMqtt\\Client
+"
+    end
+
+    class 131842 "MessageType"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+An enumeration describing types of messages.
+
+@method static MessageType PUBLISH()
+@method static MessageType PUBLISH_ACKNOWLEDGEMENT()
+@method static MessageType PUBLISH_RECEIPT()
+@method static MessageType PUBLISH_RELEASE()
+@method static MessageType PUBLISH_COMPLETE()
+@method static MessageType SUBSCRIBE_ACKNOWLEDGEMENT()
+@method static MessageType UNSUBSCRIBE_ACKNOWLEDGEMENT()
+@method static MessageType PING_REQUEST()
+@method static MessageType PING_RESPONSE()
+
+@package PhpMqtt\\Client
+"
+      classrelation 129666 // <generalisation>
+	relation 129666 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 129666 // <generalisation>
+	  b parent class_ref 130690 // Enum
+      end
+
+      attribute 133122 "PUBLISH"
+	const_attribute private explicit_type ""
+	init_value " 'PUBLISH'"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 133250 "PUBLISH_ACKNOWLEDGEMENT"
+	const_attribute private explicit_type ""
+	init_value " 'PUBACK'"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 133378 "PUBLISH_RECEIPT"
+	const_attribute private explicit_type ""
+	init_value " 'PUBREC'"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 133506 "PUBLISH_RELEASE"
+	const_attribute private explicit_type ""
+	init_value " 'PUBREL'"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 133634 "PUBLISH_COMPLETE"
+	const_attribute private explicit_type ""
+	init_value " 'PUBCOMP'"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 133762 "SUBSCRIBE_ACKNOWLEDGEMENT"
+	const_attribute private explicit_type ""
+	init_value " 'SUBACK'"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 133890 "UNSUBSCRIBE_ACKNOWLEDGEMENT"
+	const_attribute private explicit_type ""
+	init_value " 'UNSUBACK'"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 134018 "PING_REQUEST"
+	const_attribute private explicit_type ""
+	init_value " 'PINGREQ'"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 134146 "PING_RESPONSE"
+	const_attribute private explicit_type ""
+	init_value " 'PINGRESP'"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+    end
+
+    class 131970 "MqttClient"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+An MQTT client implementing protocol version 3.1.
+
+@package PhpMqtt\\Client
+"
+      classrelation 129794 // <realization>
+	relation 129794 -_-|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 129794 // <realization>
+	  b parent class_ref 132098 // MqttClient
+      end
+
+      classrelation 129922 // <generalisation>
+	relation 129922 ---|>
+	  a public
+	    php "  use ${type};"
+	    classrelation_ref 129922 // <generalisation>
+	  b parent class_ref 132226 // GeneratesRandomClientIds
+      end
+
+      classrelation 130050 // <generalisation>
+	relation 130050 ---|>
+	  a public
+	    php "  use ${type};"
+	    classrelation_ref 130050 // <generalisation>
+	  b parent class_ref 132354 // OffersHooks
+      end
+
+      classrelation 130178 // <generalisation>
+	relation 130178 ---|>
+	  a public
+	    php "  use ${type};"
+	    classrelation_ref 130178 // <generalisation>
+	  b parent class_ref 132482 // ValidatesConfiguration
+      end
+
+      attribute 134274 "MQTT_3_1"
+	const_attribute package explicit_type ""
+	init_value " '3.1'"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 134402 "MQTT_3_1_1"
+	const_attribute package explicit_type ""
+	init_value " '3.1.1'"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 134530 "QOS_AT_MOST_ONCE"
+	const_attribute package explicit_type ""
+	init_value " 0"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 134658 "QOS_AT_LEAST_ONCE"
+	const_attribute package explicit_type ""
+	init_value " 1"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 134786 "QOS_EXACTLY_ONCE"
+	const_attribute package explicit_type ""
+	init_value " 2"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 134914 "SOCKET_READ_BUFFER_SIZE"
+	const_attribute package explicit_type ""
+	init_value " 8192"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+    end
+
+    class 132610 "PendingMessage"
+      abstract visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Represents a pending message.
+
+For messages with QoS 1 and 2 the client is responsible to resend the message if no
+acknowledgement is received from the broker within a given time period.
+
+This class serves as common base for message objects which need to be resent if no
+acknowledgement is received.
+
+@package PhpMqtt\\Client
+"
+    end
+
+    class 132738 "PublishedMessage"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+A simple DTO for published messages which need to be stored in a repository
+while waiting for the confirmation to be deliverable.
+
+@package PhpMqtt\\Client
+"
+      classrelation 130306 // <generalisation>
+	relation 130306 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 130306 // <generalisation>
+	  b parent class_ref 132610 // PendingMessage
+      end
+    end
+
+    class 132866 "SubscribeRequest"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Represents a pending subscribe request.
+
+@package PhpMqtt\\Client
+"
+      classrelation 130434 // <generalisation>
+	relation 130434 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 130434 // <generalisation>
+	  b parent class_ref 132610 // PendingMessage
+      end
+    end
+
+    class 132994 "Subscription"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+A simple DTO for subscriptions to a topic which need to be stored in a repository.
+
+@package PhpMqtt\\Client
+"
+    end
+
+    class 133122 "UnsubscribeRequest"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Represents an unsubscribe request.
+
+@package PhpMqtt\\Client
+"
+      classrelation 130562 // <generalisation>
+	relation 130562 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 130562 // <generalisation>
+	  b parent class_ref 132610 // PendingMessage
+      end
+    end
+  end
+
+  package_ref 130434 // Contracts
+
+  package_ref 130562 // Concerns
+
+  package_ref 130690 // Exceptions
+
+  package_ref 130818 // MessageProcessors
+
+  package_ref 130946 // Repositories
+end

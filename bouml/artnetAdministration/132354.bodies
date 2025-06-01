@@ -1,0 +1,100 @@
+class OffersHooks
+!!!141314.php!!!	initializeEventHandlers() : void
+        $this->loopEventHandlers            = new \SplObjectStorage();
+        $this->publishEventHandlers         = new \SplObjectStorage();
+        $this->messageReceivedEventHandlers = new \SplObjectStorage();
+        $this->connectedEventHandlers       = new \SplObjectStorage();
+!!!141442.php!!!	registerLoopEventHandler(in callback : \Closure) : MqttClient
+        $this->loopEventHandlers->attach($callback);
+
+        /** @var MqttClient $this */
+        return $this;
+!!!141570.php!!!	unregisterLoopEventHandler(in callback : \Closure|null = null) : MqttClient
+        if ($callback === null) {
+            $this->loopEventHandlers->removeAll($this->loopEventHandlers);
+        } else {
+            $this->loopEventHandlers->detach($callback);
+        }
+
+        /** @var MqttClient $this */
+        return $this;
+!!!141698.php!!!	runLoopEventHandlers(in elapsedTime : float) : void
+        foreach ($this->loopEventHandlers as $handler) {
+            try {
+                call_user_func($handler, $this, $elapsedTime);
+            } catch (\Throwable $e) {
+                $this->logger->error('Loop hook callback threw exception.', ['exception' => $e]);
+            }
+        }
+!!!141826.php!!!	registerPublishEventHandler(in callback : \Closure) : MqttClient
+        $this->publishEventHandlers->attach($callback);
+
+        /** @var MqttClient $this */
+        return $this;
+!!!141954.php!!!	unregisterPublishEventHandler(in callback : \Closure|null = null) : MqttClient
+        if ($callback === null) {
+            $this->publishEventHandlers->removeAll($this->publishEventHandlers);
+        } else {
+            $this->publishEventHandlers->detach($callback);
+        }
+
+        /** @var MqttClient $this */
+        return $this;
+!!!142082.php!!!	runPublishEventHandlers(in topic : string, in message : string, in messageId : int|null, in qualityOfService : int, in retain : bool) : void
+        foreach ($this->publishEventHandlers as $handler) {
+            try {
+                call_user_func($handler, $this, $topic, $message, $messageId, $qualityOfService, $retain);
+            } catch (\Throwable $e) {
+                $this->logger->error('Publish hook callback threw exception for published message on topic [{topic}].', [
+                    'topic' => $topic,
+                    'exception' => $e,
+                ]);
+            }
+        }
+!!!142210.php!!!	registerMessageReceivedEventHandler(in callback : \Closure) : MqttClient
+        $this->messageReceivedEventHandlers->attach($callback);
+
+        /** @var MqttClient $this */
+        return $this;
+!!!142338.php!!!	unregisterMessageReceivedEventHandler(in callback : \Closure|null = null) : MqttClient
+        if ($callback === null) {
+            $this->messageReceivedEventHandlers->removeAll($this->messageReceivedEventHandlers);
+        } else {
+            $this->messageReceivedEventHandlers->detach($callback);
+        }
+
+        /** @var MqttClient $this */
+        return $this;
+!!!142466.php!!!	runMessageReceivedEventHandlers(in topic : string, in message : string, in qualityOfService : int, in retained : bool) : void
+        foreach ($this->messageReceivedEventHandlers as $handler) {
+            try {
+                call_user_func($handler, $this, $topic, $message, $qualityOfService, $retained);
+            } catch (\Throwable $e) {
+                $this->logger->error('Received message hook callback threw exception for received message on topic [{topic}].', [
+                    'topic' => $topic,
+                    'exception' => $e,
+                ]);
+            }
+        }
+!!!142594.php!!!	registerConnectedEventHandler(in callback : \Closure) : MqttClient
+        $this->connectedEventHandlers->attach($callback);
+
+        /** @var MqttClient $this */
+        return $this;
+!!!142722.php!!!	unregisterConnectedEventHandler(in callback : \Closure|null = null) : MqttClient
+        if ($callback === null) {
+            $this->connectedEventHandlers->removeAll($this->connectedEventHandlers);
+        } else {
+            $this->connectedEventHandlers->detach($callback);
+        }
+
+        /** @var MqttClient $this */
+        return $this;
+!!!142850.php!!!	runConnectedEventHandlers(in isAutoReconnect : bool) : void
+        foreach ($this->connectedEventHandlers as $handler) {
+            try {
+                call_user_func($handler, $this, $isAutoReconnect);
+            } catch (\Throwable $e) {
+                $this->logger->error('Connected hook callback threw exception.', ['exception' => $e]);
+            }
+        }

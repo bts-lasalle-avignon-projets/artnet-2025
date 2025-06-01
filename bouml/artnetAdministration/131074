@@ -1,0 +1,101 @@
+format 224
+"tests" // artnetAdministration::vendor::php-mqtt::client::tests
+  revision 1
+  modified_by 2 "btssn2"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  php_dir "/var/www/html/artnet-2025/artnetAdministration/vendor/php-mqtt/client/tests/"
+  php_namespace "Tests"
+  deploymentview 130050 "tests"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 136194 "TestCase"
+      stereotype "source"
+      php_src "<?php
+
+declare(strict_types=1);
+
+namespace Tests;"
+      associated_elems
+      end
+    end
+  end
+
+  classview 129922 "tests"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 135810 "TestCase"
+      abstract visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+A base class for all tests.
+
+@package Tests
+"
+      classrelation 132866 // <generalisation>
+	relation 132866 ---|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 132866 // <generalisation>
+	  b parent class_ref 135938 // \PHPUnit\Framework\TestCase
+      end
+    end
+  end
+
+  package_ref 131202 // Feature
+
+  package_ref 131330 // Unit
+end

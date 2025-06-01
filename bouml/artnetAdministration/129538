@@ -1,0 +1,56 @@
+format 224
+"stubs" // artnetAdministration::vendor::myclabs::php-enum::stubs
+  revision 1
+  modified_by 2 "btssn2"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  php_dir "/var/www/html/artnet-2025/artnetAdministration/vendor/myclabs/php-enum/stubs/"
+  deploymentview 129154 "stubs"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 131842 "Stringable"
+      stereotype "source"
+      php_src "<?php
+
+if (\\PHP_VERSION_ID < 80000 && !interface_exists('Stringable')) {
+    interface Stringable
+    {
+        /**
+         * @return string
+         */
+        public function __toString();
+    }
+}
+"
+      associated_elems
+      end
+    end
+  end
+end

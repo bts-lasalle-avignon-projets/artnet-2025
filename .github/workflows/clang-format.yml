@@ -1,0 +1,25 @@
+name: Java Format
+
+on:
+  push:
+    branches: [ "*" ]
+  pull_request:
+    branches: [ "*" ]
+
+jobs:
+  clang-format-java:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install clang-format
+        run: sudo apt-get update && sudo apt install -y clang-format
+
+      - name: Run clang-format
+        run: |
+          FILES=$(find . -name '*.java' -not -path "./build/*")
+
+          for file in $FILES; do
+            clang-format -i "$file"
+          done

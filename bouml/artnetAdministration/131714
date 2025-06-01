@@ -1,0 +1,46 @@
+format 224
+"Accueil" // artnetAdministration::views::Accueil
+  revision 1
+  modified_by 2 "btssn2"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  php_dir "/var/www/html/artnet-2025/artnetAdministration/views/Accueil/"
+  deploymentview 130690 "Accueil"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 139266 "index"
+      stereotype "source"
+      php_src "<div class=\"col col-lg-8 mt-5 mx-3 mx-lg-auto text-center\">
+	<h1><?php echo TITRE_SITE; ?>"
+      associated_elems
+      end
+    end
+  end
+end

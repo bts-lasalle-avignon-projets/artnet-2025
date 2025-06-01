@@ -1,0 +1,553 @@
+format 224
+"src" // artnetAdministration::vendor::myclabs::php-enum::src
+  revision 1
+  modified_by 2 "btssn2"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  php_dir "/var/www/html/artnet-2025/artnetAdministration/vendor/myclabs/php-enum/src/"
+  php_namespace "MyCLabs\\Enum"
+  deploymentview 128898 "src"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 131586 "Enum"
+      stereotype "source"
+      php_src "<?php
+/**
+ * @link    http://github.com/myclabs/php-enum
+ * @license http://www.opensource.org/licenses/mit-license.php MIT (see the LICENSE file)
+ */
+
+${namespace}
+${definition}
+
+"
+      associated_elems
+	class_ref 130690 // Enum
+      end
+    end
+  end
+
+  classview 128642 "src"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 130690 "Enum"
+      abstract visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+Base Enum class
+
+Create an enum by implementing this class and adding class constants.
+
+@author Matthieu Napoli <matthieu@mnapoli.fr>
+@author Daniel Costa <danielcosta@gmail.com>
+@author Mirosław Filip <mirfilip@gmail.com>
+
+@psalm-template T
+@psalm-immutable
+@psalm-consistent-constructor
+"
+      classrelation 129154 // <realization>
+	relation 129154 -_-|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 129154 // <realization>
+	  b parent class_ref 130818 // \JsonSerializable
+      end
+
+      classrelation 129282 // <realization>
+	relation 129282 -_-|>
+	  a public
+	    php "${type}"
+	    classrelation_ref 129282 // <realization>
+	  b parent class_ref 130946 // \Stringable
+      end
+
+      attribute 132610 "value"
+	protected explicit_type "mixed"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "
+Enum value
+
+@var ${type}
+@psalm-var T
+"
+      end
+
+      attribute 132738 "key"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "
+Enum key, the constant name
+
+@var ${type}
+"
+      end
+
+      attribute 132866 "cache"
+	class_attribute protected explicit_type "array"
+	init_value " []"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "
+Store existing constants in a static cache per object.
+
+
+@var ${type}
+@psalm-var array<class-string, array<string, mixed>>
+"
+      end
+
+      attribute 132994 "instances"
+	class_attribute protected explicit_type "array"
+	init_value " []"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "
+Cache of instances of the Enum class
+
+@var ${type}
+@psalm-var array<class-string, array<string, static>>
+"
+      end
+
+      operation 138626 "__construct"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "value" explicit_type "mixed"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${visibility}function ${name}${(}${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Creates a new value of some type
+
+@psalm-pure
+@param ${t0} ${p0}
+
+@psalm-param T $value
+@throws \\UnexpectedValueException if incompatible type is given.
+"
+      end
+
+      operation 138754 "__wakeup"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+This method exists only for the compatibility reason when deserializing a previously serialized version
+that didn't had the key property
+"
+      end
+
+      operation 138882 "from"
+	class_operation public explicit_return_type "static"
+	nparams 1
+	  param in name "value" explicit_type "mixed"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 139010 "getValue"
+	public explicit_return_type "mixed"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@psalm-pure
+@return ${type}
+@psalm-return T
+"
+      end
+
+      operation 139138 "getKey"
+	public explicit_return_type "string"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Returns the enum key (i.e. the constant name).
+
+@psalm-pure
+@return ${type}
+"
+      end
+
+      operation 139266 "__toString"
+	public explicit_return_type "string"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+@psalm-pure
+@psalm-suppress InvalidCast
+@return ${type}
+"
+      end
+
+      operation 139394 "equals"
+	public explicit_return_type "bool"
+	nparams 1
+	  param in name "variable" explicit_type ""
+	    defaultvalue "null"
+	
+	
+	preserve_php_body_indent php_final php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Determines if Enum should be considered equal with the variable passed as a parameter.
+Returns false if an argument is an object of different class or not an object.
+
+This method is final, for more information read https://github.com/myclabs/php-enum/issues/4
+
+@psalm-pure
+@psalm-param mixed $variable
+@return ${type}
+"
+      end
+
+      operation 139522 "keys"
+	class_operation public explicit_return_type "array"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Returns the names (keys) of all constants in the Enum class
+
+@psalm-pure
+@psalm-return list<string>
+@return ${type}
+"
+      end
+
+      operation 139650 "values"
+	class_operation public explicit_return_type "static[]"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Returns instances of the Enum class of all Enum constants
+
+@psalm-pure
+@psalm-return array<string, static>
+@return ${type} Constant name in key, Enum instance in value
+"
+      end
+
+      operation 139778 "toArray"
+	class_operation public explicit_return_type "array"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Returns all possible values as an array
+
+@psalm-pure
+@psalm-suppress ImpureStaticProperty
+
+@psalm-return array<string, mixed>
+@return ${type} Constant name in key, constant value in value
+"
+      end
+
+      operation 139906 "isValid"
+	class_operation public explicit_return_type "bool"
+	nparams 1
+	  param in name "value" explicit_type "$value"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Check if is valid enum value
+
+@param ${t0}
+@psalm-param mixed $value
+@psalm-pure
+@psalm-assert-if-true T $value
+@return ${type}
+"
+      end
+
+      operation 140034 "assertValidValue"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "value" explicit_type "mixed"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Asserts valid enum value
+
+@psalm-pure
+@psalm-assert T $value
+@param ${t0} ${p0}
+"
+      end
+
+      operation 140162 "assertValidValueReturningKey"
+	class_operation private explicit_return_type "string"
+	nparams 1
+	  param in name "value" explicit_type "mixed"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Asserts valid enum value
+
+@psalm-pure
+@psalm-assert T $value
+@param ${t0} ${p0}
+@return ${type}
+"
+      end
+
+      operation 140290 "isValidKey"
+	class_operation public explicit_return_type "bool"
+	nparams 1
+	  param in name "key" explicit_type "$key"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Check if is valid enum key
+
+@param ${t0}
+@psalm-param string $key
+@psalm-pure
+@return ${type}
+"
+      end
+
+      operation 140418 "search"
+	class_operation public explicit_return_type "string|false"
+	nparams 1
+	  param in name "value" explicit_type "mixed"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Return key for value
+
+@param ${t0} ${p0}
+
+@psalm-param mixed $value
+@psalm-pure
+@return ${type}
+"
+      end
+
+      operation 140546 "__callStatic"
+	class_operation public explicit_return_type "static"
+	nparams 2
+	  param in name "name" explicit_type "string"
+	  param in name "arguments" explicit_type "array"
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Returns a value when called statically like so: MyEnum::SOME_VALUE() given SOME_VALUE is a class constant
+
+@param ${t0} ${p0}
+@param ${t1}  ${p1}
+
+@return ${type}
+@throws \\BadMethodCallException
+
+@psalm-pure
+"
+      end
+
+      operation 140674 "jsonSerialize"
+	public explicit_return_type "mixed"
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}${type}
+{
+  ${body}}
+"
+	
+	
+	comment "
+Specify data which should be serialized to JSON. This method returns data that can be serialized by json_encode()
+natively.
+
+@return ${type}
+@link http://php.net/manual/en/jsonserializable.jsonserialize.php
+
+[\\ReturnTypeWillChange]"
+      end
+    end
+  end
+
+  package_ref 129410 // PHPUnit
+end
