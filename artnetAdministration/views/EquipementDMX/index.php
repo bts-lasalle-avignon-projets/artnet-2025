@@ -19,7 +19,7 @@
 				<?php endif; ?>
 				<hr />
                 <small class=" card-subtitle">
-					<a class="card-link text-success" href="<?php echo ROOT_PATH; ?>equipementDMX/command/<?php echo $item['idEquipement']; ?>">Controller</a>
+					<a class="card-link text-success" href="<?php echo ROOT_PATH; ?>equipementDMX/command/<?php echo $item['idEquipement']; ?>">Commander</a>
 					<a class="card-link text-primary" href="<?php echo ROOT_PATH; ?>equipementDMX/edit/<?php echo $item['idEquipement']; ?>">Modifier</a>
 					<a class="card-link text-danger" href="<?php echo ROOT_PATH; ?>equipementDMX/delete/<?php echo $item['idEquipement']; ?>">Supprimer</a>
 					</small>
