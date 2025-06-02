@@ -21,10 +21,10 @@ class EquipementDMX extends Controller
 	protected function add()
 	{
 		if (NO_LOGIN) {
-			$datas = $this->viewmodel->add();
-			if (is_array($datas)) {
+			$typeEquipements = $this->viewmodel->add();
+			if (is_array($typeEquipements)) {
 				// Affiche le formulaire d'ajout
-				$this->display($datas);
+				$this->display($typeEquipements);
 			} else {
 				// Retour à la liste des équipements
 				header('Location: ' . URL_PATH . 'equipementDMX');
@@ -123,5 +123,41 @@ class EquipementDMX extends Controller
 			return -1;
 		}
 		return (int) $this->request['id'];
+	}
+
+	protected function exportJson()
+	{
+		$equipements = $this->viewmodel->getAllEquipementsDMX();
+		header('Content-Type: application/json');
+		header('Content-Disposition: attachment; filename="equipementsDMX.json"');
+		echo json_encode($equipements, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+		exit;
+	}
+
+	protected function importJson()
+	{
+		if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['importJsonFile'])) {
+			$file = $_FILES['importJsonFile'];
+			if ($file['error'] === UPLOAD_ERR_OK) {
+				$jsonContent = file_get_contents($file['tmp_name']);
+				$equipements = json_decode($jsonContent, true);
+				if (json_last_error() === JSON_ERROR_NONE && is_array($equipements)) {
+					$importedCount = 0;
+					foreach ($equipements as $equipement) {
+						// Appelle ta méthode dans le modèle pour importer un équipement
+						if ($this->viewmodel->addEquipementDepuisTopic($equipement)) {
+							$importedCount++;
+						}
+					}
+					Messages::setMsg("$importedCount équipements importés avec succès !", "success");
+				} else {
+					Messages::setMsg("Fichier JSON invalide.", "error");
+				}
+			} else {
+				Messages::setMsg("Erreur lors du téléchargement du fichier.", "error");
+			}
+		}
+		header('Location: ' . URL_PATH . 'equipementDMX');
+		exit;
 	}
 }

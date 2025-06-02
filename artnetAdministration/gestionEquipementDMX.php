@@ -40,7 +40,7 @@ function journaliser($message)
 // Programme principal
 // Sélectionne le topic pour les équipement DMX
 $topicSouscrit = "artnet/bdd/equipements/ecriture/#";
-$topicPublish = "artnet/bdd/equipements/lecture/";
+$topicPublish = "artnet/bdd/equipements/lecture";
 $qos = 0;
 $timeout = 1; // période de récupération des messages en secondes (sinon 0 pour aucun timeout)
 
