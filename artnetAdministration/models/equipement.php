@@ -275,7 +275,7 @@ class EquipementDMXModel extends Model
 				return ACTION_ERREUR;
 			}
 
-			if (!$this->existeIdEquipementDMX($idEquipement)) {
+			if (!$this->existeIdEquipementDMXParID($idEquipement)) {
 				Messages::setMsg("L'équipement n'existe pas !", "error");
 				return ACTION_ERREUR;
 			}
@@ -316,10 +316,38 @@ class EquipementDMXModel extends Model
 		return $equipement ?? null;
 	}
 
-	public function existeIdEquipementDMX($idEquipement)
+	public function getAllEquipementsDMX()
+	{
+		$this->query("SELECT 
+            equipementDMX.univers, 
+            equipementDMX.nomEquipement, 
+            equipementDMX.canalInitial, 
+            equipementDMX.canaux, 
+            typeEquipementDMX.typeEquipement, 
+            typeEquipementDMX.nbCanaux
+        FROM equipementDMX
+        JOIN typeEquipementDMX ON equipementDMX.idTypeEquipement = typeEquipementDMX.idTypeEquipement
+        ORDER BY equipementDMX.nomEquipement");
+
+		return $this->getResults();
+	}
+
+
+	public function existeIdEquipementDMXParID($idEquipement): bool
 	{
 		$this->query("SELECT nomEquipement FROM equipementDMX WHERE idEquipement = :idEquipement");
 		$this->bind(':idEquipement', $idEquipement);
+		$this->execute();
+		$nom = $this->getResult();
+		if (!$nom) {
+			return false;
+		}
+		return true;
+	}
+	public function existeIdEquipementDMXParNom($nomEquipement): bool
+	{
+		$this->query("SELECT nomEquipement FROM equipementDMX WHERE nomEquipement = :nomEquipement");
+		$this->bind(':nomEquipement', $nomEquipement);
 		$this->execute();
 		$nom = $this->getResult();
 		if (!$nom) {
@@ -337,5 +365,101 @@ class EquipementDMXModel extends Model
 			$broker['topic'] = BROKER_MQTT_TOPIC;
 		}
 		return $broker ?? null;
+	}
+
+	public function addEquipementDepuisTopic($json)
+	{
+		// Exemple de json : {"nomEquipement":"lyre","univers":1,"typeEquipement":"Scanner","nombreCanaux":8,"canalInitial":24}
+
+		// Décode le JSON
+		$data = json_decode($json, true);
+		if (!$data) {
+			// JSON invalide
+			return false;
+		}
+
+		if (!isset($data['nomEquipement'])) {
+			return false; // nomEquipement manquant
+		}
+
+		// Vérifier si l'équipement existe déjà dans la base de données
+		if ($this->existeIdEquipementDMXParNom($data['nomEquipement'])) {
+			return $this->updateEquipementTopic($data);
+		} else {
+			return $this->insertEquipementTopic($data);
+		}
+	}
+
+	public function updateEquipementTopic($data)
+	{
+		$this->query("SELECT idEquipement FROM equipementDMX WHERE nomEquipement = :nomEquipement AND univers = :univers");
+		$this->bind(':nomEquipement', $data['nomEquipement']);
+		$this->bind(':univers', $data['univers']);
+		$equipementDMX = $this->getResult();
+
+		// Vérifier si l'idEquipement a été trouvé
+		if (!$equipementDMX) {
+			journaliser("Aucun équipement trouvé avec nomEquipement: " . $data['nomEquipement'] . " et univers: " . $data['univers']);
+			return false; // Équipement non trouvé
+		}
+
+		$idEquipement = $equipementDMX['idEquipement'];
+		$idTypeEquipement = $this->getIdTypeEquipement($data);
+
+		// Modifie l'équipement dans la base de données
+		$this->query("UPDATE equipementDMX SET nomEquipement = :nomEquipement, univers = :univers, idTypeEquipement = :idTypeEquipement, canalInitial = :canalInitial WHERE idEquipement = :idEquipement");
+		$this->bind(':nomEquipement', $data['nomEquipement']);
+		$this->bind(':univers', $data['univers']);
+		$this->bind(':idTypeEquipement', $idTypeEquipement);
+		$this->bind(':canalInitial', $data['canalInitial']);
+		$this->bind(':idEquipement', $idEquipement);
+		return $this->execute();
+	}
+
+	public function insertEquipementTopic($data)
+	{
+		$idTypeEquipement = $this->getIdTypeEquipement($data);
+
+		// Insert l'équipement dans la base de données
+		$this->query("INSERT INTO equipementDMX (nomEquipement, univers, idTypeEquipement, canalInitial) VALUES (:nomEquipement, :univers, :idTypeEquipement, :canalInitial)");
+		$this->bind(':nomEquipement', $data['nomEquipement']);
+		$this->bind(':univers', $data['univers']);
+		$this->bind(':idTypeEquipement', $idTypeEquipement);
+		$this->bind(':canalInitial', $data['canalInitial']);
+		return $this->execute();
+	}
+
+	public function getIdTypeEquipement($data)
+	{
+		$this->query("SELECT idTypeEquipement FROM typeEquipementDMX WHERE typeEquipement = :typeEquipement AND nbCanaux = :nbCanaux");
+		$this->bind(':typeEquipement', $data['typeEquipement']);
+		$this->bind(':nbCanaux', $data['nombreCanaux']);
+		$this->execute();
+
+		$typeEquipementDMX = $this->getResult();
+
+		if (!$typeEquipementDMX['idTypeEquipement']) {
+			journaliser("Aucun type d'équipement trouvé pour type: " . $data['typeEquipement'] . " et nbCanaux: " . $data['nombreCanaux']);
+			$idTypeEquipement = $this->insertTypeEquipement($data);
+			$typeEquipementDMX['idTypeEquipement'] = $idTypeEquipement;
+		}
+
+		return $typeEquipementDMX['idTypeEquipement'] ?? false;
+	}
+
+	public function insertTypeEquipement($data)
+	{
+		$this->query("INSERT INTO typeEquipementDMX (typeEquipement,nbCanaux) VALUES (:typeEquipement, :nbCanaux)");
+		$this->bind(':typeEquipement', $data['typeEquipement']);
+		$this->bind(':nbCanaux', $data['nombreCanaux']);
+
+		if ($this->execute()) {
+			$idTypeEquipement = $this->getLastInsertId();
+			journaliser("Nouveau type d'équipement inséré : " . $data['typeEquipement'] . " avec id: " . $idTypeEquipement);
+			return $idTypeEquipement;
+		} else {
+			journaliser("Échec de l'insertion du type d'équipement : " . $data['typeEquipement']);
+			return false; // Retourne 0 en cas d'échec
+		}
 	}
 }
