@@ -83,6 +83,21 @@ if ($broker) {
                             }
                         }
                     }
+
+                    // Publier les données de la base de données
+                    $equipements = $equipementDMXModel->getAllEquipementsDMX();
+
+                    foreach ($equipements as $equipement) {
+                        $nom = $equipement['nomEquipement'] ?? 'equipement_inconnu';
+                        $topic = $topicPublish . '/' . $nom;
+
+                        $jsonEquipement = json_encode($equipement);
+                        $communicationBroker->publier($topic, $jsonEquipement, $qos);
+
+                        journaliser("Données publiées : " . $jsonEquipement . " sur le topic \"" . $topic . "\"");
+
+                        sleep(1);
+                    }
                 }
             }
             // Déconnecte le broker

@@ -304,6 +304,23 @@ class EquipementDMXModel extends Model
 		return $equipement ?? null;
 	}
 
+	public function getAllEquipementsDMX()
+	{
+		$this->query("SELECT 
+            equipementDMX.univers, 
+            equipementDMX.nomEquipement, 
+            equipementDMX.canalInitial, 
+            equipementDMX.canaux, 
+            typeEquipementDMX.typeEquipement, 
+            typeEquipementDMX.nbCanaux
+        FROM equipementDMX
+        JOIN typeEquipementDMX ON equipementDMX.idTypeEquipement = typeEquipementDMX.idTypeEquipement
+        ORDER BY equipementDMX.nomEquipement");
+
+		return $this->getResults();
+	}
+
+
 	public function existeIdEquipementDMXParID($idEquipement): bool
 	{
 		$this->query("SELECT nomEquipement FROM equipementDMX WHERE idEquipement = :idEquipement");
