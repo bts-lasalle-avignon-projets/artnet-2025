@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Projet Ergonomic-Workstation:  Fichier source de ArtnetAdministrationTest.php</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="customdoxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Projet Ergonomic-Workstation
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">BTS CIEL IR LaSalle Avignon 2025</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('_artnet_administration_test_8php_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">ArtnetAdministrationTest.php</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_artnet_administration_test_8php.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;&lt;?php</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;use PHPUnit\Framework\TestCase;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="class_artnet_administration_test.html">    5</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_artnet_administration_test.html">ArtnetAdministrationTest</a> <span class="keyword">extends</span> TestCase</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
+<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="class_artnet_administration_test.html#a65ca5836fd73d08ee10922fc117e88dd">    7</a></span>&#160;    <span class="keyword">private</span> <a class="code" href="class_artnet_administration_test.html#a65ca5836fd73d08ee10922fc117e88dd">$urlAccueil</a> = <span class="stringliteral">&#39;http://localhost:8000/&#39;</span>;</div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="class_artnet_administration_test.html#a94b7f2f82ecd371a2f16498ee92c93e7">    8</a></span>&#160;    <span class="keyword">private</span> <a class="code" href="class_artnet_administration_test.html#a94b7f2f82ecd371a2f16498ee92c93e7">$urlBroker</a> = <span class="stringliteral">&#39;http://localhost:8000/index.php?controleur=broker&#39;</span>;</div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="class_artnet_administration_test.html#a33fd910816de8594242d59225b78685d">    9</a></span>&#160;    <span class="keyword">private</span> <a class="code" href="class_artnet_administration_test.html#a33fd910816de8594242d59225b78685d">$urlCreationBroker</a> = <span class="stringliteral">&#39;http://localhost:8000/index.php?controleur=broker&amp;action=add&#39;</span>;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="class_artnet_administration_test.html#a38b1c393425d57f1aba693e495f2664e">   12</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="class_artnet_administration_test.html#a38b1c393425d57f1aba693e495f2664e">testPageAccueilIsAccessible</a>()</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    {</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        $response = $this-&gt;<a class="code" href="class_artnet_administration_test.html#a79fed2f28015e90ed94da446dcc0b941">httpGet</a>($this-&gt;urlAccueil);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        $response = preg_replace(<span class="stringliteral">&#39;/\s+/&#39;</span>, <span class="charliteral">&#39; &#39;</span>, trim($response));</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        $this-&gt;assertNotFalse($response, <span class="stringliteral">&quot;La page Accueil n&#39;est pas accessible.&quot;</span>);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    }</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="class_artnet_administration_test.html#aee638509ebc5695f9eafe8dfefd13096">   20</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="class_artnet_administration_test.html#aee638509ebc5695f9eafe8dfefd13096">testUrlBrokerIsAccessible</a>()</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        $response = $this-&gt;<a class="code" href="class_artnet_administration_test.html#a79fed2f28015e90ed94da446dcc0b941">httpGet</a>($this-&gt;urlBroker);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        $response = preg_replace(<span class="stringliteral">&#39;/\s+/&#39;</span>, <span class="charliteral">&#39; &#39;</span>, trim($response));</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        $this-&gt;assertNotFalse($response, <span class="stringliteral">&quot;La page Broker n&#39;est pas accessible.&quot;</span>);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        $this-&gt;assertStringContainsString(<span class="stringliteral">&quot;href=\&quot;/broker/add\&quot;&quot;</span>, $response, <span class="stringliteral">&quot;Le lien pour Ajouter un broker n&#39;est pas présent sur la page.&quot;</span>);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="comment">// etc ...</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    }</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="class_artnet_administration_test.html#a09c2726b02a99d260887fe053355c564">   30</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="class_artnet_administration_test.html#a09c2726b02a99d260887fe053355c564">testAjouterBroker</a>()</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        $postData = [</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <span class="stringliteral">&quot;hostname&quot;</span> =&gt; <span class="stringliteral">&quot;127.0.0.1&quot;</span>,</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <span class="stringliteral">&quot;port&quot;</span> =&gt; <span class="stringliteral">&quot;1883&quot;</span>,</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <span class="stringliteral">&quot;submit&quot;</span> =&gt; <span class="stringliteral">&quot;Envoyer&quot;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        ];</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        $response = $this-&gt;<a class="code" href="class_artnet_administration_test.html#a9b0d4c425cd386d8e5636fc01b6129d5">httpPost</a>($this-&gt;urlCreationBroker, $postData);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        $this-&gt;assertStringContainsString(<span class="stringliteral">&quot;Broker ajouté avec succès !&quot;</span>, $response, <span class="stringliteral">&quot;Impossible d&#39;ajouter un broker.&quot;</span>);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    }</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="class_artnet_administration_test.html#a79fed2f28015e90ed94da446dcc0b941">   42</a></span>&#160;    <span class="keyword">private</span> <span class="keyword">function</span> <a class="code" href="class_artnet_administration_test.html#a79fed2f28015e90ed94da446dcc0b941">httpGet</a>($url)</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        $ch = curl_init();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        curl_setopt($ch, CURLOPT_URL, $url);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        curl_setopt($ch, CURLOPT_RETURNTRANSFER, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        $response = curl_exec($ch);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        curl_close($ch);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordflow">return</span> $response;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="class_artnet_administration_test.html#a9b0d4c425cd386d8e5636fc01b6129d5">   53</a></span>&#160;    <span class="keyword">private</span> <span class="keyword">function</span> <a class="code" href="class_artnet_administration_test.html#a9b0d4c425cd386d8e5636fc01b6129d5">httpPost</a>($url, $postData)</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        $ch = curl_init();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        curl_setopt($ch, CURLOPT_URL, $url);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        curl_setopt($ch, CURLOPT_RETURNTRANSFER, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        curl_setopt($ch, CURLOPT_POST, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        $response = curl_exec($ch);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        curl_close($ch);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordflow">return</span> $response;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;}</div>
+<div class="ttc" id="aclass_artnet_administration_test_html"><div class="ttname"><a href="class_artnet_administration_test.html">ArtnetAdministrationTest</a></div><div class="ttdef"><b>Definition:</b> <a href="_artnet_administration_test_8php_source.html#l00005">ArtnetAdministrationTest.php:6</a></div></div>
+<div class="ttc" id="aclass_artnet_administration_test_html_a09c2726b02a99d260887fe053355c564"><div class="ttname"><a href="class_artnet_administration_test.html#a09c2726b02a99d260887fe053355c564">ArtnetAdministrationTest\testAjouterBroker</a></div><div class="ttdeci">testAjouterBroker()</div><div class="ttdef"><b>Definition:</b> <a href="_artnet_administration_test_8php_source.html#l00030">ArtnetAdministrationTest.php:30</a></div></div>
+<div class="ttc" id="aclass_artnet_administration_test_html_a33fd910816de8594242d59225b78685d"><div class="ttname"><a href="class_artnet_administration_test.html#a33fd910816de8594242d59225b78685d">ArtnetAdministrationTest\$urlCreationBroker</a></div><div class="ttdeci">$urlCreationBroker</div><div class="ttdef"><b>Definition:</b> <a href="_artnet_administration_test_8php_source.html#l00009">ArtnetAdministrationTest.php:9</a></div></div>
+<div class="ttc" id="aclass_artnet_administration_test_html_a38b1c393425d57f1aba693e495f2664e"><div class="ttname"><a href="class_artnet_administration_test.html#a38b1c393425d57f1aba693e495f2664e">ArtnetAdministrationTest\testPageAccueilIsAccessible</a></div><div class="ttdeci">testPageAccueilIsAccessible()</div><div class="ttdef"><b>Definition:</b> <a href="_artnet_administration_test_8php_source.html#l00012">ArtnetAdministrationTest.php:12</a></div></div>
+<div class="ttc" id="aclass_artnet_administration_test_html_a65ca5836fd73d08ee10922fc117e88dd"><div class="ttname"><a href="class_artnet_administration_test.html#a65ca5836fd73d08ee10922fc117e88dd">ArtnetAdministrationTest\$urlAccueil</a></div><div class="ttdeci">$urlAccueil</div><div class="ttdef"><b>Definition:</b> <a href="_artnet_administration_test_8php_source.html#l00007">ArtnetAdministrationTest.php:7</a></div></div>
+<div class="ttc" id="aclass_artnet_administration_test_html_a79fed2f28015e90ed94da446dcc0b941"><div class="ttname"><a href="class_artnet_administration_test.html#a79fed2f28015e90ed94da446dcc0b941">ArtnetAdministrationTest\httpGet</a></div><div class="ttdeci">httpGet($url)</div><div class="ttdef"><b>Definition:</b> <a href="_artnet_administration_test_8php_source.html#l00042">ArtnetAdministrationTest.php:42</a></div></div>
+<div class="ttc" id="aclass_artnet_administration_test_html_a94b7f2f82ecd371a2f16498ee92c93e7"><div class="ttname"><a href="class_artnet_administration_test.html#a94b7f2f82ecd371a2f16498ee92c93e7">ArtnetAdministrationTest\$urlBroker</a></div><div class="ttdeci">$urlBroker</div><div class="ttdef"><b>Definition:</b> <a href="_artnet_administration_test_8php_source.html#l00008">ArtnetAdministrationTest.php:8</a></div></div>
+<div class="ttc" id="aclass_artnet_administration_test_html_a9b0d4c425cd386d8e5636fc01b6129d5"><div class="ttname"><a href="class_artnet_administration_test.html#a9b0d4c425cd386d8e5636fc01b6129d5">ArtnetAdministrationTest\httpPost</a></div><div class="ttdeci">httpPost($url, $postData)</div><div class="ttdef"><b>Definition:</b> <a href="_artnet_administration_test_8php_source.html#l00053">ArtnetAdministrationTest.php:53</a></div></div>
+<div class="ttc" id="aclass_artnet_administration_test_html_aee638509ebc5695f9eafe8dfefd13096"><div class="ttname"><a href="class_artnet_administration_test.html#aee638509ebc5695f9eafe8dfefd13096">ArtnetAdministrationTest\testUrlBrokerIsAccessible</a></div><div class="ttdeci">testUrlBrokerIsAccessible()</div><div class="ttdef"><b>Definition:</b> <a href="_artnet_administration_test_8php_source.html#l00020">ArtnetAdministrationTest.php:20</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_0b018aa80fa74ae122e17cce7379129c.html">artnetAdministration</a></li><li class="navelem"><a class="el" href="dir_0b8f77ed98717e994a6a04356856eb28.html">tests</a></li><li class="navelem"><a class="el" href="_artnet_administration_test_8php.html">ArtnetAdministrationTest.php</a></li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Lundi 2 Juin 2025 09:33:33 pour Projet Ergonomic-Workstation par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+  </ul>
+</div>
+</body>
+</html>

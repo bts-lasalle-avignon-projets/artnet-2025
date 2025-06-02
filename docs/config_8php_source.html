@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Projet Ergonomic-Workstation:  Fichier source de config.php</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="customdoxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Projet Ergonomic-Workstation
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">BTS CIEL IR LaSalle Avignon 2025</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('config_8php_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">config.php</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="config_8php.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;&lt;?php</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// le nom à ajouter dans l&#39;URL</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="config_8php.html#a0e18eeac9b764812929543509c27eb67">    4</a></span>&#160;define(<span class="stringliteral">&quot;URL_NAME&quot;</span>, <span class="stringliteral">&quot;/&quot;</span>);</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">// Pour le debug</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="config_8php.html#a758c150b67e476ecf77478f16b387c61">    7</a></span>&#160;define(<span class="stringliteral">&quot;DEBUG&quot;</span>, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// Pour les tests (sans authentification)</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="config_8php.html#a70bfc687e21554f00be8c37674d0c97d">   10</a></span>&#160;define(<span class="stringliteral">&quot;NO_LOGIN&quot;</span>, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">// Pour le broker MQTT par défaut</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="config_8php.html#aaac795007145dae6076bfc4181aadfdc">   13</a></span>&#160;define(<span class="stringliteral">&quot;BROKER_MQTT_HOSTNAME&quot;</span>, <span class="stringliteral">&quot;127.0.0.1&quot;</span>);</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="config_8php.html#a86e7c1fa4ff98dd1b2158fb68e2cd339">   14</a></span>&#160;define(<span class="stringliteral">&quot;BROKER_MQTT_PORT&quot;</span>, 1883);</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="config_8php.html#aafc4af07533c4f3435573b180a0ad102">   15</a></span>&#160;define(<span class="stringliteral">&quot;BROKER_MQTT_TOPIC&quot;</span>, <span class="stringliteral">&quot;artnet&quot;</span>);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">// Pour la base de données</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="config_8php.html#a47a6f3afb72e2ba299cd75c4104ecc65">   18</a></span>&#160;define(<span class="stringliteral">&quot;DB_DRIVER&quot;</span>, <span class="keyword">true</span>); <span class="comment">// true pour MySQL, false sans base de données</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="config_8php.html#a293363d7988627f671958e2d908c202a">   19</a></span>&#160;define(<span class="stringliteral">&quot;DB_HOST&quot;</span>, <span class="stringliteral">&quot;127.0.0.1&quot;</span>);</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="config_8php.html#a1d1d99f8e08f387d84fe9848f3357156">   20</a></span>&#160;define(<span class="stringliteral">&quot;DB_USER&quot;</span>, <span class="stringliteral">&quot;artnet_User&quot;</span>);</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="config_8php.html#a8bb9c4546d91667cfa61879d83127a92">   21</a></span>&#160;define(<span class="stringliteral">&quot;DB_PASS&quot;</span>, <span class="stringliteral">&quot;password&quot;</span>);</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="config_8php.html#ab5db0d3504f917f268614c50b02c53e2">   22</a></span>&#160;define(<span class="stringliteral">&quot;DB_NAME&quot;</span>, <span class="stringliteral">&quot;artnet&quot;</span>);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">// Racine et URL</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="config_8php.html#a99b0dd69553205e1cca71ee9d1aab8e7">   25</a></span>&#160;define(<span class="stringliteral">&quot;ROOT_PATH&quot;</span>, <a class="code" href="config_8php.html#a0e18eeac9b764812929543509c27eb67">URL_NAME</a>);</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="config_8php.html#a4402ba2909a4d515efa9aa41d057247a">   26</a></span>&#160;define(<span class="stringliteral">&quot;URL_PATH&quot;</span>, <span class="stringliteral">&quot;http://&quot;</span> . <a class="code" href="_broker_2add_8php.html#ae4cb516593d277dd3ad071d6955da24e">$_SERVER</a>[<span class="stringliteral">&#39;HTTP_HOST&#39;</span>] . <a class="code" href="config_8php.html#a0e18eeac9b764812929543509c27eb67">URL_NAME</a>);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">// Divers</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="config_8php.html#a084c3fc9a3f469aa1a25921ef8f78a93">   29</a></span>&#160;define(<span class="stringliteral">&quot;TITRE_SITE&quot;</span>, <span class="stringliteral">&quot;ArtNet&quot;</span>);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">// Pour les actions</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="config_8php.html#a77f50450f797248730fb277b320eb8db">   32</a></span>&#160;define(<span class="stringliteral">&quot;ACTION_ENCOURS&quot;</span>, 0);</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="config_8php.html#aa8d913889c92292ba2d18b08a7debb13">   33</a></span>&#160;define(<span class="stringliteral">&quot;ACTION_SUCCESS&quot;</span>, 1);</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="config_8php.html#ac9288e6872cfd551fedf7aac422a685f">   34</a></span>&#160;define(<span class="stringliteral">&quot;ACTION_ERREUR&quot;</span>, -1);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keywordflow">if</span> (<a class="code" href="config_8php.html#a758c150b67e476ecf77478f16b387c61">DEBUG</a>) {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    ini_set(<span class="stringliteral">&#39;display_errors&#39;</span>, 1);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    error_reporting(E_ALL);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}</div>
+<div class="ttc" id="a_broker_2add_8php_html_ae4cb516593d277dd3ad071d6955da24e"><div class="ttname"><a href="_broker_2add_8php.html#ae4cb516593d277dd3ad071d6955da24e">$_SERVER</a></div><div class="ttdeci">$_SERVER['PHP_SELF']</div><div class="ttdef"><b>Definition:</b> <a href="_broker_2add_8php_source.html#l00006">Broker/add.php:6</a></div></div>
+<div class="ttc" id="aconfig_8php_html_a0e18eeac9b764812929543509c27eb67"><div class="ttname"><a href="config_8php.html#a0e18eeac9b764812929543509c27eb67">URL_NAME</a></div><div class="ttdeci">const URL_NAME</div><div class="ttdef"><b>Definition:</b> <a href="config_8php_source.html#l00004">config.php:4</a></div></div>
+<div class="ttc" id="aconfig_8php_html_a758c150b67e476ecf77478f16b387c61"><div class="ttname"><a href="config_8php.html#a758c150b67e476ecf77478f16b387c61">DEBUG</a></div><div class="ttdeci">const DEBUG</div><div class="ttdef"><b>Definition:</b> <a href="config_8php_source.html#l00007">config.php:7</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_0b018aa80fa74ae122e17cce7379129c.html">artnetAdministration</a></li><li class="navelem"><a class="el" href="config_8php.html">config.php</a></li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Lundi 2 Juin 2025 09:33:33 pour Projet Ergonomic-Workstation par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+  </ul>
+</div>
+</body>
+</html>
