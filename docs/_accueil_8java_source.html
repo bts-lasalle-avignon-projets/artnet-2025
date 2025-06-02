@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Projet Ergonomic-Workstation:  Fichier source de Accueil.java</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="customdoxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Projet Ergonomic-Workstation
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">BTS CIEL IR LaSalle Avignon 2025</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('_accueil_8java_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">Accueil.java</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_accueil_8java.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">package </span>com.example.artnetmobile;</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">import</span> android.os.Bundle;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">import</span> androidx.activity.EdgeToEdge;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">import</span> androidx.annotation.NonNull;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">import</span> androidx.appcompat.app.AppCompatActivity;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">import</span> android.os.Handler;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">import</span> android.os.Message;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">import</span> android.util.Log;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">import</span> android.view.View;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">import</span> android.widget.Button;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">import</span> android.widget.LinearLayout;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html">   19</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html">Accueil</a> <span class="keyword">extends</span> AppCompatActivity</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a5701c5faef7b48b4e5e624680e4eedb6">   24</a></span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a5701c5faef7b48b4e5e624680e4eedb6">TAG</a> = <span class="stringliteral">&quot;_Accueil&quot;</span>; </div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a756140df41c48277deb8af5570e12eff">   25</a></span>&#160;    <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_vue_artnet.html">VueArtnet</a>        <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a756140df41c48277deb8af5570e12eff">vue</a> = <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_vue_artnet.html">VueArtnet</a>.<a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_vue_artnet.html#a0dc4aae9f0f78eb5d4afec5d98c03196">getInstance</a>();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a1d8b14b2705757e3db943f307fb473e7">   30</a></span>&#160;    <span class="keyword">private</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html">CommunicationBroker</a> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a1d8b14b2705757e3db943f307fb473e7">communicationBroker</a>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a56cf8b3d0a96991975051a2b3bea578e">   31</a></span>&#160;    <span class="keyword">private</span> Handler             <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a56cf8b3d0a96991975051a2b3bea578e">handler</a> = <span class="keyword">null</span>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#aced6cf128d7e7d4d3a756bff481e1064">   32</a></span>&#160;    <span class="keyword">private</span> LinearLayout <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#aced6cf128d7e7d4d3a756bff481e1064">conteneurUnivers</a>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a8d134542271c6d890a718bee8c437d68">   33</a></span>&#160;    <span class="keyword">private</span> LinearLayout <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a8d134542271c6d890a718bee8c437d68">conteneurDetails</a>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#aa3a90ab538643bdaa1c2ac41a075c049">   35</a></span>&#160;    <span class="keyword">protected</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#aa3a90ab538643bdaa1c2ac41a075c049">onCreate</a>(Bundle savedInstanceState)</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        super.onCreate(savedInstanceState);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        EdgeToEdge.enable(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        setContentView(R.layout.activity_accueil);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        Log.d(<a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a5701c5faef7b48b4e5e624680e4eedb6">TAG</a>, <span class="stringliteral">&quot;onCreate()&quot;</span>);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a5b7d90dd97d674adb60a385c37301264">initialiserHandler</a>();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a2212aada83ca30d2e1e8390bae061177">initialiserCommunicationBroker</a>();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a756140df41c48277deb8af5570e12eff">vue</a>.<a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_vue_artnet.html#aee47d7c6a09d399b5737e5b5e4d7a4e4">initialiserNavbar</a>(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        Button boutonRechercherUnivers = findViewById(R.id.boutonRechercherUnivers);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#aced6cf128d7e7d4d3a756bff481e1064">conteneurUnivers</a> = findViewById(R.id.conteneurUnivers);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a8d134542271c6d890a718bee8c437d68">conteneurDetails</a> = findViewById(R.id.conteneurDetails);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        boutonRechercherUnivers.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            @Override</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            public void onClick(View v)</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                vue.afficherUniversExistants(conteneurUnivers, conteneurDetails);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        });</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    @Override</div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#aaa63ba2896f21606702b5ec1765155be">   64</a></span>&#160;    <span class="keyword">protected</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#aaa63ba2896f21606702b5ec1765155be">onResume</a>()</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        super.onResume();</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        Log.d(TAG, <span class="stringliteral">&quot;onResume()&quot;</span>);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordflow">if</span>(communicationBroker != <span class="keyword">null</span>)</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            communicationBroker.setHandler(handler);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    }</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a2212aada83ca30d2e1e8390bae061177">   73</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a2212aada83ca30d2e1e8390bae061177">initialiserCommunicationBroker</a>()</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        Log.d(TAG, <span class="stringliteral">&quot;initialiserCommunicationBroker()&quot;</span>);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        communicationBroker = <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html">CommunicationBroker</a>.<a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html#aa99255c42116a9a4b631ac4f2f10d7f7">getInstance</a>();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html">CommunicationBroker</a>.<a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html#aa99255c42116a9a4b631ac4f2f10d7f7">getInstance</a>().<a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html#acbd954a72a3e52b249eeed95a2cde443">initialiserContexte</a>(getApplicationContext());</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        communicationBroker.setHandler(handler);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordflow">if</span>(!communicationBroker.estConnecte())</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            communicationBroker.connecter();</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a5b7d90dd97d674adb60a385c37301264">   83</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a5b7d90dd97d674adb60a385c37301264">initialiserHandler</a>()</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        this.handler = <span class="keyword">new</span> Handler(this.getMainLooper()) {</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            @Override</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            <span class="keyword">public</span> <span class="keywordtype">void</span> handleMessage(@NonNull Message message)</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            {</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                <span class="comment">// Log.d(TAG, &quot;handleMessage() id message = &quot; + message.what);</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                <span class="comment">// Log.d(TAG, &quot;handleMessage() message = &quot; + message.obj.toString());</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                Bundle bundle;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                <span class="keywordflow">switch</span>(message.what)</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                {</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                    <span class="keywordflow">case</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html">CommunicationBroker</a>.<a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html#ab2bd6f8c3adc70c52fc4c78a23815e82">BROKER_CONNECTE</a>:</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                        Log.d(TAG, <span class="stringliteral">&quot;handleMessage() BROKER_CONNECTE&quot;</span>);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                        communicationBroker.sabonner(<a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html">CommunicationBroker</a>.<a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html#a9308bdf234d72c8dadb67a6debd95eb1">TOPIC_ARTNET</a>);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                    <span class="keywordflow">case</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html">CommunicationBroker</a>.<a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html#a852856a89f71c8181595010bdf056b64">BROKER_DECONNECTE</a>:</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                        Log.d(TAG, <span class="stringliteral">&quot;handleMessage() BROKER_DECONNECTE&quot;</span>);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                    <span class="keywordflow">case</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html">CommunicationBroker</a>.<a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html#a7cd801c4c241ccabc4b20a639e7367ec">BROKER_MESSAGE_RECU</a>:</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                        bundle             = (Bundle)message.obj;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                        String topicMQTT   = bundle.getString(<span class="stringliteral">&quot;topic&quot;</span>);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                        String messageMQTT = bundle.getString(<span class="stringliteral">&quot;message&quot;</span>);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                        Log.d(TAG,</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                              <span class="stringliteral">&quot;handleMessage() BROKER_MESSAGE_RECU &quot;</span> + topicMQTT + <span class="stringliteral">&quot; -&gt; &quot;</span> +</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                                messageMQTT);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                        traiterMessageMQTT(topicMQTT, messageMQTT);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                    <span class="keywordflow">case</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html">CommunicationBroker</a>.<a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html#ac54dc14d264ad8862d6bc4d98dd99c2b">BROKER_ERREUR</a>:</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                        bundle        = (Bundle)message.obj;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                        String erreur = bundle.getString(<span class="stringliteral">&quot;erreur&quot;</span>);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                        Log.d(TAG, <span class="stringliteral">&quot;handleMessage() BROKER_ERREUR &quot;</span> + erreur);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                }</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            }</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        };</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    }</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a6c8bb00bffc25f1e44ae78d44a313b1b">  120</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a6c8bb00bffc25f1e44ae78d44a313b1b">traiterMessageMQTT</a>(String topicMQTT, String messageMQTT)</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    {</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <span class="keywordflow">if</span>(topicMQTT.startsWith(<span class="stringliteral">&quot;artnet/config/&quot;</span>))</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        {</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            communicationBroker.traiterMessageConfig(topicMQTT, messageMQTT);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        }</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    }</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;}</div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_accueil_html"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html">com.example.artnetmobile.Accueil</a></div><div class="ttdef"><b>Definition:</b> <a href="_accueil_8java_source.html#l00019">Accueil.java:20</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_accueil_html_a1d8b14b2705757e3db943f307fb473e7"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a1d8b14b2705757e3db943f307fb473e7">com.example.artnetmobile.Accueil.communicationBroker</a></div><div class="ttdeci">CommunicationBroker communicationBroker</div><div class="ttdef"><b>Definition:</b> <a href="_accueil_8java_source.html#l00030">Accueil.java:30</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_accueil_html_a2212aada83ca30d2e1e8390bae061177"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a2212aada83ca30d2e1e8390bae061177">com.example.artnetmobile.Accueil.initialiserCommunicationBroker</a></div><div class="ttdeci">void initialiserCommunicationBroker()</div><div class="ttdef"><b>Definition:</b> <a href="_accueil_8java_source.html#l00073">Accueil.java:73</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_accueil_html_a56cf8b3d0a96991975051a2b3bea578e"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a56cf8b3d0a96991975051a2b3bea578e">com.example.artnetmobile.Accueil.handler</a></div><div class="ttdeci">Handler handler</div><div class="ttdef"><b>Definition:</b> <a href="_accueil_8java_source.html#l00031">Accueil.java:31</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_accueil_html_a5701c5faef7b48b4e5e624680e4eedb6"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a5701c5faef7b48b4e5e624680e4eedb6">com.example.artnetmobile.Accueil.TAG</a></div><div class="ttdeci">static final String TAG</div><div class="ttdoc">TAG pour les logs (cf. Logcat)</div><div class="ttdef"><b>Definition:</b> <a href="_accueil_8java_source.html#l00024">Accueil.java:24</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_accueil_html_a5b7d90dd97d674adb60a385c37301264"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a5b7d90dd97d674adb60a385c37301264">com.example.artnetmobile.Accueil.initialiserHandler</a></div><div class="ttdeci">void initialiserHandler()</div><div class="ttdef"><b>Definition:</b> <a href="_accueil_8java_source.html#l00083">Accueil.java:83</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_accueil_html_a6c8bb00bffc25f1e44ae78d44a313b1b"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a6c8bb00bffc25f1e44ae78d44a313b1b">com.example.artnetmobile.Accueil.traiterMessageMQTT</a></div><div class="ttdeci">void traiterMessageMQTT(String topicMQTT, String messageMQTT)</div><div class="ttdef"><b>Definition:</b> <a href="_accueil_8java_source.html#l00120">Accueil.java:120</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_accueil_html_a756140df41c48277deb8af5570e12eff"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a756140df41c48277deb8af5570e12eff">com.example.artnetmobile.Accueil.vue</a></div><div class="ttdeci">VueArtnet vue</div><div class="ttdef"><b>Definition:</b> <a href="_accueil_8java_source.html#l00025">Accueil.java:25</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_accueil_html_a8d134542271c6d890a718bee8c437d68"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#a8d134542271c6d890a718bee8c437d68">com.example.artnetmobile.Accueil.conteneurDetails</a></div><div class="ttdeci">LinearLayout conteneurDetails</div><div class="ttdef"><b>Definition:</b> <a href="_accueil_8java_source.html#l00033">Accueil.java:33</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_accueil_html_aa3a90ab538643bdaa1c2ac41a075c049"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#aa3a90ab538643bdaa1c2ac41a075c049">com.example.artnetmobile.Accueil.onCreate</a></div><div class="ttdeci">void onCreate(Bundle savedInstanceState)</div><div class="ttdef"><b>Definition:</b> <a href="_accueil_8java_source.html#l00035">Accueil.java:35</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_accueil_html_aaa63ba2896f21606702b5ec1765155be"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#aaa63ba2896f21606702b5ec1765155be">com.example.artnetmobile.Accueil.onResume</a></div><div class="ttdeci">void onResume()</div><div class="ttdoc">Méthode appelée après onStart() ou après onPause()</div><div class="ttdef"><b>Definition:</b> <a href="_accueil_8java_source.html#l00064">Accueil.java:64</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_accueil_html_aced6cf128d7e7d4d3a756bff481e1064"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_accueil.html#aced6cf128d7e7d4d3a756bff481e1064">com.example.artnetmobile.Accueil.conteneurUnivers</a></div><div class="ttdeci">LinearLayout conteneurUnivers</div><div class="ttdef"><b>Definition:</b> <a href="_accueil_8java_source.html#l00032">Accueil.java:32</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_communication_broker_html"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html">com.example.artnetmobile.CommunicationBroker</a></div><div class="ttdef"><b>Definition:</b> <a href="_communication_broker_8java_source.html#l00029">CommunicationBroker.java:29</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_communication_broker_html_a7cd801c4c241ccabc4b20a639e7367ec"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html#a7cd801c4c241ccabc4b20a639e7367ec">com.example.artnetmobile.CommunicationBroker.BROKER_MESSAGE_RECU</a></div><div class="ttdeci">static final int BROKER_MESSAGE_RECU</div><div class="ttdef"><b>Definition:</b> <a href="_communication_broker_8java_source.html#l00040">CommunicationBroker.java:40</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_communication_broker_html_a852856a89f71c8181595010bdf056b64"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html#a852856a89f71c8181595010bdf056b64">com.example.artnetmobile.CommunicationBroker.BROKER_DECONNECTE</a></div><div class="ttdeci">static final int BROKER_DECONNECTE</div><div class="ttdef"><b>Definition:</b> <a href="_communication_broker_8java_source.html#l00039">CommunicationBroker.java:39</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_communication_broker_html_a9308bdf234d72c8dadb67a6debd95eb1"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html#a9308bdf234d72c8dadb67a6debd95eb1">com.example.artnetmobile.CommunicationBroker.TOPIC_ARTNET</a></div><div class="ttdeci">static final String TOPIC_ARTNET</div><div class="ttdef"><b>Definition:</b> <a href="_communication_broker_8java_source.html#l00036">CommunicationBroker.java:36</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_communication_broker_html_aa99255c42116a9a4b631ac4f2f10d7f7"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html#aa99255c42116a9a4b631ac4f2f10d7f7">com.example.artnetmobile.CommunicationBroker.getInstance</a></div><div class="ttdeci">static CommunicationBroker getInstance()</div><div class="ttdef"><b>Definition:</b> <a href="_communication_broker_8java_source.html#l00060">CommunicationBroker.java:60</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_communication_broker_html_ab2bd6f8c3adc70c52fc4c78a23815e82"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html#ab2bd6f8c3adc70c52fc4c78a23815e82">com.example.artnetmobile.CommunicationBroker.BROKER_CONNECTE</a></div><div class="ttdeci">static final int BROKER_CONNECTE</div><div class="ttdef"><b>Definition:</b> <a href="_communication_broker_8java_source.html#l00038">CommunicationBroker.java:38</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_communication_broker_html_ac54dc14d264ad8862d6bc4d98dd99c2b"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html#ac54dc14d264ad8862d6bc4d98dd99c2b">com.example.artnetmobile.CommunicationBroker.BROKER_ERREUR</a></div><div class="ttdeci">static final int BROKER_ERREUR</div><div class="ttdef"><b>Definition:</b> <a href="_communication_broker_8java_source.html#l00037">CommunicationBroker.java:37</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_communication_broker_html_acbd954a72a3e52b249eeed95a2cde443"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html#acbd954a72a3e52b249eeed95a2cde443">com.example.artnetmobile.CommunicationBroker.initialiserContexte</a></div><div class="ttdeci">void initialiserContexte(Context context)</div><div class="ttdef"><b>Definition:</b> <a href="_communication_broker_8java_source.html#l00283">CommunicationBroker.java:283</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_vue_artnet_html"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_vue_artnet.html">com.example.artnetmobile.VueArtnet</a></div><div class="ttdef"><b>Definition:</b> <a href="_vue_artnet_8java_source.html#l00016">VueArtnet.java:17</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_vue_artnet_html_a0dc4aae9f0f78eb5d4afec5d98c03196"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_vue_artnet.html#a0dc4aae9f0f78eb5d4afec5d98c03196">com.example.artnetmobile.VueArtnet.getInstance</a></div><div class="ttdeci">static VueArtnet getInstance()</div><div class="ttdef"><b>Definition:</b> <a href="_vue_artnet_8java_source.html#l00032">VueArtnet.java:32</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_vue_artnet_html_aee47d7c6a09d399b5737e5b5e4d7a4e4"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_vue_artnet.html#aee47d7c6a09d399b5737e5b5e4d7a4e4">com.example.artnetmobile.VueArtnet.initialiserNavbar</a></div><div class="ttdeci">void initialiserNavbar(Activity activite)</div><div class="ttdef"><b>Definition:</b> <a href="_vue_artnet_8java_source.html#l00041">VueArtnet.java:41</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_80d4f6a9e8964e7ab3c450dee52c906a.html">artnetMobile</a></li><li class="navelem"><a class="el" href="dir_190e86d5e9d180bf7b05ce71d3e7fb84.html">app</a></li><li class="navelem"><a class="el" href="dir_ac42522515ef7da83ee4aa2b2229b03e.html">src</a></li><li class="navelem"><a class="el" href="dir_1073a7a05d2eb38709f7fab0f3955590.html">main</a></li><li class="navelem"><a class="el" href="dir_6b683876e5d947fe04dd1cb5720355f6.html">java</a></li><li class="navelem"><a class="el" href="dir_169b63909e04a82340b63be285cd76ef.html">com</a></li><li class="navelem"><a class="el" href="dir_0b84cca05b1f1a6c86b19b2bb3335d30.html">example</a></li><li class="navelem"><a class="el" href="dir_fc96a3191e5c62e3ccda2bca55adb463.html">artnetmobile</a></li><li class="navelem"><a class="el" href="_accueil_8java.html">Accueil.java</a></li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Lundi 2 Juin 2025 09:33:33 pour Projet Ergonomic-Workstation par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+  </ul>
+</div>
+</body>
+</html>
