@@ -21,8 +21,12 @@ require '/var/www/html/artnet-2025/artnetAdministration/vendor/autoload.php';
 // $ sudo systemctl daemon-reload
 // $ sudo systemctl enable artnet-php-mqtt.service
 
+// Installation du script pour le service:
+// $ sudo cp chemin-artnet.sh /usr/local/bin/chemin-artnet.sh
+// $ sudo chmod +x /usr/local/bin/chemin-artnet.sh
+
 // La journalisation de ce script se trouve dans le fichier
-// /var/log/artnet/gestionModulesDMXWiFi.log
+// /var/log/artnet/gestionEquipementDMX.log
 function journaliser($message)
 {
     $fichier = "/var/log/artnet/gestionEquipementDMX.log";

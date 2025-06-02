@@ -9,8 +9,7 @@ Type=simple
 ExecStartPre=/bin/mkdir -m 740 -p /var/log/artnet
 ExecStartPre=/usr/bin/touch /var/log/artnet/gestionModulesDMXWiFi.log
 ExecStartPre=/usr/bin/touch /var/log/artnet/gestionEquipementDMX.log
-ExecStart=/usr/bin/php /var/www/html/artnet-2025/artnetAdministration/gestionModulesDMXWiFi.php
-ExecStart=/usr/bin/php /var/www/html/artnet-2025/artnetAdministration/gestionEquipementDMX.php
+ExecStart=/usr/local/bin/chemin-artnet.sh
 Restart=on-failure
 
 [Install]

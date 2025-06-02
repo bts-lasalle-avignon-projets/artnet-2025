@@ -263,7 +263,7 @@ class EquipementDMXModel extends Model
 				return ACTION_ERREUR;
 			}
 
-			if (!$this->existeIdEquipementDMX($idEquipement)) {
+			if (!$this->existeIdEquipementDMXParID($idEquipement)) {
 				Messages::setMsg("L'équipement n'existe pas !", "error");
 				return ACTION_ERREUR;
 			}
@@ -304,10 +304,21 @@ class EquipementDMXModel extends Model
 		return $equipement ?? null;
 	}
 
-	public function existeIdEquipementDMX($idEquipement): bool
+	public function existeIdEquipementDMXParID($idEquipement): bool
 	{
 		$this->query("SELECT nomEquipement FROM equipementDMX WHERE idEquipement = :idEquipement");
 		$this->bind(':idEquipement', $idEquipement);
+		$this->execute();
+		$nom = $this->getResult();
+		if (!$nom) {
+			return false;
+		}
+		return true;
+	}
+	public function existeIdEquipementDMXParNom($nomEquipement): bool
+	{
+		$this->query("SELECT nomEquipement FROM equipementDMX WHERE nomEquipement = :nomEquipement");
+		$this->bind(':nomEquipement', $nomEquipement);
 		$this->execute();
 		$nom = $this->getResult();
 		if (!$nom) {
@@ -343,30 +354,15 @@ class EquipementDMXModel extends Model
 		}
 
 		// Vérifier si l'équipement existe déjà dans la base de données
-		if ($this->existeIdEquipementDMX($data['nomEquipement'])) {
+		if ($this->existeIdEquipementDMXParNom($data['nomEquipement'])) {
 			return $this->updateEquipementTopic($data);
 		} else {
 			return $this->insertEquipementTopic($data);
 		}
 	}
-	/** 
-	public function existeNomEquipementDMX($nomEquipement)
-	{
-		$this->query("SELECT nomEquipement FROM equipementDMX WHERE nomEquipement = :nomEquipement");
-		$this->bind(':nomEquipement', $nomEquipement);
-		$this->execute();
-		$result = $this->getResult();
-		if ($result) {
-			return $result['nomEquipement'];
-		}
-		return false;
-	}*/
 
 	public function updateEquipementTopic($data)
 	{
-		//TODO idTypeEquipement
-
-
 		$this->query("SELECT idEquipement FROM equipementDMX WHERE nomEquipement = :nomEquipement AND univers = :univers");
 		$this->bind(':nomEquipement', $data['nomEquipement']);
 		$this->bind(':univers', $data['univers']);
@@ -378,12 +374,16 @@ class EquipementDMXModel extends Model
 			return false; // Équipement non trouvé
 		}
 
+		$idEquipement = $equipementDMX['idEquipement'];
+		$idTypeEquipement = $this->getIdTypeEquipement($data);
+
 		// Modifie l'équipement dans la base de données
-		$this->query("UPDATE equipementDMX SET nomEquipement = :nomEquipement, univers = :univers, canalInitial = :canalInitial WHERE idEquipement = :idEquipement");
+		$this->query("UPDATE equipementDMX SET nomEquipement = :nomEquipement, univers = :univers, idTypeEquipement = :idTypeEquipement, canalInitial = :canalInitial WHERE idEquipement = :idEquipement");
 		$this->bind(':nomEquipement', $data['nomEquipement']);
 		$this->bind(':univers', $data['univers']);
+		$this->bind(':idTypeEquipement', $idTypeEquipement);
 		$this->bind(':canalInitial', $data['canalInitial']);
-		$this->bind(':idEquipement', $equipementDMX);
+		$this->bind(':idEquipement', $idEquipement);
 		return $this->execute();
 	}
 
