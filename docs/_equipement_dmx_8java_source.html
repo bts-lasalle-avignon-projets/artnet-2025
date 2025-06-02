@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Projet Ergonomic-Workstation:  Fichier source de EquipementDmx.java</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="customdoxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Projet Ergonomic-Workstation
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">BTS CIEL IR LaSalle Avignon 2025</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('_equipement_dmx_8java_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">EquipementDmx.java</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_equipement_dmx_8java.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">package </span>com.example.artnetmobile;</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">import</span> android.util.Log;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">import</span> java.util.Vector;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html">    7</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html">EquipementDmx</a></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#af90f5fca3956e81eacb1cace6a3f769d">    9</a></span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#af90f5fca3956e81eacb1cace6a3f769d">TAG</a> = <span class="stringliteral">&quot;_EquipementDmx&quot;</span>;</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#ad4b9fb95359d87e2dd9df61d54303c00">   10</a></span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keywordtype">int</span>         <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#ad4b9fb95359d87e2dd9df61d54303c00">compteurID</a>;</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a22d599a0b127127d9f6021bcda3e5a99">   11</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">int</span>                <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a22d599a0b127127d9f6021bcda3e5a99">idEquipement</a>;</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a32bbb7550bccb3f27b44b555c3347954">   12</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">int</span>                <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a32bbb7550bccb3f27b44b555c3347954">univers</a>;</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#af0fe60b2159ccad30dbfa8338ccd705a">   13</a></span>&#160;    <span class="keyword">private</span> String             <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#af0fe60b2159ccad30dbfa8338ccd705a">nom</a>;</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a63aed030a1c0742c2483fc500d273e3e">   14</a></span>&#160;    <span class="keyword">private</span> String             <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a63aed030a1c0742c2483fc500d273e3e">type</a>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a80f3f7f5fe50c2fadb5b2875a94cba6c">   15</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">int</span>                <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a80f3f7f5fe50c2fadb5b2875a94cba6c">nbCanaux</a>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#aaaa2d93dd437498737479f69438c70d6">   16</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">int</span>                <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#aaaa2d93dd437498737479f69438c70d6">adresseDMX</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a5ca67cd90485c35b2218ef30cd9b1c9a">   17</a></span>&#160;    <span class="keyword">private</span> Vector&lt;String&gt; <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a5ca67cd90485c35b2218ef30cd9b1c9a">canaux</a> = <span class="keyword">new</span> Vector&lt;&gt;();</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a2a4bed0348d5accd2f1c4dc75d1ca722">   18</a></span>&#160;    <span class="keyword">private</span> Vector&lt;Integer&gt; <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a2a4bed0348d5accd2f1c4dc75d1ca722">valeursCanaux</a> = <span class="keyword">new</span> Vector&lt;&gt;();</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#aa0f1f6d0d463da7f408bdcfdcbf13292">   20</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#aa0f1f6d0d463da7f408bdcfdcbf13292">EquipementDmx</a>(<span class="keywordtype">int</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a32bbb7550bccb3f27b44b555c3347954">univers</a>, String <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#af0fe60b2159ccad30dbfa8338ccd705a">nom</a>, String <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a63aed030a1c0742c2483fc500d273e3e">type</a>, <span class="keywordtype">int</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a80f3f7f5fe50c2fadb5b2875a94cba6c">nbCanaux</a>, <span class="keywordtype">int</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#aaaa2d93dd437498737479f69438c70d6">adresseDMX</a>, Vector&lt;String&gt; <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a5ca67cd90485c35b2218ef30cd9b1c9a">canaux</a>) {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        Log.d(<a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#af90f5fca3956e81eacb1cace6a3f769d">TAG</a>, <span class="stringliteral">&quot;EquipementDmx()&quot;</span>);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        this.idEquipement = ++<a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#ad4b9fb95359d87e2dd9df61d54303c00">compteurID</a>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        this.univers = <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a32bbb7550bccb3f27b44b555c3347954">univers</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        this.nom = <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#af0fe60b2159ccad30dbfa8338ccd705a">nom</a>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        this.type = <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a63aed030a1c0742c2483fc500d273e3e">type</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        this.nbCanaux = <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a80f3f7f5fe50c2fadb5b2875a94cba6c">nbCanaux</a>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        this.adresseDMX = <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#aaaa2d93dd437498737479f69438c70d6">adresseDMX</a>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        this.canaux = <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a5ca67cd90485c35b2218ef30cd9b1c9a">canaux</a>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_univers.html">Univers</a>.<a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_univers.html#a151dc81cc50491a6d1812143ef8a116a">ajouterEquipementUnivers</a>(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a80f3f7f5fe50c2fadb5b2875a94cba6c">nbCanaux</a>; i++) {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a2a4bed0348d5accd2f1c4dc75d1ca722">valeursCanaux</a>.add(-1);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        }</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        Log.d(<a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#af90f5fca3956e81eacb1cace6a3f769d">TAG</a>, <span class="stringliteral">&quot;ID : &quot;</span> + <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a22d599a0b127127d9f6021bcda3e5a99">idEquipement</a> + <span class="stringliteral">&quot; - Univers : &quot;</span> + <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a32bbb7550bccb3f27b44b555c3347954">univers</a> + <span class="stringliteral">&quot; - Nom : &quot;</span> + <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#af0fe60b2159ccad30dbfa8338ccd705a">nom</a> + <span class="stringliteral">&quot; - Type : &quot;</span> + <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a63aed030a1c0742c2483fc500d273e3e">type</a> + <span class="stringliteral">&quot; - Nombre canaux : &quot;</span> + <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a80f3f7f5fe50c2fadb5b2875a94cba6c">nbCanaux</a> + <span class="stringliteral">&quot; - Premier canal : &quot;</span> + <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#aaaa2d93dd437498737479f69438c70d6">adresseDMX</a>);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    }</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a5c330c5f738a2d1f3dc29a8ec391f463">   38</a></span>&#160;    <span class="keyword">public</span> Vector&lt;String&gt; <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a5c330c5f738a2d1f3dc29a8ec391f463">getCanaux</a>()</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a5ca67cd90485c35b2218ef30cd9b1c9a">canaux</a>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    }</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a878a50328d77408b144e4fd23eb96c16">   43</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a878a50328d77408b144e4fd23eb96c16">setIdEquipement</a>(<span class="keywordtype">int</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a22d599a0b127127d9f6021bcda3e5a99">idEquipement</a>)</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        this.idEquipement = <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a22d599a0b127127d9f6021bcda3e5a99">idEquipement</a>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a2750c2d618cda6d452a755c8b55a1e8e">   48</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a2750c2d618cda6d452a755c8b55a1e8e">setUnivers</a>(<span class="keywordtype">int</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a32bbb7550bccb3f27b44b555c3347954">univers</a>)</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        this.univers = <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a32bbb7550bccb3f27b44b555c3347954">univers</a>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    }</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a44033eac9d6922d6babb0ebac8890e1b">   53</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a44033eac9d6922d6babb0ebac8890e1b">setNom</a>(String <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#af0fe60b2159ccad30dbfa8338ccd705a">nom</a>)</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        this.nom = <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#af0fe60b2159ccad30dbfa8338ccd705a">nom</a>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a054216f6beb28733e43415353d9ccbff">   58</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a054216f6beb28733e43415353d9ccbff">setType</a>(String <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a63aed030a1c0742c2483fc500d273e3e">type</a>)</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        this.type = <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a63aed030a1c0742c2483fc500d273e3e">type</a>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    }</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#aa2ba82dcece29b5355802873a434d987">   63</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#aa2ba82dcece29b5355802873a434d987">setNbCanaux</a>(<span class="keywordtype">int</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a80f3f7f5fe50c2fadb5b2875a94cba6c">nbCanaux</a>)</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        this.nbCanaux = <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a80f3f7f5fe50c2fadb5b2875a94cba6c">nbCanaux</a>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#af6ce73ace1facc7600ee636a22d8d757">   68</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#af6ce73ace1facc7600ee636a22d8d757">setAdresseDMX</a>(<span class="keywordtype">int</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#aaaa2d93dd437498737479f69438c70d6">adresseDMX</a>)</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        this.adresseDMX = <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#aaaa2d93dd437498737479f69438c70d6">adresseDMX</a>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    }</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a0a67752ad8c1275488972de1a6b44ecc">   73</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a0a67752ad8c1275488972de1a6b44ecc">setCanaux</a>(Vector&lt;Equipement&gt; <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a5ca67cd90485c35b2218ef30cd9b1c9a">canaux</a>)</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a7224209f9b81b8eab27b03dfad3fd7e7">   77</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a7224209f9b81b8eab27b03dfad3fd7e7">getUnivers</a>()</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    {</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a32bbb7550bccb3f27b44b555c3347954">univers</a>;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a715fe13d2a9aac25c617cf4ddc200378">   82</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a715fe13d2a9aac25c617cf4ddc200378">getAdresseDMX</a>()</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    {</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#aaaa2d93dd437498737479f69438c70d6">adresseDMX</a>;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#adbd26b2b95544fd9d11c4d7f688b92ef">   87</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#adbd26b2b95544fd9d11c4d7f688b92ef">getIdEquipement</a>()</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    {</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a22d599a0b127127d9f6021bcda3e5a99">idEquipement</a>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#ab188a7a94b8fdd8512f7debb9032dd78">   92</a></span>&#160;    <span class="keyword">public</span> String <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#ab188a7a94b8fdd8512f7debb9032dd78">getNom</a>()</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    {</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#af0fe60b2159ccad30dbfa8338ccd705a">nom</a>;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    }</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#afe0d07ef112994bead1b5599d4e5ba78">   97</a></span>&#160;    <span class="keyword">public</span> String <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#afe0d07ef112994bead1b5599d4e5ba78">getType</a>()</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    {</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a63aed030a1c0742c2483fc500d273e3e">type</a>;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    }</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a51b48ef24cd3cbc1d5adf4f695d540b0">  102</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a51b48ef24cd3cbc1d5adf4f695d540b0">getNbCanaux</a>() { <span class="keywordflow">return</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a80f3f7f5fe50c2fadb5b2875a94cba6c">nbCanaux</a>; }</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a8442d9aceda1a366ecc04202d835a0df">  104</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a8442d9aceda1a366ecc04202d835a0df">configurerEquipement</a>() {}</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    @Override</div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a68864ac5810d39c8d3c34ed593255c25">  107</a></span>&#160;    <span class="keyword">public</span> String <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a68864ac5810d39c8d3c34ed593255c25">toString</a>() { <span class="keywordflow">return</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#af0fe60b2159ccad30dbfa8338ccd705a">nom</a>; }</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a25c6fc83acc64db103727fd9d2aad860">  109</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a25c6fc83acc64db103727fd9d2aad860">getValeurCanaux</a>(<span class="keywordtype">int</span> numCanal)</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    {</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a2a4bed0348d5accd2f1c4dc75d1ca722">valeursCanaux</a>.get(numCanal);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    }</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#aa2ca95a91ccfb5d4d0e8989783d774fe">  114</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#aa2ca95a91ccfb5d4d0e8989783d774fe">setValeurCanaux</a>(<span class="keywordtype">int</span> numCanal, <span class="keywordtype">int</span> valeur)</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    {</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <a class="code" href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a2a4bed0348d5accd2f1c4dc75d1ca722">valeursCanaux</a>.set(numCanal, valeur);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    }</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;}</div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html">com.example.artnetmobile.EquipementDmx</a></div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00007">EquipementDmx.java:8</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_a054216f6beb28733e43415353d9ccbff"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a054216f6beb28733e43415353d9ccbff">com.example.artnetmobile.EquipementDmx.setType</a></div><div class="ttdeci">void setType(String type)</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00058">EquipementDmx.java:58</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_a0a67752ad8c1275488972de1a6b44ecc"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a0a67752ad8c1275488972de1a6b44ecc">com.example.artnetmobile.EquipementDmx.setCanaux</a></div><div class="ttdeci">void setCanaux(Vector&lt; Equipement &gt; canaux)</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00073">EquipementDmx.java:73</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_a22d599a0b127127d9f6021bcda3e5a99"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a22d599a0b127127d9f6021bcda3e5a99">com.example.artnetmobile.EquipementDmx.idEquipement</a></div><div class="ttdeci">int idEquipement</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00011">EquipementDmx.java:11</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_a25c6fc83acc64db103727fd9d2aad860"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a25c6fc83acc64db103727fd9d2aad860">com.example.artnetmobile.EquipementDmx.getValeurCanaux</a></div><div class="ttdeci">int getValeurCanaux(int numCanal)</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00109">EquipementDmx.java:109</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_a2750c2d618cda6d452a755c8b55a1e8e"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a2750c2d618cda6d452a755c8b55a1e8e">com.example.artnetmobile.EquipementDmx.setUnivers</a></div><div class="ttdeci">void setUnivers(int univers)</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00048">EquipementDmx.java:48</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_a2a4bed0348d5accd2f1c4dc75d1ca722"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a2a4bed0348d5accd2f1c4dc75d1ca722">com.example.artnetmobile.EquipementDmx.valeursCanaux</a></div><div class="ttdeci">Vector&lt; Integer &gt; valeursCanaux</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00018">EquipementDmx.java:18</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_a32bbb7550bccb3f27b44b555c3347954"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a32bbb7550bccb3f27b44b555c3347954">com.example.artnetmobile.EquipementDmx.univers</a></div><div class="ttdeci">int univers</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00012">EquipementDmx.java:12</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_a44033eac9d6922d6babb0ebac8890e1b"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a44033eac9d6922d6babb0ebac8890e1b">com.example.artnetmobile.EquipementDmx.setNom</a></div><div class="ttdeci">void setNom(String nom)</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00053">EquipementDmx.java:53</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_a51b48ef24cd3cbc1d5adf4f695d540b0"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a51b48ef24cd3cbc1d5adf4f695d540b0">com.example.artnetmobile.EquipementDmx.getNbCanaux</a></div><div class="ttdeci">int getNbCanaux()</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00102">EquipementDmx.java:102</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_a5c330c5f738a2d1f3dc29a8ec391f463"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a5c330c5f738a2d1f3dc29a8ec391f463">com.example.artnetmobile.EquipementDmx.getCanaux</a></div><div class="ttdeci">Vector&lt; String &gt; getCanaux()</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00038">EquipementDmx.java:38</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_a5ca67cd90485c35b2218ef30cd9b1c9a"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a5ca67cd90485c35b2218ef30cd9b1c9a">com.example.artnetmobile.EquipementDmx.canaux</a></div><div class="ttdeci">Vector&lt; String &gt; canaux</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00017">EquipementDmx.java:17</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_a63aed030a1c0742c2483fc500d273e3e"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a63aed030a1c0742c2483fc500d273e3e">com.example.artnetmobile.EquipementDmx.type</a></div><div class="ttdeci">String type</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00014">EquipementDmx.java:14</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_a68864ac5810d39c8d3c34ed593255c25"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a68864ac5810d39c8d3c34ed593255c25">com.example.artnetmobile.EquipementDmx.toString</a></div><div class="ttdeci">String toString()</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00107">EquipementDmx.java:107</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_a715fe13d2a9aac25c617cf4ddc200378"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a715fe13d2a9aac25c617cf4ddc200378">com.example.artnetmobile.EquipementDmx.getAdresseDMX</a></div><div class="ttdeci">int getAdresseDMX()</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00082">EquipementDmx.java:82</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_a7224209f9b81b8eab27b03dfad3fd7e7"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a7224209f9b81b8eab27b03dfad3fd7e7">com.example.artnetmobile.EquipementDmx.getUnivers</a></div><div class="ttdeci">int getUnivers()</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00077">EquipementDmx.java:77</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_a80f3f7f5fe50c2fadb5b2875a94cba6c"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a80f3f7f5fe50c2fadb5b2875a94cba6c">com.example.artnetmobile.EquipementDmx.nbCanaux</a></div><div class="ttdeci">int nbCanaux</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00015">EquipementDmx.java:15</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_a8442d9aceda1a366ecc04202d835a0df"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a8442d9aceda1a366ecc04202d835a0df">com.example.artnetmobile.EquipementDmx.configurerEquipement</a></div><div class="ttdeci">void configurerEquipement()</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00104">EquipementDmx.java:104</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_a878a50328d77408b144e4fd23eb96c16"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a878a50328d77408b144e4fd23eb96c16">com.example.artnetmobile.EquipementDmx.setIdEquipement</a></div><div class="ttdeci">void setIdEquipement(int idEquipement)</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00043">EquipementDmx.java:43</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_aa0f1f6d0d463da7f408bdcfdcbf13292"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#aa0f1f6d0d463da7f408bdcfdcbf13292">com.example.artnetmobile.EquipementDmx.EquipementDmx</a></div><div class="ttdeci">EquipementDmx(int univers, String nom, String type, int nbCanaux, int adresseDMX, Vector&lt; String &gt; canaux)</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00020">EquipementDmx.java:20</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_aa2ba82dcece29b5355802873a434d987"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#aa2ba82dcece29b5355802873a434d987">com.example.artnetmobile.EquipementDmx.setNbCanaux</a></div><div class="ttdeci">void setNbCanaux(int nbCanaux)</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00063">EquipementDmx.java:63</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_aa2ca95a91ccfb5d4d0e8989783d774fe"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#aa2ca95a91ccfb5d4d0e8989783d774fe">com.example.artnetmobile.EquipementDmx.setValeurCanaux</a></div><div class="ttdeci">void setValeurCanaux(int numCanal, int valeur)</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00114">EquipementDmx.java:114</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_aaaa2d93dd437498737479f69438c70d6"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#aaaa2d93dd437498737479f69438c70d6">com.example.artnetmobile.EquipementDmx.adresseDMX</a></div><div class="ttdeci">int adresseDMX</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00016">EquipementDmx.java:16</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_ab188a7a94b8fdd8512f7debb9032dd78"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#ab188a7a94b8fdd8512f7debb9032dd78">com.example.artnetmobile.EquipementDmx.getNom</a></div><div class="ttdeci">String getNom()</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00092">EquipementDmx.java:92</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_ad4b9fb95359d87e2dd9df61d54303c00"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#ad4b9fb95359d87e2dd9df61d54303c00">com.example.artnetmobile.EquipementDmx.compteurID</a></div><div class="ttdeci">static int compteurID</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00010">EquipementDmx.java:10</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_adbd26b2b95544fd9d11c4d7f688b92ef"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#adbd26b2b95544fd9d11c4d7f688b92ef">com.example.artnetmobile.EquipementDmx.getIdEquipement</a></div><div class="ttdeci">int getIdEquipement()</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00087">EquipementDmx.java:87</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_af0fe60b2159ccad30dbfa8338ccd705a"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#af0fe60b2159ccad30dbfa8338ccd705a">com.example.artnetmobile.EquipementDmx.nom</a></div><div class="ttdeci">String nom</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00013">EquipementDmx.java:13</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_af6ce73ace1facc7600ee636a22d8d757"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#af6ce73ace1facc7600ee636a22d8d757">com.example.artnetmobile.EquipementDmx.setAdresseDMX</a></div><div class="ttdeci">void setAdresseDMX(int adresseDMX)</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00068">EquipementDmx.java:68</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_af90f5fca3956e81eacb1cace6a3f769d"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#af90f5fca3956e81eacb1cace6a3f769d">com.example.artnetmobile.EquipementDmx.TAG</a></div><div class="ttdeci">static final String TAG</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00009">EquipementDmx.java:9</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_equipement_dmx_html_afe0d07ef112994bead1b5599d4e5ba78"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#afe0d07ef112994bead1b5599d4e5ba78">com.example.artnetmobile.EquipementDmx.getType</a></div><div class="ttdeci">String getType()</div><div class="ttdef"><b>Definition:</b> <a href="_equipement_dmx_8java_source.html#l00097">EquipementDmx.java:97</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_univers_html"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_univers.html">com.example.artnetmobile.Univers</a></div><div class="ttdef"><b>Definition:</b> <a href="_univers_8java_source.html#l00009">Univers.java:9</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1artnetmobile_1_1_univers_html_a151dc81cc50491a6d1812143ef8a116a"><div class="ttname"><a href="classcom_1_1example_1_1artnetmobile_1_1_univers.html#a151dc81cc50491a6d1812143ef8a116a">com.example.artnetmobile.Univers.ajouterEquipementUnivers</a></div><div class="ttdeci">static void ajouterEquipementUnivers(EquipementDmx equipement)</div><div class="ttdef"><b>Definition:</b> <a href="_univers_8java_source.html#l00109">Univers.java:109</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_80d4f6a9e8964e7ab3c450dee52c906a.html">artnetMobile</a></li><li class="navelem"><a class="el" href="dir_190e86d5e9d180bf7b05ce71d3e7fb84.html">app</a></li><li class="navelem"><a class="el" href="dir_ac42522515ef7da83ee4aa2b2229b03e.html">src</a></li><li class="navelem"><a class="el" href="dir_1073a7a05d2eb38709f7fab0f3955590.html">main</a></li><li class="navelem"><a class="el" href="dir_6b683876e5d947fe04dd1cb5720355f6.html">java</a></li><li class="navelem"><a class="el" href="dir_169b63909e04a82340b63be285cd76ef.html">com</a></li><li class="navelem"><a class="el" href="dir_0b84cca05b1f1a6c86b19b2bb3335d30.html">example</a></li><li class="navelem"><a class="el" href="dir_fc96a3191e5c62e3ccda2bca55adb463.html">artnetmobile</a></li><li class="navelem"><a class="el" href="_equipement_dmx_8java.html">EquipementDmx.java</a></li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Lundi 2 Juin 2025 09:33:33 pour Projet Ergonomic-Workstation par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Projet Ergonomic-Workstation: README</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="customdoxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Projet Ergonomic-Workstation
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">BTS CIEL IR LaSalle Avignon 2025</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('md__mnt_sda_home_tv__documents_git_projets_2025_artnet_2025__r_e_a_d_m_e.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">README </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a href="https://github.com/bts-lasalle-avignon-projets/artnet-2025/actions/workflows/androidBuild.yml"><img src="https://github.com/bts-lasalle-avignon-projets/artnet-2025/actions/workflows/androidBuild.yml/badge.svg" alt="Build Android App" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/bts-lasalle-avignon-projets/artnet-2025/actions/workflows/clang-format.yml"><img src="https://github.com/bts-lasalle-avignon-projets/artnet-2025/actions/workflows/clang-format.yml/badge.svg" alt="Java Format" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/bts-lasalle-avignon-projets/artnet-2025/actions/workflows/php-artnet.yml"><img src="https://github.com/bts-lasalle-avignon-projets/artnet-2025/actions/workflows/php-artnet.yml/badge.svg" alt="Tests PHP artnetAdministration" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/bts-lasalle-avignon-projets/artnet-2025/releases"><img src="https://img.shields.io/github/v/release/bts-lasalle-avignon-projets/artnet-2025" alt="release" class="inline"/></a></p>
+<h1><img src="images/projecteurs.png" alt="Logo ArtNet" width="10%" class="inline"/> Projet BTS CIEL 2025 : Artnet 2025</h1>
+<ul>
+<li><a href="#-projet-bts-ciel-2025--artnet-2025">Projet BTS CIEL 2025 : Artnet 2025</a><ul>
+<li><a href="#présentation">Présentation</a></li>
+<li><a href="#ihm">IHM</a><ul>
+<li><a href="#module-serveur">Module Serveur</a></li>
+<li><a href="#module-application-de-commande">Module Application de commande</a></li>
+</ul>
+</li>
+<li><a href="#gestion-de-projet">Gestion de projet</a><ul>
+<li><a href="#itération-1">Itération 1</a></li>
+<li><a href="#itération-2">Itération 2</a></li>
+<li><a href="#itération-3">Itération 3</a></li>
+</ul>
+</li>
+<li><a href="#diagrammes">Diagrammes</a><ul>
+<li><a href="#diagrammes-des-cas-dutilisations">Diagrammes des cas d'utilisations</a></li>
+<li><a href="#diagrammes-de-séquence">Diagrammes de séquence</a></li>
+<li><a href="#diagrammes-de-classes">Diagrammes de classes</a></li>
+<li><a href="#base-de-données">Base de données</a></li>
+</ul>
+</li>
+<li><a href="#mqtt">MQTT</a><ul>
+<li><a href="#installation-du-broker">Installation du broker</a></li>
+<li><a href="#protocole">Protocole</a></li>
+</ul>
+</li>
+<li><a href="#tests-de-validation">Tests de validation</a><ul>
+<li><a href="#module-serveur-1">Module Serveur</a></li>
+<li><a href="#module-application-de-commande-1">Module Application de commande</a></li>
+</ul>
+</li>
+<li><a href="#equipe-de-développement">Equipe de développement</a></li>
+</ul>
+</li>
+</ul>
+<hr  />
+<h2>Présentation</h2>
+<p>De nos jours, les DJ et animateurs de soirée utilisent couramment un ordinateur portable à la fois pour diffuser la musique et pour gérer les différents jeux de lumières pour éclairer et animer la piste de spectacle (danse, podium, scène, ...).</p>
+<p>Nous souhaitons mettre en avant les possibilités offertes par notre système d’éclairage de scènes automatisé.</p>
+<p>Il s’agit donc d’intégrer dans des univers DMX composés d’éléments tel que :</p>
+<ul>
+<li>des scanners</li>
+<li>des PARS</li>
+<li>des lyres</li>
+<li>des Laser</li>
+<li>des spots spécifiques</li>
+</ul>
+<p>Objectif : réaliser un système de supervision et de commande de l’ensemble de ces appareils compatibles avec un bus standard du spectacle (DMX 512).</p>
+<p><img src="synoptique-artnet.png" alt="" class="inline" title="synoptique-artnet"/></p>
+<p>Le système est composé de :</p>
+<ul>
+<li>Un module <b>Serveur</b> qui est le centre du système. Il héberge l’IHM d’administration technique et contient la base de données. Il est chargé de la communication avec les modules “Wifi-DMX” et l’application mobile de contrôle. Il pourra éventuellement contrôler un modem DMX filaire mais aussi stocker et gérer des constitutions de scènes pré enregistrées.</li>
+<li>Un module <b>Application de commande</b> qui sera l’interface utilisateur du systèmesur appareil mobile. Il permet au technicien de paramétrer et enregistrer les différents équipements DMX et les canaux associés à partir de leur adresse DMX, modifier la valeur des canaux associés aux équipements manuellement et éventuellement de programmer des situations pré enregistrés contenant les valeurs de différents canaux pour effectuer des changements complexes en un clic.</li>
+<li>Un (ou plusieurs) module <b>Wifi-DMX</b> qui récupére les informations émises par les modules Serveur et/ou Application de commande et les transfére au bus DMX pour commander les différents éclairages.</li>
+</ul>
+<p><img src="module-dmx-wifi.png" alt="" class="inline" title="module-dmx-wifi"/></p>
+<p>La communication entre les modules est basée sur MQTT (<em><a class="el" href="class_message.html">Message</a> Queuing Telemetry Transport</em>). Le module Serveur héberge un <em>broker</em> MQTT.</p>
+<h2>IHM</h2>
+<h3>Module Serveur</h3>
+<ul>
+<li>Gérer un broker :</li>
+</ul>
+<p><img src="gerer-broker.png" alt="" class="inline"/></p>
+<ul>
+<li>Liste des modules :</li>
+</ul>
+<p><img src="liste-module.png" alt="" class="inline"/></p>
+<ul>
+<li>Gérer un type d'équipement DMX :</li>
+</ul>
+<p><img src="gerer-type-equipement.png" alt="" class="inline"/></p>
+<ul>
+<li>Création d'un équipement DMX :</li>
+</ul>
+<p><img src="creation-equipement.png" alt="" class="inline"/></p>
+<ul>
+<li>Contrôle d'un équipement DMX :</li>
+</ul>
+<p><img src="controle-equipement.png" alt="" class="inline"/></p>
+<h3>Module Application de commande</h3>
+<ul>
+<li>Sélection d'un univers :</li>
+</ul>
+<p><img src="mobile-selection-univers.jpg" alt="" class="inline"/></p>
+<ul>
+<li>Création d'un équipement DMX :</li>
+</ul>
+<p><img src="mobile-creation-equipement.jpg" alt="" class="inline"/></p>
+<ul>
+<li>Contrôle d'un équipement DMX :</li>
+</ul>
+<p><img src="mobile-controle-equipement.jpg" alt="" class="inline"/></p>
+<h2>Gestion de projet</h2>
+<p><a href="https://github.com/orgs/bts-lasalle-avignon-projets/projects/26">GitHub Project</a></p>
+<h3>Itération 1</h3>
+<p><em>Du 29 janvier au 28 mars</em></p>
+<ul>
+<li><b>Dialogue application/serveur :</b> Etablir une connexion etre l'application mobile et le serveur</li>
+<li><b>Etablir la connexion avec les modules :</b> Associer et établir la communication avec les modules DMX</li>
+<li><b>Activer/Désactiver un module :</b> Permettre l’activation ou la désactivation d’un module DMX</li>
+<li><b>Configurer les équipements DMX et enregistrer les configurations :</b> : Définir les paramètres des équipements DMX et sauvegarder leurs configurations.</li>
+</ul>
+<h3>Itération 2</h3>
+<p><em>Du 29 mars au 23 mai</em></p>
+<ul>
+<li><b>Gérer la configuration technique du système via une IHM :</b> Fournir une interface utilsateur d'administration</li>
+<li><b>Sauvegarder, exporter, importer l'état de configuration du système</b> : Permettre la gestion avancée des configurations enregistrées.</li>
+<li><b>Créer et gérer des pré-enregistrement de valeurs de canaux :</b> Mise en place de scène pré-enregistrées</li>
+</ul>
+<h3>Itération 3</h3>
+<p><em>Du 24 mai au 30 mai</em></p>
+<ul>
+<li><b>Mettre en forme l'affichage :</b> Mise en forme responsive à 100%</li>
+<li><b>Prendre en charge et communiquer avec un modem DMX Filaire</b> : Ajouter la compatibilité avec un modem DMX filaire</li>
+</ul>
+<h2>Diagrammes</h2>
+<h3>Diagrammes des cas d'utilisations</h3>
+<p>Module Serveur :</p>
+<p><img src="serveur.png" alt="" class="inline" title="Diagramme serveur"/></p>
+<p>Module Application de commande :</p>
+<p><img src="application.png" alt="" class="inline" title="Diagramme appli mobile"/></p>
+<h3>Diagrammes de séquence</h3>
+<p>Création d'un nouveau module :</p>
+<p><img src="creationNouveauModule.png" alt="" class="inline" title="Diagramme sequence creation module"/></p>
+<p>Création et configuration d'une scène :</p>
+<p><img src="creationScene.png" alt="" class="inline" title="Diagramme sequence configuration "/></p>
+<p>Activer une scène :</p>
+<p><img src="activerScene.png" alt="" class="inline" title="Diagramme sequence activation scene"/></p>
+<h3>Diagrammes de classes</h3>
+<p>Module Serveur :</p>
+<p><img src="vueServeur.png" alt="" class="inline" title="Diagramme classe vue serveur"/></p>
+<p>Module Application de commande :</p>
+<p><img src="vueApplication.png" alt="" class="inline" title="Diagramme classe vue serveur"/></p>
+<h3>Base de données</h3>
+<p><img src="DiagrammeBDD.png" alt="" class="inline" title="Diagramme BDD"/></p>
+<p>cf. <a href="./sql/artnet.sql">artnet.sql</a></p>
+<h2>MQTT</h2>
+<h3>Installation du broker</h3>
+<p><b>Sur linux :</b></p>
+<ul>
+<li>Installation :</li>
+</ul>
+<div class="fragment"><div class="line">$ sudo apt install mosquitto</div>
+<div class="line"> </div>
+<div class="line">$ systemctl status mosquitto</div>
+</div><!-- fragment --><ul>
+<li><a class="el" href="class_configuration.html">Configuration</a> :</li>
+</ul>
+<div class="fragment"><div class="line">$ nano /etc/mosquitto/mosquitto.conf</div>
+</div><!-- fragment --><p>Exemple pour la phase de développement :</p>
+<div class="fragment"><div class="line"># écoute sur le port 1883 sur toute les interfaces réseaux (1883 port par défaut du MQTT)</div>
+<div class="line">listener 1883 0.0.0.0</div>
+<div class="line"># accepte tout les utilisateurs (si false alors configurer toutes les authentifications des clients)</div>
+<div class="line">allow_anonymous true</div>
+</div><!-- fragment --><ul>
+<li>Démarrage :</li>
+</ul>
+<div class="fragment"><div class="line">$ sudo systemctl start mosquitto</div>
+</div><!-- fragment --><ul>
+<li>Arrêt :</li>
+</ul>
+<div class="fragment"><div class="line">$ sudo systemctl stop mosquitto</div>
+</div><!-- fragment --><ul>
+<li>Tests :</li>
+</ul>
+<div class="fragment"><div class="line">$ sudo apt install mosquitto-clients</div>
+</div><!-- fragment --><div class="fragment"><div class="line">$ mosquitto_sub -h localhost -t &quot;test&quot;</div>
+</div><!-- fragment --><div class="fragment"><div class="line">$ mosquitto_pub -h localhost -t &quot;test&quot; -m &quot;Hello World&quot;</div>
+</div><!-- fragment --><h3>Protocole</h3>
+<p>Les données enchangées en MQTT sont formatées en JSON.</p>
+<p>Les modules Wifi-DMX envoient leur configuration sur le topic <code>artnet/config</code> :</p>
+<div class="fragment"><div class="line">{&quot;univers&quot;:50, &quot;ip&quot;:&quot;192.168.1.1&quot;, &quot;mac&quot;:&quot;24:62:AB:F3:05:1C&quot;,&quot;rssi&quot;:-50}</div>
+</div><!-- fragment --><p>Les modules de commande envoi les scènes sur le topic <code>artnet/univers/[univers]</code> :</p>
+<div class="fragment"><div class="line">{[{&quot;canal&quot;:10, &quot;valeur&quot;:255},{&quot;canal&quot;:11, &quot;valeur&quot;:10},{&quot;canal&quot;:12, &quot;valeur&quot;:55}]}</div>
+</div><!-- fragment --><h2>Tests de validation</h2>
+<h3>Module Serveur</h3>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadCenter">Désignation   </th><th class="markdownTableHeadCenter">Démarche à suivre   </th><th class="markdownTableHeadCenter">Résultat obtenu   </th><th class="markdownTableHeadCenter">Fonctionnel   </th><th class="markdownTableHeadCenter">Remarques    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">Gérer un broker   </td><td class="markdownTableBodyCenter">Sur la page “Broker MQTT”, vous pouvez ajouter, modifier ou supprimer un équipement.   </td><td class="markdownTableBodyCenter">Le broker et ajouter, modifier ou supprimer de la base de données.   </td><td class="markdownTableBodyCenter">Oui   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">Tester un broker   </td><td class="markdownTableBodyCenter">Sur la page “Broker MQTT”, aller sur tester le broker. Puis choisissez le test que vous voulez.   </td><td class="markdownTableBodyCenter">Test la connectivité, la publication ainsi que la souscription et la réception du broker.   </td><td class="markdownTableBodyCenter">Oui   </td><td class="markdownTableBodyCenter">Le bouton “Souscrire”, souscrit uniquement au topic, rien d’autre. Le bouton “Recevoir” reçoit la publication d’un topic dans les 10s suivant le clic    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">Module DMX WiFi   </td><td class="markdownTableBodyCenter">Sur la page “Module DMX WiFi”.   </td><td class="markdownTableBodyCenter">Les différents modules s'affichent.   </td><td class="markdownTableBodyCenter">Oui   </td><td class="markdownTableBodyCenter">S’abonne au topic artnet/config pour recevoir les derniers modules.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">Gérer un type d’équipement   </td><td class="markdownTableBodyCenter">Sur la page “Type d’équipement”, vous pouvez ajouter, modifier ou supprimer un équipement.   </td><td class="markdownTableBodyCenter">Le type d’équipement et ajouter, modifier ou supprimer de la base de données.   </td><td class="markdownTableBodyCenter">Oui   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">Gérer un équipement DMX   </td><td class="markdownTableBodyCenter">Sur la page “Équipement DMX”, vous pouvez ajouter, modifier ou supprimer un équipement.   </td><td class="markdownTableBodyCenter">L’équipement et ajouter, modifier ou supprimer de la base de données.   </td><td class="markdownTableBodyCenter">Oui   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">Commander un équipement DMX   </td><td class="markdownTableBodyCenter">Sur la page “Équipement DMX”, aller sur Commander. Changer les valeurs des sliders, puis envoyer.   </td><td class="markdownTableBodyCenter">L’équipement sélectionné à reçu les nouvelles valeurs des canaux, qui met à jour son état en conséquence.   </td><td class="markdownTableBodyCenter">Oui   </td><td class="markdownTableBodyCenter"></td></tr>
+</table>
+<h3>Module Application de commande</h3>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadCenter">Désignation   </th><th class="markdownTableHeadCenter">Démarche à suivre   </th><th class="markdownTableHeadCenter">Résultat obtenu   </th><th class="markdownTableHeadCenter">Fonctionnel   </th><th class="markdownTableHeadCenter">Remarques    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">Ajout d’un nouveau module   </td><td class="markdownTableBodyCenter">Démarrer l’application et attendre qu’un module connecté envoie un message   </td><td class="markdownTableBodyCenter">Apparition du module en cliquant sur le bouton “Actualiser la liste des modules”   </td><td class="markdownTableBodyCenter">Oui   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">Création d’un équipement   </td><td class="markdownTableBodyCenter">Sur la page “Equipements”, entrer le nom, sélectionner l’univers, le type d’équipement, le nombre de canaux, l’adresse et optionnellement la définition des canaux   </td><td class="markdownTableBodyCenter">Nouvel équipement créé.   </td><td class="markdownTableBodyCenter">Oui   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">Contrôle d’un équipement   </td><td class="markdownTableBodyCenter">Sélectionner un univers, puis un équipement, modifier la valeur des canaux puis appuyer sur le bouton “Envoyer les valeurs”   </td><td class="markdownTableBodyCenter">L’équipement sélectionné à reçu les nouvelles valeurs des canaux, qui met à jour son état en conséquence.   </td><td class="markdownTableBodyCenter">Oui   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">Supprimer un équipement   </td><td class="markdownTableBodyCenter">Sur la page “Contrôle”, sélectionner l’univers puis l’équipement. Cliquer sur le bouton “Supprimer l’équipement”   </td><td class="markdownTableBodyCenter">L’équipement n’existe plus dans l’application.   </td><td class="markdownTableBodyCenter">Oui   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">Réinitialiser à 0 l’équipement   </td><td class="markdownTableBodyCenter">Sélectionner un univers, puis un équipement, puis cliquer sur le bouton “Réinitialiser les valeurs à 0”.   </td><td class="markdownTableBodyCenter">L’équipement est éteint/retourné à sa position initiale.   </td><td class="markdownTableBodyCenter">Oui   </td><td class="markdownTableBodyCenter"></td></tr>
+</table>
+<h2>Equipe de développement</h2>
+<ul>
+<li>Module Application de commande (Android) : <a href="aymeric.clement.pro@gmail.com">Aymeric CLEMENT</a></li>
+<li>Module Serveur (PHP) : <a href="dylan.vaudaine.pro@gmail.com">Dylan VAUDAINE</a></li>
+</ul>
+<hr  />
+<p> &copy; 2025 LaSalle Avignon </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Lundi 2 Juin 2025 09:33:33 pour Projet Ergonomic-Workstation par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+  </ul>
+</div>
+</body>
+</html>
