@@ -390,10 +390,11 @@ class EquipementDMXModel extends Model
 		return $broker ?? null;
 	}
 
-	public function addEquipementDepuisTopic($data)
+	public function addEquipementDepuisTopic($json)
 	{
 		// Exemple de json : {"nomEquipement":"lyre","univers":1,"typeEquipement":"Scanner","nbCanaux":8,"canalInitial":24,"canaux":[{"canal":10, "valeur":255},{"canal":11, "valeur":10},{"canal":12, "valeur":55}]}
 
+		$data = json_decode($json, true);
 		if (!$data) {
 			// JSON invalide
 			return false;
