@@ -21,10 +21,10 @@ class EquipementDMX extends Controller
 	protected function add()
 	{
 		if (NO_LOGIN) {
-			$typeEquipements = $this->viewmodel->add();
-			if (is_array($typeEquipements)) {
+			$datas = $this->viewmodel->add();
+			if (is_array($datas)) {
 				// Affiche le formulaire d'ajout
-				$this->display($typeEquipements);
+				$this->display($datas);
 			} else {
 				// Retour à la liste des équipements
 				header('Location: ' . URL_PATH . 'equipementDMX');
