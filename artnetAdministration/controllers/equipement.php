@@ -128,6 +128,11 @@ class EquipementDMX extends Controller
 	protected function exportJson()
 	{
 		$equipements = $this->viewmodel->getAllEquipementsDMX();
+
+		foreach ($equipements as &$equipement) {
+			unset($equipement['nomBoitier']);
+		}
+
 		header('Content-Type: application/json');
 		header('Content-Disposition: attachment; filename="equipementsDMX.json"');
 		echo json_encode($equipements, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
