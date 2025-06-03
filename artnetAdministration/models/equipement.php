@@ -48,6 +48,11 @@ class EquipementDMXModel extends Model
 				return ACTION_ERREUR;
 			}
 
+			if ($this->existeIdEquipementDMXParNom($nom, $univers)) {
+				Messages::setMsg("Un équipement portant le même nom existe déjà dans cet univers.", "error");
+				return ACTION_ERREUR;
+			}
+
 			// Insère l'équipement dans la base de données
 			try {
 				$this->query("INSERT INTO equipementDMX (nomEquipement, idTypeEquipement, univers, canalInitial)
@@ -332,21 +337,19 @@ class EquipementDMXModel extends Model
 		$results = $this->getResults();
 
 		foreach ($results as &$equipement) {
-			if (!empty($equipement['canaux']) && is_string($equipement['canaux'])) {
+			if (isset($equipement['canaux']) && is_string($equipement['canaux'])) {
 				$decoded = json_decode($equipement['canaux'], true);
-				if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+				if (json_last_error() === JSON_ERROR_NONE) {
 					$equipement['canaux'] = $decoded;
 				} else {
-					$equipement['canaux'] = []; // fallback : vide si erreur
+					journaliser("Erreur de décodage JSON pour l'équipement : " . $equipement['nomEquipement']);
+					$equipement['canaux'] = null;
 				}
-			} else {
-				$equipement['canaux'] = [];
 			}
 		}
 
 		return $results;
 	}
-
 
 	public function existeIdEquipementDMXParID($idEquipement): bool
 	{
@@ -359,10 +362,12 @@ class EquipementDMXModel extends Model
 		}
 		return true;
 	}
-	public function existeIdEquipementDMXParNom($nomEquipement): bool
+
+	public function existeIdEquipementDMXParNom($nomEquipement, $univers): bool
 	{
-		$this->query("SELECT nomEquipement FROM equipementDMX WHERE nomEquipement = :nomEquipement");
+		$this->query("SELECT nomEquipement FROM equipementDMX WHERE nomEquipement = :nomEquipement AND univers = :univers");
 		$this->bind(':nomEquipement', $nomEquipement);
+		$this->bind(':univers', $univers);
 		$this->execute();
 		$nom = $this->getResult();
 		if (!$nom) {
@@ -370,6 +375,7 @@ class EquipementDMXModel extends Model
 		}
 		return true;
 	}
+
 
 	public function getBrokerMQTTActif()
 	{
@@ -384,7 +390,7 @@ class EquipementDMXModel extends Model
 
 	public function addEquipementDepuisTopic($data)
 	{
-		// Exemple de json : {"nomEquipement":"lyre","univers":1,"typeEquipement":"Scanner","nombreCanaux":8,"canalInitial":24}
+		// Exemple de json : {"nomEquipement":"lyre","univers":1,"typeEquipement":"Scanner","nbCanaux":8,"canalInitial":24,"canaux":[{"canal":10, "valeur":255},{"canal":11, "valeur":10},{"canal":12, "valeur":55}]}
 
 		if (!$data) {
 			// JSON invalide
@@ -396,7 +402,7 @@ class EquipementDMXModel extends Model
 		}
 
 		// Vérifier si l'équipement existe déjà dans la base de données
-		if ($this->existeIdEquipementDMXParNom($data['nomEquipement'])) {
+		if ($this->existeIdEquipementDMXParNom($data['nomEquipement'], $data['univers'])) {
 			return $this->updateEquipementTopic($data);
 		} else {
 			return $this->insertEquipementTopic($data);
@@ -455,8 +461,8 @@ class EquipementDMXModel extends Model
 
 		$typeEquipementDMX = $this->getResult();
 
-		if (!$typeEquipementDMX['idTypeEquipement']) {
-			journaliser("Aucun type d'équipement trouvé pour type: " . $data['typeEquipement'] . " et nbCanaux: " . $data['nombreCanaux']);
+		if (!is_array($typeEquipementDMX) || !isset($typeEquipementDMX['idTypeEquipement'])) {
+			journaliser("Aucun type d'équipement trouvé pour type: " . $data['typeEquipement'] . " et nbCanaux: " . $data['nbCanaux']);
 			$idTypeEquipement = $this->insertTypeEquipement($data);
 			$typeEquipementDMX['idTypeEquipement'] = $idTypeEquipement;
 		}
