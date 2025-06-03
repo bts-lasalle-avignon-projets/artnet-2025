@@ -87,14 +87,22 @@ if ($broker) {
                     // Publier les données de la base de données
                     $equipements = $equipementDMXModel->getAllEquipementsDMX();
 
+
                     foreach ($equipements as $equipement) {
-                        $nom = $equipement['nomEquipement'] ?? 'equipement_inconnu';
-                        $topic = $topicPublish . '/' . $nom;
+                        $nomBoitier = $equipement['nomBoitier'] ?? 'moduleInconnu';
+                        $nomEquipement = $equipement['nomEquipement'] ?? 'equipementInconnu';
+
+
+                        $topic = $topicPublish . "/" . $nomBoitier . "/" . $nomEquipement;
+
+                        unset($equipement['nomBoitier']);
 
                         $jsonEquipement = json_encode($equipement);
                         $communicationBroker->publier($topic, $jsonEquipement, $qos);
 
-                        journaliser("Données publiées : " . $jsonEquipement . " sur le topic \"" . $topic . "\"");
+
+                        journaliser("Données publiées : " . $jsonEquipement . " sur le topic \"$topic\"");
+
 
                         sleep(1);
                     }

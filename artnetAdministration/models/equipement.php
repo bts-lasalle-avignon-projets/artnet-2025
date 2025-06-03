@@ -323,16 +323,18 @@ class EquipementDMXModel extends Model
 
 	public function getAllEquipementsDMX()
 	{
-		$this->query("SELECT 
-            equipementDMX.univers, 
-            equipementDMX.nomEquipement, 
-            equipementDMX.canalInitial, 
-            equipementDMX.canaux, 
-            typeEquipementDMX.typeEquipement, 
-            typeEquipementDMX.nbCanaux
-        FROM equipementDMX
-        JOIN typeEquipementDMX ON equipementDMX.idTypeEquipement = typeEquipementDMX.idTypeEquipement
-        ORDER BY equipementDMX.nomEquipement");
+		$this->query("SELECT
+           equipementDMX.univers,
+           equipementDMX.nomEquipement,
+           equipementDMX.canalInitial,
+           equipementDMX.canaux,
+           typeEquipementDMX.typeEquipement,
+           typeEquipementDMX.nbCanaux,
+           moduleDMXWiFi.nomBoitier
+       	FROM equipementDMX
+       	JOIN typeEquipementDMX ON equipementDMX.idTypeEquipement = typeEquipementDMX.idTypeEquipement
+       	JOIN moduleDMXWiFi ON equipementDMX.univers = moduleDMXWiFi.univers
+       	ORDER BY equipementDMX.nomEquipement");
 
 		$results = $this->getResults();
 
