@@ -48,6 +48,11 @@ class EquipementDMXModel extends Model
 				return ACTION_ERREUR;
 			}
 
+			if ($this->existeIdEquipementDMXParNom($nom, $univers)) {
+				Messages::setMsg("Un équipement portant le même nom existe déjà dans cet univers.", "error");
+				return ACTION_ERREUR;
+			}
+
 			// Insère l'équipement dans la base de données
 			try {
 				$this->query("INSERT INTO equipementDMX (nomEquipement, idTypeEquipement, univers, canalInitial)
@@ -329,9 +334,22 @@ class EquipementDMXModel extends Model
         JOIN typeEquipementDMX ON equipementDMX.idTypeEquipement = typeEquipementDMX.idTypeEquipement
         ORDER BY equipementDMX.nomEquipement");
 
-		return $this->getResults();
-	}
+		$results = $this->getResults();
 
+		foreach ($results as &$equipement) {
+			if (isset($equipement['canaux']) && is_string($equipement['canaux'])) {
+				$decoded = json_decode($equipement['canaux'], true);
+				if (json_last_error() === JSON_ERROR_NONE) {
+					$equipement['canaux'] = $decoded;
+				} else {
+					journaliser("Erreur de décodage JSON pour l'équipement : " . $equipement['nomEquipement']);
+					$equipement['canaux'] = null;
+				}
+			}
+		}
+
+		return $results;
+	}
 
 	public function existeIdEquipementDMXParID($idEquipement): bool
 	{
@@ -344,10 +362,12 @@ class EquipementDMXModel extends Model
 		}
 		return true;
 	}
-	public function existeIdEquipementDMXParNom($nomEquipement): bool
+
+	public function existeIdEquipementDMXParNom($nomEquipement, $univers): bool
 	{
-		$this->query("SELECT nomEquipement FROM equipementDMX WHERE nomEquipement = :nomEquipement");
+		$this->query("SELECT nomEquipement FROM equipementDMX WHERE nomEquipement = :nomEquipement AND univers = :univers");
 		$this->bind(':nomEquipement', $nomEquipement);
+		$this->bind(':univers', $univers);
 		$this->execute();
 		$nom = $this->getResult();
 		if (!$nom) {
@@ -355,6 +375,7 @@ class EquipementDMXModel extends Model
 		}
 		return true;
 	}
+
 
 	public function getBrokerMQTTActif()
 	{
@@ -369,7 +390,7 @@ class EquipementDMXModel extends Model
 
 	public function addEquipementDepuisTopic($json)
 	{
-		// Exemple de json : {"nomEquipement":"lyre","univers":1,"typeEquipement":"Scanner","nombreCanaux":8,"canalInitial":24}
+		// Exemple de json : {"nomEquipement":"lyre","univers":1,"typeEquipement":"Scanner","nbCanaux":8,"canalInitial":24,"canaux":[{"canal":10, "valeur":255},{"canal":11, "valeur":10},{"canal":12, "valeur":55}]}
 
 		// Décode le JSON
 		$data = json_decode($json, true);
@@ -383,7 +404,7 @@ class EquipementDMXModel extends Model
 		}
 
 		// Vérifier si l'équipement existe déjà dans la base de données
-		if ($this->existeIdEquipementDMXParNom($data['nomEquipement'])) {
+		if ($this->existeIdEquipementDMXParNom($data['nomEquipement'], $data['univers'])) {
 			return $this->updateEquipementTopic($data);
 		} else {
 			return $this->insertEquipementTopic($data);
@@ -405,11 +426,13 @@ class EquipementDMXModel extends Model
 
 		$idEquipement = $equipementDMX['idEquipement'];
 		$idTypeEquipement = $this->getIdTypeEquipement($data);
+		$canaux = isset($data['canaux']) && is_array($data['canaux']) ? json_encode($data['canaux']) : null;
 
 		// Modifie l'équipement dans la base de données
-		$this->query("UPDATE equipementDMX SET nomEquipement = :nomEquipement, univers = :univers, idTypeEquipement = :idTypeEquipement, canalInitial = :canalInitial WHERE idEquipement = :idEquipement");
+		$this->query("UPDATE equipementDMX SET nomEquipement = :nomEquipement, univers = :univers, canaux = :canaux, idTypeEquipement = :idTypeEquipement, canalInitial = :canalInitial WHERE idEquipement = :idEquipement");
 		$this->bind(':nomEquipement', $data['nomEquipement']);
 		$this->bind(':univers', $data['univers']);
+		$this->bind(':canaux', $canaux);
 		$this->bind(':idTypeEquipement', $idTypeEquipement);
 		$this->bind(':canalInitial', $data['canalInitial']);
 		$this->bind(':idEquipement', $idEquipement);
@@ -419,11 +442,13 @@ class EquipementDMXModel extends Model
 	public function insertEquipementTopic($data)
 	{
 		$idTypeEquipement = $this->getIdTypeEquipement($data);
+		$canaux = isset($data['canaux']) && is_array($data['canaux']) ? json_encode($data['canaux']) : null;
 
 		// Insert l'équipement dans la base de données
-		$this->query("INSERT INTO equipementDMX (nomEquipement, univers, idTypeEquipement, canalInitial) VALUES (:nomEquipement, :univers, :idTypeEquipement, :canalInitial)");
+		$this->query("INSERT INTO equipementDMX (nomEquipement, univers, canaux, idTypeEquipement, canalInitial) VALUES (:nomEquipement, :univers, :canaux, :idTypeEquipement, :canalInitial)");
 		$this->bind(':nomEquipement', $data['nomEquipement']);
 		$this->bind(':univers', $data['univers']);
+		$this->bind(':canaux', $canaux);
 		$this->bind(':idTypeEquipement', $idTypeEquipement);
 		$this->bind(':canalInitial', $data['canalInitial']);
 		return $this->execute();
@@ -433,13 +458,13 @@ class EquipementDMXModel extends Model
 	{
 		$this->query("SELECT idTypeEquipement FROM typeEquipementDMX WHERE typeEquipement = :typeEquipement AND nbCanaux = :nbCanaux");
 		$this->bind(':typeEquipement', $data['typeEquipement']);
-		$this->bind(':nbCanaux', $data['nombreCanaux']);
+		$this->bind(':nbCanaux', $data['nbCanaux']);
 		$this->execute();
 
 		$typeEquipementDMX = $this->getResult();
 
-		if (!$typeEquipementDMX['idTypeEquipement']) {
-			journaliser("Aucun type d'équipement trouvé pour type: " . $data['typeEquipement'] . " et nbCanaux: " . $data['nombreCanaux']);
+		if (!is_array($typeEquipementDMX) || !isset($typeEquipementDMX['idTypeEquipement'])) {
+			journaliser("Aucun type d'équipement trouvé pour type: " . $data['typeEquipement'] . " et nbCanaux: " . $data['nbCanaux']);
 			$idTypeEquipement = $this->insertTypeEquipement($data);
 			$typeEquipementDMX['idTypeEquipement'] = $idTypeEquipement;
 		}
@@ -451,7 +476,7 @@ class EquipementDMXModel extends Model
 	{
 		$this->query("INSERT INTO typeEquipementDMX (typeEquipement,nbCanaux) VALUES (:typeEquipement, :nbCanaux)");
 		$this->bind(':typeEquipement', $data['typeEquipement']);
-		$this->bind(':nbCanaux', $data['nombreCanaux']);
+		$this->bind(':nbCanaux', $data['nbCanaux']);
 
 		if ($this->execute()) {
 			$idTypeEquipement = $this->getLastInsertId();
