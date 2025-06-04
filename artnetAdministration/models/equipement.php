@@ -488,4 +488,25 @@ class EquipementDMXModel extends Model
 			return false; // Retourne 0 en cas d'échec
 		}
 	}
+
+	public function supprimerEquipementParNomEtUnivers($nomEquipement, $univers)
+	{
+		$this->query("DELETE equipementDMX
+			FROM equipementDMX
+			JOIN moduleDMXWiFi ON equipementDMX.univers = moduleDMXWiFi.univers
+			WHERE equipementDMX.univers = :univers AND equipementDMX.nomEquipement = :nomEquipement");
+		$this->bind(':nomEquipement', $nomEquipement);
+		$this->bind(':univers', $univers);
+		$this->execute();
+	}
+
+	public function getUniversParNomModule($nomModule)
+	{
+		$this->query("SELECT univers FROM moduleDMXWiFi WHERE nomBoitier = :nomBoitier");
+		$this->bind(':nomBoitier', $nomModule);
+		$this->execute();
+		$result = $this->getResult();
+
+		return $result['univers'] ?? null;
+	}
 }

@@ -63,7 +63,7 @@ class ModuleDMXWiFiModel extends Model
         // Construction du nom Module_<4 derniers caractères de la MAC>
         $mac = $data['mac'];
         $macClean = str_replace(':', '', $mac);
-        $nom = 'Module_' . substr($macClean, -4);
+        $nom = 'Artnet-' . substr($macClean, -4);
 
         // Insert le module dans la base de données
         $this->query("INSERT INTO moduleDMXWiFi (univers, nomBoitier, adresseIP, adresseMAC, rssi) VALUES (:univers, :nomBoitier, :adresseIP, :adresseMAC, :rssi)");

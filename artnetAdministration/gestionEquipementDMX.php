@@ -75,6 +75,37 @@ if ($broker) {
                             foreach ($messages as $topicMessage => $listeMessages) {
                                 foreach ($listeMessages as $message) {
                                     journaliser("Réception du message : \"" . $message . "\" sur le topic \"" . $topicMessage . "\"");
+
+                                    $parts = explode('/', $topicMessage);
+
+                                    // Vérifie que le topic a bien la structure attendue
+                                    if (count($parts) >= 7) {
+                                        $nomModule = $parts[4];
+                                        $nomEquipement = $parts[5];
+                                        $dernierElement = strtolower($parts[6]); // suppression
+
+                                        // Cas suppression via topic
+                                        if ($dernierElement === 'suppression') {
+                                            $valeur = strtolower(trim($message, " \t\n\r\0\x0B\""));
+
+                                            if ($valeur === "1") {
+                                                $univers = $equipementDMXModel->getUniversParNomModule($nomModule);
+
+                                                if ($univers === null) {
+                                                    journaliser("Univers introuvable pour le module '$nomModule'. Suppression ignorée.");
+                                                    continue;
+                                                }
+
+                                                $equipementDMXModel->supprimerEquipementParNomEtUnivers($nomEquipement, $univers);
+                                                journaliser("Suppression via topic : équipement '$nomEquipement' supprimé dans l'univers '$univers' (module '$nomModule')");
+                                            } else {
+                                                journaliser("Commande de suppression ignorée : valeur ≠ 1 ($message)");
+                                            }
+
+                                            continue;
+                                        }
+                                    }
+
                                     $ajout = $equipementDMXModel->addEquipementDepuisTopic($message);
                                     if ($ajout) {
                                         journaliser("Equipement DMX ajouté !");
@@ -87,11 +118,9 @@ if ($broker) {
                     // Publier les données de la base de données
                     $equipements = $equipementDMXModel->getAllEquipementsDMX();
 
-
                     foreach ($equipements as $equipement) {
                         $nomBoitier = $equipement['nomBoitier'] ?? 'moduleInconnu';
                         $nomEquipement = $equipement['nomEquipement'] ?? 'equipementInconnu';
-
 
                         $topic = $topicPublish . "/" . $nomBoitier . "/" . $nomEquipement;
 
@@ -100,9 +129,7 @@ if ($broker) {
                         $jsonEquipement = json_encode($equipement);
                         $communicationBroker->publier($topic, $jsonEquipement, $qos);
 
-
                         journaliser("Données publiées : " . $jsonEquipement . " sur le topic \"$topic\"");
-
 
                         sleep(1);
                     }
