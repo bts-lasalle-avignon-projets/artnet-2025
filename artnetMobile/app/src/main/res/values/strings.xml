@@ -16,6 +16,7 @@
     <string name="boutonEquipements">Equipements</string>
     <string name="boutonConfiguration">Contrôle</string>
     <string name="boutonCredits">Crédits</string>
+    <string name="boutonParametres">Parametres</string>
 
     <!-- Titre des pages -->
     <string name="accueil">Accueil</string>
@@ -63,6 +64,8 @@
     <string name="reset">Réinitialiser les valeurs à 0</string>
     <string name="supprimerEquipement">Supprimer l\'équipement</string>
     <string name="creer_equipement">Créer un équipement</string>
-    <string name="boutonParametres">Parametres</string>
-    <string name="chargerBDDEquipements">Charger les équipements</string>
+
+    <!-- Parametres ! -->
+    <string name="chargerBDDEquipements">Démarrer le chargement des équipements</string>
+    <string name="editChargerBDDEquipements">Charger les équipements existants dans la base de donnée</string>
 </resources>

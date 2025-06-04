@@ -100,7 +100,21 @@
             android:text="@string/chargerBDDEquipements"
             android:textSize="20sp"
             android:backgroundTint="@color/bgHeaderFooter"
-            android:layout_marginStart="16dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/editChargerBDDEquipements"
+            style="@style/CustomTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/editChargerBDDEquipements"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            android:backgroundTint="@color/bgHeaderFooter"
+            app:layout_constraintTop_toBottomOf="@id/boutonChargementEquipements"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

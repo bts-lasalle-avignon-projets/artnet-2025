@@ -1,5 +1,5 @@
 class Credits
-!!!130839.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+!!!139143.java!!!	onCreate(inout savedInstanceState : Bundle) : void
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_credits);
@@ -7,7 +7,7 @@ class Credits
         vue.initialiserNavbar(this);
 
         initialiserListener();
-!!!150023.java!!!	initialiserListener() : void
+!!!139271.java!!!	initialiserListener() : void
         Button boutonProjet = findViewById(R.id.boutonGithubProjet);
         Button boutonCA = findViewById(R.id.boutonGithubCA);
         Button boutonVD = findViewById(R.id.boutonGithubVD);

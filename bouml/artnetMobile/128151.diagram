@@ -1,72 +1,60 @@
 format 224
 
 classcanvas 128023 class_ref 128407 // ActiviteArtnet
-  classdiagramsettings member_max_width 0 end
-  xyz 103 166 2000
-end
-classcanvas 128151 class_ref 128279 // AppCompatActivity
-  classdiagramsettings member_max_width 0 end
-  xyz 209 7 2006
+  classdiagramsettings show_members_multiplicity yes member_max_width 0 end
+  xyz 117.7 351 2000
 end
 classcanvas 128535 class_ref 128663 // Artnet
-  classdiagramsettings member_max_width 0 end
-  xyz 77 447 2006
+  classdiagramsettings show_members_multiplicity yes member_max_width 0 end
+  xyz 930.3 775.9 2006
 end
 classcanvas 128791 class_ref 128535 // CommunicationBroker
-  classdiagramsettings member_max_width 0 end
-  xyz 659 183 3005
+  classdiagramsettings show_members_multiplicity yes member_max_width 0 end
+  xyz 2157.6 298.1 3005
 end
-classcanvas 129175 class_ref 128919 // ModuleDmxWifi
+classcanvas 128903 class_ref 129559 // EquipementDmx
   classdiagramsettings member_max_width 0 end
-  xyz 314 627 3005
+  xyz 1551.1 1339 2000
 end
 classcanvas 129431 class_ref 128791 // VueArtnet
-  classdiagramsettings member_max_width 0 end
-  xyz 14 627 3005
-end
-classcanvas 129687 class_ref 129431 // Equipement
-  classdiagramsettings member_max_width 0 end
-  xyz 941 670 3011
-end
-relationcanvas 128279 relation_ref 128279 // <generalisation>
-  from ref 128023 z 2007 to ref 128151
-  no_role_a no_role_b
-  no_multiplicity_a no_multiplicity_b
-end
-relationcanvas 128663 relation_ref 128535 // <unidirectional association>
-  from ref 128023 z 2007 to ref 128535
-  role_a_pos 293 426 3000 no_role_b
-  no_multiplicity_a no_multiplicity_b
+  classdiagramsettings show_members_multiplicity yes member_max_width 0 end
+  xyz 146 1343.3 3005
 end
 relationcanvas 128919 relation_ref 128407 // <unidirectional association>
-  from ref 128023 z 3006 to ref 128791
-  role_a_pos 501 303 3000 no_role_b
+  decenter_end 338
+  from ref 128023 z 3006 to point 1402.6 594.9
+  line 128263 z 3006 to point 1748 605.3
+  line 128391 z 3006 to ref 128791
+  role_a_pos 1886 578 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129031 relation_ref 138119 // <unidirectional association>
+  from ref 128023 z 3006 to ref 129431
+  role_a_pos 532 1309 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 129047 relation_ref 128919 // <unidirectional association>
   from ref 128535 z 3006 to ref 128791
-  role_a_pos 501 382 3000 no_role_b
+  role_a_pos 1886 758 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
-relationcanvas 129303 relation_ref 128791 // <unidirectional association>
-  from ref 128535 z 3006 to ref 129175
-  role_a_pos 300 615 3000 no_role_b
+relationcanvas 129159 relation_ref 138247 // <unidirectional association>
+  from ref 128791 z 3006 to point 2132.7 297.2
+  line 129287 z 3006 to point 2132.7 317.2
+  line 129415 z 3006 to ref 128791
+  role_a_pos 2035 311 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129543 relation_ref 140039 // <unidirectional association>
+  from ref 129431 z 3006 to point 113.3 1340.2
+  line 129671 z 3006 to point 113.3 1360.2
+  line 129799 z 3006 to ref 129431
+  role_a_pos 25 1351 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 129559 relation_ref 128663 // <unidirectional association>
   from ref 128535 z 3006 to ref 129431
-  role_a_pos 183 606 3000 no_role_b
-  no_multiplicity_a no_multiplicity_b
-end
-relationcanvas 129815 relation_ref 129431 // <generalisation>
-  from ref 129687 z 3012 to point 1115 142
-  line 130071 z 3012 to ref 128151
-  no_role_a no_role_b
-  no_multiplicity_a no_multiplicity_b
-end
-relationcanvas 129943 relation_ref 129687 // <unidirectional association>
-  from ref 129175 z 3012 stereotype "<<Vector>>" xyz 768.5 699.5 3012 to ref 129687
-  role_a_pos 848 680 3000 no_role_b
+  role_a_pos 929 1309 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 end

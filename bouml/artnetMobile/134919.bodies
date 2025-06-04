@@ -1,5 +1,5 @@
 class ActiviteArtnet
-!!!128279.java!!!	onCreate() : void
+!!!135175.java!!!	onCreate(inout savedInstanceState : Bundle) : void
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_principale);
@@ -20,31 +20,31 @@ class ActiviteArtnet
                 vue.afficherAccueil(ActiviteArtnet.this);
             }
         });
-!!!128407.java!!!	onStart() : void
+!!!135303.java!!!	onStart() : void
         super.onStart();
         Log.d(TAG, "onStart()");
-!!!128535.java!!!	onResume() : void
+!!!135431.java!!!	onResume() : void
         super.onResume();
         Log.d(TAG, "onResume()");
 
         if(communicationBroker != null)
             communicationBroker.setHandler(handler);
-!!!128663.java!!!	onPause() : void
+!!!135559.java!!!	onPause() : void
         super.onPause();
         Log.d(TAG, "onPause()");
-!!!128791.java!!!	onStop() : void
+!!!135687.java!!!	onStop() : void
         super.onStop();
         Log.d(TAG, "onStop()");
-!!!128919.java!!!	onDestroy() : void
+!!!135815.java!!!	onDestroy() : void
         super.onDestroy();
         Log.d(TAG, "onDestroy()");
-!!!129047.java!!!	initialiserCommunicationBroker() : void
+!!!135943.java!!!	initialiserCommunicationBroker() : void
         Log.d(TAG, "initialiserCommunicationBroker()");
         communicationBroker = CommunicationBroker.getInstance();
         communicationBroker.setHandler(handler);
         etatMQTT.setText("Connexion broker MQTT ...");
         communicationBroker.connecter();
-!!!148103.java!!!	initialiserHandler() : void
+!!!136071.java!!!	initialiserHandler() : void
         this.handler = new Handler(this.getMainLooper()) {
             @Override
             public void handleMessage(@NonNull Message message)

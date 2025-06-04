@@ -1,5 +1,5 @@
 class Equipement
-!!!130967.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+!!!139399.java!!!	onCreate(inout savedInstanceState : Bundle) : void
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_equipement);
@@ -9,7 +9,7 @@ class Equipement
         initialiserUI();
         initialiserListeners();
         initialiserListenerCanaux();
-!!!150151.java!!!	creerNouvelEquipement() : void
+!!!139527.java!!!	creerNouvelEquipement() : void
         compteurEquipement++;
         int numUnivers = -1;
 
@@ -54,7 +54,7 @@ class Equipement
         editTextNbCanaux.setText("");
         editTextAdresse.setText("");
         spinnerEquipement.setSelection(0);
-!!!150279.java!!!	initialiserUI() : void
+!!!139655.java!!!	initialiserUI() : void
 
         creationEquipement = findViewById(R.id.creationEquipement);
         conteneurCanaux = findViewById(R.id.conteneurCanaux);
@@ -68,10 +68,10 @@ class Equipement
         ArrayAdapter<Univers> adapterUnivers = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Univers.getListeUnivers());
         adapterUnivers.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerUnivers.setAdapter(adapterUnivers);
-!!!150407.java!!!	initialiserListeners() : void
+!!!139783.java!!!	initialiserListeners() : void
         ajouterNouvelEquipement = findViewById(R.id.boutonAjoutEquipements);
         ajouterNouvelEquipement.setOnClickListener(v -> creerNouvelEquipement());
-!!!150535.java!!!	initialiserListenerCanaux() : void
+!!!139911.java!!!	initialiserListenerCanaux() : void
         EditText editTextNbCanaux = findViewById(R.id.editNbCanaux);
 
         editTextNbCanaux.addTextChangedListener(new TextWatcher() {

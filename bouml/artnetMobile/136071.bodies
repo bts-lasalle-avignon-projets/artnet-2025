@@ -1,0 +1,25 @@
+class Parametres
+!!!151175.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_parametres);
+        Log.d(TAG, "onCreate()");
+        vue.initialiserNavbar(this);
+
+        initialiserUI();
+        initialiserListener();
+!!!151303.java!!!	initialiserUI() : void
+        chargerEquipements = findViewById(R.id.boutonChargementEquipements);
+!!!151431.java!!!	initialiserListener() : void
+        chargerEquipements.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chargerBDDEquipements();
+            }
+        });
+!!!151559.java!!!	chargerBDDEquipements() : void
+        String topic = "artnet/bdd/equipements";
+        String demande = "demande";
+        String uuid = UUID.randomUUID().toString();
+        Log.d("JSON", "PUBLISH (demande BDD équipement) --> " + topic + "/" + demande + " : " + uuid);
+        communicationBroker.envoyer(topic, demande, uuid);

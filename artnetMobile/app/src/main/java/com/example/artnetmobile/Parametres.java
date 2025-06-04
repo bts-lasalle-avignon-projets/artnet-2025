@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +21,8 @@ public class Parametres extends AppCompatActivity {
     VueArtnet vue = VueArtnet.getInstance();
 
     Button chargerEquipements;
+
+    Boolean abonne = false;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +38,9 @@ public class Parametres extends AppCompatActivity {
     private void initialiserUI()
     {
         chargerEquipements = findViewById(R.id.boutonChargementEquipements);
+        chargerEquipements.setText(
+                abonne ? "Arrêter de charger les équipements" : getString(R.string.chargerBDDEquipements)
+        );
     }
 
     private void initialiserListener()
@@ -48,10 +55,19 @@ public class Parametres extends AppCompatActivity {
 
     private void chargerBDDEquipements()
     {
-        String topic = "artnet/bdd/equipements";
-        String demande = "demande";
-        String uuid = UUID.randomUUID().toString();
-        Log.d("JSON", "PUBLISH (demande BDD équipement) --> " + topic + "/" + demande + " : " + uuid);
-        communicationBroker.envoyer(topic, demande, uuid);
+        String topic = "artnet/bdd/equipements/lecture/#";
+        if(!abonne)
+        {
+            abonne = true;
+            communicationBroker.sabonner(topic);
+            Toast.makeText(this, "Chargement des équipements...", Toast.LENGTH_SHORT).show();
+            chargerEquipements.setText("Arrêter de charger les équipements");
+        }
+        else {
+            abonne = false;
+            communicationBroker.desabonner(topic);
+            Toast.makeText(this, "Chargement arrêté !", Toast.LENGTH_SHORT).show();
+            chargerEquipements.setText(getString(R.string.chargerBDDEquipements));
+        }
     }
 }

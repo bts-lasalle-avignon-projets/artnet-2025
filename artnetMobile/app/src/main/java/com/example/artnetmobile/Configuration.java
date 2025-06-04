@@ -222,7 +222,7 @@ public class Configuration extends AppCompatActivity {
                 String topic = "artnet/bdd/equipements/ecriture/" + Univers.rechercherUniversNum(equipement.getUnivers());
                 Toast.makeText(v.getContext(), "Equipement supprimé : " + equipement.getNom(), Toast.LENGTH_SHORT).show();
                 Log.d("JSON", "PUBLISH (supprimer equipement) --> " + topic);
-                communicationBroker.envoyer(topic, equipement.getNom(), "");
+                communicationBroker.envoyer(topic, equipement.getNom() + "/suppression", "1");
                 univers.retirerEquipement(equipement);
                 layoutControle.removeAllViews();
             }
