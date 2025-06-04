@@ -1,0 +1,99 @@
+class Univers
+!!!142983.java!!!	Univers(in nom : String, in univers : int, in ip : String, in mac : String, in rssi : int)
+        this.nom = nom;
+        this.univers = univers;
+        this.ip = ip;
+        this.mac = mac;
+        this.rssi = rssi;
+        this.actif = false;
+        this.nbEquipements = 0;
+        this.equipements = new ArrayList<>(); // Initialisation de la liste
+
+        Log.d(TAG, "Univers() -> Num univers : " + univers + " ; Nom : " + nom + " ; IP : " + ip + " ; MAC : " + mac + " ; RSSI : " + rssi);
+        listeUnivers.add(this);
+!!!143111.java!!!	getNom() : String
+ return nom;
+!!!143239.java!!!	getNum() : int
+ return univers;
+!!!143367.java!!!	getIp() : String
+ return ip;
+!!!143495.java!!!	getMac() : String
+ return mac;
+!!!143623.java!!!	getRssi() : int
+ return rssi;
+!!!143751.java!!!	getActif() : boolean
+ return actif;
+!!!143879.java!!!	getNbEquipements() : int
+ return nbEquipements;
+!!!144007.java!!!	getEquipements() : EquipementDmx
+ return equipements;
+!!!144135.java!!!	getListeUnivers() : Univers
+        return listeUnivers;
+!!!144263.java!!!	getListeUniversActif() : Univers
+        List<Univers> actifs = new Vector<>();
+        for (Univers u : listeUnivers) {
+            if (u.getActif()) {
+                actifs.add(u);
+            }
+        }
+        return actifs;
+!!!144391.java!!!	rechercherUniversNom(in nom : String) : Univers
+        for (Univers u : listeUnivers) {
+            if(u.nom.equals(nom)) {
+                return u;
+            }
+        }
+        return null;
+!!!144519.java!!!	rechercherUniversNum(in num : int) : Univers
+        for (Univers u : listeUnivers) {
+            if(u.univers == num) {
+                return u;
+            }
+        }
+        return null;
+!!!144647.java!!!	mettreAJour(in univers : int, in ip : String, in mac : String, in rssi : int) : void
+        this.univers = univers;
+        this.ip = ip;
+        this.mac = mac;
+        this.rssi = rssi;
+        Log.d(TAG, "mettreAJour()");
+!!!144775.java!!!	setActif(inout actif : boolean) : void
+        this.actif = actif;
+!!!144903.java!!!	toString() : String
+        return nom;
+!!!145031.java!!!	ajouterEquipement(inout e : EquipementDmx) : void
+        equipements.add(e);
+        nbEquipements++;
+!!!145159.java!!!	retirerEquipement(inout e : EquipementDmx) : void
+        Log.d(TAG, "retirerEquipement()");
+        if (equipements.remove(e)) {
+            nbEquipements--;
+        }
+!!!145287.java!!!	ajouterEquipementUnivers(inout equipement : EquipementDmx) : void
+        Univers u = rechercherUniversNum(equipement.getUnivers());
+        if (u != null) {
+            u.ajouterEquipement(equipement);
+        } else {
+            Log.w(TAG, "Erreur : Aucun univers trouvé pour le numéro : " + equipement.getUnivers());
+        }
+!!!145415.java!!!	recupererEquipement(inout u : Univers, in nom : String) : EquipementDmx
+        for (EquipementDmx e : u.getEquipements()) {
+            if (e.getNom().equals(nom)) {
+                return e;
+            }
+        }
+        return null;
+!!!145543.java!!!	basculerEmissionUnivers(inout u : Univers) : void
+        Log.d(TAG, "basculerEmissionUnivers() -> " + u.getNom());
+        String universTopic = "artnet/univers/";
+        String topic = universTopic + u.getNum();
+
+        if (!u.getActif()) {
+            u.setActif(true);
+            communicationBroker.sabonner(topic);
+            Log.d(TAG, u.getNom() + "-> Actif");
+        } else {
+            u.setActif(false);
+            communicationBroker.desabonner(topic);
+            Log.d(TAG, u.getNom() + "-> Inactif");
+        }

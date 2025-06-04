@@ -75,6 +75,11 @@ public class Equipement extends AppCompatActivity {
         }
 
         int nbCanaux = Integer.parseInt(editTextNbCanaux.getText().toString());
+
+        if(nbCanaux > 20) {
+            nbCanaux = 20;
+        }
+
         int adresse = Integer.parseInt(editTextAdresse.getText().toString());
 
         Vector<String> canaux = new Vector<>();

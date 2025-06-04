@@ -1,5 +1,5 @@
 class Accueil
-!!!128151.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+!!!134535.java!!!	onCreate(inout savedInstanceState : Bundle) : void
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_accueil);
@@ -21,20 +21,20 @@ class Accueil
                 vue.afficherUniversExistants(conteneurUnivers, conteneurDetails);
             }
         });
-!!!147591.java!!!	onResume() : void
+!!!134663.java!!!	onResume() : void
         super.onResume();
         Log.d(TAG, "onResume()");
 
         if(communicationBroker != null)
             communicationBroker.setHandler(handler);
-!!!147719.java!!!	initialiserCommunicationBroker() : void
+!!!134791.java!!!	initialiserCommunicationBroker() : void
         Log.d(TAG, "initialiserCommunicationBroker()");
         communicationBroker = CommunicationBroker.getInstance();
         CommunicationBroker.getInstance().initialiserContexte(getApplicationContext());
         communicationBroker.setHandler(handler);
         if(!communicationBroker.estConnecte())
             communicationBroker.connecter();
-!!!147847.java!!!	initialiserHandler() : void
+!!!134919.java!!!	initialiserHandler() : void
         this.handler = new Handler(this.getMainLooper()) {
             @Override
             public void handleMessage(@NonNull Message message)
@@ -68,7 +68,7 @@ class Accueil
                 }
             }
         };
-!!!147975.java!!!	traiterMessageMQTT(in topicMQTT : String, in messageMQTT : String) : void
+!!!135047.java!!!	traiterMessageMQTT(in topicMQTT : String, in messageMQTT : String) : void
         if(topicMQTT.startsWith("artnet/config/"))
         {
             communicationBroker.traiterMessageConfig(topicMQTT, messageMQTT);

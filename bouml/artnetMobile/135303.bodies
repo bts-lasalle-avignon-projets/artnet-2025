@@ -1,5 +1,5 @@
 class Configuration
-!!!130711.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+!!!138247.java!!!	onCreate(inout savedInstanceState : Bundle) : void
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_configuration);
@@ -8,7 +8,7 @@ class Configuration
         vue.initialiserNavbar(this);
         initialiserUI();
         initialiserListener();
-!!!149255.java!!!	controlerEquipement() : void
+!!!138375.java!!!	controlerEquipement() : void
         conteneurCanaux.removeAllViews();
         listeCanaux.clear();
 
@@ -58,14 +58,14 @@ class Configuration
 
             listeCanaux.add(slider);
         }
-!!!149383.java!!!	recupererValeurCanaux() : List<Integer>
+!!!138503.java!!!	recupererValeurCanaux() : List<Integer>
         List<Integer> valeurs = new ArrayList<>();
 
         for (SeekBar slider : listeCanaux) {
             valeurs.add(slider.getProgress());
         }
         return valeurs;
-!!!149511.java!!!	construireJson() : String
+!!!138631.java!!!	construireJson() : String
         JSONArray jsonArray = new JSONArray();
         List<Integer> valeurs = recupererValeurCanaux();
         int adresseBase = equipement.getAdresseDMX();
@@ -86,7 +86,7 @@ class Configuration
             }
         }
         return jsonArray.toString();
-!!!149639.java!!!	initialiserUI() : void
+!!!138759.java!!!	initialiserUI() : void
 
         rechercherEquipement = findViewById(R.id.boutonRechercherEquipements);
         boutonControlerEquipement = findViewById(R.id.boutonControler);
@@ -102,7 +102,7 @@ class Configuration
         ArrayAdapter<Univers> adapterUnivers = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Univers.getListeUniversActif());
         adapterUnivers.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerUnivers.setAdapter(adapterUnivers);
-!!!149767.java!!!	initialiserListener() : void
+!!!138887.java!!!	initialiserListener() : void
         rechercherEquipement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -170,7 +170,7 @@ class Configuration
                 layoutControle.removeAllViews();
             }
         });
-!!!149895.java!!!	resetJSON() : String
+!!!139015.java!!!	resetJSON() : String
         JSONArray jsonArray = new JSONArray();
         List<Integer> valeurs = recupererValeurCanaux();
         int adresseBase = equipement.getAdresseDMX();

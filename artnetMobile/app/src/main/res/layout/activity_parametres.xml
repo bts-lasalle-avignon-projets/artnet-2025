@@ -82,6 +82,43 @@
 
     <!-- CONTENU PRINCIPAL -->
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintBottom_toTopOf="@id/footer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <Button
+            android:id="@+id/boutonChargementEquipements"
+            style="@style/CustomTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/chargerBDDEquipements"
+            android:textSize="20sp"
+            android:backgroundTint="@color/bgHeaderFooter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/editChargerBDDEquipements"
+            style="@style/CustomTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/editChargerBDDEquipements"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            android:backgroundTint="@color/bgHeaderFooter"
+            app:layout_constraintTop_toBottomOf="@id/boutonChargementEquipements"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <!-- FOOTER -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/footer"

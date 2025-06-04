@@ -1,7 +1,7 @@
 format 224
 "artnetmobile" // artnetmobile
-  revision 1
-  modified_by 23 "tvaira"
+  revision 3
+  modified_by 7 "aymer"
   // class settings
   
   classdiagramsettings member_max_width 0 end
@@ -88,6 +88,65 @@ ${members}}
 !< TAG pour les logs (cf. Logcat)"
       end
 
+      classrelation 137863 // vue (<unidirectional association>)
+	relation 137863 --->
+	  a role_name "vue" init_value " VueArtnet.getInstance()" package
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 137863 // vue (<unidirectional association>)
+	  b parent class_ref 128791 // VueArtnet
+      end
+
+      classrelation 137991 // communicationBroker (<unidirectional association>)
+	relation 137991 --->
+	  a role_name "communicationBroker" private
+	    comment "
+Attributs
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 137991 // communicationBroker (<unidirectional association>)
+	  b parent class_ref 128535 // CommunicationBroker
+      end
+
+      attribute 143495 "handler"
+	private explicit_type "Handler"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 143623 "conteneurUnivers"
+	private explicit_type "LinearLayout"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 143751 "conteneurDetails"
+	private explicit_type "LinearLayout"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
       operation 128151 "onCreate"
 	protected explicit_return_type "void"
 	nparams 1
@@ -96,7 +155,59 @@ ${members}}
 	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
 "
+	
+	
+	
+      end
+
+      operation 147591 "onResume"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
 	java_annotation "@Override
+"
+	
+	
+	
+	comment "@brief Méthode appelée après onStart() ou après onPause()
+"
+      end
+
+      operation 147719 "initialiserCommunicationBroker"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 147847 "initialiserHandler"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 147975 "traiterMessageMQTT"
+	private explicit_return_type "void"
+	nparams 2
+	  param in name "topicMQTT" explicit_type "String"
+	  param in name "messageMQTT" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
 "
 	
 	
@@ -152,14 +263,47 @@ ${members}};
 !< TAG pour les logs (cf. Logcat)"
       end
 
-      classrelation 128407 // communicationBroker (<unidirectional association>)
-	relation 128407 --->
-	  a role_name "communicationBroker" private
+      classrelation 138119 // vue (<unidirectional association>)
+	relation 138119 --->
+	  a role_name "vue" init_value " VueArtnet.getInstance()" package
 	    comment "
 Ressources GUI
 
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 138119 // vue (<unidirectional association>)
+	  b parent class_ref 128791 // VueArtnet
+      end
 
-Attributs
+      attribute 143879 "etatMQTT"
+	private explicit_type "TextView"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 144007 "boutonDemarrage"
+	private explicit_type "Button"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 128407 // communicationBroker (<unidirectional association>)
+	relation 128407 --->
+	  a role_name "communicationBroker" private
+	    comment "Attributs
 
 "
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -168,19 +312,22 @@ Attributs
 	  b parent class_ref 128535 // CommunicationBroker
       end
 
-      classrelation 128535 // artnet (<unidirectional association>)
-	relation 128535 --->
-	  a role_name "artnet" init_value " null" private
-	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+      attribute 144135 "handler"
+	private explicit_type "Handler"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
-	    classrelation_ref 128535 // artnet (<unidirectional association>)
-	  b parent class_ref 128663 // Artnet
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
       end
 
       operation 128279 "onCreate"
 	protected explicit_return_type "void"
-	nparams 1
-	  param inout name "savedInstanceState" explicit_type "Bundle"
+	nparams 0
 	
 	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
@@ -288,6 +435,19 @@ et détruite par le système Android)
 	
 	
       end
+
+      operation 148103 "initialiserHandler"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
     end
 
     class 128535 "CommunicationBroker"
@@ -318,9 +478,9 @@ ${members}}
 "
       end
 
-      attribute 128663 "IP_BROKER"
+      attribute 144391 "TEST_IP_BROKER"
 	class_attribute const_attribute public explicit_type "String"
-	init_value " \"192.168.52.7\""
+	init_value " \"192.168.1.104\""
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
@@ -331,7 +491,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 128791 "PORT_BROKER"
+      attribute 144519 "TEST_PORT_BROKER"
 	class_attribute const_attribute public explicit_type "int"
 	init_value " 1883"
 	cpp_decl ""
@@ -358,7 +518,7 @@ ${members}}
 	comment " par défaut"
       end
 
-      attribute 129047 "BROKER_CONNECTE"
+      attribute 129431 "BROKER_ERREUR"
 	class_attribute const_attribute public explicit_type "int"
 	init_value " 0"
 	cpp_decl ""
@@ -371,7 +531,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 129175 "BROKER_DECONNECTE"
+      attribute 129047 "BROKER_CONNECTE"
 	class_attribute const_attribute public explicit_type "int"
 	init_value " 1"
 	cpp_decl ""
@@ -384,7 +544,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 129303 "BROKER_MESSAGE"
+      attribute 129175 "BROKER_DECONNECTE"
 	class_attribute const_attribute public explicit_type "int"
 	init_value " 2"
 	cpp_decl ""
@@ -397,7 +557,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 129431 "BROKER_ERREUR"
+      attribute 144647 "BROKER_MESSAGE_RECU"
 	class_attribute const_attribute public explicit_type "int"
 	init_value " 3"
 	cpp_decl ""
@@ -410,8 +570,9 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 129559 "context"
-	package explicit_type "Context"
+      attribute 144775 "BROKER_MESSAGE_ENVOYE"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 4"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
@@ -420,13 +581,61 @@ ${members}}
 	idl_decl ""
 	mysql_decl ""
 	MysqlColumn
-	comment "Attributs
-
-"
       end
 
-      attribute 129687 "mqttAndroidClient"
-	public explicit_type "MqttAndroidClient"
+      classrelation 138247 // instance (<unidirectional association>)
+	relation 138247 --->
+	  a role_name "instance" class_relation private
+	    comment "
+Attributs
+
+ Singleton"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 138247 // instance (<unidirectional association>)
+	  b parent class_ref 128535 // CommunicationBroker
+      end
+
+      attribute 129559 "context"
+	private explicit_type "Context"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 144903 "config"
+	const_attribute private explicit_type "String"
+	init_value " \"artnet/config/#\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 145031 "handler"
+	package explicit_type "Handler"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 145159 "mqttClient"
+	public explicit_type "MqttClient"
 	init_value " null"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -440,7 +649,6 @@ ${members}}
 
       attribute 129815 "serveurUri"
 	package explicit_type "String"
-	init_value " \"tcp://\" + IP_BROKER + \":\" + PORT_BROKER"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
@@ -453,7 +661,7 @@ ${members}}
 
       attribute 129943 "clientId"
 	package explicit_type "String"
-	init_value " \"clientArtnetMobile\""
+	init_value " MqttClient.generateClientId()"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
@@ -465,11 +673,35 @@ ${members}}
       end
 
       operation 129815 "CommunicationBroker"
-	public explicit_return_type ""
-	nparams 1
-	  param inout name "applicationContext" explicit_type "Context"
+	private explicit_return_type ""
+	nparams 0
 	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 148487 "getInstance"
+	class_operation public return_type class_ref 128535 // CommunicationBroker
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 148615 "setHandler"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "handler" explicit_type "Handler"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
 "
 	
@@ -550,6 +782,62 @@ ${members}}
 	
 	
       end
+
+      operation 148743 "traiterMessageConfig"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "topicMQTT" explicit_type "String"
+	  param in name "messageMQTT" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 148871 "envoyer"
+	public explicit_return_type "void"
+	nparams 3
+	  param in name "topic" explicit_type "String"
+	  param inout name "nom" explicit_type "Object"
+	  param in name "json" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 148999 "initialiserContexte"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "context" explicit_type "Context"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 149127 "sauvegarderEquipement"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "equipementDmx" type class_ref 129559 // EquipementDmx
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
     end
 
     class 128663 "Artnet"
@@ -573,15 +861,6 @@ ${members}}
 	  b parent class_ref 128791 // VueArtnet
       end
 
-      classrelation 128791 // moduleDmxWifi (<unidirectional association>)
-	relation 128791 --->
-	  a role_name "moduleDmxWifi" private
-	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	    classrelation_ref 128791 // moduleDmxWifi (<unidirectional association>)
-	  b parent class_ref 128919 // ModuleDmxWifi
-      end
-
       classrelation 128919 // communicationBroker (<unidirectional association>)
 	relation 128919 --->
 	  a role_name "communicationBroker" private
@@ -589,6 +868,19 @@ ${members}}
 "
 	    classrelation_ref 128919 // communicationBroker (<unidirectional association>)
 	  b parent class_ref 128535 // CommunicationBroker
+      end
+
+      attribute 144263 "TAG"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"_Artnet\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
       end
 
       operation 129175 "Artnet"
@@ -604,8 +896,8 @@ ${members}}
 	
       end
 
-      operation 129303 "ajouterEquipement"
-	public explicit_return_type "void"
+      operation 148231 "getVueArtnet"
+	public return_type class_ref 128791 // VueArtnet
 	nparams 0
 	
 	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
@@ -616,11 +908,12 @@ ${members}}
 	
       end
 
-      operation 129431 "modifierCanal"
+      operation 148359 "sauvegarderEquipement"
 	public explicit_return_type "void"
-	nparams 0
+	nparams 1
+	  param inout name "equipementDmx" type class_ref 129559 // EquipementDmx
 	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
 "
 	
@@ -628,17 +921,6 @@ ${members}}
 	
       end
 
-      operation 129559 "envoyerCommande"
-	public explicit_return_type "void"
-	nparams 0
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
     end
 
     class 128791 "VueArtnet"
@@ -653,11 +935,124 @@ ${members}}
       explicit_switch_type ""
       mysql_decl ""
       
-      operation 133655 "afficherChargement"
-	public explicit_return_type "void"
+      attribute 149255 "TAG"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"_VueArtnet\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 140039 // instance (<unidirectional association>)
+	relation 140039 --->
+	  a role_name "instance" class_relation private
+	    comment " Singleton"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 140039 // instance (<unidirectional association>)
+	  b parent class_ref 128791 // VueArtnet
+      end
+
+      attribute 149383 "RSSI_INCROYABLE"
+	class_attribute const_attribute private explicit_type "int"
+	init_value " -30"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 149511 "RSSI_TRES_BON"
+	class_attribute const_attribute private explicit_type "int"
+	init_value " -55"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 149639 "RSSI_ASSEZ_BON"
+	class_attribute const_attribute private explicit_type "int"
+	init_value " -67"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 149767 "RSSI_MOYEN"
+	class_attribute const_attribute private explicit_type "int"
+	init_value " -70"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 149895 "RSSI_PAS_BON"
+	class_attribute const_attribute private explicit_type "int"
+	init_value " -80"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 154375 "VueArtnet"
+	private explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154503 "getInstance"
+	class_operation public return_type class_ref 128791 // VueArtnet
 	nparams 0
 	
 	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154631 "initialiserNavbar"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "activite" explicit_type "Activity"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
 "
 	
@@ -667,9 +1062,10 @@ ${members}}
 
       operation 133783 "afficherAccueil"
 	public explicit_return_type "void"
-	nparams 0
+	nparams 1
+	  param inout name "activite" explicit_type "Activity"
 	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
 "
 	
@@ -679,9 +1075,10 @@ ${members}}
 
       operation 133911 "afficherEquipement"
 	public explicit_return_type "void"
-	nparams 0
+	nparams 1
+	  param inout name "activite" explicit_type "Activity"
 	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
 "
 	
@@ -691,9 +1088,23 @@ ${members}}
 
       operation 134039 "afficherConfiguration"
 	public explicit_return_type "void"
-	nparams 0
+	nparams 1
+	  param inout name "activite" explicit_type "Activity"
 	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154759 "afficherParametres"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "activite" explicit_type "Activity"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
 "
 	
@@ -703,68 +1114,10 @@ ${members}}
 
       operation 134167 "afficherCredits"
 	public explicit_return_type "void"
-	nparams 0
+	nparams 1
+	  param inout name "activite" explicit_type "Activity"
 	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-    end
-
-    class 128919 "ModuleDmxWifi"
-      visibility public 
-      cpp_decl ""
-      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
-${members}}
-"
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      mysql_decl ""
-      
-      attribute 131223 "univers"
-	private explicit_type "int"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      attribute 131351 "nomBoitier"
-	private explicit_type "String"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      classrelation 129687 // equipement (<unidirectional association>)
-	relation 129687 --->
-	  stereotype "Vector"
-	  a role_name "equipement" init_value " new Vector<>()" private
-	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
-"
-	    classrelation_ref 129687 // equipement (<unidirectional association>)
-	  b parent class_ref 129431 // Equipement
-      end
-
-      operation 133015 "etablirConnexion"
-	public explicit_return_type "boolean"
-	nparams 0
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
 "
 	
@@ -772,11 +1125,11 @@ ${members}}
 	
       end
 
-      operation 133143 "controlerModule"
+      operation 154887 "afficherUniversExistants"
 	public explicit_return_type "void"
 	nparams 0
 	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
   ${body}}
 "
 	
@@ -784,10 +1137,10 @@ ${members}}
 	
       end
 
-      operation 133271 "ajouterEquipement"
-	public explicit_return_type "boolean"
+      operation 155015 "afficherRssi"
+	private explicit_return_type "String"
 	nparams 1
-	  param inout name "e" type class_ref 129431 // Equipement
+	  param in name "rssi" explicit_type "int"
 	
 	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
@@ -797,81 +1150,74 @@ ${members}}
 	
       end
 
-      operation 133399 "getEquipement"
-	public return_type class_ref 129431 // Equipement
-	nparams 0
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}Vector<${type}> ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 133527 "modifierValeur"
-	public explicit_return_type "boolean"
-	nparams 0
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-    end
-
-    class 129047 "Chargement"
-      visibility public 
-      cpp_decl ""
-      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
-${members}}
-"
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      mysql_decl ""
-      
-      classrelation 129047 // <generalisation>
-	relation 129047 ---|>
-	  a public
-	    java "${type}"
-	    classrelation_ref 129047 // <generalisation>
-	  b parent class_ref 128279 // AppCompatActivity
-      end
-
-      attribute 128407 "TAG"
-	class_attribute const_attribute private explicit_type "String"
-	init_value " \"_Chargement\""
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-	comment "Constantes
-
-!< TAG pour les logs (cf. Logcat)"
-      end
-
-      operation 129687 "onCreate"
-	protected explicit_return_type "void"
+      operation 155143 "afficherActif"
+	private explicit_return_type "String"
 	nparams 1
-	  param inout name "savedInstanceState" explicit_type "Bundle"
+	  param inout name "abonne" explicit_type "boolean"
 	
 	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
 "
-	java_annotation "@Override
+	
+	
+	
+      end
+
+      operation 155271 "afficherDetailsUnivers"
+	private explicit_return_type "void"
+	nparams 2
+	  param inout name "conteneur" explicit_type "LinearLayout"
+	  param inout name "u" type class_ref 135943 // Univers
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
 "
 	
 	
 	
       end
+
+      operation 155399 "ajouterLabel"
+	class_operation private explicit_return_type "void"
+	nparams 3
+	  param inout name "conteneur" explicit_type "LinearLayout"
+	  param in name "texte" explicit_type "String"
+	  param in name "tailleTexte" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 155527 "afficherCreationEquipement"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "creationEquipement" explicit_type "ConstraintLayout"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 155655 "afficherControlerEquipement"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "controlerEquipement" explicit_type "ConstraintLayout"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
     end
 
     class 129175 "Configuration"
@@ -905,9 +1251,164 @@ ${members}}
 	idl_decl ""
 	mysql_decl ""
 	MysqlColumn
-	comment "Constantes
+      end
 
-!< TAG pour les logs (cf. Logcat)"
+      classrelation 138375 // vue (<unidirectional association>)
+	relation 138375 --->
+	  a role_name "vue" init_value " VueArtnet.getInstance()" package
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 138375 // vue (<unidirectional association>)
+	  b parent class_ref 128791 // VueArtnet
+      end
+
+      classrelation 138503 // communicationBroker (<unidirectional association>)
+	relation 138503 --->
+	  a role_name "communicationBroker" init_value " CommunicationBroker.getInstance()" package
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 138503 // communicationBroker (<unidirectional association>)
+	  b parent class_ref 128535 // CommunicationBroker
+      end
+
+      attribute 145287 "listeCanaux"
+	private explicit_type "SeekBar"
+	init_value " new ArrayList<SeekBar>()"
+	stereotype "List"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 145415 "spinnerUnivers"
+	private explicit_type "Spinner"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 145543 "spinnerEquipement"
+	private explicit_type "Spinner"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 145671 "conteneurCanaux"
+	private explicit_type "LinearLayout"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 145799 "layoutControle"
+	private explicit_type "ConstraintLayout"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 138631 // univers (<unidirectional association>)
+	relation 138631 --->
+	  a role_name "univers" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 138631 // univers (<unidirectional association>)
+	  b parent class_ref 135943 // Univers
+      end
+
+      classrelation 138759 // equipement (<unidirectional association>)
+	relation 138759 --->
+	  a role_name "equipement" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 138759 // equipement (<unidirectional association>)
+	  b parent class_ref 129559 // EquipementDmx
+      end
+
+      attribute 145927 "rechercherEquipement"
+	package explicit_type "Button"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 146055 "boutonControlerEquipement"
+	package explicit_type "Button"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 146183 "boutonEnvoyerValeurs"
+	package explicit_type "Button"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 146311 "boutonReset"
+	package explicit_type "Button"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 146439 "boutonSupprimerEquipement"
+	package explicit_type "Button"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
       end
 
       operation 130711 "onCreate"
@@ -919,6 +1420,80 @@ ${members}}
   ${body}}
 "
 	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 149255 "controlerEquipement"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@SuppressLint(\"SetTextI18n\")
+"
+	
+	
+	
+      end
+
+      operation 149383 "recupererValeurCanaux"
+	private explicit_return_type "List<Integer>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 149511 "construireJson"
+	private explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 149639 "initialiserUI"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 149767 "initialiserListener"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 149895 "resetJSON"
+	private explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
 "
 	
 	
@@ -957,9 +1532,15 @@ ${members}}
 	idl_decl ""
 	mysql_decl ""
 	MysqlColumn
-	comment "Constantes
+      end
 
-!< TAG pour les logs (cf. Logcat)"
+      classrelation 138887 // vue (<unidirectional association>)
+	relation 138887 --->
+	  a role_name "vue" init_value " VueArtnet.getInstance()" package
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 138887 // vue (<unidirectional association>)
+	  b parent class_ref 128791 // VueArtnet
       end
 
       operation 130839 "onCreate"
@@ -971,6 +1552,18 @@ ${members}}
   ${body}}
 "
 	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 150023 "initialiserListener"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
 "
 	
 	
@@ -1009,9 +1602,110 @@ ${members}}
 	idl_decl ""
 	mysql_decl ""
 	MysqlColumn
-	comment "Constantes
+      end
 
-!< TAG pour les logs (cf. Logcat)"
+      classrelation 139015 // vue (<unidirectional association>)
+	relation 139015 --->
+	  a role_name "vue" init_value " VueArtnet.getInstance()" package
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 139015 // vue (<unidirectional association>)
+	  b parent class_ref 128791 // VueArtnet
+      end
+
+      classrelation 139143 // communicationBroker (<unidirectional association>)
+	relation 139143 --->
+	  a role_name "communicationBroker" init_value " CommunicationBroker.getInstance()" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 139143 // communicationBroker (<unidirectional association>)
+	  b parent class_ref 128535 // CommunicationBroker
+      end
+
+      attribute 146567 "creationEquipement"
+	private explicit_type "ConstraintLayout"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 146695 "spinnerEquipement"
+	private explicit_type "Spinner"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 146823 "spinnerUnivers"
+	private explicit_type "Spinner"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 146951 "conteneurCanaux"
+	private explicit_type "LinearLayout"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 147079 "compteurEquipement"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 147207 "ajouterNouvelEquipement"
+	package explicit_type "Button"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 147335 "equipements"
+	private explicit_type "String"
+	multiplicity "[]"
+	init_value " {\"Scanner\", \"Pars\", \"Lyres\", \"Lasers\", \"Spots\"}"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
       end
 
       operation 130967 "onCreate"
@@ -1023,6 +1717,54 @@ ${members}}
   ${body}}
 "
 	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 150151 "creerNouvelEquipement"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 150279 "initialiserUI"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 150407 "initialiserListeners"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 150535 "initialiserListenerCanaux"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
 "
 	
 	
@@ -1042,6 +1784,31 @@ ${members}}
       explicit_switch_type ""
       mysql_decl ""
       
+      attribute 147463 "TAG"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"_EquipementDmx\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 147591 "compteurID"
+	class_attribute private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
       attribute 130455 "idEquipement"
 	private explicit_type "int"
 	cpp_decl ""
@@ -1114,21 +1881,57 @@ ${members}}
 	MysqlColumn
       end
 
-      classrelation 129559 // canaux (<unidirectional association>)
-	relation 129559 --->
-	  stereotype "Vector"
-	  a role_name "canaux" init_value " new Vector<>()" private
-	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+      attribute 147719 "canaux"
+	private explicit_type "String"
+	init_value " new Vector<>()"
+	stereotype "Vector"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
 "
-	    classrelation_ref 129559 // canaux (<unidirectional association>)
-	  b parent class_ref 129431 // Equipement
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 147847 "valeursCanaux"
+	private explicit_type "Integer"
+	init_value " new Vector<>()"
+	stereotype "Vector"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 150663 "EquipementDmx"
+	public explicit_return_type ""
+	nparams 6
+	  param in name "univers" explicit_type "int"
+	  param in name "nom" explicit_type "String"
+	  param in name "type" explicit_type "String"
+	  param in name "nbCanaux" explicit_type "int"
+	  param in name "adresseDMX" explicit_type "int"
+	  param inout name "canaux" explicit_type "Vector<String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}, ${t5} ${p5}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
       end
 
       operation 131095 "getCanaux"
-	public return_type class_ref 129431 // Equipement
+	public explicit_return_type "Vector<String>"
 	nparams 0
 	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}Vector<${type}> ${name}${(}${)}${throws}${staticnl}{
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
   ${body}}
 "
 	
@@ -1310,11 +2113,578 @@ ${members}}
 	
 	
       end
+
+      operation 150791 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 150919 "getValeurCanaux"
+	public explicit_return_type "int"
+	nparams 1
+	  param in name "numCanal" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 151047 "setValeurCanaux"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "numCanal" explicit_type "int"
+	  param in name "valeur" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
     end
 
     classdiagram 128151 "classes-iteration1"
-      classdiagramsettings show_members_full_definition yes show_members_visibility yes show_members_stereotype yes member_max_width 0 show_relation_visibility yes end
+      classdiagramsettings show_members_full_definition yes show_members_visibility yes show_members_stereotype yes member_max_width 0 show_parameter_dir no show_relation_visibility yes end
       size A0
+    end
+
+    class 135943 "Univers"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 148231 "TAG"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"Univers\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< TAG pour les logs (cf. Logcat)"
+      end
+
+      classrelation 139655 // communicationBroker (<unidirectional association>)
+	relation 139655 --->
+	  a role_name "communicationBroker" init_value " CommunicationBroker.getInstance()" class_relation package
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 139655 // communicationBroker (<unidirectional association>)
+	  b parent class_ref 128535 // CommunicationBroker
+      end
+
+      attribute 148359 "nom"
+	const_attribute private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 148487 "univers"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 148615 "ip"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 148743 "mac"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 148871 "rssi"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 148999 "actif"
+	private explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 149127 "nbEquipements"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 139783 // equipements (<unidirectional association>)
+	relation 139783 --->
+	  stereotype "List"
+	  a role_name "equipements" const_relation private
+	    comment " Liste propre à l'univers"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 139783 // equipements (<unidirectional association>)
+	  b parent class_ref 129559 // EquipementDmx
+      end
+
+      classrelation 139911 // listeUnivers (<unidirectional association>)
+	relation 139911 --->
+	  stereotype "Vector"
+	  a role_name "listeUnivers" init_value " new Vector<>()" class_relation const_relation private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 139911 // listeUnivers (<unidirectional association>)
+	  b parent class_ref 135943 // Univers
+      end
+
+      operation 151687 "Univers"
+	public explicit_return_type ""
+	nparams 5
+	  param in name "nom" explicit_type "String"
+	  param in name "univers" explicit_type "int"
+	  param in name "ip" explicit_type "String"
+	  param in name "mac" explicit_type "String"
+	  param in name "rssi" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 151815 "getNom"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 151943 "getNum"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 152071 "getIp"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 152199 "getMac"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 152327 "getRssi"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 152455 "getActif"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 152583 "getNbEquipements"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 152711 "getEquipements"
+	public return_type class_ref 129559 // EquipementDmx
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}List<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 152839 "getListeUnivers"
+	class_operation public return_type class_ref 135943 // Univers
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}List<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 152967 "getListeUniversActif"
+	class_operation public return_type class_ref 135943 // Univers
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}List<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153095 "rechercherUniversNom"
+	class_operation public return_type class_ref 135943 // Univers
+	nparams 1
+	  param in name "nom" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153223 "rechercherUniversNum"
+	class_operation public return_type class_ref 135943 // Univers
+	nparams 1
+	  param in name "num" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153351 "mettreAJour"
+	public explicit_return_type "void"
+	nparams 4
+	  param in name "univers" explicit_type "int"
+	  param in name "ip" explicit_type "String"
+	  param in name "mac" explicit_type "String"
+	  param in name "rssi" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153479 "setActif"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "actif" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153607 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 153735 "ajouterEquipement"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "e" type class_ref 129559 // EquipementDmx
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153863 "retirerEquipement"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "e" type class_ref 129559 // EquipementDmx
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153991 "ajouterEquipementUnivers"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "equipement" type class_ref 129559 // EquipementDmx
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154119 "recupererEquipement"
+	class_operation public return_type class_ref 129559 // EquipementDmx
+	nparams 2
+	  param inout name "u" type class_ref 135943 // Univers
+	  param in name "nom" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154247 "basculerEmissionUnivers"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "u" type class_ref 135943 // Univers
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 136071 "Parametres"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 139271 // <generalisation>
+	relation 139271 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 139271 // <generalisation>
+	  b parent class_ref 128279 // AppCompatActivity
+      end
+
+      attribute 147975 "TAG"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"_Parametres\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 139399 // communicationBroker (<unidirectional association>)
+	relation 139399 --->
+	  a role_name "communicationBroker" init_value " CommunicationBroker.getInstance()" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 139399 // communicationBroker (<unidirectional association>)
+	  b parent class_ref 128535 // CommunicationBroker
+      end
+
+      classrelation 139527 // vue (<unidirectional association>)
+	relation 139527 --->
+	  a role_name "vue" init_value " VueArtnet.getInstance()" package
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 139527 // vue (<unidirectional association>)
+	  b parent class_ref 128791 // VueArtnet
+      end
+
+      attribute 148103 "chargerEquipements"
+	package explicit_type "Button"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 151175 "onCreate"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "savedInstanceState" explicit_type "Bundle"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 151303 "initialiserUI"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 151431 "initialiserListener"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 151559 "chargerBDDEquipements"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
     end
   end
 
@@ -1329,11 +2699,14 @@ ${package}
 ${imports}
 import android.os.Bundle;
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 ${definition}"
       associated_elems
 	class_ref 128151 // Accueil
@@ -1342,17 +2715,57 @@ ${definition}"
 
     artifact 128279 "ActiviteArtnet"
       stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
       java_src "${comment}
 ${package}
 ${imports}
-import android.os.Bundle;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.annotation.NonNull;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 ${definition}"
+      php_src "<?php
+${comment}
+${namespace}
+${require_once}
+${use}
+${definition}
+?>
+"
+      python_src "${comment}
+${import}
+${definition}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
       associated_elems
 	class_ref 128407 // ActiviteArtnet
       end
@@ -1367,27 +2780,10 @@ ${definition}"
       java_src "${comment}
 ${package}
 ${imports}
-${definition}"
-      associated_elems
-	class_ref 128663 // Artnet
-      end
-    end
-
-    artifact 128535 "Chargement"
-      stereotype "source"
-      java_src "${comment}
-${package}
-${imports}
-import android.os.Bundle;
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import android.util.Log;
 ${definition}"
       associated_elems
-	class_ref 129047 // Chargement
+	class_ref 128663 // Artnet
       end
     end
 
@@ -1401,15 +2797,24 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.widget.Toast;
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.DisconnectedBufferOptions;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+import org.eclipse.paho.client.mqttv3.IMqttMessageListener;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
+import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
+import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.util.List;
 ${definition}"
       associated_elems
 	class_ref 128535 // CommunicationBroker
@@ -1421,13 +2826,25 @@ ${definition}"
       java_src "${comment}
 ${package}
 ${imports}
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.SeekBar;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+import org.json.JSONArray;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 ${definition}"
       associated_elems
 	class_ref 129175 // Configuration
@@ -1439,6 +2856,8 @@ ${definition}"
       java_src "${comment}
 ${package}
 ${imports}
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -1446,6 +2865,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import android.util.Log;
+import android.widget.Button;
 ${definition}"
       associated_elems
 	class_ref 129303 // Credits
@@ -1460,10 +2880,20 @@ ${imports}
 import android.os.Bundle;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.Toast;
+import java.util.Vector;
 ${definition}"
       associated_elems
 	class_ref 129431 // Equipement
@@ -1475,22 +2905,11 @@ ${definition}"
       java_src "${comment}
 ${package}
 ${imports}
+import android.util.Log;
 import java.util.Vector;
 ${definition}"
       associated_elems
 	class_ref 129559 // EquipementDmx
-      end
-    end
-
-    artifact 129303 "ModuleDmxWifi"
-      stereotype "source"
-      java_src "${comment}
-${package}
-${imports}
-import java.util.Vector;
-${definition}"
-      associated_elems
-	class_ref 128919 // ModuleDmxWifi
       end
     end
 
@@ -1499,9 +2918,56 @@ ${definition}"
       java_src "${comment}
 ${package}
 ${imports}
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Color;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 ${definition}"
       associated_elems
 	class_ref 128791 // VueArtnet
+      end
+    end
+
+    artifact 135943 "Parametres"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import java.util.UUID;
+${definition}"
+      associated_elems
+	class_ref 136071 // Parametres
+      end
+    end
+
+    artifact 136071 "Univers"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import android.util.Log;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+${definition}"
+      associated_elems
+	class_ref 135943 // Univers
       end
     end
   end
