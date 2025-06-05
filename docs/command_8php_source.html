@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Projet Ergonomic-Workstation:  Fichier source de command.php</title>
+<title>Projet Artnet:  Fichier source de command.php</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Projet Ergonomic-Workstation
+   <div id="projectname">Projet Artnet
    &#160;<span id="projectnumber">1.0</span>
    </div>
    <div id="projectbrief">BTS CIEL IR LaSalle Avignon 2025</div>
@@ -107,22 +107,23 @@ $(document).ready(function(){initNavTree('command_8php_source.html',''); initRes
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                    &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;d-flex flex-wrap&quot;</span>&gt;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                        &lt;?php <span class="keywordflow">for</span> ($i = $datas[<span class="stringliteral">&#39;canalInitial&#39;</span>]; $i &lt; ($datas[<span class="stringliteral">&#39;canalInitial&#39;</span>] + $datas[<span class="stringliteral">&#39;nbCanaux&#39;</span>]); $i++): ?&gt;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                            &lt;?php echo <span class="stringliteral">&quot;&lt;div class=\&quot;p-2 ml-auto text-center\&quot; style=\&quot;width: &quot;</span> . (100 / $datas[<span class="stringliteral">&#39;nbCanaux&#39;</span>]) . <span class="stringliteral">&quot;%;\&quot;&gt;Canal &quot;</span> . $i . <span class="stringliteral">&quot;&lt;/div&gt;&quot;</span>;  ?&gt;</div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="command_8php.html#a830a965120006e78d05184edc5d7e0d8">   20</a></span>&#160;                        &lt;?php <a class="code" href="command_8php.html#a830a965120006e78d05184edc5d7e0d8">endfor</a>; ?&gt;</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="command_8php.html#ae8fdc27183f296411bac00ed522ee1ac">   20</a></span>&#160;                        &lt;?php <a class="code" href="command_8php.html#ae8fdc27183f296411bac00ed522ee1ac">endfor</a>; ?&gt;</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                    &lt;/div&gt;</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                    &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;d-flex flex-wrap justify-content-center&quot;</span>&gt;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                        &lt;?php <span class="keywordflow">for</span> ($i = $datas[<span class="stringliteral">&#39;canalInitial&#39;</span>]; $i &lt; ($datas[<span class="stringliteral">&#39;canalInitial&#39;</span>] + $datas[<span class="stringliteral">&#39;nbCanaux&#39;</span>]); $i++): ?&gt;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                            &lt;?php echo <span class="stringliteral">&quot;&lt;div class=\&quot;p-2 ml-auto text-center\&quot; style=\&quot;width: &quot;</span> . (100 / $datas[<span class="stringliteral">&#39;nbCanaux&#39;</span>]) . <span class="stringliteral">&quot;%;\&quot;&gt;&lt;input id=\&quot;canal-&quot;</span> . $i . <span class="stringliteral">&quot;\&quot; name=\&quot;canal-&quot;</span> . $i . <span class="stringliteral">&quot;\&quot; class=\&quot;slider\&quot; type=\&quot;text\&quot; data-slider-min=\&quot;0\&quot; data-slider-max=\&quot;255\&quot; data-slider-step=\&quot;1\&quot; data-slider-value=\&quot;&quot;</span> . $datas[<span class="stringliteral">&#39;canaux&#39;</span>][$i] . <span class="stringliteral">&quot;\&quot; data-slider-orientation=\&quot;vertical\&quot; /&gt;&lt;/div&gt;&quot;</span>;  ?&gt;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                        &lt;?php <a class="code" href="command_8php.html#a830a965120006e78d05184edc5d7e0d8">endfor</a>; ?&gt;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                    &lt;/div&gt;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                &lt;/div&gt;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            &lt;/div&gt;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            &lt;input type=<span class="stringliteral">&quot;hidden&quot;</span> name=<span class="stringliteral">&quot;idEquipement&quot;</span> value=<span class="stringliteral">&quot;&lt;?php echo $datas[&#39;idEquipement&#39;]; ?&gt;&quot;</span> /&gt;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            &lt;input <span class="keyword">class</span>=<span class="stringliteral">&quot;btn btn-primary&quot;</span> name=<span class="stringliteral">&quot;submit&quot;</span> type=<span class="stringliteral">&quot;submit&quot;</span> value=<span class="stringliteral">&quot;Envoyer&quot;</span> /&gt;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            &lt;a <span class="keyword">class</span>=<span class="stringliteral">&quot;btn btn-danger&quot;</span> href=<span class="stringliteral">&quot;&lt;?php echo ROOT_PATH; ?&gt;equipementDMX&quot;</span>&gt;Annuler&lt;/a&gt;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        &lt;/form&gt;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    &lt;/div&gt;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;&lt;/div&gt;</div>
-<div class="ttc" id="acommand_8php_html_a830a965120006e78d05184edc5d7e0d8"><div class="ttname"><a href="command_8php.html#a830a965120006e78d05184edc5d7e0d8">endfor</a></div><div class="ttdeci">Canal $i&lt;/div &gt; endfor</div><div class="ttdef"><b>Definition:</b> <a href="command_8php_source.html#l00020">command.php:19</a></div></div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="command_8php.html#a69152a52443e231bd13a7290a5887c64">   23</a></span>&#160;                        &lt;?php <span class="keywordflow">for</span> ($i = $datas[<span class="stringliteral">&#39;canalInitial&#39;</span>]; $i &lt; ($datas[<span class="stringliteral">&#39;canalInitial&#39;</span>] + $datas[<span class="stringliteral">&#39;nbCanaux&#39;</span>]); $i++): ?&gt;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                            &lt;?php $valeur = isset($datas[<span class="stringliteral">&#39;canaux&#39;</span>][$i]) ? (int)$datas[<span class="stringliteral">&#39;canaux&#39;</span>][$i] : 0;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                            echo <span class="stringliteral">&quot;&lt;div class=\&quot;p-2 ml-auto text-center\&quot; style=\&quot;width: &quot;</span> . (100 / $datas[<span class="stringliteral">&#39;nbCanaux&#39;</span>]) . <span class="stringliteral">&quot;%;\&quot;&gt;&lt;input id=\&quot;canal-&quot;</span> . $i . <span class="stringliteral">&quot;\&quot; name=\&quot;canal-&quot;</span> . $i . <span class="stringliteral">&quot;\&quot; class=\&quot;slider\&quot; type=\&quot;text\&quot; data-slider-min=\&quot;0\&quot; data-slider-max=\&quot;255\&quot; data-slider-step=\&quot;1\&quot; data-slider-value=\&quot;&quot;</span> . $valeur . <span class="stringliteral">&quot;\&quot; data-slider-orientation=\&quot;vertical\&quot; /&gt;&lt;/div&gt;&quot;</span>;  ?&gt;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                        &lt;?php <a class="code" href="command_8php.html#ae8fdc27183f296411bac00ed522ee1ac">endfor</a>; ?&gt;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                    &lt;/div&gt;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                &lt;/div&gt;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            &lt;/div&gt;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            &lt;input type=<span class="stringliteral">&quot;hidden&quot;</span> name=<span class="stringliteral">&quot;idEquipement&quot;</span> value=<span class="stringliteral">&quot;&lt;?php echo $datas[&#39;idEquipement&#39;]; ?&gt;&quot;</span> /&gt;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            &lt;button <span class="keyword">class</span>=<span class="stringliteral">&quot;btn btn-primary&quot;</span> name=<span class="stringliteral">&quot;submit&quot;</span> type=<span class="stringliteral">&quot;submit&quot;</span> value=<span class="stringliteral">&quot;Publier&quot;</span>&gt;Envoyer&lt;/button&gt;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            &lt;a <span class="keyword">class</span>=<span class="stringliteral">&quot;btn btn-danger&quot;</span> href=<span class="stringliteral">&quot;&lt;?php echo ROOT_PATH; ?&gt;equipementDMX&quot;</span>&gt;Annuler&lt;/a&gt;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        &lt;/form&gt;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    &lt;/div&gt;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;&lt;/div&gt;</div>
+<div class="ttc" id="acommand_8php_html_ae8fdc27183f296411bac00ed522ee1ac"><div class="ttname"><a href="command_8php.html#ae8fdc27183f296411bac00ed522ee1ac">endfor</a></div><div class="ttdeci">Canal $i&lt;/div &gt; endfor</div><div class="ttdef"><b>Definition:</b> <a href="command_8php_source.html#l00020">command.php:19</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.9.1-->
@@ -130,7 +131,7 @@ $(document).ready(function(){initNavTree('command_8php_source.html',''); initRes
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_0b018aa80fa74ae122e17cce7379129c.html">artnetAdministration</a></li><li class="navelem"><a class="el" href="dir_441d09b4d8e850107fbdd2b0d28e01df.html">views</a></li><li class="navelem"><a class="el" href="dir_c09ed7ce43c6cb7938fe361c6630f8d6.html">EquipementDMX</a></li><li class="navelem"><a class="el" href="command_8php.html">command.php</a></li>
-    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Lundi 2 Juin 2025 09:33:33 pour Projet Ergonomic-Workstation par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Jeudi 5 Juin 2025 14:38:54 pour Projet Artnet par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
   </ul>
 </div>
 </body>

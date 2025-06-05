@@ -13,6 +13,7 @@ var classcom_1_1example_1_1artnetmobile_1_1_communication_broker =
     [ "sauvegarderEquipement", "classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html#a59a448d2a6bfc0e9f2a16b255832fc32", null ],
     [ "setHandler", "classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html#a2c09dd5814f68bf0adf455bc780edb57", null ],
     [ "traiterMessageConfig", "classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html#ac38038c0cda5bfb17ae4af6bf10b4dce", null ],
+    [ "traiterMessageEquipements", "classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html#a839f3e18eb3e94a6eca13af71c946f6a", null ],
     [ "BROKER_CONNECTE", "classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html#ab2bd6f8c3adc70c52fc4c78a23815e82", null ],
     [ "BROKER_DECONNECTE", "classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html#a852856a89f71c8181595010bdf056b64", null ],
     [ "BROKER_ERREUR", "classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html#ac54dc14d264ad8862d6bc4d98dd99c2b", null ],

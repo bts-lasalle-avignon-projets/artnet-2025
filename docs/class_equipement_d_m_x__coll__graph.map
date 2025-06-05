@@ -1,4 +1,4 @@
 <map id="EquipementDMX" name="EquipementDMX">
-<area shape="rect" id="node1" title=" " alt="" coords="9,175,140,340"/>
+<area shape="rect" id="node1" title=" " alt="" coords="9,175,140,369"/>
 <area shape="rect" id="node2" href="$class_controller.html" title="Déclaration de la classe Controller." alt="" coords="5,5,144,127"/>
 </map>

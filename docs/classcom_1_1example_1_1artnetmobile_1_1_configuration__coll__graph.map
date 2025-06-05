@@ -1,7 +1,7 @@
 <map id="com.example.artnetmobile.Configuration" name="com.example.artnetmobile.Configuration">
-<area shape="rect" id="node1" title=" " alt="" coords="451,1121,678,1448"/>
-<area shape="rect" id="node2" href="$classcom_1_1example_1_1artnetmobile_1_1_univers.html" title=" " alt="" coords="278,541,499,1059"/>
-<area shape="rect" id="node3" href="$classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html" title=" " alt="" coords="5,5,228,479"/>
-<area shape="rect" id="node4" href="$classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html" title=" " alt="" coords="523,615,726,985"/>
-<area shape="rect" id="node5" href="$classcom_1_1example_1_1artnetmobile_1_1_vue_artnet.html" title=" " alt="" coords="750,615,985,985"/>
+<area shape="rect" id="node1" title=" " alt="" coords="455,1136,682,1463"/>
+<area shape="rect" id="node2" href="$classcom_1_1example_1_1artnetmobile_1_1_univers.html" title=" " alt="" coords="282,556,503,1073"/>
+<area shape="rect" id="node3" href="$classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html" title=" " alt="" coords="5,5,236,493"/>
+<area shape="rect" id="node4" href="$classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html" title=" " alt="" coords="527,622,730,1007"/>
+<area shape="rect" id="node5" href="$classcom_1_1example_1_1artnetmobile_1_1_vue_artnet.html" title=" " alt="" coords="754,629,989,1000"/>
 </map>

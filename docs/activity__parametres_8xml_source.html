@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Projet Ergonomic-Workstation:  Fichier source de activity_parametres.xml</title>
+<title>Projet Artnet:  Fichier source de activity_parametres.xml</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Projet Ergonomic-Workstation
+   <div id="projectname">Projet Artnet
    &#160;<span id="projectnumber">1.0</span>
    </div>
    <div id="projectbrief">BTS CIEL IR LaSalle Avignon 2025</div>
@@ -172,29 +172,66 @@ $(document).ready(function(){initNavTree('activity__parametres_8xml_source.html'
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="comment">&lt;!-- CONTENU PRINCIPAL --&gt;</span></div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="comment">&lt;!-- FOOTER --&gt;</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    &lt;<span class="keywordtype">androidx.constraintlayout.widget.ConstraintLayout</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keyword">android:id</span>=<span class="stringliteral">&quot;@+id/footer&quot;</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keyword">android:layout_width</span>=<span class="stringliteral">&quot;0dp&quot;</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keyword">android:layout_height</span>=<span class="stringliteral">&quot;100dp&quot;</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keyword">android:background</span>=<span class="stringliteral">&quot;@color/bgHeaderFooter&quot;</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keyword">app:layout_constraintBottom_toBottomOf</span>=<span class="stringliteral">&quot;parent&quot;</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    &lt;<span class="keywordtype">androidx.constraintlayout.widget.ConstraintLayout</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keyword">android:id</span>=<span class="stringliteral">&quot;@+id/mainContent&quot;</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keyword">android:layout_width</span>=<span class="stringliteral">&quot;0dp&quot;</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keyword">android:layout_height</span>=<span class="stringliteral">&quot;0dp&quot;</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keyword">android:padding</span>=<span class="stringliteral">&quot;16dp&quot;</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keyword">app:layout_constraintTop_toBottomOf</span>=<span class="stringliteral">&quot;@id/header&quot;</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keyword">app:layout_constraintBottom_toTopOf</span>=<span class="stringliteral">&quot;@id/footer&quot;</span></div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keyword">app:layout_constraintStart_toStartOf</span>=<span class="stringliteral">&quot;parent&quot;</span></div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keyword">app:layout_constraintEnd_toEndOf</span>=<span class="stringliteral">&quot;parent&quot;</span>&gt;</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        &lt;<span class="keywordtype">ImageView</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            <span class="keyword">android:id</span>=<span class="stringliteral">&quot;@+id/logoLaSalle&quot;</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            <span class="keyword">android:layout_width</span>=<span class="stringliteral">&quot;80dp&quot;</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            <span class="keyword">android:layout_height</span>=<span class="stringliteral">&quot;80dp&quot;</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            <span class="keyword">android:contentDescription</span>=<span class="stringliteral">&quot;@string/cD_lasalle&quot;</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            <span class="keyword">android:src</span>=<span class="stringliteral">&quot;@drawable/lasalle&quot;</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            <span class="keyword">app:layout_constraintEnd_toEndOf</span>=<span class="stringliteral">&quot;parent&quot;</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            <span class="keyword">app:layout_constraintTop_toTopOf</span>=<span class="stringliteral">&quot;parent&quot;</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            <span class="keyword">app:layout_constraintBottom_toBottomOf</span>=<span class="stringliteral">&quot;parent&quot;</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            <span class="keyword">android:layout_marginEnd</span>=<span class="stringliteral">&quot;10dp&quot;</span>/&gt;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    &lt;/<span class="keywordtype">androidx.constraintlayout.widget.ConstraintLayout</span>&gt;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;&lt;/<span class="keywordtype">androidx.constraintlayout.widget.ConstraintLayout</span>&gt;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        &lt;<span class="keywordtype">Button</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            <span class="keyword">android:id</span>=<span class="stringliteral">&quot;@+id/boutonChargementEquipements&quot;</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            <span class="keyword">style</span>=<span class="stringliteral">&quot;@style/CustomTextView&quot;</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            <span class="keyword">android:layout_width</span>=<span class="stringliteral">&quot;wrap_content&quot;</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            <span class="keyword">android:layout_height</span>=<span class="stringliteral">&quot;wrap_content&quot;</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            <span class="keyword">android:text</span>=<span class="stringliteral">&quot;@string/chargerBDDEquipements&quot;</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            <span class="keyword">android:textSize</span>=<span class="stringliteral">&quot;20sp&quot;</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            <span class="keyword">android:backgroundTint</span>=<span class="stringliteral">&quot;@color/bgHeaderFooter&quot;</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            <span class="keyword">app:layout_constraintStart_toStartOf</span>=<span class="stringliteral">&quot;parent&quot;</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            <span class="keyword">app:layout_constraintEnd_toEndOf</span>=<span class="stringliteral">&quot;parent&quot;</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            <span class="keyword">app:layout_constraintTop_toTopOf</span>=<span class="stringliteral">&quot;parent&quot;</span> /&gt;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        &lt;<span class="keywordtype">TextView</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            <span class="keyword">android:id</span>=<span class="stringliteral">&quot;@+id/editChargerBDDEquipements&quot;</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            <span class="keyword">style</span>=<span class="stringliteral">&quot;@style/CustomTextView&quot;</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            <span class="keyword">android:layout_width</span>=<span class="stringliteral">&quot;wrap_content&quot;</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            <span class="keyword">android:layout_height</span>=<span class="stringliteral">&quot;wrap_content&quot;</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            <span class="keyword">android:text</span>=<span class="stringliteral">&quot;@string/editChargerBDDEquipements&quot;</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            <span class="keyword">android:textSize</span>=<span class="stringliteral">&quot;14sp&quot;</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            <span class="keyword">android:textStyle</span>=<span class="stringliteral">&quot;italic&quot;</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            <span class="keyword">android:backgroundTint</span>=<span class="stringliteral">&quot;@color/bgHeaderFooter&quot;</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            <span class="keyword">app:layout_constraintTop_toBottomOf</span>=<span class="stringliteral">&quot;@id/boutonChargementEquipements&quot;</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            <span class="keyword">app:layout_constraintStart_toStartOf</span>=<span class="stringliteral">&quot;parent&quot;</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            <span class="keyword">app:layout_constraintEnd_toEndOf</span>=<span class="stringliteral">&quot;parent&quot;</span> /&gt;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    &lt;/<span class="keywordtype">androidx.constraintlayout.widget.ConstraintLayout</span>&gt;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="comment">&lt;!-- FOOTER --&gt;</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    &lt;<span class="keywordtype">androidx.constraintlayout.widget.ConstraintLayout</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        <span class="keyword">android:id</span>=<span class="stringliteral">&quot;@+id/footer&quot;</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        <span class="keyword">android:layout_width</span>=<span class="stringliteral">&quot;0dp&quot;</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        <span class="keyword">android:layout_height</span>=<span class="stringliteral">&quot;100dp&quot;</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <span class="keyword">android:background</span>=<span class="stringliteral">&quot;@color/bgHeaderFooter&quot;</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <span class="keyword">app:layout_constraintBottom_toBottomOf</span>=<span class="stringliteral">&quot;parent&quot;</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <span class="keyword">app:layout_constraintStart_toStartOf</span>=<span class="stringliteral">&quot;parent&quot;</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="keyword">app:layout_constraintEnd_toEndOf</span>=<span class="stringliteral">&quot;parent&quot;</span>&gt;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        &lt;<span class="keywordtype">ImageView</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            <span class="keyword">android:id</span>=<span class="stringliteral">&quot;@+id/logoLaSalle&quot;</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            <span class="keyword">android:layout_width</span>=<span class="stringliteral">&quot;80dp&quot;</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            <span class="keyword">android:layout_height</span>=<span class="stringliteral">&quot;80dp&quot;</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;            <span class="keyword">android:contentDescription</span>=<span class="stringliteral">&quot;@string/cD_lasalle&quot;</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            <span class="keyword">android:src</span>=<span class="stringliteral">&quot;@drawable/lasalle&quot;</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            <span class="keyword">app:layout_constraintEnd_toEndOf</span>=<span class="stringliteral">&quot;parent&quot;</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;            <span class="keyword">app:layout_constraintTop_toTopOf</span>=<span class="stringliteral">&quot;parent&quot;</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            <span class="keyword">app:layout_constraintBottom_toBottomOf</span>=<span class="stringliteral">&quot;parent&quot;</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;            <span class="keyword">android:layout_marginEnd</span>=<span class="stringliteral">&quot;10dp&quot;</span>/&gt;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    &lt;/<span class="keywordtype">androidx.constraintlayout.widget.ConstraintLayout</span>&gt;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;&lt;/<span class="keywordtype">androidx.constraintlayout.widget.ConstraintLayout</span>&gt;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.9.1-->
@@ -202,7 +239,7 @@ $(document).ready(function(){initNavTree('activity__parametres_8xml_source.html'
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_80d4f6a9e8964e7ab3c450dee52c906a.html">artnetMobile</a></li><li class="navelem"><a class="el" href="dir_190e86d5e9d180bf7b05ce71d3e7fb84.html">app</a></li><li class="navelem"><a class="el" href="dir_ac42522515ef7da83ee4aa2b2229b03e.html">src</a></li><li class="navelem"><a class="el" href="dir_1073a7a05d2eb38709f7fab0f3955590.html">main</a></li><li class="navelem"><a class="el" href="dir_fb54f0f60788ee38f29f3f57177b4d6b.html">res</a></li><li class="navelem"><a class="el" href="dir_dbe5af43f8f62069d494e7083e50f73d.html">layout</a></li><li class="navelem"><a class="el" href="activity__parametres_8xml.html">activity_parametres.xml</a></li>
-    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Lundi 2 Juin 2025 09:33:33 pour Projet Ergonomic-Workstation par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Jeudi 5 Juin 2025 14:38:54 pour Projet Artnet par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
   </ul>
 </div>
 </body>
