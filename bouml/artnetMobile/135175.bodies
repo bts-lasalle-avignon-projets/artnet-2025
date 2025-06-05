@@ -1,0 +1,49 @@
+class EquipementDmx
+!!!140039.java!!!	EquipementDmx(in univers : int, in nom : String, in type : String, in nbCanaux : int, in adresseDMX : int, inout canaux : Vector<String>)
+        Log.d(TAG, "EquipementDmx()");
+        this.idEquipement = ++compteurID;
+        this.univers = univers;
+        this.nom = nom;
+        this.type = type;
+        this.nbCanaux = nbCanaux;
+        this.adresseDMX = adresseDMX;
+        this.canaux = canaux;
+        Univers.ajouterEquipementUnivers(this);
+
+        for (int i = 0; i < nbCanaux; i++) {
+            valeursCanaux.add(-1);
+        }
+
+        Log.d(TAG, "ID : " + idEquipement + " - Univers : " + univers + " - Nom : " + nom + " - Type : " + type + " - Nombre canaux : " + nbCanaux + " - Premier canal : " + adresseDMX);
+!!!140167.java!!!	getCanaux() : Vector<String>
+        return canaux;
+!!!140295.java!!!	setIdEquipement(in idEquipement : int) : void
+        this.idEquipement = idEquipement;
+!!!140423.java!!!	setUnivers(in univers : int) : void
+        this.univers = univers;
+!!!140551.java!!!	setNom(in nom : String) : void
+        this.nom = nom;
+!!!140679.java!!!	setType(in type : String) : void
+        this.type = type;
+!!!140807.java!!!	setNbCanaux(in nbCanaux : int) : void
+        this.nbCanaux = nbCanaux;
+!!!140935.java!!!	setAdresseDMX(in adresseDMX : int) : void
+        this.adresseDMX = adresseDMX;
+!!!141191.java!!!	getUnivers() : int
+        return univers;
+!!!141319.java!!!	getAdresseDMX() : int
+        return adresseDMX;
+!!!141447.java!!!	getIdEquipement() : int
+        return idEquipement;
+!!!141575.java!!!	getNom() : String
+        return nom;
+!!!141703.java!!!	getType() : String
+        return type;
+!!!141831.java!!!	getNbCanaux() : int
+ return nbCanaux;
+!!!142087.java!!!	toString() : String
+ return nom;
+!!!142215.java!!!	getValeurCanaux(in numCanal : int) : int
+        return valeursCanaux.get(numCanal);
+!!!142343.java!!!	setValeurCanaux(in numCanal : int, in valeur : int) : void
+        valeursCanaux.set(numCanal, valeur);

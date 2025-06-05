@@ -48,6 +48,11 @@ class EquipementDMXModel extends Model
 				return ACTION_ERREUR;
 			}
 
+			if ($this->existeIdEquipementDMXParNom($nom, $univers)) {
+				Messages::setMsg("Un équipement portant le même nom existe déjà dans cet univers.", "error");
+				return ACTION_ERREUR;
+			}
+
 			// Insère l'équipement dans la base de données
 			try {
 				$this->query("INSERT INTO equipementDMX (nomEquipement, idTypeEquipement, univers, canalInitial)
@@ -58,6 +63,29 @@ class EquipementDMXModel extends Model
 				$this->bind(':canalInitial', $canalInitial, PDO::PARAM_INT);
 				$this->execute();
 				$idEquipement = $this->getLastInsertId();
+
+				// Récupère le nombre de canaux du type d'équipement
+				$this->query("SELECT nbCanaux FROM typeEquipementDMX WHERE idTypeEquipement = :idTypeEquipement");
+				$this->bind(':idTypeEquipement', $type);
+				$result = $this->getResult();
+				$nbCanaux = $result['nbCanaux'] ?? 0;
+
+				// Génère le JSON des canaux
+				$canauxArray = [];
+				for ($i = 0; $i < $nbCanaux; $i++) {
+					$canauxArray[] = [
+						'canal' => $canalInitial + $i,
+						'valeur' => "0"
+					];
+				}
+				$jsonCanaux = json_encode($canauxArray);
+
+				// Met à jour l'équipement avec les canaux
+				$this->query("UPDATE equipementDMX SET canaux = :canaux WHERE idEquipement = :idEquipement");
+				$this->bind(':canaux', $jsonCanaux);
+				$this->bind(':idEquipement', $idEquipement, PDO::PARAM_INT);
+				$this->execute();
+
 				Messages::setMsg("Équipement ajouté avec succès !", "success");
 				return ACTION_SUCCESS;
 			} catch (PDOException $e) {
@@ -275,7 +303,7 @@ class EquipementDMXModel extends Model
 				return ACTION_ERREUR;
 			}
 
-			if (!$this->existeIdEquipementDMX($idEquipement)) {
+			if (!$this->existeIdEquipementDMXParID($idEquipement)) {
 				Messages::setMsg("L'équipement n'existe pas !", "error");
 				return ACTION_ERREUR;
 			}
@@ -316,7 +344,38 @@ class EquipementDMXModel extends Model
 		return $equipement ?? null;
 	}
 
-	public function existeIdEquipementDMX($idEquipement)
+	public function getAllEquipementsDMX()
+	{
+		$this->query("SELECT
+           equipementDMX.univers,
+           equipementDMX.nomEquipement,
+           equipementDMX.canalInitial,
+           equipementDMX.canaux,
+           typeEquipementDMX.typeEquipement,
+           typeEquipementDMX.nbCanaux,
+           moduleDMXWiFi.nomBoitier
+       	FROM equipementDMX
+       	JOIN typeEquipementDMX ON equipementDMX.idTypeEquipement = typeEquipementDMX.idTypeEquipement
+       	JOIN moduleDMXWiFi ON equipementDMX.univers = moduleDMXWiFi.univers
+       	ORDER BY equipementDMX.nomEquipement");
+
+		$results = $this->getResults();
+
+		foreach ($results as &$equipement) {
+			if (isset($equipement['canaux']) && is_string($equipement['canaux'])) {
+				$decoded = json_decode($equipement['canaux'], true);
+				if (json_last_error() === JSON_ERROR_NONE) {
+					$equipement['canaux'] = $decoded;
+				} else {
+					$equipement['canaux'] = null;
+				}
+			}
+		}
+
+		return $results;
+	}
+
+	public function existeIdEquipementDMXParID($idEquipement): bool
 	{
 		$this->query("SELECT nomEquipement FROM equipementDMX WHERE idEquipement = :idEquipement");
 		$this->bind(':idEquipement', $idEquipement);
@@ -328,6 +387,20 @@ class EquipementDMXModel extends Model
 		return true;
 	}
 
+	public function existeIdEquipementDMXParNom($nomEquipement, $univers): bool
+	{
+		$this->query("SELECT nomEquipement FROM equipementDMX WHERE nomEquipement = :nomEquipement AND univers = :univers");
+		$this->bind(':nomEquipement', $nomEquipement);
+		$this->bind(':univers', $univers);
+		$this->execute();
+		$nom = $this->getResult();
+		if (!$nom) {
+			return false;
+		}
+		return true;
+	}
+
+
 	public function getBrokerMQTTActif()
 	{
 		// Récupère le broker actif
@@ -337,5 +410,120 @@ class EquipementDMXModel extends Model
 			$broker['topic'] = BROKER_MQTT_TOPIC;
 		}
 		return $broker ?? null;
+	}
+
+	public function addEquipementDepuisTopic($data)
+	{
+		// Exemple de json : {"nomEquipement":"lyre","univers":1,"typeEquipement":"Scanner","nbCanaux":8,"canalInitial":24,"canaux":[{"canal":10, "valeur":255},{"canal":11, "valeur":10},{"canal":12, "valeur":55}]}
+
+		if (!$data) {
+			// JSON invalide
+			return false;
+		}
+
+		if (!isset($data['nomEquipement'])) {
+			return false; // nomEquipement manquant
+		}
+
+		// Vérifier si l'équipement existe déjà dans la base de données
+		if ($this->existeIdEquipementDMXParNom($data['nomEquipement'], $data['univers'])) {
+			return $this->updateEquipementTopic($data);
+		} else {
+			return $this->insertEquipementTopic($data);
+		}
+	}
+
+	public function updateEquipementTopic($data)
+	{
+		$this->query("SELECT idEquipement FROM equipementDMX WHERE nomEquipement = :nomEquipement AND univers = :univers");
+		$this->bind(':nomEquipement', $data['nomEquipement']);
+		$this->bind(':univers', $data['univers']);
+		$equipementDMX = $this->getResult();
+
+		// Vérifier si l'idEquipement a été trouvé
+		if (!$equipementDMX) {
+			return false; // Équipement non trouvé
+		}
+
+		$idEquipement = $equipementDMX['idEquipement'];
+		$idTypeEquipement = $this->getIdTypeEquipement($data);
+		$canaux = isset($data['canaux']) && is_array($data['canaux']) ? json_encode($data['canaux']) : null;
+
+		// Modifie l'équipement dans la base de données
+		$this->query("UPDATE equipementDMX SET nomEquipement = :nomEquipement, univers = :univers, canaux = :canaux, idTypeEquipement = :idTypeEquipement, canalInitial = :canalInitial WHERE idEquipement = :idEquipement");
+		$this->bind(':nomEquipement', $data['nomEquipement']);
+		$this->bind(':univers', $data['univers']);
+		$this->bind(':canaux', $canaux);
+		$this->bind(':idTypeEquipement', $idTypeEquipement);
+		$this->bind(':canalInitial', $data['canalInitial']);
+		$this->bind(':idEquipement', $idEquipement);
+		return $this->execute();
+	}
+
+	public function insertEquipementTopic($data)
+	{
+		$idTypeEquipement = $this->getIdTypeEquipement($data);
+		$canaux = isset($data['canaux']) && is_array($data['canaux']) ? json_encode($data['canaux']) : null;
+
+		// Insert l'équipement dans la base de données
+		$this->query("INSERT INTO equipementDMX (nomEquipement, univers, canaux, idTypeEquipement, canalInitial) VALUES (:nomEquipement, :univers, :canaux, :idTypeEquipement, :canalInitial)");
+		$this->bind(':nomEquipement', $data['nomEquipement']);
+		$this->bind(':univers', $data['univers']);
+		$this->bind(':canaux', $canaux);
+		$this->bind(':idTypeEquipement', $idTypeEquipement);
+		$this->bind(':canalInitial', $data['canalInitial']);
+		return $this->execute();
+	}
+
+	public function getIdTypeEquipement($data)
+	{
+		$this->query("SELECT idTypeEquipement FROM typeEquipementDMX WHERE typeEquipement = :typeEquipement AND nbCanaux = :nbCanaux");
+		$this->bind(':typeEquipement', $data['typeEquipement']);
+		$this->bind(':nbCanaux', $data['nbCanaux']);
+		$this->execute();
+
+		$typeEquipementDMX = $this->getResult();
+
+		if (!is_array($typeEquipementDMX) || !isset($typeEquipementDMX['idTypeEquipement'])) {
+			$idTypeEquipement = $this->insertTypeEquipement($data);
+			$typeEquipementDMX['idTypeEquipement'] = $idTypeEquipement;
+		}
+
+		return $typeEquipementDMX['idTypeEquipement'] ?? false;
+	}
+
+	public function insertTypeEquipement($data)
+	{
+		$this->query("INSERT INTO typeEquipementDMX (typeEquipement,nbCanaux) VALUES (:typeEquipement, :nbCanaux)");
+		$this->bind(':typeEquipement', $data['typeEquipement']);
+		$this->bind(':nbCanaux', $data['nbCanaux']);
+
+		if ($this->execute()) {
+			$idTypeEquipement = $this->getLastInsertId();
+			return $idTypeEquipement;
+		} else {
+			return false; // Retourne 0 en cas d'échec
+		}
+	}
+
+	public function supprimerEquipementParNomEtUnivers($nomEquipement, $univers)
+	{
+		$this->query("DELETE equipementDMX
+			FROM equipementDMX
+			JOIN moduleDMXWiFi ON equipementDMX.univers = moduleDMXWiFi.univers
+			WHERE equipementDMX.univers = :univers AND equipementDMX.nomEquipement = :nomEquipement");
+		$this->bind(':nomEquipement', $nomEquipement);
+		$this->bind(':univers', $univers);
+		$this->execute();
+	}
+
+	public function getUniversParNomModule($nomModule)
+	{
+		$this->query("SELECT univers FROM moduleDMXWiFi WHERE nomBoitier = :nomBoitier");
+		$this->bind(':nomBoitier', $nomModule);
+		$this->execute();
+		$result = $this->getResult();
+
+		return $result['univers'] ?? null;
 	}
 }

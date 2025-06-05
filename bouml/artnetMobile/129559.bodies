@@ -1,5 +1,21 @@
 class EquipementDmx
-!!!131095.java!!!	getCanaux() : Equipement
+!!!150663.java!!!	EquipementDmx(in univers : int, in nom : String, in type : String, in nbCanaux : int, in adresseDMX : int, inout canaux : Vector<String>)
+        Log.d(TAG, "EquipementDmx()");
+        this.idEquipement = ++compteurID;
+        this.univers = univers;
+        this.nom = nom;
+        this.type = type;
+        this.nbCanaux = nbCanaux;
+        this.adresseDMX = adresseDMX;
+        this.canaux = canaux;
+        Univers.ajouterEquipementUnivers(this);
+
+        for (int i = 0; i < nbCanaux; i++) {
+            valeursCanaux.add(-1);
+        }
+
+        Log.d(TAG, "ID : " + idEquipement + " - Univers : " + univers + " - Nom : " + nom + " - Type : " + type + " - Nombre canaux : " + nbCanaux + " - Premier canal : " + adresseDMX);
+!!!131095.java!!!	getCanaux() : Vector<String>
         return canaux;
 !!!131223.java!!!	setIdEquipement(in idEquipement : int) : void
         this.idEquipement = idEquipement;
@@ -25,3 +41,9 @@ class EquipementDmx
         return type;
 !!!132759.java!!!	getNbCanaux() : int
         return nbCanaux;
+!!!150791.java!!!	toString() : String
+ return nom;
+!!!150919.java!!!	getValeurCanaux(in numCanal : int) : int
+        return valeursCanaux.get(numCanal);
+!!!151047.java!!!	setValeurCanaux(in numCanal : int, in valeur : int) : void
+        valeursCanaux.set(numCanal, valeur);

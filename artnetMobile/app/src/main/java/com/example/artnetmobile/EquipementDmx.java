@@ -101,8 +101,6 @@ public class EquipementDmx
 
     public int getNbCanaux() { return nbCanaux; }
 
-    public void configurerEquipement() {}
-
     @Override
     public String toString() { return nom; }
 
@@ -114,5 +112,17 @@ public class EquipementDmx
     public void setValeurCanaux(int numCanal, int valeur)
     {
         valeursCanaux.set(numCanal, valeur);
+    }
+
+    public static EquipementDmx rechercherEquipement(String nom, int univers) {
+        Univers u = Univers.rechercherUniversNum(univers);
+        if (u != null) {
+            for (EquipementDmx e : u.getEquipements()) {
+                if (e.getNom().equalsIgnoreCase(nom)) {
+                    return e;
+                }
+            }
+        }
+        return null;
     }
 }

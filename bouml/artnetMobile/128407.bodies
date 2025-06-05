@@ -1,19 +1,34 @@
 class ActiviteArtnet
-!!!128279.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+!!!128279.java!!!	onCreate() : void
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_principale);
         Log.d(TAG, "onCreate()");
 
+        boutonDemarrage = findViewById(R.id.boutonDemarrage);
+        boutonDemarrage.setEnabled(false);
+        etatMQTT = findViewById(R.id.textViewEtatMQTT);
+        etatMQTT.setText("Initialisation broker MQTT ...");
+
+        initialiserHandler();
         initialiserCommunicationBroker();
 
-        artnet = new Artnet(communicationBroker);
+        boutonDemarrage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                vue.afficherAccueil(ActiviteArtnet.this);
+            }
+        });
 !!!128407.java!!!	onStart() : void
         super.onStart();
         Log.d(TAG, "onStart()");
 !!!128535.java!!!	onResume() : void
         super.onResume();
         Log.d(TAG, "onResume()");
+
+        if(communicationBroker != null)
+            communicationBroker.setHandler(handler);
 !!!128663.java!!!	onPause() : void
         super.onPause();
         Log.d(TAG, "onPause()");
@@ -24,4 +39,36 @@ class ActiviteArtnet
         super.onDestroy();
         Log.d(TAG, "onDestroy()");
 !!!129047.java!!!	initialiserCommunicationBroker() : void
-        communicationBroker = new CommunicationBroker(this.getApplicationContext());
+        Log.d(TAG, "initialiserCommunicationBroker()");
+        communicationBroker = CommunicationBroker.getInstance();
+        communicationBroker.setHandler(handler);
+        etatMQTT.setText("Connexion broker MQTT ...");
+        communicationBroker.connecter();
+!!!148103.java!!!	initialiserHandler() : void
+        this.handler = new Handler(this.getMainLooper()) {
+            @Override
+            public void handleMessage(@NonNull Message message)
+            {
+                // Log.d(TAG, "handleMessage() id message = " + message.what);
+                // Log.d(TAG, "handleMessage() message = " + message.obj.toString());
+                switch(message.what)
+                {
+                    case CommunicationBroker.BROKER_CONNECTE:
+                        Log.d(TAG, "handleMessage() BROKER_CONNECTE");
+                        etatMQTT.setText("Broker MQTT connecté");
+                        communicationBroker.sabonner(CommunicationBroker.TOPIC_ARTNET);
+                        boutonDemarrage.setEnabled(true);
+                        break;
+                    case CommunicationBroker.BROKER_DECONNECTE:
+                        Log.d(TAG, "handleMessage() BROKER_DECONNECTE");
+                        etatMQTT.setText("Broker MQTT déconnecté");
+                        boutonDemarrage.setEnabled(false);
+                        break;
+                    case CommunicationBroker.BROKER_ERREUR:
+                        Bundle bundle = (Bundle)message.obj;
+                        String erreur = bundle.getString("erreur");
+                        Log.d(TAG, "handleMessage() BROKER_ERREUR " + erreur);
+                        break;
+                }
+            }
+        };

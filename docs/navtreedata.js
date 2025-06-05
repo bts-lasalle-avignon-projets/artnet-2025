@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "Projet Ergonomic-Workstation", "index.html", [
+  [ "Projet Artnet", "index.html", [
     [ "A propos", "index.html", null ],
     [ "README", "md__mnt_sda_home_tv__documents_git_projets_2025_artnet_2025__r_e_a_d_m_e.html", null ],
     [ "Paquetages", "namespaces.html", [
@@ -36,7 +36,7 @@ var NAVTREE =
       [ "Hiérarchie des classes", "hierarchy.html", "hierarchy" ],
       [ "Membres de classe", "functions.html", [
         [ "Tout", "functions.html", "functions_dup" ],
-        [ "Fonctions", "functions_func.html", null ],
+        [ "Fonctions", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", null ]
       ] ]
     ] ],
@@ -53,9 +53,9 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_accueil_8java.html",
-"classcom_1_1example_1_1artnetmobile_1_1_activite_artnet.html#aea7a43f2e7527b9118fda154394f0745",
-"functions_vars.html"
+"",
+"classcom_1_1example_1_1artnetmobile_1_1_activite_artnet.html#a00a95e73958468e729a4c4fe1a8042ed",
+"functions__.html"
 ];
 
 var SYNCONMSG = 'cliquez pour désactiver la synchronisation du panel';

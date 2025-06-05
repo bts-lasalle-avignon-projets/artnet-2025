@@ -1,0 +1,14 @@
+class Artnet
+!!!136199.java!!!	Artnet(inout communicationBroker : CommunicationBroker)
+        this.communicationBroker = communicationBroker;
+        this.vueArtnet = VueArtnet.getInstance();
+
+        if(communicationBroker != null)
+        {
+            communicationBroker.connecter();
+        }
+!!!136327.java!!!	getVueArtnet() : VueArtnet
+        return vueArtnet;
+!!!136455.java!!!	sauvegarderEquipement(inout equipementDmx : EquipementDmx) : void
+        Log.d(TAG, "sauvegarderEquipement()");
+        communicationBroker.sauvegarderEquipement(equipementDmx);

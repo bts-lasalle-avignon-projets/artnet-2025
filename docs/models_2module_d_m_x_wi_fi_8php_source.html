@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Projet Ergonomic-Workstation:  Fichier source de moduleDMXWiFi.php</title>
+<title>Projet Artnet:  Fichier source de moduleDMXWiFi.php</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Projet Ergonomic-Workstation
+   <div id="projectname">Projet Artnet
    &#160;<span id="projectnumber">1.0</span>
    </div>
    <div id="projectbrief">BTS CIEL IR LaSalle Avignon 2025</div>
@@ -153,7 +153,7 @@ $(document).ready(function(){initNavTree('models_2module_d_m_x_wi_fi_8php_source
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="comment">// Construction du nom Module_&lt;4 derniers caractères de la MAC&gt;</span></div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        $mac = $data[<span class="stringliteral">&#39;mac&#39;</span>];</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        $macClean = str_replace(<span class="charliteral">&#39;:&#39;</span>, <span class="stringliteral">&#39;&#39;</span>, $mac);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        $nom = <span class="stringliteral">&#39;Module_&#39;</span> . substr($macClean, -4);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        $nom = <span class="stringliteral">&#39;Artnet-&#39;</span> . substr($macClean, -4);</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="comment">// Insert le module dans la base de données</span></div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        $this-&gt;<a class="code" href="class_model.html#a94bc50d8c85c088792001e119cfa4ce4">query</a>(<span class="stringliteral">&quot;INSERT INTO moduleDMXWiFi (univers, nomBoitier, adresseIP, adresseMAC, rssi) VALUES (:univers, :nomBoitier, :adresseIP, :adresseMAC, :rssi)&quot;</span>);</div>
@@ -184,7 +184,7 @@ $(document).ready(function(){initNavTree('models_2module_d_m_x_wi_fi_8php_source
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_0b018aa80fa74ae122e17cce7379129c.html">artnetAdministration</a></li><li class="navelem"><a class="el" href="dir_c8142460ce30475f99450010a3e8a699.html">models</a></li><li class="navelem"><a class="el" href="models_2module_d_m_x_wi_fi_8php.html">moduleDMXWiFi.php</a></li>
-    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Lundi 2 Juin 2025 09:33:33 pour Projet Ergonomic-Workstation par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Jeudi 5 Juin 2025 14:38:54 pour Projet Artnet par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
   </ul>
 </div>
 </body>

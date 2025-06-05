@@ -1,0 +1,28 @@
+class Credits
+!!!139143.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_credits);
+        Log.d(TAG, "onCreate()");
+        vue.initialiserNavbar(this);
+
+        initialiserListener();
+!!!139271.java!!!	initialiserListener() : void
+        Button boutonProjet = findViewById(R.id.boutonGithubProjet);
+        Button boutonCA = findViewById(R.id.boutonGithubCA);
+        Button boutonVD = findViewById(R.id.boutonGithubVD);
+
+        boutonProjet.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/bts-lasalle-avignon-projets/artnet-2025"));
+            startActivity(intent);
+        });
+
+        boutonCA.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/aclement0"));
+            startActivity(intent);
+        });
+
+        boutonVD.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/dvaudaine"));
+            startActivity(intent);
+        });

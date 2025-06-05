@@ -25,6 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
+import java.util.Vector;
 
 public class CommunicationBroker {
     /**
@@ -293,7 +294,7 @@ public class CommunicationBroker {
             json.put("nomEquipement", equipementDmx.getNom());
             json.put("univers", equipementDmx.getUnivers());
             json.put("typeEquipement", equipementDmx.getType());
-            json.put("nombreCanaux", equipementDmx.getNbCanaux());
+            json.put("nbCanaux", equipementDmx.getNbCanaux());
             json.put("canalInitial", equipementDmx.getAdresseDMX());
 
             JSONArray canauxArray = new JSONArray();
@@ -307,5 +308,33 @@ public class CommunicationBroker {
 
         Log.d("JSON", "PUBLISH (création équipement) --> " + topic + " : " + json);
         envoyer(topic, nomEquipement, json.toString());
+    }
+
+    public void traiterMessageEquipements(String topicMQTT, String messageMQTT) throws JSONException {
+        Log.d(TAG, "traiterMessageEquipements()");
+
+        JSONObject json = new JSONObject(messageMQTT);
+
+        String nomEquipement = json.getString("nomEquipement");
+        int univers = Integer.parseInt(json.getString("univers"));
+        int adresse = Integer.parseInt(json.getString("canalInitial"));
+        int nbCanaux = Integer.parseInt(json.getString("nbCanaux"));
+        String typeEquipement = json.getString("typeEquipement");
+
+        Vector<String> canaux = new Vector<>();
+
+        for (int i = 0; i < nbCanaux; i++) {
+            canaux.add("Canal " + (adresse + i));
+        }
+
+        EquipementDmx existant = EquipementDmx.rechercherEquipement(nomEquipement, univers);
+
+        if (existant != null) {} else {
+            new EquipementDmx(univers, nomEquipement, typeEquipement, nbCanaux, adresse, canaux);
+            if (context != null) {
+                Handler mainHandler = new Handler(context.getMainLooper());
+                mainHandler.post(() -> Toast.makeText(context, "Nouvel equipement ! Nom : " + nomEquipement + " - Univers : " + univers, Toast.LENGTH_SHORT).show());
+            }
+        }
     }
 }

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Projet Ergonomic-Workstation:  Fichier source de broker.php</title>
+<title>Projet Artnet:  Fichier source de broker.php</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Projet Ergonomic-Workstation
+   <div id="projectname">Projet Artnet
    &#160;<span id="projectnumber">1.0</span>
    </div>
    <div id="projectbrief">BTS CIEL IR LaSalle Avignon 2025</div>
@@ -132,10 +132,10 @@ $(document).ready(function(){initNavTree('controllers_2broker_8php_source.html',
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="config_8php.html#a70bfc687e21554f00be8c37674d0c97d">NO_LOGIN</a>) {</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            $idBroker = $this-&gt;<a class="code" href="class_broker.html#a301d5b4247a2d5e23159ac388a362272">getID</a>();</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            <span class="keywordflow">if</span> ($idBroker &gt; 0) {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                <a class="code" href="gestion_modules_d_m_x_wi_fi_8php.html#ad9a5048afb563f1d963ebac7936f05fa">$broker</a> = $this-&gt;viewmodel-&gt;edit($idBroker);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                <span class="keywordflow">if</span> (is_array(<a class="code" href="gestion_modules_d_m_x_wi_fi_8php.html#ad9a5048afb563f1d963ebac7936f05fa">$broker</a>)) {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                <a class="code" href="gestion_equipement_d_m_x_8php.html#ad9a5048afb563f1d963ebac7936f05fa">$broker</a> = $this-&gt;viewmodel-&gt;edit($idBroker);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                <span class="keywordflow">if</span> (is_array(<a class="code" href="gestion_equipement_d_m_x_8php.html#ad9a5048afb563f1d963ebac7936f05fa">$broker</a>)) {</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                    <span class="comment">// Affiche le formulaire de modification</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                    $this-&gt;<a class="code" href="class_controller.html#aa4529f28ded225491622b06bea3a7927">display</a>(<a class="code" href="gestion_modules_d_m_x_wi_fi_8php.html#ad9a5048afb563f1d963ebac7936f05fa">$broker</a>);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                    $this-&gt;<a class="code" href="class_controller.html#aa4529f28ded225491622b06bea3a7927">display</a>(<a class="code" href="gestion_equipement_d_m_x_8php.html#ad9a5048afb563f1d963ebac7936f05fa">$broker</a>);</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                } <span class="keywordflow">else</span> {</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                    <span class="comment">// Retour à la liste des brokers</span></div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                    header(<span class="stringliteral">&#39;Location: &#39;</span> . <a class="code" href="config_8php.html#a4402ba2909a4d515efa9aa41d057247a">URL_PATH</a> . <span class="stringliteral">&#39;broker&#39;</span>);</div>
@@ -181,10 +181,10 @@ $(document).ready(function(){initNavTree('controllers_2broker_8php_source.html',
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="config_8php.html#a70bfc687e21554f00be8c37674d0c97d">NO_LOGIN</a>) {</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            $idBroker = $this-&gt;<a class="code" href="class_broker.html#a301d5b4247a2d5e23159ac388a362272">getID</a>();</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            <span class="keywordflow">if</span> ($idBroker &gt; 0) {</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                <a class="code" href="gestion_modules_d_m_x_wi_fi_8php.html#ad9a5048afb563f1d963ebac7936f05fa">$broker</a> = $this-&gt;viewmodel-&gt;test($idBroker);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                <span class="keywordflow">if</span> (is_array(<a class="code" href="gestion_modules_d_m_x_wi_fi_8php.html#ad9a5048afb563f1d963ebac7936f05fa">$broker</a>)) {</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                <a class="code" href="gestion_equipement_d_m_x_8php.html#ad9a5048afb563f1d963ebac7936f05fa">$broker</a> = $this-&gt;viewmodel-&gt;test($idBroker);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                <span class="keywordflow">if</span> (is_array(<a class="code" href="gestion_equipement_d_m_x_8php.html#ad9a5048afb563f1d963ebac7936f05fa">$broker</a>)) {</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                    <span class="comment">// Affiche le formulaire de test de connexion</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                    $this-&gt;<a class="code" href="class_controller.html#aa4529f28ded225491622b06bea3a7927">display</a>(<a class="code" href="gestion_modules_d_m_x_wi_fi_8php.html#ad9a5048afb563f1d963ebac7936f05fa">$broker</a>);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                    $this-&gt;<a class="code" href="class_controller.html#aa4529f28ded225491622b06bea3a7927">display</a>(<a class="code" href="gestion_equipement_d_m_x_8php.html#ad9a5048afb563f1d963ebac7936f05fa">$broker</a>);</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                } <span class="keywordflow">else</span> {</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                    <span class="comment">// Retour au formulaire de test de connexion</span></div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                    header(<span class="stringliteral">&#39;Location: &#39;</span> . <a class="code" href="config_8php.html#a4402ba2909a4d515efa9aa41d057247a">URL_PATH</a> . <span class="stringliteral">&#39;broker&#39;</span> . <span class="stringliteral">&#39;/test/&#39;</span> . $idBroker);</div>
@@ -232,7 +232,7 @@ $(document).ready(function(){initNavTree('controllers_2broker_8php_source.html',
 <div class="ttc" id="aconfig_8php_html_a4402ba2909a4d515efa9aa41d057247a"><div class="ttname"><a href="config_8php.html#a4402ba2909a4d515efa9aa41d057247a">URL_PATH</a></div><div class="ttdeci">const URL_PATH</div><div class="ttdef"><b>Definition:</b> <a href="config_8php_source.html#l00026">config.php:26</a></div></div>
 <div class="ttc" id="aconfig_8php_html_a70bfc687e21554f00be8c37674d0c97d"><div class="ttname"><a href="config_8php.html#a70bfc687e21554f00be8c37674d0c97d">NO_LOGIN</a></div><div class="ttdeci">const NO_LOGIN</div><div class="ttdef"><b>Definition:</b> <a href="config_8php_source.html#l00010">config.php:10</a></div></div>
 <div class="ttc" id="aconfig_8php_html_aa8d913889c92292ba2d18b08a7debb13"><div class="ttname"><a href="config_8php.html#aa8d913889c92292ba2d18b08a7debb13">ACTION_SUCCESS</a></div><div class="ttdeci">const ACTION_SUCCESS</div><div class="ttdef"><b>Definition:</b> <a href="config_8php_source.html#l00033">config.php:33</a></div></div>
-<div class="ttc" id="agestion_modules_d_m_x_wi_fi_8php_html_ad9a5048afb563f1d963ebac7936f05fa"><div class="ttname"><a href="gestion_modules_d_m_x_wi_fi_8php.html#ad9a5048afb563f1d963ebac7936f05fa">$broker</a></div><div class="ttdeci">$broker</div><div class="ttdef"><b>Definition:</b> <a href="gestion_modules_d_m_x_wi_fi_8php_source.html#l00044">gestionModulesDMXWiFi.php:44</a></div></div>
+<div class="ttc" id="agestion_equipement_d_m_x_8php_html_ad9a5048afb563f1d963ebac7936f05fa"><div class="ttname"><a href="gestion_equipement_d_m_x_8php.html#ad9a5048afb563f1d963ebac7936f05fa">$broker</a></div><div class="ttdeci">$broker</div><div class="ttdef"><b>Definition:</b> <a href="gestion_equipement_d_m_x_8php_source.html#l00049">gestionEquipementDMX.php:49</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.9.1-->
@@ -240,7 +240,7 @@ $(document).ready(function(){initNavTree('controllers_2broker_8php_source.html',
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_0b018aa80fa74ae122e17cce7379129c.html">artnetAdministration</a></li><li class="navelem"><a class="el" href="dir_b3a2237c6a0550a04f77c82212e28e57.html">controllers</a></li><li class="navelem"><a class="el" href="controllers_2broker_8php.html">broker.php</a></li>
-    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Lundi 2 Juin 2025 09:33:33 pour Projet Ergonomic-Workstation par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Jeudi 5 Juin 2025 14:38:54 pour Projet Artnet par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
   </ul>
 </div>
 </body>

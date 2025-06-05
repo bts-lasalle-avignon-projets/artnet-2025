@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['_5f_5fpad0_5f_5f_617',['__pad0__',['../_equipement_d_m_x_2add_8php.html#a8e01dcc96c43199448ee66f7c2ae8ea6',1,'__pad0__():&#160;add.php'],['../_equipement_d_m_x_2edit_8php.html#a8e01dcc96c43199448ee66f7c2ae8ea6',1,'__pad0__():&#160;edit.php'],['../main_8php.html#a8e01dcc96c43199448ee66f7c2ae8ea6',1,'__pad0__():&#160;main.php']]],
-  ['_5f_5fpad1_5f_5f_618',['__pad1__',['../_equipement_d_m_x_2add_8php.html#ae8b4bb1441c6ab4dcb28a37bc46c8ead',1,'__pad1__():&#160;add.php'],['../_equipement_d_m_x_2edit_8php.html#ae8b4bb1441c6ab4dcb28a37bc46c8ead',1,'__pad1__():&#160;edit.php']]]
+  ['_28_24i_3d_24datas_5b_27canalinitial_27_5d_3b_20_24i_3c_28_24datas_5b_27canalinitial_27_5d_2b_20_24datas_5b_27nbcanaux_27_5d_29_3b_20_24i_2b_2b_29_654',['($i=$datas[&apos;canalInitial&apos;]; $i&lt;($datas[&apos;canalInitial&apos;]+ $datas[&apos;nbCanaux&apos;]); $i++)',['../command_8php.html#a69152a52443e231bd13a7290a5887c64',1,'command.php']]]
 ];

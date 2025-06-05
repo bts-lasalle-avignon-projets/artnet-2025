@@ -1,5 +1,16 @@
 <div class="col-12">
-	<a class="btn btn-primary btn-share mt-0" href="<?php echo ROOT_PATH; ?>equipementDMX/add">Ajouter</a>
+	<div class="d-flex align-items-center">
+		<a class="btn btn-primary mr-2" href="<?php echo ROOT_PATH; ?>equipementDMX/add">Ajouter</a>
+
+		<!-- Bouton Export JSON -->
+		<a class="btn btn-secondary mr-2" href="<?php echo ROOT_PATH; ?>equipementDMX/exportJson">Exporter JSON</a>
+
+		<!-- Bouton Import JSON : form avec input file -->
+		<form action="<?php echo ROOT_PATH; ?>equipementDMX/importJson" method="POST" enctype="multipart/form-data" style="margin:0;">
+			<label class="btn btn-success" for="importJsonFile">Importer JSON</label>
+			<input type="file" id="importJsonFile" name="importJsonFile" accept=".json" style="display:none;" onchange="this.form.submit()">
+		</form>
+	</div>
 	<?php foreach ($datas as $item) : ?>
 		<div class="card mb-4">
 			<h3 class="card-header">Equipement : <?php echo $item['nomEquipement']; ?></h3>

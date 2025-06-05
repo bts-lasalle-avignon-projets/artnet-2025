@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import org.json.JSONException;
 
 
 public class Accueil extends AppCompatActivity
@@ -105,7 +106,11 @@ public class Accueil extends AppCompatActivity
                         Log.d(TAG,
                               "handleMessage() BROKER_MESSAGE_RECU " + topicMQTT + " -> " +
                                 messageMQTT);
-                        traiterMessageMQTT(topicMQTT, messageMQTT);
+                        try {
+                            traiterMessageMQTT(topicMQTT, messageMQTT);
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
                         break;
                     case CommunicationBroker.BROKER_ERREUR:
                         bundle        = (Bundle)message.obj;
@@ -117,11 +122,13 @@ public class Accueil extends AppCompatActivity
         };
     }
 
-    private void traiterMessageMQTT(String topicMQTT, String messageMQTT)
-    {
+    private void traiterMessageMQTT(String topicMQTT, String messageMQTT) throws JSONException {
         if(topicMQTT.startsWith("artnet/config/"))
         {
             communicationBroker.traiterMessageConfig(topicMQTT, messageMQTT);
+        }
+        if(topicMQTT.startsWith("artnet/bdd/equipements/lecture/")) {
+            communicationBroker.traiterMessageEquipements(topicMQTT, messageMQTT);
         }
     }
 }
