@@ -1,4 +1,5 @@
 <map id="com.example.artnetmobile.Parametres" name="com.example.artnetmobile.Parametres">
-<area shape="rect" id="node1" title=" " alt="" coords="21,439,224,531"/>
-<area shape="rect" id="node2" href="$classcom_1_1example_1_1artnetmobile_1_1_vue_artnet.html" title=" " alt="" coords="5,5,240,376"/>
+<area shape="rect" id="node1" title=" " alt="" coords="193,556,397,721"/>
+<area shape="rect" id="node2" href="$classcom_1_1example_1_1artnetmobile_1_1_vue_artnet.html" title=" " alt="" coords="5,64,240,435"/>
+<area shape="rect" id="node3" href="$classcom_1_1example_1_1artnetmobile_1_1_communication_broker.html" title=" " alt="" coords="354,5,585,493"/>
 </map>

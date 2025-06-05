@@ -149,7 +149,6 @@ class EquipementDMX extends Controller
 				if (json_last_error() === JSON_ERROR_NONE && is_array($equipements)) {
 					$importedCount = 0;
 					foreach ($equipements as $equipement) {
-						// Appelle ta méthode dans le modèle pour importer un équipement
 						if ($this->viewmodel->addEquipementDepuisTopic($equipement)) {
 							$importedCount++;
 						}

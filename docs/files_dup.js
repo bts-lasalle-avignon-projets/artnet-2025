@@ -91,6 +91,7 @@ var files_dup =
     [ "ExampleUnitTest.java", "_example_unit_test_8java.html", [
       [ "ExampleUnitTest", "classcom_1_1example_1_1artnetmobile_1_1_example_unit_test.html", "classcom_1_1example_1_1artnetmobile_1_1_example_unit_test" ]
     ] ],
+    [ "gestionEquipementDMX.php", "gestion_equipement_d_m_x_8php.html", "gestion_equipement_d_m_x_8php" ],
     [ "gestionModulesDMXWiFi.php", "gestion_modules_d_m_x_wi_fi_8php.html", "gestion_modules_d_m_x_wi_fi_8php" ],
     [ "ic_launcher.xml", "ic__launcher_8xml.html", null ],
     [ "ic_launcher_background.xml", "ic__launcher__background_8xml.html", null ],

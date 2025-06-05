@@ -1,7 +1,6 @@
 var classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx =
 [
     [ "EquipementDmx", "classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#aa0f1f6d0d463da7f408bdcfdcbf13292", null ],
-    [ "configurerEquipement", "classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a8442d9aceda1a366ecc04202d835a0df", null ],
     [ "getAdresseDMX", "classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a715fe13d2a9aac25c617cf4ddc200378", null ],
     [ "getCanaux", "classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a5c330c5f738a2d1f3dc29a8ec391f463", null ],
     [ "getIdEquipement", "classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#adbd26b2b95544fd9d11c4d7f688b92ef", null ],
@@ -10,6 +9,7 @@ var classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx =
     [ "getType", "classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#afe0d07ef112994bead1b5599d4e5ba78", null ],
     [ "getUnivers", "classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a7224209f9b81b8eab27b03dfad3fd7e7", null ],
     [ "getValeurCanaux", "classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a25c6fc83acc64db103727fd9d2aad860", null ],
+    [ "rechercherEquipement", "classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a2ed94bb983003c73de3677520466ba50", null ],
     [ "setAdresseDMX", "classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#af6ce73ace1facc7600ee636a22d8d757", null ],
     [ "setCanaux", "classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a0a67752ad8c1275488972de1a6b44ecc", null ],
     [ "setIdEquipement", "classcom_1_1example_1_1artnetmobile_1_1_equipement_dmx.html#a878a50328d77408b144e4fd23eb96c16", null ],

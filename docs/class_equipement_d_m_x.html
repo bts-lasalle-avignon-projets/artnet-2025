@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Projet Ergonomic-Workstation: Référence de la classe EquipementDMX</title>
+<title>Projet Artnet: Référence de la classe EquipementDMX</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Projet Ergonomic-Workstation
+   <div id="projectname">Projet Artnet
    &#160;<span id="projectnumber">1.0</span>
    </div>
    <div id="projectbrief">BTS CIEL IR LaSalle Avignon 2025</div>
@@ -99,7 +99,7 @@ Graphe de collaboration de EquipementDMX:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_equipement_d_m_x__coll__graph.png" border="0" usemap="#a_equipement_d_m_x_coll__map" alt="Collaboration graph"/></div>
 <map name="a_equipement_d_m_x_coll__map" id="a_equipement_d_m_x_coll__map">
-<area shape="rect" title=" " alt="" coords="9,175,140,340"/>
+<area shape="rect" title=" " alt="" coords="9,175,140,369"/>
 <area shape="rect" href="class_controller.html" title="Déclaration de la classe Controller." alt="" coords="5,5,144,127"/>
 </map>
 </div>
@@ -122,6 +122,10 @@ Fonctions membres protégées</h2></td></tr>
 <tr class="separator:a399c35ffa22e58fe716f510c488885e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09a52f199f1d4972cf7bf58d0c2f9319"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_equipement_d_m_x.html#a09a52f199f1d4972cf7bf58d0c2f9319">edit</a> ()</td></tr>
 <tr class="separator:a09a52f199f1d4972cf7bf58d0c2f9319"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cd46666bbf2522016da25d19cbe46c8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_equipement_d_m_x.html#a1cd46666bbf2522016da25d19cbe46c8">exportJson</a> ()</td></tr>
+<tr class="separator:a1cd46666bbf2522016da25d19cbe46c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9512c0aa9a1be347a7893453cfa15277"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_equipement_d_m_x.html#a9512c0aa9a1be347a7893453cfa15277">importJson</a> ()</td></tr>
+<tr class="separator:a9512c0aa9a1be347a7893453cfa15277"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67c314bb1dd30f65f781fe7657edd730"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_equipement_d_m_x.html#a67c314bb1dd30f65f781fe7657edd730">index</a> ()</td></tr>
 <tr class="separator:a67c314bb1dd30f65f781fe7657edd730"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_class_controller"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_controller')"><img src="closed.png" alt="-"/>&#160;Fonctions membres protégées hérités de <a class="el" href="class_controller.html">Controller</a></td></tr>
@@ -399,6 +403,45 @@ Membres hérités additionnels</h2></td></tr>
 
 </div>
 </div>
+<a id="a1cd46666bbf2522016da25d19cbe46c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cd46666bbf2522016da25d19cbe46c8">&#9670;&nbsp;</a></span>exportJson()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">EquipementDMX::exportJson </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="controllers_2equipement_8php_source.html#l00128">128</a> du fichier <a class="el" href="controllers_2equipement_8php_source.html">controllers/equipement.php</a>.</p>
+<div class="fragment"><div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    {</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        $equipements = $this-&gt;viewmodel-&gt;getAllEquipementsDMX();</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        <span class="keywordflow">foreach</span> ($equipements as &amp;$equipement) {</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            unset($equipement[<span class="stringliteral">&#39;nomBoitier&#39;</span>]);</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        }</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        header(<span class="stringliteral">&#39;Content-Type: application/json&#39;</span>);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        header(<span class="stringliteral">&#39;Content-Disposition: attachment; filename=&quot;equipementsDMX.json&quot;&#39;</span>);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        echo json_encode($equipements, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        exit;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="ad221486480b0525aa9bc09572417f838"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad221486480b0525aa9bc09572417f838">&#9670;&nbsp;</a></span>getID()</h2>
 
@@ -439,6 +482,60 @@ Membres hérités additionnels</h2></td></tr>
 <p class="reference">Références <a class="el" href="messages_8php_source.html#l00005">Messages\setMsg()</a>.</p>
 
 <p class="reference">Référencé par <a class="el" href="controllers_2equipement_8php_source.html#l00041">command()</a>, <a class="el" href="controllers_2equipement_8php_source.html#l00091">delete()</a>, et <a class="el" href="controllers_2equipement_8php_source.html#l00066">edit()</a>.</p>
+
+</div>
+</div>
+<a id="a9512c0aa9a1be347a7893453cfa15277"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9512c0aa9a1be347a7893453cfa15277">&#9670;&nbsp;</a></span>importJson()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">EquipementDMX::importJson </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="controllers_2equipement_8php_source.html#l00142">142</a> du fichier <a class="el" href="controllers_2equipement_8php_source.html">controllers/equipement.php</a>.</p>
+<div class="fragment"><div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    {</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="_broker_2add_8php.html#ae4cb516593d277dd3ad071d6955da24e">$_SERVER</a>[<span class="stringliteral">&#39;REQUEST_METHOD&#39;</span>] === <span class="stringliteral">&#39;POST&#39;</span> &amp;&amp; isset($_FILES[<span class="stringliteral">&#39;importJsonFile&#39;</span>])) {</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;            $file = $_FILES[<span class="stringliteral">&#39;importJsonFile&#39;</span>];</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            <span class="keywordflow">if</span> ($file[<span class="stringliteral">&#39;error&#39;</span>] === UPLOAD_ERR_OK) {</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                $jsonContent = file_get_contents($file[<span class="stringliteral">&#39;tmp_name&#39;</span>]);</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                $equipements = json_decode($jsonContent, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                <span class="keywordflow">if</span> (json_last_error() === JSON_ERROR_NONE &amp;&amp; is_array($equipements)) {</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                    $importedCount = 0;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                    <span class="keywordflow">foreach</span> ($equipements as $equipement) {</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                        <span class="keywordflow">if</span> ($this-&gt;viewmodel-&gt;addEquipementDepuisTopic($equipement)) {</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                            $importedCount++;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                        }</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                    }</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                    <a class="code" href="class_messages.html#a66c1518a853968954d246aae21dc139e">Messages::setMsg</a>(<span class="stringliteral">&quot;$importedCount équipements importés avec succès !&quot;</span>, <span class="stringliteral">&quot;success&quot;</span>);</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                    <a class="code" href="class_messages.html#a66c1518a853968954d246aae21dc139e">Messages::setMsg</a>(<span class="stringliteral">&quot;Fichier JSON invalide.&quot;</span>, <span class="stringliteral">&quot;error&quot;</span>);</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                }</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                <a class="code" href="class_messages.html#a66c1518a853968954d246aae21dc139e">Messages::setMsg</a>(<span class="stringliteral">&quot;Erreur lors du téléchargement du fichier.&quot;</span>, <span class="stringliteral">&quot;error&quot;</span>);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            }</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        }</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        header(<span class="stringliteral">&#39;Location: &#39;</span> . <a class="code" href="config_8php.html#a4402ba2909a4d515efa9aa41d057247a">URL_PATH</a> . <span class="stringliteral">&#39;equipementDMX&#39;</span>);</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        exit;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    }</div>
+<div class="ttc" id="a_broker_2add_8php_html_ae4cb516593d277dd3ad071d6955da24e"><div class="ttname"><a href="_broker_2add_8php.html#ae4cb516593d277dd3ad071d6955da24e">$_SERVER</a></div><div class="ttdeci">$_SERVER['PHP_SELF']</div><div class="ttdef"><b>Definition:</b> <a href="_broker_2add_8php_source.html#l00006">Broker/add.php:6</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Références <a class="el" href="_broker_2add_8php_source.html#l00006">$_SERVER</a>, <a class="el" href="messages_8php_source.html#l00005">Messages\setMsg()</a>, et <a class="el" href="config_8php_source.html#l00026">URL_PATH</a>.</p>
 
 </div>
 </div>
@@ -512,7 +609,7 @@ Membres hérités additionnels</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_equipement_d_m_x.html">EquipementDMX</a></li>
-    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Lundi 2 Juin 2025 09:33:33 pour Projet Ergonomic-Workstation par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Jeudi 5 Juin 2025 14:38:54 pour Projet Artnet par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
   </ul>
 </div>
 </body>
