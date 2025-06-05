@@ -63,6 +63,29 @@ class EquipementDMXModel extends Model
 				$this->bind(':canalInitial', $canalInitial, PDO::PARAM_INT);
 				$this->execute();
 				$idEquipement = $this->getLastInsertId();
+
+				// Récupère le nombre de canaux du type d'équipement
+				$this->query("SELECT nbCanaux FROM typeEquipementDMX WHERE idTypeEquipement = :idTypeEquipement");
+				$this->bind(':idTypeEquipement', $type);
+				$result = $this->getResult();
+				$nbCanaux = $result['nbCanaux'] ?? 0;
+
+				// Génère le JSON des canaux
+				$canauxArray = [];
+				for ($i = 0; $i < $nbCanaux; $i++) {
+					$canauxArray[] = [
+						'canal' => $canalInitial + $i,
+						'valeur' => "0"
+					];
+				}
+				$jsonCanaux = json_encode($canauxArray);
+
+				// Met à jour l'équipement avec les canaux
+				$this->query("UPDATE equipementDMX SET canaux = :canaux WHERE idEquipement = :idEquipement");
+				$this->bind(':canaux', $jsonCanaux);
+				$this->bind(':idEquipement', $idEquipement, PDO::PARAM_INT);
+				$this->execute();
+
 				Messages::setMsg("Équipement ajouté avec succès !", "success");
 				return ACTION_SUCCESS;
 			} catch (PDOException $e) {
