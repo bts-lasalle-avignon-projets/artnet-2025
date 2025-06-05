@@ -367,7 +367,6 @@ class EquipementDMXModel extends Model
 				if (json_last_error() === JSON_ERROR_NONE) {
 					$equipement['canaux'] = $decoded;
 				} else {
-					journaliser("Erreur de décodage JSON pour l'équipement : " . $equipement['nomEquipement']);
 					$equipement['canaux'] = null;
 				}
 			}
@@ -413,11 +412,10 @@ class EquipementDMXModel extends Model
 		return $broker ?? null;
 	}
 
-	public function addEquipementDepuisTopic($json)
+	public function addEquipementDepuisTopic($data)
 	{
 		// Exemple de json : {"nomEquipement":"lyre","univers":1,"typeEquipement":"Scanner","nbCanaux":8,"canalInitial":24,"canaux":[{"canal":10, "valeur":255},{"canal":11, "valeur":10},{"canal":12, "valeur":55}]}
 
-		$data = json_decode($json, true);
 		if (!$data) {
 			// JSON invalide
 			return false;
@@ -444,7 +442,6 @@ class EquipementDMXModel extends Model
 
 		// Vérifier si l'idEquipement a été trouvé
 		if (!$equipementDMX) {
-			journaliser("Aucun équipement trouvé avec nomEquipement: " . $data['nomEquipement'] . " et univers: " . $data['univers']);
 			return false; // Équipement non trouvé
 		}
 
@@ -488,7 +485,6 @@ class EquipementDMXModel extends Model
 		$typeEquipementDMX = $this->getResult();
 
 		if (!is_array($typeEquipementDMX) || !isset($typeEquipementDMX['idTypeEquipement'])) {
-			journaliser("Aucun type d'équipement trouvé pour type: " . $data['typeEquipement'] . " et nbCanaux: " . $data['nbCanaux']);
 			$idTypeEquipement = $this->insertTypeEquipement($data);
 			$typeEquipementDMX['idTypeEquipement'] = $idTypeEquipement;
 		}
@@ -504,10 +500,8 @@ class EquipementDMXModel extends Model
 
 		if ($this->execute()) {
 			$idTypeEquipement = $this->getLastInsertId();
-			journaliser("Nouveau type d'équipement inséré : " . $data['typeEquipement'] . " avec id: " . $idTypeEquipement);
 			return $idTypeEquipement;
 		} else {
-			journaliser("Échec de l'insertion du type d'équipement : " . $data['typeEquipement']);
 			return false; // Retourne 0 en cas d'échec
 		}
 	}
